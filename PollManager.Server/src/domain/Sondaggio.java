@@ -9,6 +9,19 @@ public class Sondaggio {
 	private String titolo, descrizione;
 	private boolean attivo;
 	
+	
+	public Sondaggio(String titolo, String descrizione){
+		this.titolo=titolo;
+		this.descrizione=descrizione;
+		attivo=true;
+	}
+	public void setDisable(Sondaggio sondaggio){
+		sondaggio.attivo= false;
+	}
+	
+	public void setEnable(Sondaggio sondaggio){
+		sondaggio.attivo= true;
+	}
 	/**
 	 * 
 	 * @return
@@ -43,13 +56,6 @@ public class Sondaggio {
 	 */
 	public boolean isAttivo() {
 		return attivo;
-	}
-	/**
-	 * 
-	 * @param attivo
-	 */
-	public void setAttivo(boolean attivo) {
-		this.attivo = attivo;
 	}
 	
 

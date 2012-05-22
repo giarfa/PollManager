@@ -4,7 +4,7 @@ package domain;
  * @author Alberto
  *
  */
-public class Domanda {
+public abstract class Domanda {
 	
 	private int ordine;
 	private String testo;

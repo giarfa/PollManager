@@ -7,6 +7,8 @@ package domain;
 public class Libera extends Domanda {
 	
 	private int MaxCaratteri, MinCaratteri;
+	
+
 
 	public int getMaxCaratteri() {
 		return MaxCaratteri;
