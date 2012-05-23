@@ -1,4 +1,5 @@
 package domain;
+
 /**
  * 
  * @author Alberto
@@ -97,7 +98,7 @@ public class Utente {
 		this.nomeutente = nomeutente;
 	}
 	/**
-	 * @return the nomeutente
+	 * @return nomeutente
 	 */
 	public String getNomeutente() {
 		return nomeutente;
