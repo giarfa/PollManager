@@ -17,13 +17,26 @@ public class Libera extends Domanda {
 	 * @param MaxCaratteri
 	 * @param MinCaratteri
 	 */
-	public Libera(int ordine, String testo, boolean isObbligatorio, int MaxCaratteri, int MinCaratteri){
-		super.ordine=ordine;
-		super.testo=testo;
-		super.isObbligatorio=isObbligatorio;
-		this.MaxCaratteri=MaxCaratteri;
-		this.MinCaratteri=MinCaratteri;
+	public Libera(){
 		
+		}
+	/**
+	 * 
+	 * @param ordine
+	 * @param testo
+	 * @param isObbligatorio
+	 * @param MaxCaratteri
+	 * @param MinCaratteri
+	 * @return
+	 */
+	public static Libera CreaLibera(int ordine, String testo, boolean isObbligatorio, int MaxCaratteri, int MinCaratteri){
+		Libera libera=new Libera();
+		libera.ordine=ordine;
+		libera.testo=testo;
+		libera.isObbligatorio=isObbligatorio;
+		libera.MaxCaratteri=MaxCaratteri;
+		libera.MinCaratteri=MinCaratteri;
+		return libera;
 	}
 
 	/**

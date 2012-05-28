@@ -12,6 +12,13 @@ public class Range extends Domanda {
 	
 	/**
 	 * 
+	 */
+	public Range(){
+		
+	}
+	
+	/**
+	 * 
 	 * @param ordine
 	 * @param testo
 	 * @param isObbligatorio
@@ -20,19 +27,22 @@ public class Range extends Domanda {
 	 * @param DescValMin
 	 * @param DescValMax
 	 * @param isRispSingola
+	 * @return
 	 */
-	public Range(int ordine, String testo, boolean isObbligatorio, int ValMin, int ValMax, String DescValMin, String DescValMax, boolean isRispSingola){
-		super.ordine=ordine;
-		super.testo=testo;
-		super.isObbligatorio=isObbligatorio;
-		this.ValMin=ValMin;
-		this.ValMax=ValMax;
-		this.DescValMin=DescValMin;
-		this.DescValMax=DescValMax;
-		this.isRispSingola=isRispSingola;
-		
-	}
 	
+	
+	public static Range CreaRange(int ordine, String testo, boolean isObbligatorio, int ValMin, int ValMax, String DescValMin, String DescValMax, boolean isRispSingola){
+		Range range=new Range();
+		range.ordine=ordine;
+		range.testo=testo;
+		range.isObbligatorio=isObbligatorio;
+		range.ValMin=ValMin;
+		range.ValMax=ValMax;
+		range.DescValMin=DescValMin;
+		range.DescValMax=DescValMax;
+		range.isRispSingola=isRispSingola;
+		return range;
+	}
 	/**
 	 * 
 	 * @return

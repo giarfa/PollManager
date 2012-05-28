@@ -8,24 +8,47 @@ package domain;
 public class Utente {
 	private int matricola;
 	private String nome, cognome, nomeutente, password;
+	private Ruolo ruolo;
 	private boolean attivo;
+
+	
+	/**
+	 * 
+	 */
+	public Utente(){
+		attivo= true;
+	}
 	
 	/**
 	 * 
 	 * @param matricola
 	 * @param nome
 	 * @param cognome
-	 * @param nomeutente
 	 * @param password
+	 * @return
 	 */
-	public Utente(int matricola, String nome, String cognome, String nomeutente, String password){
-		this.matricola=matricola;
-		this.nome=nome;
-		this.cognome=cognome;
-		this.setNomeutente(nomeutente);
-		this.setPassword(password);
-		attivo= true;
+	public static Utente CreaUtente(int matricola,Ruolo ruolo, String nome, String cognome,String password){
+		Utente utente= new Utente();
+		utente.setNome(nome);
+		utente.setCognome(cognome);
+		utente.setMatricola(matricola);
+		utente.setPassword(password);
+		utente.setRuolo(ruolo);
+		return utente;
 	}
+	
+	
+
+	/*public static Utente ModificaUtente(Utente utente, int matricola,Ruolo ruolo, String nome, String cognome,String password) {
+		utente.setNome(nome);
+		utente.setCognome(cognome);
+		utente.setMatricola(matricola);
+		utente.setPassword(password);
+		utente.setRuolo(ruolo);
+	return utente;*/
+	
+	
+	
 	/**
 	 * 
 	 * @param utente
@@ -114,6 +137,14 @@ public class Utente {
 	 */
 	public String getPassword() {
 		return password;
+	}
+	/**
+	 * 
+	 * @param ruolo
+	 */
+	private void setRuolo(Ruolo ruolo) {
+		this.ruolo=ruolo;
+		
 	}
 	/**
 	 * 

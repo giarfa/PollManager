@@ -16,10 +16,24 @@ public class Matrice extends Domanda {
 	 */
 	
 	
-	public Matrice(int ordine, String testo, boolean isObbligatorio, int MaxCaratteri, int MinCaratteri){
-		super.ordine=ordine;
-		super.testo=testo;
-		super.isObbligatorio=isObbligatorio;
+	public Matrice(){
+	}
+	
+	/**
+	 * 
+	 * @param ordine
+	 * @param testo
+	 * @param isObbligatorio
+	 * @param MaxCaratteri
+	 * @param MinCaratteri
+	 * @return
+	 */
+	public static Matrice CreaMatrice(int ordine, String testo, boolean isObbligatorio, int MaxCaratteri, int MinCaratteri){
+		Matrice matrice=new Matrice();
+		matrice.ordine=ordine;
+		matrice.testo=testo;
+		matrice.isObbligatorio=isObbligatorio;
+		return matrice;
 	}
 
 }

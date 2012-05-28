@@ -9,18 +9,34 @@ public class Sondaggio {
 	private String titolo, descrizione;
 	private boolean attivo;
 	
-	
-	public Sondaggio(String titolo, String descrizione){
-		this.titolo=titolo;
-		this.descrizione=descrizione;
+	/**
+	 * 
+	 */
+	public Sondaggio(){
 		attivo=true;
 	}
+	
+	/**
+	 * 
+	 * @param titolo
+	 * @param descrizione
+	 * @return
+	 */
+	public static Sondaggio CreaSondaggio(String titolo, String descrizione){
+		Sondaggio sondaggio= new Sondaggio();
+		sondaggio.titolo=titolo;
+		sondaggio.descrizione=descrizione;
+		return sondaggio;
+	}
+	
+	
 	public void setDisable(Sondaggio sondaggio){
 		sondaggio.attivo= false;
 	}
 	
 	public void setEnable(Sondaggio sondaggio){
 		sondaggio.attivo= true;
+		
 	}
 	/**
 	 * 

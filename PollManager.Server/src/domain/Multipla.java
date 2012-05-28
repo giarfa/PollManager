@@ -14,26 +14,28 @@ public class Multipla extends Domanda {
 	
 	/**
 	 * 
-	 * @param ordine
-	 * @param testo
-	 * @param isObbligatorio
-	 * @param orientamento
-	 * @param isSingola
-	 * @param NumMinRisp
 	 */
-	public Multipla(int ordine, String testo, boolean isObbligatorio, Orientamento orientamento, boolean isSingola,int NumMinRisp){
-		super.ordine=ordine;
-		super.testo=testo;
-		super.isObbligatorio=isObbligatorio;
-		this.orientamento=orientamento;
-		this.isSingola=isSingola;
-		this.NumMinRisp=NumMinRisp;
+	public Multipla(){
+		
+		}
+	
+	public static Multipla CreaMultipla(int ordine, String testo, boolean isObbligatorio, Orientamento orientamento, boolean isSingola,int NumMinRisp){
+		Multipla multipla=new Multipla();
+		multipla.ordine=ordine;
+		multipla.testo=testo;
+		multipla.isObbligatorio=isObbligatorio;
+		multipla.orientamento=orientamento;
+		multipla.isSingola=isSingola;
+		multipla.NumMinRisp=NumMinRisp;
+		return multipla;
 		}
 	
 	/**
 	 * 
 	 * @return
 	 */
+	
+	
 	public Orientamento getOrientamento() {
 		return orientamento;
 	}
