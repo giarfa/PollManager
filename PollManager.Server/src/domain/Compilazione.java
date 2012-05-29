@@ -1,9 +1,9 @@
 package domain;
 
-import java.util.Date;
+
 
 public class Compilazione {
-	private Date datacompilazione;
+	private Data datacompilazione;
 	private String note;
 	private boolean isdefinitiva;
 	
@@ -11,14 +11,14 @@ public class Compilazione {
 	 * 
 	 * @return
 	 */
-	public Date getDatacompilazione() {
+	public Data getDatacompilazione() {
 		return datacompilazione;
 	}
 	/**
 	 * 
 	 * @param datacompilazione
 	 */
-	public void setDatacompilazione(Date datacompilazione) {
+	public void setDatacompilazione(Data datacompilazione) {
 		this.datacompilazione = datacompilazione;
 	}
 	/**

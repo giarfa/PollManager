@@ -30,6 +30,27 @@ public class Sondaggio {
 	}
 	
 	
+	/**
+	 *  
+	 */
+	public static void VisualizzaSondaggio(){
+	
+	}
+	
+	/**
+	 * 
+	 */
+	public static void ModificaSondaggio(){
+		
+	}
+	/**
+	 * 
+	 */
+	
+	public static void CancellaSondaggio(){
+		
+	}
+	
 	public void setDisable(Sondaggio sondaggio){
 		sondaggio.attivo= false;
 	}

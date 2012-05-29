@@ -1,5 +1,6 @@
 package domain;
 
+
 /**
  * 
  * @author Alberto
@@ -9,6 +10,7 @@ public class Utente {
 	private int matricola;
 	private String nome, cognome, nomeutente, password;
 	private Ruolo ruolo;
+	private Data datacreazione;
 	private boolean attivo;
 
 	
@@ -17,7 +19,8 @@ public class Utente {
 	 */
 	public Utente(){
 		attivo= true;
-	}
+		Data.setDataOdierna(datacreazione);
+		}
 	
 	/**
 	 * 
@@ -46,7 +49,19 @@ public class Utente {
 		utente.setPassword(password);
 		utente.setRuolo(ruolo);
 	return utente;*/
+	/**
+	 * 
+	 */
+	public static void CancellaUtente(Utente utente){
+		
+	}
 	
+	/**
+	 * 
+	 */
+	public static void CancellaTutti(){
+		
+	}
 	
 	
 	/**
