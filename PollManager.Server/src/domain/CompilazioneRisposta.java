@@ -7,6 +7,7 @@ package domain;
 public class CompilazioneRisposta {
 	
 	private String rispostalibera, testolibero;
+	private Compilazione compilazioneAssociata;
 	
 	/**
 	 * 

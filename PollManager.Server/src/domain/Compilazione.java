@@ -1,24 +1,27 @@
 package domain;
 
+import java.util.Date;
+
 
 
 public class Compilazione {
-	private Data datacompilazione;
+	private Date datacompilazione;
 	private String note;
 	private boolean isdefinitiva;
+	private Utente utenteAssociato;
 	
 	/**
 	 * 
 	 * @return
 	 */
-	public Data getDatacompilazione() {
+	public Date getDatacompilazione() {
 		return datacompilazione;
 	}
 	/**
 	 * 
 	 * @param datacompilazione
 	 */
-	public void setDatacompilazione(Data datacompilazione) {
+	public void setDatacompilazione(Date datacompilazione) {
 		this.datacompilazione = datacompilazione;
 	}
 	/**

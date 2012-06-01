@@ -9,6 +9,7 @@ public abstract class Domanda {
 	protected int ordine;
 	protected String testo;
 	protected boolean isObbligatorio;
+	protected Sondaggio sondaggioAssociato;
 	
 	/**
 	 * 

@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.Date;
+
 
 /**
  * 
@@ -10,7 +12,7 @@ public class Utente {
 	private int matricola;
 	private String nome, cognome, nomeutente, password;
 	private Ruolo ruolo;
-	private Data datacreazione;
+	private Date datacreazione;
 	private boolean attivo;
 
 	
@@ -18,8 +20,8 @@ public class Utente {
 	 * 
 	 */
 	public Utente(){
-		attivo= true;
-		Data.setDataOdierna(datacreazione);
+		this.attivo= true;
+		this.datacreazione=new Date();
 		}
 	
 	/**
@@ -42,28 +44,20 @@ public class Utente {
 	
 	
 
-	/*public static Utente ModificaUtente(Utente utente, int matricola,Ruolo ruolo, String nome, String cognome,String password) {
-		utente.setNome(nome);
-		utente.setCognome(cognome);
-		utente.setMatricola(matricola);
-		utente.setPassword(password);
-		utente.setRuolo(ruolo);
-	return utente;*/
-	/**
-	 * 
-	 */
-	public static void CancellaUtente(Utente utente){
-		
-	}
-	
-	/**
-	 * 
-	 */
-	public static void CancellaTutti(){
-		
-	}
-	
-	
+	 public Utente ModificaUtente(int matricola,String nome, String cognome,String password) {
+     	this.nome=nome;
+         this.cognome=cognome;
+         this.matricola=matricola;
+         ModificaUtente(password);
+         return this;
+     }
+	 
+	 
+	 public Utente ModificaUtente(String password){
+     	this.password=password;
+     	return this;
+     }
+
 	/**
 	 * 
 	 * @param utente
