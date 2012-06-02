@@ -1,4 +1,7 @@
 package domain;
+
+import java.util.ArrayList;
+
 /**
  * 
  * @author Alberto
@@ -8,6 +11,7 @@ public class Sondaggio {
 	
 	private String titolo, descrizione;
 	private boolean attivo;
+	private ArrayList <Domanda> domande= new ArrayList<Domanda>();
 	
 	/**
 	 * 

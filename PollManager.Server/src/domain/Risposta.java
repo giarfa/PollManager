@@ -8,12 +8,13 @@ public class Risposta {
 
 	
 	
-	public static Risposta CreaRisposta(int ordine, String testo, boolean hasTestoLibero, boolean isNotRisponde){
+	public static Risposta CreaRisposta(int ordine, String testo, boolean hasTestoLibero, boolean isNotRisponde, Domanda domandaAssociata){
 		Risposta risposta= new Risposta();
 		risposta.ordine=ordine;
 		risposta.testo=testo;
 		risposta.hasTestoLibero=hasTestoLibero;
 		risposta.isNotRisponde=isNotRisponde;
+		risposta.domandaAssociata=domandaAssociata;
 		return risposta;
 	}
 	

@@ -28,11 +28,12 @@ public class Matrice extends Domanda {
 	 * @param MinCaratteri
 	 * @return
 	 */
-	public static Matrice CreaMatrice(int ordine, String testo, boolean isObbligatorio, int MaxCaratteri, int MinCaratteri){
+	public static Matrice CreaMatrice(int ordine, String testo, boolean isObbligatorio, int MaxCaratteri, int MinCaratteri, Sondaggio sondaggioAssociato){
 		Matrice matrice=new Matrice();
 		matrice.ordine=ordine;
 		matrice.testo=testo;
 		matrice.isObbligatorio=isObbligatorio;
+		matrice.sondaggioAssociato=sondaggioAssociato;
 		return matrice;
 	}
 

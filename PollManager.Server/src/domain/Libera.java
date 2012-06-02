@@ -29,13 +29,14 @@ public class Libera extends Domanda {
 	 * @param MinCaratteri
 	 * @return
 	 */
-	public static Libera CreaLibera(int ordine, String testo, boolean isObbligatorio, int MaxCaratteri, int MinCaratteri){
+	public static Libera CreaLibera(int ordine, String testo, boolean isObbligatorio, int MaxCaratteri, int MinCaratteri, Sondaggio sondaggioAssociato){
 		Libera libera=new Libera();
 		libera.ordine=ordine;
 		libera.testo=testo;
 		libera.isObbligatorio=isObbligatorio;
 		libera.MaxCaratteri=MaxCaratteri;
 		libera.MinCaratteri=MinCaratteri;
+		libera.sondaggioAssociato=sondaggioAssociato;
 		return libera;
 	}
 

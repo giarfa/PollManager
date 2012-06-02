@@ -19,7 +19,7 @@ public class Multipla extends Domanda {
 		
 		}
 	
-	public static Multipla CreaMultipla(int ordine, String testo, boolean isObbligatorio, Orientamento orientamento, boolean isSingola,int NumMinRisp){
+	public static Multipla CreaMultipla(int ordine, String testo, boolean isObbligatorio, Orientamento orientamento, boolean isSingola,int NumMinRisp, Sondaggio sondaggioAssociato){
 		Multipla multipla=new Multipla();
 		multipla.ordine=ordine;
 		multipla.testo=testo;
@@ -27,6 +27,7 @@ public class Multipla extends Domanda {
 		multipla.orientamento=orientamento;
 		multipla.isSingola=isSingola;
 		multipla.NumMinRisp=NumMinRisp;
+		multipla.sondaggioAssociato=sondaggioAssociato;
 		return multipla;
 		}
 	

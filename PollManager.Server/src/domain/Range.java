@@ -31,7 +31,7 @@ public class Range extends Domanda {
 	 */
 	
 	
-	public static Range CreaRange(int ordine, String testo, boolean isObbligatorio, int ValMin, int ValMax, String DescValMin, String DescValMax, boolean isRispSingola){
+	public static Range CreaRange(int ordine, String testo, boolean isObbligatorio, int ValMin, int ValMax, String DescValMin, String DescValMax, boolean isRispSingola, Sondaggio sondaggioAssociato){
 		Range range=new Range();
 		range.ordine=ordine;
 		range.testo=testo;
@@ -41,6 +41,7 @@ public class Range extends Domanda {
 		range.DescValMin=DescValMin;
 		range.DescValMax=DescValMax;
 		range.isRispSingola=isRispSingola;
+		range.sondaggioAssociato=sondaggioAssociato;
 		return range;
 	}
 	/**
