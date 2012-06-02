@@ -52,13 +52,7 @@ public class Range extends Domanda {
 		return ValMin;
 	}
 	
-	/**
-	 * 
-	 * @param valMin
-	 */
-	public void setValMin(int valMin) {
-		ValMin = valMin;
-	}
+	
 	
 	/**
 	 * 
@@ -68,13 +62,7 @@ public class Range extends Domanda {
 		return ValMax;
 	}
 	
-	/**
-	 * 
-	 * @param valMax
-	 */
-	public void setValMax(int valMax) {
-		ValMax = valMax;
-	}
+	
 	
 	/**
 	 * 
@@ -84,13 +72,7 @@ public class Range extends Domanda {
 		return DescValMin;
 	}
 	
-	/**
-	 * 
-	 * @param descValMin
-	 */
-	public void setDescValMin(String descValMin) {
-		DescValMin = descValMin;
-	}
+	
 	
 	/**
 	 * 
@@ -100,13 +82,7 @@ public class Range extends Domanda {
 		return DescValMax;
 	}
 	
-	/**
-	 * 
-	 * @param descValMax
-	 */
-	public void setDescValMax(String descValMax) {
-		DescValMax = descValMax;
-	}
+	
 	
 	/**
 	 * 
@@ -116,13 +92,7 @@ public class Range extends Domanda {
 		return isRispSingola;
 	}
 	
-	/**
-	 * 
-	 * @param isRispSingola
-	 */
-	public void setRispSingola(boolean isRispSingola) {
-		this.isRispSingola = isRispSingola;
-	}
+	
 	
 	
 }

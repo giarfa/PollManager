@@ -12,6 +12,7 @@ public class Sondaggio {
 	private String titolo, descrizione;
 	private boolean attivo;
 	private ArrayList <Domanda> domande= new ArrayList<Domanda>();
+	private ArrayList <Compilazione> compilazioni= new ArrayList<Compilazione>();
 	
 	/**
 	 * 
@@ -44,8 +45,10 @@ public class Sondaggio {
 	/**
 	 * 
 	 */
-	public static void ModificaSondaggio(){
-		
+	public Sondaggio ModificaSondaggio(String titolo, String descrizione){
+		this.titolo=titolo;
+		this.descrizione=descrizione;
+		return this;
 	}
 	/**
 	 * 
@@ -55,12 +58,12 @@ public class Sondaggio {
 		
 	}
 	
-	public void setDisable(Sondaggio sondaggio){
-		sondaggio.attivo= false;
+	public void setDisable(){
+		this.attivo= false;
 	}
 	
-	public void setEnable(Sondaggio sondaggio){
-		sondaggio.attivo= true;
+	public void setEnable(){
+		this.attivo= true;
 		
 	}
 	/**
@@ -70,13 +73,7 @@ public class Sondaggio {
 	public String getTitolo() {
 		return titolo;
 	}
-	/**
-	 * 
-	 * @param titolo
-	 */
-	public void setTitolo(String titolo) {
-		this.titolo = titolo;
-	}
+	
 	/**
 	 * 
 	 * @return
@@ -84,13 +81,7 @@ public class Sondaggio {
 	public String getDescrizione() {
 		return descrizione;
 	}
-	/**
-	 * 
-	 * @param descrizione
-	 */
-	public void setDescrizione(String descrizione) {
-		this.descrizione = descrizione;
-	}
+	
 	/**
 	 * 
 	 * @return

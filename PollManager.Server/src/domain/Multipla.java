@@ -41,13 +41,7 @@ public class Multipla extends Domanda {
 		return orientamento;
 	}
 	
-	/**
-	 * 
-	 * @param orientamento
-	 */
-	public void setOrientamento(Orientamento orientamento) {
-		this.orientamento = orientamento;
-	}
+	
 	
 	/**
 	 * 
@@ -57,13 +51,7 @@ public class Multipla extends Domanda {
 		return isSingola;
 	}
 	
-	/**
-	 * 
-	 * @param isSingola
-	 */
-	public void setSingola(boolean isSingola) {
-		this.isSingola = isSingola;
-	}
+	
 	
 	/**
 	 * 
@@ -73,13 +61,7 @@ public class Multipla extends Domanda {
 		return NumMinRisp;
 	}
 	
-	/**
-	 * 
-	 * @param NumMinRisp
-	 */
-	public void setNumMinRisp(int NumMinRisp) {
-		this.NumMinRisp = NumMinRisp;
-	}
+	
 	
 	
 	

@@ -1,4 +1,7 @@
 package domain;
+
+import java.util.ArrayList;
+
 /**
  * 
  * @author Alberto
@@ -6,6 +9,7 @@ package domain;
  */
 public class Matrice extends Domanda {
 	
+	private ArrayList <ValoriMatrice> valorimatrice= new ArrayList<ValoriMatrice>();
 	/**
 	 * 
 	 * @param ordine

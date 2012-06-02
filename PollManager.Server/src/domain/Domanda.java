@@ -1,4 +1,7 @@
 package domain;
+
+import java.util.ArrayList;
+
 /**
  * 
  * @author Alberto
@@ -10,6 +13,7 @@ public abstract class Domanda {
 	protected String testo;
 	protected boolean isObbligatorio;
 	protected Sondaggio sondaggioAssociato;
+	protected ArrayList <Risposta> risposte= new ArrayList<Risposta>();
 	
 	/**
 	 * 
@@ -19,13 +23,7 @@ public abstract class Domanda {
 		return ordine;
 	}
 	
-	/**
-	 * 
-	 * @param ordine
-	 */
-	public void setOrdine(int ordine) {
-		this.ordine = ordine;
-	}
+	
 	
 	/**
 	 * 
@@ -35,13 +33,7 @@ public abstract class Domanda {
 		return testo;
 	}
 	
-	/**
-	 * 
-	 * @param testo
-	 */
-	public void setTesto(String testo) {
-		this.testo = testo;
-	}
+	
 	
 	/**
 	 * 
@@ -51,12 +43,6 @@ public abstract class Domanda {
 		return isObbligatorio;
 	}
 	
-	/**
-	 * 
-	 * @param isObbligatorio
-	 */
-	public void setObbligatorio(boolean isObbligatorio) {
-		this.isObbligatorio = isObbligatorio;
-	}
+	
 	
 }

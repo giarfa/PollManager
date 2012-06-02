@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 
@@ -9,6 +10,7 @@ public class Compilazione {
 	private String note;
 	private boolean isdefinitiva;
 	private Utente utenteAssociato;
+	private ArrayList <CompilazioneRisposta> compilazionirisposta= new ArrayList<CompilazioneRisposta>();
 	
 	/**
 	 * 
@@ -17,13 +19,7 @@ public class Compilazione {
 	public Date getDatacompilazione() {
 		return datacompilazione;
 	}
-	/**
-	 * 
-	 * @param datacompilazione
-	 */
-	public void setDatacompilazione(Date datacompilazione) {
-		this.datacompilazione = datacompilazione;
-	}
+	
 	/**
 	 * 
 	 * @return
@@ -31,13 +27,7 @@ public class Compilazione {
 	public String getNote() {
 		return note;
 	}
-	/**
-	 * 
-	 * @param note
-	 */
-	public void setNote(String note) {
-		this.note = note;
-	}
+	
 	/**
 	 * 
 	 * @return
@@ -45,13 +35,7 @@ public class Compilazione {
 	public boolean isIsdefinitiva() {
 		return isdefinitiva;
 	}
-	/**
-	 * 
-	 * @param isdefinitiva
-	 */
-	public void setIsdefinitiva(boolean isdefinitiva) {
-		this.isdefinitiva = isdefinitiva;
-	}
+	
 
 
 }

@@ -17,6 +17,38 @@ public class Risposta {
 		risposta.domandaAssociata=domandaAssociata;
 		return risposta;
 	}
+
+
+
+	public int getOrdine() {
+		return ordine;
+	}
+
+
+
+	public String getTesto() {
+		return testo;
+	}
+
+
+
+	public boolean isHasTestoLibero() {
+		return hasTestoLibero;
+	}
+
+
+
+	public boolean isNotRisponde() {
+		return isNotRisponde;
+	}
+
+
+
+	public Domanda getDomandaAssociata() {
+		return domandaAssociata;
+	}
+	
+	
 	
 	
 }

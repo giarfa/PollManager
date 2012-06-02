@@ -17,13 +17,6 @@ public class CompilazioneRisposta {
 		return rispostalibera;
 	}
 	
-	/**
-	 * 
-	 * @param rispostalibera
-	 */
-	public void setRispostalibera(String rispostalibera) {
-		this.rispostalibera = rispostalibera;
-	}
 
 	/**
 	 * 
@@ -32,12 +25,7 @@ public class CompilazioneRisposta {
 	public String getTestolibero() {
 		return testolibero;
 	}
-	/**
-	 * 
-	 * @param testolibero
-	 */
-	public void setTestolibero(String testolibero) {
-		this.testolibero = testolibero;
-	}
+	
+	
 
 }

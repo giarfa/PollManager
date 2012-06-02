@@ -4,7 +4,7 @@ package domain;
  * @author Alberto
  *
  */
-public class ValoriMarice {
+public class ValoriMatrice {
 
 	private int ordine;
 	private String testo;
@@ -13,17 +13,13 @@ public class ValoriMarice {
 		return ordine;
 	}
 	
-	public void setOrdine(int ordine) {
-		this.ordine = ordine;
-	}
+	
 	
 	public String getTesto() {
 		return testo;
 	}
 	
-	public void setTesto(String testo) {
-		this.testo = testo;
-	}
+	
 	
 	
 }

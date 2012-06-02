@@ -48,14 +48,7 @@ public class Libera extends Domanda {
 		return MaxCaratteri;
 	}
 
-	/**
-	 * 
-	 * @param maxCaratteri
-	 */
-	public void setMaxCaratteri(int maxCaratteri) {
-		MaxCaratteri = maxCaratteri;
-	}
-
+	
 	/**
 	 * 
 	 * @return
@@ -64,13 +57,7 @@ public class Libera extends Domanda {
 		return MinCaratteri;
 	}
 
-	/**
-	 * 
-	 * @param minCaratteri
-	 */
-	public void setMinCaratteri(int minCaratteri) {
-		MinCaratteri = minCaratteri;
-	}
+	
 	
 	
 }
