@@ -14,7 +14,7 @@ public class Range extends Domanda {
 	 * 
 	 */
 	public Range(){
-		
+		super();
 	}
 	
 	/**
@@ -29,8 +29,6 @@ public class Range extends Domanda {
 	 * @param isRispSingola
 	 * @return
 	 */
-	
-	
 	public static Range CreaRange(int ordine, String testo, boolean isObbligatorio, int ValMin, int ValMax, String DescValMin, String DescValMax, boolean isRispSingola, Sondaggio sondaggioAssociato){
 		Range range=new Range();
 		range.ordine=ordine;
@@ -44,55 +42,86 @@ public class Range extends Domanda {
 		range.sondaggioAssociato=sondaggioAssociato;
 		return range;
 	}
+	
+	public Range ModificaRange(int ordine, String testo, boolean isObbligatorio, int ValMin, int ValMax, String DescValMin, String DescValMax, boolean isRispSingola){
+		this.ordine=ordine;
+		this.testo=testo;
+		this.isObbligatorio=isObbligatorio;
+		this.ValMin=ValMin;
+		this.ValMax=ValMax;
+		this.DescValMin=DescValMin;
+		this.DescValMax=DescValMax;
+		this.isRispSingola=isRispSingola;
+		return this;
+	}
+
 	/**
-	 * 
-	 * @return
+	 * @return the valMin
 	 */
 	public int getValMin() {
 		return ValMin;
 	}
-	
-	
-	
+
 	/**
-	 * 
-	 * @return
+	 * @param valMin the valMin to set
+	 */
+	void setValMin(int valMin) {
+		ValMin = valMin;
+	}
+
+	/**
+	 * @return the valMax
 	 */
 	public int getValMax() {
 		return ValMax;
 	}
-	
-	
-	
+
 	/**
-	 * 
-	 * @return
+	 * @param valMax the valMax to set
+	 */
+	void setValMax(int valMax) {
+		ValMax = valMax;
+	}
+
+	/**
+	 * @return the descValMin
 	 */
 	public String getDescValMin() {
 		return DescValMin;
 	}
-	
-	
-	
+
 	/**
-	 * 
-	 * @return
+	 * @param descValMin the descValMin to set
+	 */
+	void setDescValMin(String descValMin) {
+		DescValMin = descValMin;
+	}
+
+	/**
+	 * @return the descValMax
 	 */
 	public String getDescValMax() {
 		return DescValMax;
 	}
-	
-	
-	
+
 	/**
-	 * 
-	 * @return
+	 * @param descValMax the descValMax to set
+	 */
+	void setDescValMax(String descValMax) {
+		DescValMax = descValMax;
+	}
+
+	/**
+	 * @return the isRispSingola
 	 */
 	public boolean isRispSingola() {
 		return isRispSingola;
 	}
-	
-	
-	
-	
+
+	/**
+	 * @param isRispSingola the isRispSingola to set
+	 */
+	void setRispSingola(boolean isRispSingola) {
+		this.isRispSingola = isRispSingola;
+	}
 }

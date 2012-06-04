@@ -6,20 +6,13 @@ package domain;
  */
 public class Libera extends Domanda {
 	
-	private int MaxCaratteri, MinCaratteri;
-	
-	
-	/**
-	 * 
-	 * @param ordine
-	 * @param testo
-	 * @param isObbligatorio
-	 * @param MaxCaratteri
-	 * @param MinCaratteri
-	 */
+	private int MaxCaratteri;
+	private int MinCaratteri;
+
 	public Libera(){
-		
-		}
+		super();
+	}
+	
 	/**
 	 * 
 	 * @param ordine
@@ -40,24 +33,40 @@ public class Libera extends Domanda {
 		return libera;
 	}
 
+	public Libera ModificaLibera(int ordine, String testo, boolean isObbligatorio, int MaxCaratteri, int MinCaratteri){
+		this.ordine=ordine;
+		this.testo=testo;
+		this.isObbligatorio=isObbligatorio;
+		this.MaxCaratteri=MaxCaratteri;
+		this.MinCaratteri=MinCaratteri;
+		return this;
+	}
+
 	/**
-	 * 
-	 * @return
+	 * @return the maxCaratteri
 	 */
 	public int getMaxCaratteri() {
 		return MaxCaratteri;
 	}
 
-	
 	/**
-	 * 
-	 * @return
+	 * @param maxCaratteri the maxCaratteri to set
+	 */
+	void setMaxCaratteri(int maxCaratteri) {
+		MaxCaratteri = maxCaratteri;
+	}
+
+	/**
+	 * @return the minCaratteri
 	 */
 	public int getMinCaratteri() {
 		return MinCaratteri;
 	}
 
-	
-	
-	
+	/**
+	 * @param minCaratteri the minCaratteri to set
+	 */
+	void setMinCaratteri(int minCaratteri) {
+		MinCaratteri = minCaratteri;
+	}
 }
