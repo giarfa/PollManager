@@ -124,4 +124,14 @@ public class Range extends Domanda {
 	void setRispSingola(boolean isRispSingola) {
 		this.isRispSingola = isRispSingola;
 	}
+	
+	
+	/**
+	 * 
+	 * @return true se ValMin< ValMax
+	 */
+	public boolean correctVal(){
+		if (this.ValMin<this.ValMax) return true;
+		else return false;
+	}
 }

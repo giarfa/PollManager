@@ -74,8 +74,8 @@ public class Utente {
 		this.attivo= true;
 	}
 	
-	public boolean correctPassword(String password){
-		if (password.length()>5) 
+	public boolean correctPassword(){
+		if (this.password.length()>5) 
 			return true;
 		return false;
 	}
