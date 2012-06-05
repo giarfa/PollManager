@@ -131,7 +131,7 @@ public class Range extends Domanda {
 	 * @return true se ValMin< ValMax
 	 */
 	public boolean correctVal(){
-		if (this.ValMin<this.ValMax) return true;
+		if (this.ValMax>this.ValMin) return true;
 		else return false;
 	}
 }

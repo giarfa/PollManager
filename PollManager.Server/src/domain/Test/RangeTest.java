@@ -40,4 +40,18 @@ public class RangeTest extends TestCase {
 		
 		
 	}
+	
+	public void testCorrectVal(){
+		Range r;
+		r=Range.CreaRange(0, "pippo", true, 1, 5, "Ciao", "arrivederci", false, null);
+		assertEquals(true, r.correctVal());
+		
+		Range r1;
+		r1=Range.CreaRange(0, "pippo", true, 5, 1, "Ciao", "arrivederci", false, null);
+		assertEquals(false, r1.correctVal());
+		
+		Range r2;
+		r2=Range.CreaRange(0, "pippo", true, 1, 1, "Ciao", "arrivederci", false, null);
+		assertEquals(false, r2.correctVal());
+	}
 }

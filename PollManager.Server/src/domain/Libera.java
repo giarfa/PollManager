@@ -69,4 +69,9 @@ public class Libera extends Domanda {
 	void setMinCaratteri(int minCaratteri) {
 		MinCaratteri = minCaratteri;
 	}
+	
+	public boolean correctValMinMaxChar(){
+		if (this.MaxCaratteri>=this.MinCaratteri) return true;
+		else return false;
+	}
 }
