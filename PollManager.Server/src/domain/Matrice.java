@@ -16,6 +16,7 @@ public class Matrice extends Domanda {
 		this.valorimatrice=new ArrayList<ValoriMatrice>();
 	}
 	
+	
 	/**
 	 * 
 	 * @param ordine
@@ -33,7 +34,13 @@ public class Matrice extends Domanda {
 		matrice.sondaggioAssociato=sondaggioAssociato;
 		return matrice;
 	}
-
+	/**
+	 * 
+	 * @param ordine
+	 * @param testo
+	 * @param isObbligatorio
+	 * @return
+	 */
 	public Matrice ModificaMatrice(int ordine, String testo, boolean isObbligatorio){
 		this.ordine=ordine;
 		this.testo=testo;
