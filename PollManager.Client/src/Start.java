@@ -1,5 +1,6 @@
-import gui.AccessoGUI;
-import gui.AmministratoreGUI;
+import gui.SegretarioGUI;
+
+
 
 
 public class Start {
@@ -13,7 +14,7 @@ public class Start {
 		
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				AmministratoreGUI a =new AmministratoreGUI();
+				SegretarioGUI a =new SegretarioGUI();
 				a.showComponents();
 			}
 			});
