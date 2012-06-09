@@ -22,13 +22,13 @@ public interface ServerInterface {
 	public void SondaggioSetDisable(int idSondaggio);
 	
 	//Domanda
-	public MultiplaDTO DomandaModifica(MultiplaDTO dto);
-	public LiberaDTO DomandaModifica(LiberaDTO dto);
-	public RangeDTO DomandaModifica(RangeDTO dto);
-	public MatriceDTO DomandaModifica(MatriceDTO dto);
-	public ValoriMatriceDTO DomandaModifica(ValoriMatriceDTO dto);
-	public ValoriMatriceDTO DomandaAggiungiValoriMatrice(ValoriMatriceDTO dto);
-	public RispostaDTO DomandaAggiungiRisposta(RispostaDTO dto);
+	public void DomandaModifica(MultiplaDTO dto);
+	public void DomandaModifica(LiberaDTO dto);
+	public void DomandaModifica(RangeDTO dto);
+	public void DomandaModifica(MatriceDTO dto);
+	public void DomandaModifica(ValoriMatriceDTO dto);
+	public void DomandaAggiungiValoriMatrice(ValoriMatriceDTO dto);
+	public void DomandaAggiungiRisposta(RispostaDTO dto);
 	public void DomandaSetEnable(int idDomanda);
 	public void DomandaSetDisable(int idDomanda);
 	
@@ -39,7 +39,7 @@ public interface ServerInterface {
 	
 	//Compilazione Sondaggio
 	public CompilazioneDTO CompilazioneModifica(CompilazioneDTO dto);
-	public CompilazioneRispostaDTO CompilazioneAggiungiCompilazioneRisposta(CompilazioneRispostaDTO dto);
+	public void CompilazioneAggiungiCompilazioneRisposta(CompilazioneRispostaDTO dto);
 	public void CompilazioneSetEnable(int idCompilazione);
 	public void CompilazioneSetDisable(int idCompilazione);
 	

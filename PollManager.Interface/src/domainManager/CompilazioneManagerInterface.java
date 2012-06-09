@@ -5,7 +5,7 @@ import dto.CompilazioneRispostaDTO;
 
 public interface CompilazioneManagerInterface {
 	public CompilazioneDTO Modifica(CompilazioneDTO dto);
-	public CompilazioneRispostaDTO AggiungiCompilazioneRisposta(CompilazioneRispostaDTO dto);
+	public void AggiungiCompilazioneRisposta(CompilazioneRispostaDTO dto);
 	public void SetEnable(int idCompilazione);
 	public void SetDisable(int idCompilazione);
 	

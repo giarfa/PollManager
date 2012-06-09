@@ -20,11 +20,15 @@ public class UtentiManager implements UtentiManagerInterface {
 		return utenteSalvato;
 	}
 	
+	private UtenteDTO GetDTO(Utente utente){
+		return DTOMapper.getInstance().<UtenteDTO>map(utente, UtenteDTO.class);
+	}
+	
 	@Override
 	public UtenteDTO Login(String user, String password) {
 		try {
 			Utente utente = Repository.getInstance().Login(user, password);
-			return DTOMapper.<UtenteDTO>Map(utente);
+			return this.GetDTO(utente);
 		} catch (Exception e) {
 			return null;
 		}
@@ -39,7 +43,7 @@ public class UtentiManager implements UtentiManagerInterface {
 	@Override
 	public UtenteDTO GetByKey(int idUtente) {
 		Utente utente = this.GetById(idUtente);
-		return DTOMapper.<UtenteDTO>Map(utente);
+		return this.GetDTO(utente);
 	}
 
 	@Override
@@ -47,7 +51,7 @@ public class UtentiManager implements UtentiManagerInterface {
 		List<Utente> dbList=Repository.getInstance().<Utente>GetAll(Utente.class);
 		List<UtenteDTO> dtoList=new ArrayList<UtenteDTO>();
 		for(Utente item : dbList){
-			dtoList.add(DTOMapper.<UtenteDTO>Map(item));
+			dtoList.add(this.GetDTO(item));
 		}
 		return dtoList;
 	}
@@ -56,7 +60,7 @@ public class UtentiManager implements UtentiManagerInterface {
 	public UtenteDTO Crea(UtenteDTO dto) {
 		Utente utente=Utente.CreaUtente(dto.getMatricola(), Ruolo.SEGRETARIO, dto.getNome(), dto.getCognome(), dto.getPassword());
 		Utente utenteSalvato=this.SaveOrUpdate(utente);
-		return DTOMapper.<UtenteDTO>Map(utenteSalvato);
+		return this.GetDTO(utenteSalvato);
 	}
 
 	@Override
@@ -64,7 +68,7 @@ public class UtentiManager implements UtentiManagerInterface {
 		Utente utente=this.GetById(dto.getIdUtente());
 		utente.ModificaUtente(dto.getMatricola(), Ruolo.SEGRETARIO, dto.getNome(), dto.getCognome(), dto.getPassword());
 		Utente utenteSalvato=this.SaveOrUpdate(utente);
-		return DTOMapper.<UtenteDTO>Map(utenteSalvato);
+		return this.GetDTO(utenteSalvato);
 	}
 
 	@Override

@@ -17,18 +17,22 @@ public class RisposteManager implements RisposteManagerInterface {
 		return rispostaSalvata;
 	}
 	
+	private RispostaDTO GetDTO(Risposta risposta){
+		return DTOMapper.getInstance().<RispostaDTO>map(risposta, RispostaDTO.class);
+	}
+	
 	@Override
 	public RispostaDTO GetByKey(int idRisposta) {
 		Risposta risposta = this.GetById(idRisposta);
-		return DTOMapper.<RispostaDTO>Map(risposta);
+		return this.GetDTO(risposta);
 	}
 	
 	@Override
 	public RispostaDTO Modifica(RispostaDTO dto) {
-		/*Risposta risposta=this.GetById(idRisposta);
+		Risposta risposta=this.GetById(idRisposta);
 		risposta.ModificaRisposta(ordine, testo, hasTestoLibero, isNonRisponde, domandaAssociata);
 		Risposta rispostaSalvata=this.SaveOrUpdate(risposta);
-		return DTOMapper.<RispostaDTO>Map(rispostaSalvata);*/ return null;
+		return this.GetDTO(rispostaSalvata);
 	}
 
 	@Override

@@ -98,45 +98,38 @@ public class BaseServer implements ServerInterface {
 	}
 
 	@Override
-	public MultiplaDTO DomandaModifica(MultiplaDTO dto) {
+	public void DomandaModifica(MultiplaDTO dto) {
 		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override
-	public LiberaDTO DomandaModifica(LiberaDTO dto) {
+	public void DomandaModifica(LiberaDTO dto) {
 		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override
-	public RangeDTO DomandaModifica(RangeDTO dto) {
+	public void DomandaModifica(RangeDTO dto) {
 		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override
-	public MatriceDTO DomandaModifica(MatriceDTO dto) {
+	public void DomandaModifica(MatriceDTO dto) {
 		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override
-	public ValoriMatriceDTO DomandaModifica(ValoriMatriceDTO dto) {
+	public void DomandaModifica(ValoriMatriceDTO dto) {
 		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override
-	public ValoriMatriceDTO DomandaAggiungiValoriMatrice(ValoriMatriceDTO dto) {
+	public void DomandaAggiungiValoriMatrice(ValoriMatriceDTO dto) {
 		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override
-	public RispostaDTO DomandaAggiungiRisposta(RispostaDTO dto) {
+	public void DomandaAggiungiRisposta(RispostaDTO dto) {
 		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override
@@ -176,10 +169,8 @@ public class BaseServer implements ServerInterface {
 	}
 
 	@Override
-	public CompilazioneRispostaDTO CompilazioneAggiungiCompilazioneRisposta(
-			CompilazioneRispostaDTO dto) {
+	public void CompilazioneAggiungiCompilazioneRisposta(CompilazioneRispostaDTO dto) {
 		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override

@@ -21,5 +21,6 @@
 	<classpathentry kind="lib" path="lib/slf4j-api-1.6.1.jar"/>
 	<classpathentry kind="lib" path="lib/snappy-java-1.0.1-rc3.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/PollManager.Interface"/>
+	<classpathentry kind="lib" path="lib/modelmapper-0.3.5.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

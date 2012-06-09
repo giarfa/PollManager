@@ -13,13 +13,13 @@ public interface DomandeManagerInterface {
 	public RangeDTO GetRangeByKey(int idDomanda);
 	public MatriceDTO GetMatriceByKey(int idDomanda);
 	public ValoriMatriceDTO GetValoriMatriceByKey(int idDomanda);
-	public MultiplaDTO Modifica(MultiplaDTO dto);
-	public LiberaDTO Modifica(LiberaDTO dto);
-	public RangeDTO Modifica(RangeDTO dto);
-	public MatriceDTO Modifica(MatriceDTO dto);
-	public ValoriMatriceDTO Modifica(ValoriMatriceDTO dto);
-	public ValoriMatriceDTO AggiungiValoriMatrice(ValoriMatriceDTO dto);
-	public RispostaDTO AggiungiRisposta(RispostaDTO dto);
+	public void Modifica(MultiplaDTO dto);
+	public void Modifica(LiberaDTO dto);
+	public void Modifica(RangeDTO dto);
+	public void Modifica(MatriceDTO dto);
+	public void Modifica(ValoriMatriceDTO dto);
+	public void AggiungiValoriMatrice(ValoriMatriceDTO dto);
+	public void AggiungiRisposta(RispostaDTO dto);
 	public void SetEnable(int idDomanda);
 	public void SetDisable(int idDomanda);
 }

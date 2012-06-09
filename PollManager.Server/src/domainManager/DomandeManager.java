@@ -7,23 +7,8 @@ import dto.*;
 
 public class DomandeManager implements DomandeManagerInterface {
 
-	private Multipla GetMultiplaById(int idDomanda){
-		Multipla domanda = Repository.getInstance().<Multipla>GetByKey(Multipla.class, idDomanda);
-		return domanda;
-	}
-	
-	private Libera GetLiberaById(int idDomanda){
-		Libera domanda = Repository.getInstance().<Libera>GetByKey(Libera.class, idDomanda);
-		return domanda;
-	}
-	
-	private Range GetRangeById(int idDomanda){
-		Range domanda = Repository.getInstance().<Range>GetByKey(Range.class, idDomanda);
-		return domanda;
-	}
-	
-	private Matrice GetMatriceById(int idDomanda){
-		Matrice domanda = Repository.getInstance().<Matrice>GetByKey(Matrice.class, idDomanda);
+	private Domanda GetById(int idDomanda){
+		Domanda domanda = Repository.getInstance().<Domanda>GetByKey(Domanda.class, idDomanda);
 		return domanda;
 	}
 	
@@ -32,23 +17,28 @@ public class DomandeManager implements DomandeManagerInterface {
 		return domanda;
 	}
 	
-	private Multipla SaveOrUpdate(Multipla domanda){
-		Multipla domandaSalvata=Repository.getInstance().<Multipla>SaveOrUpdate(domanda);
-		return domandaSalvata;
+	private MultiplaDTO GetMultiplaDTO(Multipla domanda){
+		return DTOMapper.getInstance().<MultiplaDTO>map(domanda, MultiplaDTO.class);
 	}
 	
-	private Libera SaveOrUpdate(Libera domanda){
-		Libera domandaSalvata=Repository.getInstance().<Libera>SaveOrUpdate(domanda);
-		return domandaSalvata;
+	private LiberaDTO GetLiberaDTO(Libera domanda){
+		return DTOMapper.getInstance().<LiberaDTO>map(domanda, LiberaDTO.class);
 	}
 	
-	private Range SaveOrUpdate(Range domanda){
-		Range domandaSalvata=Repository.getInstance().<Range>SaveOrUpdate(domanda);
-		return domandaSalvata;
+	private RangeDTO GetRangeDTO(Range domanda){
+		return DTOMapper.getInstance().<RangeDTO>map(domanda, RangeDTO.class);
 	}
 	
-	private Matrice SaveOrUpdate(Matrice domanda){
-		Matrice domandaSalvata=Repository.getInstance().<Matrice>SaveOrUpdate(domanda);
+	private MatriceDTO GetMatriceDTO(Matrice domanda){
+		return DTOMapper.getInstance().<MatriceDTO>map(domanda, MatriceDTO.class);
+	}
+	
+	private ValoriMatriceDTO GetValoriMatriceDTO(ValoriMatrice domanda){
+		return DTOMapper.getInstance().<ValoriMatriceDTO>map(domanda, ValoriMatriceDTO.class);
+	}
+	
+	private Domanda SaveOrUpdate(Domanda domanda){
+		Domanda domandaSalvata=Repository.getInstance().<Domanda>SaveOrUpdate(domanda);
 		return domandaSalvata;
 	}
 	
@@ -59,109 +49,95 @@ public class DomandeManager implements DomandeManagerInterface {
 	
 	@Override
 	public MultiplaDTO GetMultiplaByKey(int idDomanda){
-		Multipla domanda=this.GetMultiplaById(idDomanda);
-		return DTOMapper.<MultiplaDTO>Map(domanda);
+		Multipla domanda = (Multipla)this.GetById(idDomanda);
+		return this.GetMultiplaDTO(domanda);
 	}
 	
 	@Override
 	public LiberaDTO GetLiberaByKey(int idDomanda){
-		Libera domanda=this.GetLiberaById(idDomanda);
-		return DTOMapper.<LiberaDTO>Map(domanda);
+		Libera domanda = (Libera)this.GetById(idDomanda);
+		return this.GetLiberaDTO(domanda);
 	}
 	
 	@Override
 	public RangeDTO GetRangeByKey(int idDomanda){
-		Range domanda=this.GetRangeById(idDomanda);
-		return DTOMapper.<RangeDTO>Map(domanda);
+		Range domanda = (Range)this.GetById(idDomanda);
+		return this.GetRangeDTO(domanda);
 	}
 	
 	@Override
 	public MatriceDTO GetMatriceByKey(int idDomanda){
-		Matrice domanda=this.GetMatriceById(idDomanda);
-		return DTOMapper.<MatriceDTO>Map(domanda);
+		Matrice domanda = (Matrice)this.GetById(idDomanda);
+		return this.GetMatriceDTO(domanda);
 	}
 	
 	@Override
 	public ValoriMatriceDTO GetValoriMatriceByKey(int idDomanda){
 		ValoriMatrice domanda=this.GetValoriMatriceById(idDomanda);
-		return DTOMapper.<ValoriMatriceDTO>Map(domanda);
+		return this.GetValoriMatriceDTO(domanda);
 	}
 	
 	@Override
-	public MultiplaDTO Modifica(MultiplaDTO dto) {
-		/*
-		Multipla domanda=this.GetMultiplaById(idDomanda);
+	public void Modifica(MultiplaDTO dto) {
+		Multipla domanda= (Multipla)this.GetById(idDomanda);
 		domanda.ModificaMultipla(ordine, testo, isObbligatorio, orientamento, isSingola, NumMinRisp);
-		Multipla domandaSalvata=this.SaveOrUpdate(domanda);
-		
-		return DTOMapper.<MultiplaDTO>Map(domanda);*/return null;
+		this.SaveOrUpdate(domanda);
 	}
 
 	@Override
-	public LiberaDTO Modifica(LiberaDTO dto) {
-		/*
-		Libera domanda=this.GetLiberaById(idDomanda);
+	public void Modifica(LiberaDTO dto) {
+		Libera domanda=(Libera)this.GetById(idDomanda);
 		domanda.ModificaLibera(ordine, testo, isObbligatorio, MaxCaratteri, MinCaratteri);
-		Libera domandaSalvata=this.SaveOrUpdate(domanda);
-		
-		return DTOMapper.<LiberaDTO>Map(domanda);*/return null;
+		this.SaveOrUpdate(domanda);
 	}
 
 	@Override
-	public RangeDTO Modifica(RangeDTO dto) {
-		/*
-		Range domanda=this.GetRangeById(idDomanda);
+	public void Modifica(RangeDTO dto) {
+		Range domanda=(Range)this.GetById(idDomanda);
 		domanda.ModificaRange(ordine, testo, isObbligatorio, ValMin, ValMax, DescValMin, DescValMax, isRispSingola);
-		Range domandaSalvata=this.SaveOrUpdate(domanda);
-		
-		return DTOMapper.<RangeDTO>Map(domanda);*/return null;
+		this.SaveOrUpdate(domanda);
 	}
 
 	@Override
-	public MatriceDTO Modifica(MatriceDTO dto) {
-		/*
-		Matrice domanda=this.GetMatriceById(idDomanda);
+	public void Modifica(MatriceDTO dto) {
+		Matrice domanda=(Matrice)this.GetById(idDomanda);
 		domanda.ModificaMatrice(ordine, testo, isObbligatorio);
-		Matrice domandaSalvata=this.SaveOrUpdate(domanda);
-		
-		return DTOMapper.<MatriceDTO>Map(domanda);*/return null;
+		this.SaveOrUpdate(domanda);
 	}
 
 	@Override
-	public ValoriMatriceDTO Modifica(ValoriMatriceDTO dto) {
-		/*
+	public void Modifica(ValoriMatriceDTO dto) {
 		ValoriMatrice domanda=this.GetValoriMatriceById(idValore);
 		domanda.ModificaValoriMatrice(ordine, testo);
-		ValoriMatrice domandaSalvata=this.SaveOrUpdate(domanda);
-		
-		return DTOMapper.<ValoriMatriceDTO>Map(domanda);*/return null;
+		this.SaveOrUpdate(domanda);
 	}
 
 	@Override
-	public ValoriMatriceDTO AggiungiValoriMatrice(ValoriMatriceDTO dto) {
-		/*
-		Matrice matrice=this.GetMatriceById(idDomanda);
+	public void AggiungiValoriMatrice(ValoriMatriceDTO dto) {
+		Matrice matrice=(Matrice)this.GetById(idDomanda);
 		matrice.AggiungiValoriMatrice(ordine, testo);
-		Matrice matriceSalvata=this.SaveOrUpdate(matrice);
-		
-		return DTOMapper.<ValoriMatriceDTO>Map(matrice);*/return null;
+		this.SaveOrUpdate(matrice);
 	}
 
 	@Override
-	public RispostaDTO AggiungiRisposta(RispostaDTO dto) {
-		return null;
+	public void AggiungiRisposta(RispostaDTO dto) {
+		Domanda domanda=this.GetById(idDomanda);
+		domanda.AggiungiRisposta(ordine, testo, hasTestoLibero, isNonRisponde);
+		this.SaveOrUpdate(domanda);
 	}
 
 	@Override
 	public void SetEnable(int idDomanda) {
-		// TODO Auto-generated method stub
-
+		Domanda domanda=this.GetById(idDomanda);
+		domanda.setEnable();
+		this.SaveOrUpdate(domanda);
 	}
 
 	@Override
 	public void SetDisable(int idDomanda) {
-		// TODO Auto-generated method stub
-
+		Domanda domanda=this.GetById(idDomanda);
+		domanda.setDisable();
+		this.SaveOrUpdate(domanda);
 	}
 
 }
