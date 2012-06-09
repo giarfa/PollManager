@@ -11,6 +11,7 @@ public class Compilazione {
 	private Date datacompilazione;
 	private String note;
 	private boolean isdefinitiva;
+	private boolean attivo;
 	private Utente utenteAssociato;
 	private Sondaggio sondaggioAssociato;
 	private ArrayList <CompilazioneRisposta> compilazionirisposta;
@@ -19,6 +20,7 @@ public class Compilazione {
 		this.idCompilazione=0;
 		this.datacompilazione=new Date();
 		this.isdefinitiva=false;
+		this.attivo=true;
 		this.compilazionirisposta=new ArrayList<CompilazioneRisposta>();
 	}
 	
@@ -38,8 +40,31 @@ public class Compilazione {
 		return this;
 	}
 	
-	public void AggiungiCompilazioneRisposta(){
-		
+	public void AggiungiCompilazioneRisposta(Risposta rispostaAssociata, ValoriMatrice valoreMatriceAssociato, String rispostalibera, String testolibero){
+		CompilazioneRisposta compilazione=CompilazioneRisposta.CreaCompilazioneRisposta(this, rispostaAssociata, valoreMatriceAssociato, rispostalibera, testolibero);
+		this.compilazionirisposta.add(compilazione);
+	}
+	
+	public void setEnable(){
+		this.attivo=true;
+	}
+	
+	public void setDisable(){
+		this.attivo=false;
+	}
+	
+	/**
+	 * @return the attivo
+	 */
+	public boolean isAttivo() {
+		return attivo;
+	}
+
+	/**
+	 * @param attivo the attivo to set
+	 */
+	void setAttivo(boolean attivo) {
+		this.attivo = attivo;
 	}
 
 	/**

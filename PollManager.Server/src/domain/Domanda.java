@@ -14,16 +14,40 @@ public abstract class Domanda {
 	protected String testo;
 	protected boolean isObbligatorio;
 	protected Sondaggio sondaggioAssociato;
+	protected boolean attivo;
 	protected ArrayList <Risposta> risposte;
 	
 	protected Domanda() {
 		this.idDomanda=0;
+		this.attivo=true;
 		this.risposte=new ArrayList<Risposta>();
 	}
 	
 	public void AggiungiRisposta(int ordine, String testo, boolean hasTestoLibero, boolean isNonRisponde){
 		Risposta risposta=Risposta.CreaRisposta(ordine, testo, hasTestoLibero, isNonRisponde, this);
 		this.risposte.add(risposta);
+	}
+	
+	public void setEnable(){
+		this.attivo=true;
+	}
+	
+	public void setDisable(){
+		this.attivo=false;
+	}
+
+	/**
+	 * @return the attivo
+	 */
+	public boolean isAttivo() {
+		return attivo;
+	}
+
+	/**
+	 * @param attivo the attivo to set
+	 */
+	void setAttivo(boolean attivo) {
+		this.attivo = attivo;
 	}
 
 	/**

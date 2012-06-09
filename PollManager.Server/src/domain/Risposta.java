@@ -7,10 +7,12 @@ public class Risposta {
 	private String testo;
 	private boolean hasTestoLibero;
 	private boolean isNonRisponde;
+	private boolean attivo;
 	private Domanda domandaAssociata;
 	
 	public Risposta() {
 		this.idRisposta=0;
+		this.attivo=true;
 	}
 	
 	public static Risposta CreaRisposta(int ordine, String testo, boolean hasTestoLibero, boolean isNonRisponde, Domanda domandaAssociata){
@@ -31,6 +33,28 @@ public class Risposta {
 		this.isNonRisponde=isNonRisponde;
 		this.domandaAssociata=domandaAssociata;
 		return this;
+	}
+	
+	public void setEnable(){
+		this.attivo=true;
+	}
+	
+	public void setDisable(){
+		this.attivo=false;
+	}
+	
+	/**
+	 * @return the attivo
+	 */
+	public boolean isAttivo() {
+		return attivo;
+	}
+
+	/**
+	 * @param attivo the attivo to set
+	 */
+	void setAttivo(boolean attivo) {
+		this.attivo = attivo;
 	}
 
 	/**
