@@ -14,10 +14,10 @@ public interface SondaggiManagerInterface {
 	public List<SondaggioDTO> GetList();
 	public SondaggioDTO Crea(SondaggioDTO dto);
 	public SondaggioDTO Modifica(SondaggioDTO dto);
-	public MultiplaDTO AggiungiDomanda(MultiplaDTO dto);
-	public LiberaDTO AggiungiDomanda(LiberaDTO dto);
-	public RangeDTO AggiungiDomanda(RangeDTO dto);
-	public MatriceDTO AggiungiDomanda(MatriceDTO dto);
+	public void AggiungiDomanda(MultiplaDTO dto);
+	public void AggiungiDomanda(LiberaDTO dto);
+	public void AggiungiDomanda(RangeDTO dto);
+	public void AggiungiDomanda(MatriceDTO dto);
 	public CompilazioneDTO AggiungiCompilazione(CompilazioneDTO dto);
 	public void SetEnable(int idSondaggio);
 	public void SetDisable(int idSondaggio);

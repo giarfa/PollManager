@@ -9,6 +9,10 @@ import domain.Utente;
 import dto.UtenteDTO;
 
 public class UtentiManager implements UtentiManagerInterface {
+	
+	UtentiManager(){
+		
+	}
 
 	private Utente GetById(int idUtente){
 		Utente utente = Repository.getInstance().<Utente>GetByKey(Utente.class, idUtente);
@@ -58,7 +62,8 @@ public class UtentiManager implements UtentiManagerInterface {
 
 	@Override
 	public UtenteDTO Crea(UtenteDTO dto) {
-		Utente utente=Utente.CreaUtente(dto.getMatricola(), Ruolo.SEGRETARIO, dto.getNome(), dto.getCognome(), dto.getPassword());
+		Ruolo ruolo=DTOMapper.getInstance().<Ruolo>map(dto.getRuolo(), Ruolo.class);
+		Utente utente=Utente.CreaUtente(dto.getMatricola(), ruolo, dto.getNome(), dto.getCognome(), dto.getPassword());
 		Utente utenteSalvato=this.SaveOrUpdate(utente);
 		return this.GetDTO(utenteSalvato);
 	}
@@ -66,7 +71,8 @@ public class UtentiManager implements UtentiManagerInterface {
 	@Override
 	public UtenteDTO Modifica(UtenteDTO dto) {
 		Utente utente=this.GetById(dto.getIdUtente());
-		utente.ModificaUtente(dto.getMatricola(), Ruolo.SEGRETARIO, dto.getNome(), dto.getCognome(), dto.getPassword());
+		Ruolo ruolo=DTOMapper.getInstance().<Ruolo>map(dto.getRuolo(), Ruolo.class);
+		utente.ModificaUtente(dto.getMatricola(), ruolo, dto.getNome(), dto.getCognome(), dto.getPassword());
 		Utente utenteSalvato=this.SaveOrUpdate(utente);
 		return this.GetDTO(utenteSalvato);
 	}

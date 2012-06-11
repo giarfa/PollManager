@@ -4,10 +4,16 @@ import util.DTOMapper;
 import dataAccess.Repository;
 import domain.Compilazione;
 import domain.CompilazioneRisposta;
+import domain.Risposta;
+import domain.ValoriMatrice;
 import dto.CompilazioneDTO;
 import dto.CompilazioneRispostaDTO;
 
-public class CompilazioneManager implements CompilazioneManagerInterface {
+public class CompilazioniManager implements CompilazioniManagerInterface {
+	
+	CompilazioniManager(){
+		
+	}
 
 	private Compilazione GetById(int idCompilazione){
 		Compilazione compilazione = Repository.getInstance().<Compilazione>GetByKey(Compilazione.class, idCompilazione);
@@ -39,16 +45,18 @@ public class CompilazioneManager implements CompilazioneManagerInterface {
 	
 	@Override
 	public CompilazioneDTO Modifica(CompilazioneDTO dto) {
-		Compilazione compilazione=this.GetById(idCompilazione);
-		compilazione.ModificaCompilazione(note);
+		Compilazione compilazione=this.GetById(dto.getIdCompilazione());
+		compilazione.ModificaCompilazione(dto.getNote());
 		Compilazione compilazioneSalvata=this.SaveOrUpdate(compilazione);
-		return DTOMapper.getInstance().<CompilazioneDTO>map(compilazioneSalvata, CompilazioneDTO.class);
+		return this.GetDTO(compilazioneSalvata);
 	}
 
 	@Override
 	public void AggiungiCompilazioneRisposta(CompilazioneRispostaDTO dto) {
-		Compilazione compilazione=this.GetById(idCompilazione);
-		compilazione.AggiungiCompilazioneRisposta(rispostaAssociata, valoreMatriceAssociato, rispostalibera, testolibero);
+		Compilazione compilazione=this.GetById(dto.getCompilazioneAssociataIdCompilazione());
+		Risposta rispostaAssociata=DomainManagerFactory.getInstance().getRisposteManager().GetById(dto.getRispostaAssociata().getIdRisposta());
+		ValoriMatrice valoreMatriceAssociato=DomainManagerFactory.getInstance().getDomandeManager().GetValoriMatriceById(dto.getValoreMatriceAssociato().getIdValoriMatrice());
+		compilazione.AggiungiCompilazioneRisposta(rispostaAssociata, valoreMatriceAssociato, dto.getRispostalibera(), dto.getTestolibero());
 		this.SaveOrUpdate(compilazione);
 	}
 
@@ -68,8 +76,10 @@ public class CompilazioneManager implements CompilazioneManagerInterface {
 
 	@Override
 	public CompilazioneRispostaDTO Modifica(CompilazioneRispostaDTO dto) {
-		CompilazioneRisposta risposta=this.GetCompilazioneRispostaById(idCompilazioneRisposta);
-		risposta.ModificaCompilazioneRisposta(rispostaAssociata, valoreMatriceAssociato, rispostalibera, testolibero);
+		CompilazioneRisposta risposta=this.GetCompilazioneRispostaById(dto.getIdCompilazioneRisposta());
+		Risposta rispostaAssociata=DomainManagerFactory.getInstance().getRisposteManager().GetById(dto.getRispostaAssociata().getIdRisposta());
+		ValoriMatrice valoreMatriceAssociato=DomainManagerFactory.getInstance().getDomandeManager().GetValoriMatriceById(dto.getValoreMatriceAssociato().getIdValoriMatrice());
+		risposta.ModificaCompilazioneRisposta(rispostaAssociata, valoreMatriceAssociato, dto.getRispostalibera(), dto.getTestolibero());
 		CompilazioneRisposta rispostaSalvata=this.SaveOrUpdate(risposta);
 		return this.GetDTO(rispostaSalvata);
 	}

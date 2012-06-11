@@ -3,11 +3,15 @@ package domainManager;
 import util.DTOMapper;
 import dataAccess.Repository;
 import domain.Risposta;
-import domain.Utente;
+import domain.Domanda;
 import dto.RispostaDTO;
 
 public class RisposteManager implements RisposteManagerInterface {
-	private Risposta GetById(int idRisposta){
+	
+	RisposteManager() {
+		
+	}
+	public Risposta GetById(int idRisposta){
 		Risposta risposta = Repository.getInstance().<Risposta>GetByKey(Risposta.class, idRisposta);
 		return risposta;
 	}
@@ -29,8 +33,9 @@ public class RisposteManager implements RisposteManagerInterface {
 	
 	@Override
 	public RispostaDTO Modifica(RispostaDTO dto) {
-		Risposta risposta=this.GetById(idRisposta);
-		risposta.ModificaRisposta(ordine, testo, hasTestoLibero, isNonRisponde, domandaAssociata);
+		Risposta risposta=this.GetById(dto.getIdRisposta());
+		Domanda domandaAssociata=DomainManagerFactory.getInstance().getDomandeManager().GetById(dto.getDomandaAssociataIdDomanda());
+		risposta.ModificaRisposta(dto.getOrdine(), dto.getTesto(), dto.isHasTestoLibero(), dto.isNonRisponde(), domandaAssociata);
 		Risposta rispostaSalvata=this.SaveOrUpdate(risposta);
 		return this.GetDTO(rispostaSalvata);
 	}

@@ -4,7 +4,10 @@ import java.util.List;
 
 import resolver.Resolver;
 
+import domainManager.CompilazioniManagerInterface;
+import domainManager.DomandeManagerInterface;
 import domainManager.RisposteManagerInterface;
+import domainManager.SondaggiManagerInterface;
 import domainManager.UtentiManagerInterface;
 import dto.CompilazioneDTO;
 import dto.CompilazioneRispostaDTO;
@@ -21,127 +24,140 @@ public class BaseServer implements ServerInterface {
 
 	@Override
 	public UtenteDTO Login(String user, String password) {
-		// TODO Auto-generated method stub
-		return null;
+		UtentiManagerInterface manager=Resolver.getInstance().getUtentiManager();
+		
+		return manager.Login(user, password);
 	}
 
 	@Override
 	public void Logout(UtenteDTO utente) {
-		// TODO Auto-generated method stub
-
+		UtentiManagerInterface manager=Resolver.getInstance().getUtentiManager();
+		manager.Logout(utente);
 	}
 
 	@Override
 	public SondaggioDTO SondaggioGetByKey(int idSondaggio) {
-		// TODO Auto-generated method stub
-		return null;
+		SondaggiManagerInterface manager=Resolver.getInstance().getSondaggiManager();
+		
+		return manager.GetByKey(idSondaggio);
 	}
 
 	@Override
 	public List<SondaggioDTO> SondaggioGetList() {
-		// TODO Auto-generated method stub
-		return null;
+		SondaggiManagerInterface manager=Resolver.getInstance().getSondaggiManager();
+		
+		return manager.GetList();
 	}
 
 	@Override
 	public SondaggioDTO SondaggioCrea(SondaggioDTO dto) {
-		// TODO Auto-generated method stub
-		return null;
+		SondaggiManagerInterface manager=Resolver.getInstance().getSondaggiManager();
+		
+		return manager.Crea(dto);
 	}
 
 	@Override
 	public SondaggioDTO SondaggioModifica(SondaggioDTO dto) {
-		// TODO Auto-generated method stub
-		return null;
+		SondaggiManagerInterface manager=Resolver.getInstance().getSondaggiManager();
+		
+		return manager.Modifica(dto);
 	}
 
 	@Override
-	public MultiplaDTO SondaggioAggiungiDomandaMultipla(MultiplaDTO dto) {
-		// TODO Auto-generated method stub
-		return null;
+	public void SondaggioAggiungiDomandaMultipla(MultiplaDTO dto) {
+		SondaggiManagerInterface manager=Resolver.getInstance().getSondaggiManager();
+		manager.AggiungiDomanda(dto);
 	}
 
 	@Override
-	public LiberaDTO SondaggioAggiungiDomandaLibera(LiberaDTO dto) {
-		// TODO Auto-generated method stub
-		return null;
+	public void SondaggioAggiungiDomandaLibera(LiberaDTO dto) {
+		SondaggiManagerInterface manager=Resolver.getInstance().getSondaggiManager();
+		manager.AggiungiDomanda(dto);
 	}
 
 	@Override
-	public RangeDTO SondaggioAggiungiDomandaRange(RangeDTO dto) {
-		// TODO Auto-generated method stub
-		return null;
+	public void SondaggioAggiungiDomandaRange(RangeDTO dto) {
+		SondaggiManagerInterface manager=Resolver.getInstance().getSondaggiManager();
+		manager.AggiungiDomanda(dto);
 	}
 
 	@Override
-	public MatriceDTO SondaggioAggiungiDomandaMatrice(MatriceDTO dto) {
-		// TODO Auto-generated method stub
-		return null;
+	public void SondaggioAggiungiDomandaMatrice(MatriceDTO dto) {
+		SondaggiManagerInterface manager=Resolver.getInstance().getSondaggiManager();
+		manager.AggiungiDomanda(dto);
 	}
 
 	@Override
 	public CompilazioneDTO SondaggioAggiungiCompilazione(CompilazioneDTO dto) {
-		// TODO Auto-generated method stub
-		return null;
+		SondaggiManagerInterface manager=Resolver.getInstance().getSondaggiManager();
+		
+		return manager.AggiungiCompilazione(dto);
 	}
 
 	@Override
 	public void SondaggioSetEnable(int idSondaggio) {
-		// TODO Auto-generated method stub
-
+		SondaggiManagerInterface manager=Resolver.getInstance().getSondaggiManager();
+		manager.SetEnable(idSondaggio);
 	}
 
 	@Override
 	public void SondaggioSetDisable(int idSondaggio) {
-		// TODO Auto-generated method stub
-
+		SondaggiManagerInterface manager=Resolver.getInstance().getSondaggiManager();
+		manager.SetDisable(idSondaggio);
 	}
 
 	@Override
 	public void DomandaModifica(MultiplaDTO dto) {
-		// TODO Auto-generated method stub
+		DomandeManagerInterface manager=Resolver.getInstance().getDomandeManager();
+		manager.Modifica(dto);
 	}
 
 	@Override
 	public void DomandaModifica(LiberaDTO dto) {
-		// TODO Auto-generated method stub
+		DomandeManagerInterface manager=Resolver.getInstance().getDomandeManager();
+		manager.Modifica(dto);
 	}
 
 	@Override
 	public void DomandaModifica(RangeDTO dto) {
-		// TODO Auto-generated method stub
+		DomandeManagerInterface manager=Resolver.getInstance().getDomandeManager();
+		manager.Modifica(dto);
 	}
 
 	@Override
 	public void DomandaModifica(MatriceDTO dto) {
-		// TODO Auto-generated method stub
+		DomandeManagerInterface manager=Resolver.getInstance().getDomandeManager();
+		manager.Modifica(dto);
 	}
 
 	@Override
 	public void DomandaModifica(ValoriMatriceDTO dto) {
-		// TODO Auto-generated method stub
+		DomandeManagerInterface manager=Resolver.getInstance().getDomandeManager();
+		manager.Modifica(dto);
 	}
 
 	@Override
 	public void DomandaAggiungiValoriMatrice(ValoriMatriceDTO dto) {
-		// TODO Auto-generated method stub
+		DomandeManagerInterface manager=Resolver.getInstance().getDomandeManager();
+		manager.AggiungiValoriMatrice(dto);
 	}
 
 	@Override
 	public void DomandaAggiungiRisposta(RispostaDTO dto) {
-		// TODO Auto-generated method stub
+		DomandeManagerInterface manager=Resolver.getInstance().getDomandeManager();
+		manager.AggiungiRisposta(dto);
 	}
 
 	@Override
 	public void DomandaSetEnable(int idDomanda) {
-		// TODO Auto-generated method stub
-
+		DomandeManagerInterface manager=Resolver.getInstance().getDomandeManager();
+		manager.SetEnable(idDomanda);
 	}
 
 	@Override
 	public void DomandaSetDisable(int idDomanda) {
-		// TODO Auto-generated method stub
-
+		DomandeManagerInterface manager=Resolver.getInstance().getDomandeManager();
+		manager.SetDisable(idDomanda);
 	}
 
 	@Override
@@ -164,38 +180,40 @@ public class BaseServer implements ServerInterface {
 
 	@Override
 	public CompilazioneDTO CompilazioneModifica(CompilazioneDTO dto) {
-		// TODO Auto-generated method stub
-		return null;
+		CompilazioniManagerInterface manager=Resolver.getInstance().getCompilazioneManager();
+		
+		return manager.Modifica(dto);
 	}
 
 	@Override
 	public void CompilazioneAggiungiCompilazioneRisposta(CompilazioneRispostaDTO dto) {
-		// TODO Auto-generated method stub
+		CompilazioniManagerInterface manager=Resolver.getInstance().getCompilazioneManager();
+		manager.AggiungiCompilazioneRisposta(dto);
 	}
 
 	@Override
 	public void CompilazioneSetEnable(int idCompilazione) {
-		// TODO Auto-generated method stub
-
+		CompilazioniManagerInterface manager=Resolver.getInstance().getCompilazioneManager();
+		manager.SetEnable(idCompilazione);
 	}
 
 	@Override
 	public void CompilazioneSetDisable(int idCompilazione) {
-		// TODO Auto-generated method stub
-
+		CompilazioniManagerInterface manager=Resolver.getInstance().getCompilazioneManager();
+		manager.SetDisable(idCompilazione);
 	}
 
 	@Override
-	public CompilazioneRispostaDTO CompilazioneRispostaModifica(
-			CompilazioneRispostaDTO dto) {
-		// TODO Auto-generated method stub
-		return null;
+	public CompilazioneRispostaDTO CompilazioneRispostaModifica(CompilazioneRispostaDTO dto) {
+		CompilazioniManagerInterface manager=Resolver.getInstance().getCompilazioneManager();
+		
+		return manager.Modifica(dto);
 	}
 
 	@Override
 	public void CompilazioneRispostaElimina(int idCompilazioneRisposta) {
-		// TODO Auto-generated method stub
-
+		CompilazioniManagerInterface manager=Resolver.getInstance().getCompilazioneManager();
+		manager.Elimina(idCompilazioneRisposta);
 	}
 
 	@Override

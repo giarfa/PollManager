@@ -14,7 +14,7 @@ public class UtenteDTO {
 	private String cognome;
 	private String nomeutente;
 	private String password;
-	private int ruolo;
+	private RuoloDTO ruolo;
 	private Date datacreazione;
 	private boolean attivo;
 	
@@ -93,13 +93,13 @@ public class UtenteDTO {
 	/**
 	 * @return the ruolo
 	 */
-	public int getRuolo() {
+	public RuoloDTO getRuolo() {
 		return ruolo;
 	}
 	/**
 	 * @param ruolo the ruolo to set
 	 */
-	public void setRuolo(int ruolo) {
+	public void setRuolo(RuoloDTO ruolo) {
 		this.ruolo = ruolo;
 	}
 	/**

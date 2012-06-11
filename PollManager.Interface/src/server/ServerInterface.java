@@ -13,10 +13,10 @@ public interface ServerInterface {
 	public List<SondaggioDTO> SondaggioGetList();
 	public SondaggioDTO SondaggioCrea(SondaggioDTO dto);
 	public SondaggioDTO SondaggioModifica(SondaggioDTO dto);
-	public MultiplaDTO SondaggioAggiungiDomandaMultipla(MultiplaDTO dto);
-	public LiberaDTO SondaggioAggiungiDomandaLibera(LiberaDTO dto);
-	public RangeDTO SondaggioAggiungiDomandaRange(RangeDTO dto);
-	public MatriceDTO SondaggioAggiungiDomandaMatrice(MatriceDTO dto);
+	public void SondaggioAggiungiDomandaMultipla(MultiplaDTO dto);
+	public void SondaggioAggiungiDomandaLibera(LiberaDTO dto);
+	public void SondaggioAggiungiDomandaRange(RangeDTO dto);
+	public void SondaggioAggiungiDomandaMatrice(MatriceDTO dto);
 	public CompilazioneDTO SondaggioAggiungiCompilazione(CompilazioneDTO dto);
 	public void SondaggioSetEnable(int idSondaggio);
 	public void SondaggioSetDisable(int idSondaggio);

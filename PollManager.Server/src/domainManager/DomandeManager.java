@@ -6,13 +6,17 @@ import domain.*;
 import dto.*;
 
 public class DomandeManager implements DomandeManagerInterface {
+	
+	DomandeManager() {
+		
+	}
 
-	private Domanda GetById(int idDomanda){
+	public Domanda GetById(int idDomanda){
 		Domanda domanda = Repository.getInstance().<Domanda>GetByKey(Domanda.class, idDomanda);
 		return domanda;
 	}
 	
-	private ValoriMatrice GetValoriMatriceById(int idDomanda){
+	public ValoriMatrice GetValoriMatriceById(int idDomanda){
 		ValoriMatrice domanda = Repository.getInstance().<ValoriMatrice>GetByKey(ValoriMatrice.class, idDomanda);
 		return domanda;
 	}
@@ -79,50 +83,51 @@ public class DomandeManager implements DomandeManagerInterface {
 	
 	@Override
 	public void Modifica(MultiplaDTO dto) {
-		Multipla domanda= (Multipla)this.GetById(idDomanda);
-		domanda.ModificaMultipla(ordine, testo, isObbligatorio, orientamento, isSingola, NumMinRisp);
+		Multipla domanda= (Multipla)this.GetById(dto.getIdDomanda());
+		Orientamento orientamento=DTOMapper.getInstance().<Orientamento>map(dto.getOrientamento(), Orientamento.class);
+		domanda.ModificaMultipla(dto.getOrdine(), dto.getTesto(), dto.isObbligatorio(), orientamento, dto.isIs_singola(), dto.getNumMinRisp());
 		this.SaveOrUpdate(domanda);
 	}
 
 	@Override
 	public void Modifica(LiberaDTO dto) {
-		Libera domanda=(Libera)this.GetById(idDomanda);
-		domanda.ModificaLibera(ordine, testo, isObbligatorio, MaxCaratteri, MinCaratteri);
+		Libera domanda=(Libera)this.GetById(dto.getIdDomanda());
+		domanda.ModificaLibera(dto.getOrdine(), dto.getTesto(), dto.isObbligatorio(), dto.getMaxCaratteri(), dto.getMinCaratteri());
 		this.SaveOrUpdate(domanda);
 	}
 
 	@Override
 	public void Modifica(RangeDTO dto) {
-		Range domanda=(Range)this.GetById(idDomanda);
-		domanda.ModificaRange(ordine, testo, isObbligatorio, ValMin, ValMax, DescValMin, DescValMax, isRispSingola);
+		Range domanda=(Range)this.GetById(dto.getIdDomanda());
+		domanda.ModificaRange(dto.getOrdine(), dto.getTesto(), dto.isObbligatorio(), dto.getValMin(), dto.getValMax(), dto.getDescValMin(), dto.getDescValMax(), dto.isRispSingola());
 		this.SaveOrUpdate(domanda);
 	}
 
 	@Override
 	public void Modifica(MatriceDTO dto) {
-		Matrice domanda=(Matrice)this.GetById(idDomanda);
-		domanda.ModificaMatrice(ordine, testo, isObbligatorio);
+		Matrice domanda=(Matrice)this.GetById(dto.getIdDomanda());
+		domanda.ModificaMatrice(dto.getOrdine(), dto.getTesto(), dto.isObbligatorio());
 		this.SaveOrUpdate(domanda);
 	}
 
 	@Override
 	public void Modifica(ValoriMatriceDTO dto) {
-		ValoriMatrice domanda=this.GetValoriMatriceById(idValore);
-		domanda.ModificaValoriMatrice(ordine, testo);
+		ValoriMatrice domanda=this.GetValoriMatriceById(dto.getIdValoriMatrice());
+		domanda.ModificaValoriMatrice(dto.getOrdine(), dto.getTesto());
 		this.SaveOrUpdate(domanda);
 	}
 
 	@Override
 	public void AggiungiValoriMatrice(ValoriMatriceDTO dto) {
-		Matrice matrice=(Matrice)this.GetById(idDomanda);
-		matrice.AggiungiValoriMatrice(ordine, testo);
+		Matrice matrice=(Matrice)this.GetById(dto.getMatriceIdDomanda());
+		matrice.AggiungiValoriMatrice(dto.getOrdine(), dto.getTesto());
 		this.SaveOrUpdate(matrice);
 	}
 
 	@Override
 	public void AggiungiRisposta(RispostaDTO dto) {
-		Domanda domanda=this.GetById(idDomanda);
-		domanda.AggiungiRisposta(ordine, testo, hasTestoLibero, isNonRisponde);
+		Domanda domanda=this.GetById(dto.getDomandaAssociataIdDomanda());
+		domanda.AggiungiRisposta(dto.getOrdine(), dto.getTesto(), dto.isHasTestoLibero(), dto.isNonRisponde());
 		this.SaveOrUpdate(domanda);
 	}
 

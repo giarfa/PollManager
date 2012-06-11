@@ -6,8 +6,10 @@ package domain;
  */
 public class Range extends Domanda {
 	
-	private int ValMin, ValMax;
-	private String DescValMin, DescValMax; 
+	private int ValMin;
+	private int ValMax;
+	private String DescValMin;
+	private String DescValMax; 
 	private boolean isRispSingola;
 	
 	/**

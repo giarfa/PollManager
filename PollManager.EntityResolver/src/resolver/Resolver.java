@@ -14,23 +14,23 @@ public class Resolver {
 		return instance;
 	}
 	
-	public CompilazioneManagerInterface getCompilazioneManager(){
-		return null;
+	public CompilazioniManagerInterface getCompilazioneManager(){
+		return DomainManagerFactory.getInstance().getCompilazioniManager();
 	}
 	
 	public RisposteManagerInterface getRisposteManager(){
-		return new RisposteManager();
+		return DomainManagerFactory.getInstance().getRisposteManager();
 	}
 	
 	public DomandeManagerInterface getDomandeManager(){
-		return new DomandeManager();
+		return DomainManagerFactory.getInstance().getDomandeManager();
 	}
 	
 	public SondaggiManagerInterface getSondaggiManager(){
-		return null;
+		return DomainManagerFactory.getInstance().getSondaggiManager();
 	}
 	
 	public UtentiManagerInterface getUtentiManager(){
-		return new UtentiManager();
+		return DomainManagerFactory.getInstance().getUtentiManager();
 	}
 }
