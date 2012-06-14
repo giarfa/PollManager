@@ -7,6 +7,7 @@ import dataAccess.Repository;
 import domain.Ruolo;
 import domain.Utente;
 import dto.UtenteDTO;
+import exception.InvalidCredentialException;
 
 public class UtentiManager implements UtentiManagerInterface {
 	
@@ -29,12 +30,12 @@ public class UtentiManager implements UtentiManagerInterface {
 	}
 	
 	@Override
-	public UtenteDTO Login(String user, String password) {
+	public UtenteDTO Login(String user, String password) throws InvalidCredentialException {
 		try {
 			Utente utente = Repository.getInstance().Login(user, password);
 			return this.GetDTO(utente);
 		} catch (Exception e) {
-			return null;
+			throw new InvalidCredentialException();
 		}
 	}
 

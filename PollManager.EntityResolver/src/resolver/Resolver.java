@@ -1,8 +1,13 @@
 package resolver;
+import server.ServerRmi;
+
+import communication.ServerRmiInterface;
+
 import domainManager.*;
 
 
 public class Resolver {
+	
 	private static Resolver instance=null;
 	
 	private Resolver(){
@@ -32,5 +37,9 @@ public class Resolver {
 	
 	public UtentiManagerInterface getUtentiManager(){
 		return DomainManagerFactory.getInstance().getUtentiManager();
+	}
+	
+	public ServerRmiInterface getServerRmi(){
+		return new ServerRmi();
 	}
 }

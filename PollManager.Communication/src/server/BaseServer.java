@@ -1,255 +1,242 @@
 package server;
 
+import java.rmi.RemoteException;
 import java.util.List;
-
 import resolver.Resolver;
-
-import domainManager.CompilazioniManagerInterface;
-import domainManager.DomandeManagerInterface;
-import domainManager.RisposteManagerInterface;
-import domainManager.SondaggiManagerInterface;
-import domainManager.UtentiManagerInterface;
-import dto.CompilazioneDTO;
-import dto.CompilazioneRispostaDTO;
-import dto.LiberaDTO;
-import dto.MatriceDTO;
-import dto.MultiplaDTO;
-import dto.RangeDTO;
-import dto.RispostaDTO;
-import dto.SondaggioDTO;
-import dto.UtenteDTO;
-import dto.ValoriMatriceDTO;
+import domainManager.*;
+import dto.*;
+import exception.*;
 
 public class BaseServer implements ServerInterface {
 
 	@Override
-	public UtenteDTO Login(String user, String password) {
+	public UtenteDTO Login(String user, String password) throws RemoteException, InvalidCredentialException {
 		UtentiManagerInterface manager=Resolver.getInstance().getUtentiManager();
 		
 		return manager.Login(user, password);
 	}
 
 	@Override
-	public void Logout(UtenteDTO utente) {
+	public void Logout(UtenteDTO utente) throws RemoteException {
 		UtentiManagerInterface manager=Resolver.getInstance().getUtentiManager();
 		manager.Logout(utente);
 	}
 
 	@Override
-	public SondaggioDTO SondaggioGetByKey(int idSondaggio) {
+	public SondaggioDTO SondaggioGetByKey(int idSondaggio) throws RemoteException {
 		SondaggiManagerInterface manager=Resolver.getInstance().getSondaggiManager();
 		
 		return manager.GetByKey(idSondaggio);
 	}
 
 	@Override
-	public List<SondaggioDTO> SondaggioGetList() {
+	public List<SondaggioDTO> SondaggioGetList() throws RemoteException {
 		SondaggiManagerInterface manager=Resolver.getInstance().getSondaggiManager();
 		
 		return manager.GetList();
 	}
 
 	@Override
-	public SondaggioDTO SondaggioCrea(SondaggioDTO dto) {
+	public SondaggioDTO SondaggioCrea(SondaggioDTO dto) throws RemoteException {
 		SondaggiManagerInterface manager=Resolver.getInstance().getSondaggiManager();
 		
 		return manager.Crea(dto);
 	}
 
 	@Override
-	public SondaggioDTO SondaggioModifica(SondaggioDTO dto) {
+	public SondaggioDTO SondaggioModifica(SondaggioDTO dto) throws RemoteException {
 		SondaggiManagerInterface manager=Resolver.getInstance().getSondaggiManager();
 		
 		return manager.Modifica(dto);
 	}
 
 	@Override
-	public void SondaggioAggiungiDomandaMultipla(MultiplaDTO dto) {
+	public void SondaggioAggiungiDomandaMultipla(MultiplaDTO dto) throws RemoteException {
 		SondaggiManagerInterface manager=Resolver.getInstance().getSondaggiManager();
 		manager.AggiungiDomanda(dto);
 	}
 
 	@Override
-	public void SondaggioAggiungiDomandaLibera(LiberaDTO dto) {
+	public void SondaggioAggiungiDomandaLibera(LiberaDTO dto) throws RemoteException {
 		SondaggiManagerInterface manager=Resolver.getInstance().getSondaggiManager();
 		manager.AggiungiDomanda(dto);
 	}
 
 	@Override
-	public void SondaggioAggiungiDomandaRange(RangeDTO dto) {
+	public void SondaggioAggiungiDomandaRange(RangeDTO dto) throws RemoteException {
 		SondaggiManagerInterface manager=Resolver.getInstance().getSondaggiManager();
 		manager.AggiungiDomanda(dto);
 	}
 
 	@Override
-	public void SondaggioAggiungiDomandaMatrice(MatriceDTO dto) {
+	public void SondaggioAggiungiDomandaMatrice(MatriceDTO dto) throws RemoteException {
 		SondaggiManagerInterface manager=Resolver.getInstance().getSondaggiManager();
 		manager.AggiungiDomanda(dto);
 	}
 
 	@Override
-	public CompilazioneDTO SondaggioAggiungiCompilazione(CompilazioneDTO dto) {
+	public CompilazioneDTO SondaggioAggiungiCompilazione(CompilazioneDTO dto) throws RemoteException {
 		SondaggiManagerInterface manager=Resolver.getInstance().getSondaggiManager();
 		
 		return manager.AggiungiCompilazione(dto);
 	}
 
 	@Override
-	public void SondaggioSetEnable(int idSondaggio) {
+	public void SondaggioSetEnable(int idSondaggio) throws RemoteException {
 		SondaggiManagerInterface manager=Resolver.getInstance().getSondaggiManager();
 		manager.SetEnable(idSondaggio);
 	}
 
 	@Override
-	public void SondaggioSetDisable(int idSondaggio) {
+	public void SondaggioSetDisable(int idSondaggio) throws RemoteException {
 		SondaggiManagerInterface manager=Resolver.getInstance().getSondaggiManager();
 		manager.SetDisable(idSondaggio);
 	}
 
 	@Override
-	public void DomandaModifica(MultiplaDTO dto) {
+	public void DomandaModifica(MultiplaDTO dto) throws RemoteException {
 		DomandeManagerInterface manager=Resolver.getInstance().getDomandeManager();
 		manager.Modifica(dto);
 	}
 
 	@Override
-	public void DomandaModifica(LiberaDTO dto) {
+	public void DomandaModifica(LiberaDTO dto) throws RemoteException {
 		DomandeManagerInterface manager=Resolver.getInstance().getDomandeManager();
 		manager.Modifica(dto);
 	}
 
 	@Override
-	public void DomandaModifica(RangeDTO dto) {
+	public void DomandaModifica(RangeDTO dto) throws RemoteException {
 		DomandeManagerInterface manager=Resolver.getInstance().getDomandeManager();
 		manager.Modifica(dto);
 	}
 
 	@Override
-	public void DomandaModifica(MatriceDTO dto) {
+	public void DomandaModifica(MatriceDTO dto) throws RemoteException {
 		DomandeManagerInterface manager=Resolver.getInstance().getDomandeManager();
 		manager.Modifica(dto);
 	}
 
 	@Override
-	public void DomandaModifica(ValoriMatriceDTO dto) {
+	public void DomandaModifica(ValoriMatriceDTO dto) throws RemoteException {
 		DomandeManagerInterface manager=Resolver.getInstance().getDomandeManager();
 		manager.Modifica(dto);
 	}
 
 	@Override
-	public void DomandaAggiungiValoriMatrice(ValoriMatriceDTO dto) {
+	public void DomandaAggiungiValoriMatrice(ValoriMatriceDTO dto) throws RemoteException {
 		DomandeManagerInterface manager=Resolver.getInstance().getDomandeManager();
 		manager.AggiungiValoriMatrice(dto);
 	}
 
 	@Override
-	public void DomandaAggiungiRisposta(RispostaDTO dto) {
+	public void DomandaAggiungiRisposta(RispostaDTO dto) throws RemoteException {
 		DomandeManagerInterface manager=Resolver.getInstance().getDomandeManager();
 		manager.AggiungiRisposta(dto);
 	}
 
 	@Override
-	public void DomandaSetEnable(int idDomanda) {
+	public void DomandaSetEnable(int idDomanda) throws RemoteException {
 		DomandeManagerInterface manager=Resolver.getInstance().getDomandeManager();
 		manager.SetEnable(idDomanda);
 	}
 
 	@Override
-	public void DomandaSetDisable(int idDomanda) {
+	public void DomandaSetDisable(int idDomanda) throws RemoteException {
 		DomandeManagerInterface manager=Resolver.getInstance().getDomandeManager();
 		manager.SetDisable(idDomanda);
 	}
 
 	@Override
-	public RispostaDTO RispostaModifica(RispostaDTO dto) {
+	public RispostaDTO RispostaModifica(RispostaDTO dto) throws RemoteException {
 		RisposteManagerInterface manager=Resolver.getInstance().getRisposteManager();
 		return manager.Modifica(dto);
 	}
 
 	@Override
-	public void RispostaSetEnable(int idRisposta) {
+	public void RispostaSetEnable(int idRisposta) throws RemoteException {
 		RisposteManagerInterface manager=Resolver.getInstance().getRisposteManager();
 		manager.SetEnable(idRisposta);
 	}
 
 	@Override
-	public void RispostaSetDisable(int idRisposta) {
+	public void RispostaSetDisable(int idRisposta) throws RemoteException {
 		RisposteManagerInterface manager=Resolver.getInstance().getRisposteManager();
 		manager.SetDisable(idRisposta);
 	}
 
 	@Override
-	public CompilazioneDTO CompilazioneModifica(CompilazioneDTO dto) {
+	public CompilazioneDTO CompilazioneModifica(CompilazioneDTO dto) throws RemoteException {
 		CompilazioniManagerInterface manager=Resolver.getInstance().getCompilazioneManager();
 		
 		return manager.Modifica(dto);
 	}
 
 	@Override
-	public void CompilazioneAggiungiCompilazioneRisposta(CompilazioneRispostaDTO dto) {
+	public void CompilazioneAggiungiCompilazioneRisposta(CompilazioneRispostaDTO dto) throws RemoteException {
 		CompilazioniManagerInterface manager=Resolver.getInstance().getCompilazioneManager();
 		manager.AggiungiCompilazioneRisposta(dto);
 	}
 
 	@Override
-	public void CompilazioneSetEnable(int idCompilazione) {
+	public void CompilazioneSetEnable(int idCompilazione) throws RemoteException {
 		CompilazioniManagerInterface manager=Resolver.getInstance().getCompilazioneManager();
 		manager.SetEnable(idCompilazione);
 	}
 
 	@Override
-	public void CompilazioneSetDisable(int idCompilazione) {
+	public void CompilazioneSetDisable(int idCompilazione) throws RemoteException {
 		CompilazioniManagerInterface manager=Resolver.getInstance().getCompilazioneManager();
 		manager.SetDisable(idCompilazione);
 	}
 
 	@Override
-	public CompilazioneRispostaDTO CompilazioneRispostaModifica(CompilazioneRispostaDTO dto) {
+	public CompilazioneRispostaDTO CompilazioneRispostaModifica(CompilazioneRispostaDTO dto) throws RemoteException {
 		CompilazioniManagerInterface manager=Resolver.getInstance().getCompilazioneManager();
 		
 		return manager.Modifica(dto);
 	}
 
 	@Override
-	public void CompilazioneRispostaElimina(int idCompilazioneRisposta) {
+	public void CompilazioneRispostaElimina(int idCompilazioneRisposta) throws RemoteException {
 		CompilazioniManagerInterface manager=Resolver.getInstance().getCompilazioneManager();
 		manager.Elimina(idCompilazioneRisposta);
 	}
 
 	@Override
-	public UtenteDTO UtenteGetByKey(int idUtente) {
+	public UtenteDTO UtenteGetByKey(int idUtente) throws RemoteException {
 		UtentiManagerInterface manager=Resolver.getInstance().getUtentiManager();
 		
 		return manager.GetByKey(idUtente);
 	}
 
 	@Override
-	public List<UtenteDTO> UtenteGetList() {
+	public List<UtenteDTO> UtenteGetList() throws RemoteException {
 		UtentiManagerInterface manager=Resolver.getInstance().getUtentiManager();
 		
 		return manager.GetList();
 	}
 
 	@Override
-	public UtenteDTO UtenteCrea(UtenteDTO dto) {
+	public UtenteDTO UtenteCrea(UtenteDTO dto) throws RemoteException {
 		UtentiManagerInterface manager=Resolver.getInstance().getUtentiManager();
 		return manager.Crea(dto);
 	}
 
 	@Override
-	public UtenteDTO UtenteModifica(UtenteDTO dto) {
+	public UtenteDTO UtenteModifica(UtenteDTO dto) throws RemoteException {
 		UtentiManagerInterface manager=Resolver.getInstance().getUtentiManager();
 		return manager.Modifica(dto);
 	}
 
 	@Override
-	public void UtenteSetEnable(int idUtente) {
+	public void UtenteSetEnable(int idUtente) throws RemoteException {
 		UtentiManagerInterface manager=Resolver.getInstance().getUtentiManager();
 		manager.SetEnable(idUtente);
 	}
 
 	@Override
-	public void UtenteSetDisable(int idUtente) {
+	public void UtenteSetDisable(int idUtente) throws RemoteException {
 		UtentiManagerInterface manager=Resolver.getInstance().getUtentiManager();
 		manager.SetDisable(idUtente);
 	}

@@ -1,3 +1,5 @@
+import thread.ServerAcceptRmi;
+
 
 public class Start {
 
@@ -5,7 +7,15 @@ public class Start {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		ServerAcceptRmi rmi = new ServerAcceptRmi("127.0.0.1");
+		Thread Rmithread=new Thread(rmi);
+		
+		Rmithread.start();
+		
+		while(true){
+			
 		}
+		//rmi.Shutdown();
+	}
 
 }
