@@ -1,8 +1,15 @@
 package server;
 
+import java.io.Serializable;
+
 import communication.ServerRmiInterface;
 
-public class ServerRmi extends BaseServer implements ServerRmiInterface {
+public class ServerRmi extends BaseServer implements ServerRmiInterface, Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Override
 	public void run() {

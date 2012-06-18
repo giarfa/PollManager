@@ -1,4 +1,6 @@
 package resolver;
+import client.ClientRmi;
+import client.ClientRmiInterface;
 import server.ServerRmi;
 
 import communication.ServerRmiInterface;
@@ -41,5 +43,9 @@ public class Resolver {
 	
 	public ServerRmiInterface getServerRmi(){
 		return new ServerRmi();
+	}
+	
+	public ClientRmiInterface getClientRmi(String host){
+		return new ClientRmi(host);
 	}
 }
