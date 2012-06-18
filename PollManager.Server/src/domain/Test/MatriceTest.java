@@ -12,7 +12,7 @@ public class MatriceTest extends TestCase {
 		
 		assertEquals(0, m.getOrdine());
 		assertEquals("pluto", m.getTesto());
-		assertEquals(true, m.isObbligatorio());
+		assertEquals(true, m.getIsObbligatorio());
 		assertEquals(null, m.getSondaggioAssociato());
 	}
 	
@@ -24,7 +24,7 @@ public class MatriceTest extends TestCase {
 		
 		assertEquals(1, m.getOrdine());
 		assertEquals("pippo", m.getTesto());
-		assertEquals(false, m.isObbligatorio());
+		assertEquals(false, m.getIsObbligatorio());
 		assertEquals(null, m.getSondaggioAssociato());
 	}
 

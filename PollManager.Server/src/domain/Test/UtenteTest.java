@@ -8,7 +8,7 @@ public class UtenteTest extends TestCase {
 	
 	public void testCreaUtente(){
 		Utente u;
-		u=Utente.CreaUtente(0, null, "pippo", "pluto", "abc");
+		u=Utente.CreaUtente(0, null, "pippo", "pluto","", "abc");
 		
 		assertEquals("pippo", u.getNome());
 		assertEquals("pluto", u.getCognome());
@@ -18,8 +18,8 @@ public class UtenteTest extends TestCase {
 	
 	public void testModificaUtente(){
 		Utente u;
-		u=Utente.CreaUtente(0, null, "pippo", "pluto", "abc");
-		u.ModificaUtente(1, null, "pietro", "giovanni", "cba");
+		u=Utente.CreaUtente(0, null, "pippo", "pluto","", "abc");
+		u.ModificaUtente(1, null, "pietro", "giovanni","", "cba");
 		
 		assertEquals("pietro", u.getNome());
 		assertEquals("giovanni", u.getCognome());
@@ -30,7 +30,7 @@ public class UtenteTest extends TestCase {
 	
 	public void testModificaUtentePassword(){
 		Utente u;
-		u=Utente.CreaUtente(0, null, "pippo", "pluto", "abc");
+		u=Utente.CreaUtente(0, null, "pippo", "pluto","", "abc");
 		u.ModificaUtente("bac89y");
 		
 		assertEquals("pippo", u.getNome());
@@ -41,21 +41,21 @@ public class UtenteTest extends TestCase {
 	
 	public void testsetDisable(){
 		Utente u;
-		u=Utente.CreaUtente(0, null, "pippo", "pluto", "abc");
+		u=Utente.CreaUtente(0, null, "pippo", "pluto","", "abc");
 		u.setDisable();
 		assertEquals(false, u.isAttivo());
 	}
 	
 	public void testsetEnable(){
 		Utente u;
-		u=Utente.CreaUtente(0, null, "pippo", "pluto", "abc");
+		u=Utente.CreaUtente(0, null, "pippo", "pluto","", "abc");
 		u.setEnable();
 		assertEquals(true, u.isAttivo());
 	}
 	
 	public void testsetDisableandEnable(){
 		Utente u;
-		u=Utente.CreaUtente(0, null, "pippo", "pluto", "abc");
+		u=Utente.CreaUtente(0, null, "pippo", "pluto","", "abc");
 		u.setDisable();
 		assertEquals(false, u.isAttivo());
 		u.setEnable();
@@ -64,7 +64,7 @@ public class UtenteTest extends TestCase {
 	
 	public void testCorrectPassword(){
 		Utente u;
-		u=Utente.CreaUtente(0, null, "pippo", "pluto", "abcdef");
+		u=Utente.CreaUtente(0, null, "pippo", "pluto","", "abcdef");
 		assertEquals(true, u.correctPassword());
 		
 	}

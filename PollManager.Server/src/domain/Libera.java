@@ -11,6 +11,7 @@ public class Libera extends Domanda {
 
 	public Libera(){
 		super();
+		this.idDomandaTipo=2;
 	}
 	
 	/**

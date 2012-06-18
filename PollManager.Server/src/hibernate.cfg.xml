@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.connection.driver_class">org.hsqldb.jdbcDriver</property>
+        <property name="hibernate.connection.url">jdbc:hsqldb:file:/Users/fra/Polimi/db/testdb;shutdown=true;hsqldb.write_delay=false;</property>
+        <property name="hibernate.connection.username">sa</property>
+        <property name="connection.password"></property>
+        <property name="connection.pool_size">1</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.HSQLDialect</property>
+        <property name="show_sql">true</property>
+        <property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
+        <property name="hbm2ddl.auto">update</property>
+        <mapping resource="domain/sondaggio.hbm.xml"/>
+        <mapping resource="domain/domanda.hbm.xml"/>
+        <mapping resource="domain/risposta.hbm.xml"/>
+        <mapping resource="domain/valoriMatrice.hbm.xml"/>
+        <mapping resource="domain/compilazione.hbm.xml"/>
+        <mapping resource="domain/compilazioneRisposta.hbm.xml"/>
+        <mapping resource="domain/utente.hbm.xml"/>
+    </session-factory>
+</hibernate-configuration>

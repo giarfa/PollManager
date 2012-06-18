@@ -44,6 +44,12 @@ public class CompilazioniManager implements CompilazioniManagerInterface {
 	}
 	
 	@Override
+	public CompilazioneDTO GetByKey(int idCompilazione){
+		Compilazione compilazione=this.GetById(idCompilazione);
+		return this.GetDTO(compilazione);
+	}
+	
+	@Override
 	public CompilazioneDTO Modifica(CompilazioneDTO dto) {
 		Compilazione compilazione=this.GetById(dto.getIdCompilazione());
 		compilazione.ModificaCompilazione(dto.getNote());
@@ -54,8 +60,12 @@ public class CompilazioniManager implements CompilazioniManagerInterface {
 	@Override
 	public void AggiungiCompilazioneRisposta(CompilazioneRispostaDTO dto) {
 		Compilazione compilazione=this.GetById(dto.getCompilazioneAssociataIdCompilazione());
-		Risposta rispostaAssociata=DomainManagerFactory.getInstance().getRisposteManager().GetById(dto.getRispostaAssociata().getIdRisposta());
-		ValoriMatrice valoreMatriceAssociato=DomainManagerFactory.getInstance().getDomandeManager().GetValoriMatriceById(dto.getValoreMatriceAssociato().getIdValoriMatrice());
+		Risposta rispostaAssociata=null;
+		if (dto.getRispostaAssociata()!=null)
+			DomainManagerFactory.getInstance().getRisposteManager().GetById(dto.getRispostaAssociata().getIdRisposta());
+		ValoriMatrice valoreMatriceAssociato=null;
+		if (dto.getValoreMatriceAssociato()!=null)
+			DomainManagerFactory.getInstance().getDomandeManager().GetValoriMatriceById(dto.getValoreMatriceAssociato().getIdValoriMatrice());
 		compilazione.AggiungiCompilazioneRisposta(rispostaAssociata, valoreMatriceAssociato, dto.getRispostalibera(), dto.getTestolibero());
 		this.SaveOrUpdate(compilazione);
 	}

@@ -6,6 +6,7 @@ import util.DTOMapper;
 import dataAccess.Repository;
 import domain.Orientamento;
 import domain.Sondaggio;
+import domain.Utente;
 import dto.CompilazioneDTO;
 import dto.LiberaDTO;
 import dto.MatriceDTO;
@@ -95,8 +96,12 @@ public class SondaggiManager implements SondaggiManagerInterface {
 
 	@Override
 	public CompilazioneDTO AggiungiCompilazione(CompilazioneDTO dto) {
-		// TODO Auto-generated method stub
-		return null;
+		Sondaggio sondaggio=this.GetById(dto.getSondaggioAssociatoIdSondaggio());
+		Utente utente=DomainManagerFactory.getInstance().getUtentiManager().GetById(dto.getUtenteAssociato().getIdUtente());
+		sondaggio.AggiungiCompilazione(sondaggio, utente, dto.getNote());
+		Sondaggio sondaggioSavato=this.SaveOrUpdate(sondaggio);
+		int idCompilazione=sondaggioSavato.getCompilazioni().get(sondaggioSavato.getCompilazioni().size()-1).getIdCompilazione();
+		return DomainManagerFactory.getInstance().getCompilazioniManager().GetByKey(idCompilazione);
 	}
 
 	@Override

@@ -11,7 +11,7 @@ public class LiberaTest extends TestCase {
 		
 		assertEquals(0, l.getOrdine());
 		assertEquals("pippo", l.getTesto());
-		assertEquals(true, l.isObbligatorio());
+		assertEquals(true, l.getIsObbligatorio());
 		assertEquals(25, l.getMaxCaratteri());
 		assertEquals(5, l.getMinCaratteri());
 		assertEquals(null, l.getSondaggioAssociato());
@@ -24,7 +24,7 @@ public class LiberaTest extends TestCase {
 		
 		assertEquals(1, l.getOrdine());
 		assertEquals("pluto", l.getTesto());
-		assertEquals(false, l.isObbligatorio());
+		assertEquals(false, l.getIsObbligatorio());
 		assertEquals(22, l.getMaxCaratteri());
 		assertEquals(13, l.getMinCaratteri());
 		assertEquals(null, l.getSondaggioAssociato());

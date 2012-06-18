@@ -11,7 +11,7 @@ public class Risposta {
 	private Domanda domandaAssociata;
 	
 	public Risposta() {
-		this.idRisposta=0;
+		this.idRisposta=-1;
 		this.attivo=true;
 	}
 	
@@ -116,14 +116,14 @@ public class Risposta {
 	/**
 	 * @return the isNonRisponde
 	 */
-	public boolean isNonRisponde() {
+	public boolean getIsNonRisponde() {
 		return isNonRisponde;
 	}
 
 	/**
 	 * @param isNonRisponde the isNonRisponde to set
 	 */
-	void setNonRisponde(boolean isNonRisponde) {
+	void setIsNonRisponde(boolean isNonRisponde) {
 		this.isNonRisponde = isNonRisponde;
 	}
 

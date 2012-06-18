@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 
@@ -9,10 +10,12 @@ import java.util.ArrayList;
  */
 public class Matrice extends Domanda {
 	
-	private ArrayList <ValoriMatrice> valorimatrice;
+	@SuppressWarnings("rawtypes")
+	private List valorimatrice;
 
 	public Matrice(){
 		super();
+		this.idDomandaTipo=4;
 		this.valorimatrice=new ArrayList<ValoriMatrice>();
 	}
 	
@@ -49,6 +52,7 @@ public class Matrice extends Domanda {
 		return this;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public void AggiungiValoriMatrice(int ordine, String testo){
 		ValoriMatrice valoriMatrice=ValoriMatrice.CreaValoriMatrice(this, ordine, testo);
 		this.valorimatrice.add(valoriMatrice);
@@ -57,14 +61,16 @@ public class Matrice extends Domanda {
 	/**
 	 * @return the valorimatrice
 	 */
-	public ArrayList<ValoriMatrice> getValorimatrice() {
+	@SuppressWarnings("unchecked")
+	public List<ValoriMatrice> getValorimatrice() {
 		return valorimatrice;
 	}
 
 	/**
 	 * @param valorimatrice the valorimatrice to set
 	 */
-	void setValorimatrice(ArrayList<ValoriMatrice> valorimatrice) {
+	@SuppressWarnings("rawtypes")
+	void setValorimatrice(List valorimatrice) {
 		this.valorimatrice = valorimatrice;
 	}
 }

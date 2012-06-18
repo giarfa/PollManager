@@ -12,12 +12,12 @@ public class RangeTest extends TestCase {
 		
 		assertEquals(0, r.getOrdine());
 		assertEquals("pippo", r.getTesto());
-		assertEquals(true, r.isObbligatorio());
+		assertEquals(true, r.getIsObbligatorio());
 		assertEquals(1, r.getValMin());
 		assertEquals(5, r.getValMax());
 		assertEquals("Ciao", r.getDescValMin());
 		assertEquals("arrivederci", r.getDescValMax());
-		assertEquals(false, r.isRispSingola());
+		assertEquals(false, r.getIsRispSingola());
 		assertEquals(null, r.getSondaggioAssociato());
 	}
 	
@@ -30,12 +30,12 @@ public class RangeTest extends TestCase {
 		
 		assertEquals(1, r.getOrdine());
 		assertEquals("pluto", r.getTesto());
-		assertEquals(false, r.isObbligatorio());
+		assertEquals(false, r.getIsObbligatorio());
 		assertEquals(2, r.getValMin());
 		assertEquals(7, r.getValMax());
 		assertEquals("hello", r.getDescValMin());
 		assertEquals("bye", r.getDescValMax());
-		assertEquals(true, r.isRispSingola());
+		assertEquals(true, r.getIsRispSingola());
 		assertEquals(null, r.getSondaggioAssociato());
 		
 		

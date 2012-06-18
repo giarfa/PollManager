@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+<class name="domain.Risposta" table="risposte_tb">
+	<meta attribute="class-description">
+	This class contains the course details.
+	</meta>
+	<id name="idRisposta" column="idRisposta" unsaved-value="-1">
+		<generator class="native"/>
+	</id>
+	<property name="ordine" column="ordine" />
+	<property name="testo" column="testo" />
+	<property name="hasTestoLibero" column="hasTestoLibero" />
+	<property name="isNonRisponde" column="isNonRisponde" />
+	<property name="attivo" column="attivo" />
+	<many-to-one name="domandaAssociata" column="idDomanda" />
+</class>
+
+</hibernate-mapping>

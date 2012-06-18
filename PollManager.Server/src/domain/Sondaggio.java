@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 
@@ -13,14 +14,16 @@ public class Sondaggio {
 	private String titolo;
 	private String descrizione;
 	private boolean attivo;
-	private ArrayList <Domanda> domande;
-	private ArrayList <Compilazione> compilazioni;
+	@SuppressWarnings("rawtypes")
+	private List domande;
+	@SuppressWarnings("rawtypes")
+	private List compilazioni;
 	
 	/**
 	 * 
 	 */
 	public Sondaggio(){
-		this.idSondaggio=0;
+		this.idSondaggio=-1;
 		this.attivo=true;
 		this.domande=new ArrayList<Domanda>();
 		this.compilazioni=new ArrayList<Compilazione>();
@@ -51,26 +54,31 @@ public class Sondaggio {
 		return this;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public void AggiungiDomandaMultipla(int ordine, String testo, boolean isObbligatorio, Orientamento orientamento, boolean isSingola,int NumMinRisp){
 		Multipla multipla=Multipla.CreaMultipla(ordine, testo, isObbligatorio, orientamento, isSingola, NumMinRisp, this);
 		this.domande.add(multipla);
 	}
 	
+	@SuppressWarnings("unchecked")
 	public void AggiungiDomandaLibera(int ordine, String testo, boolean isObbligatorio, int MaxCaratteri, int MinCaratteri){
 		Libera libera=Libera.CreaLibera(ordine, testo, isObbligatorio, MaxCaratteri, MinCaratteri, this);
 		this.domande.add(libera);
 	}
 	
+	@SuppressWarnings("unchecked")
 	public void AggiungiDomandaRange(int ordine, String testo, boolean isObbligatorio, int ValMin, int ValMax, String DescValMin, String DescValMax, boolean isRispSingola){
 		Range range=Range.CreaRange(ordine, testo, isObbligatorio, ValMin, ValMax, DescValMin, DescValMax, isRispSingola, this);
 		this.domande.add(range);
 	}
 	
+	@SuppressWarnings("unchecked")
 	public void AggiungiDomandaMatrice(int ordine, String testo, boolean isObbligatorio){
 		Matrice matrice=Matrice.CreaMatrice(ordine, testo, isObbligatorio, this);
 		this.domande.add(matrice);
 	}
 	
+	@SuppressWarnings("unchecked")
 	public void AggiungiCompilazione(Sondaggio sondaggioAssociato, Utente utenteAssociato, String note){
 		Compilazione compilazione=Compilazione.CreaCompilazione(this, utenteAssociato, note);
 		this.compilazioni.add(compilazione);
@@ -130,28 +138,32 @@ public class Sondaggio {
 	/**
 	 * @return the domande
 	 */
-	public ArrayList<Domanda> getDomande() {
+	@SuppressWarnings("unchecked")
+	public List<Domanda> getDomande() {
 		return domande;
 	}
 
 	/**
 	 * @param domande the domande to set
 	 */
-	void setDomande(ArrayList<Domanda> domande) {
+	@SuppressWarnings("rawtypes")
+	void setDomande(List domande) {
 		this.domande = domande;
 	}
 
 	/**
 	 * @return the compilazioni
 	 */
-	public ArrayList<Compilazione> getCompilazioni() {
+	@SuppressWarnings("unchecked")
+	public List<Compilazione> getCompilazioni() {
 		return compilazioni;
 	}
 
 	/**
 	 * @param compilazioni the compilazioni to set
 	 */
-	void setCompilazioni(ArrayList<Compilazione> compilazioni) {
+	@SuppressWarnings("rawtypes")
+	void setCompilazioni(List compilazioni) {
 		this.compilazioni = compilazioni;
 	}
 

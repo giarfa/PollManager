@@ -17,6 +17,7 @@ public class Multipla extends Domanda {
 	 */
 	public Multipla(){
 		super();
+		this.idDomandaTipo=1;
 	}
 	
 	public static Multipla CreaMultipla(int ordine, String testo, boolean isObbligatorio, Orientamento orientamento, boolean isSingola,int NumMinRisp, Sondaggio sondaggioAssociato){
@@ -58,14 +59,14 @@ public class Multipla extends Domanda {
 	/**
 	 * @return the isSingola
 	 */
-	public boolean isSingola() {
+	public boolean getIsSingola() {
 		return isSingola;
 	}
 
 	/**
 	 * @param isSingola the isSingola to set
 	 */
-	void setSingola(boolean isSingola) {
+	void setIsSingola(boolean isSingola) {
 		this.isSingola = isSingola;
 	}
 

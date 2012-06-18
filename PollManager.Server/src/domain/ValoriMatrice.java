@@ -12,7 +12,7 @@ public class ValoriMatrice {
 	private String testo;
 	
 	public ValoriMatrice() {
-		this.idValoriMatrice=0;
+		this.idValoriMatrice=-1;
 	}
 	
 	public static ValoriMatrice CreaValoriMatrice(Matrice matrice, int ordine, String testo){

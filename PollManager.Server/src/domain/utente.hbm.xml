@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+<class name="domain.Utente" table="utenti_tb">
+	<meta attribute="class-description">
+	This class contains the course details.
+	</meta>
+	<id name="idUtente" column="idUtente" unsaved-value="-1">
+		<generator class="native"/>
+	</id>
+	<property name="matricola" column="matricola" />
+	<property name="nome" column="nome" />
+	<property name="cognome" column="cognome" />
+	<property name="nomeutente" column="nomeutente" />
+	<property name="password" column="password" />
+	<property name="datacreazione" column="dataCreazione" />
+	<property name="attivo" column="attivo" />
+	<property name="ruolo" column="idRuolo" not-null="true">
+		<type name="org.hibernate.type.EnumType">
+			<param name="enumClass">domain.Ruolo</param>
+		</type>
+	</property>
+</class>
+
+</hibernate-mapping>

@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+<class name="domain.Compilazione" table="compilazioni_tb">
+	<meta attribute="class-description">
+	This class contains the course details.
+	</meta>
+	<id name="idCompilazione" column="idCompilazione" unsaved-value="-1">
+		<generator class="native"/>
+	</id>
+	<property name="datacompilazione" column="dataCompilazione" />
+	<property name="note" column="note" />
+	<property name="isdefinitiva" column="isDefinitiva" />
+	<property name="attivo" column="attivo" />
+	<many-to-one name="utenteAssociato" column="idUtente_creatore" />
+	<many-to-one name="sondaggioAssociato" column="idSondaggio" />
+	<bag name="compilazionirisposta" table="compilazioneRisposte_tb " fetch="select" lazy="true" inverse="true" cascade="all-delete-orphan">
+		<key column="idCompilazione" />
+		<one-to-many class="domain.CompilazioneRisposta"/>
+	</bag>
+</class>
+
+</hibernate-mapping>

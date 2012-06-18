@@ -14,7 +14,7 @@ public class CompilazioneRisposta {
 	private ValoriMatrice valoreMatriceAssociato;
 	
 	public CompilazioneRisposta() {
-		this.idCompilazioneRisposta=0;
+		this.idCompilazioneRisposta=-1;
 	}
 	
 	public static CompilazioneRisposta CreaCompilazioneRisposta(Compilazione compilazioneAssociata, Risposta rispostaAssociata, ValoriMatrice valoreMatriceAssociato, String rispostalibera, String testolibero){

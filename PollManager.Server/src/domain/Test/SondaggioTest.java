@@ -1,7 +1,6 @@
 package domain.Test;
 
 import domain.Sondaggio;
-import domain.Utente;
 import junit.framework.TestCase;
 
 public class SondaggioTest extends TestCase {

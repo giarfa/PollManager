@@ -17,6 +17,7 @@ public class Range extends Domanda {
 	 */
 	public Range(){
 		super();
+		this.idDomandaTipo=3;
 	}
 	
 	/**
@@ -116,14 +117,14 @@ public class Range extends Domanda {
 	/**
 	 * @return the isRispSingola
 	 */
-	public boolean isRispSingola() {
+	public boolean getIsRispSingola() {
 		return isRispSingola;
 	}
 
 	/**
 	 * @param isRispSingola the isRispSingola to set
 	 */
-	void setRispSingola(boolean isRispSingola) {
+	void setIsRispSingola(boolean isRispSingola) {
 		this.isRispSingola = isRispSingola;
 	}
 	

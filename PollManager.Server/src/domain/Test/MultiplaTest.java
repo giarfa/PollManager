@@ -11,9 +11,9 @@ public class MultiplaTest extends TestCase {
 		
 		assertEquals(0, m.getOrdine());
 		assertEquals("pippo", m.getTesto());
-		assertEquals(true, m.isObbligatorio());
+		assertEquals(true, m.getIsObbligatorio());
 		assertEquals(null, m.getOrientamento());
-		assertEquals(false, m.isSingola());
+		assertEquals(false, m.getIsSingola());
 		assertEquals(1, m.getNumMinRisp());
 		assertEquals(null, m.getSondaggioAssociato());
 		
@@ -27,9 +27,9 @@ public class MultiplaTest extends TestCase {
 		
 		assertEquals(1, m.getOrdine());
 		assertEquals("pluto", m.getTesto());
-		assertEquals(false, m.isObbligatorio());
+		assertEquals(false, m.getIsObbligatorio());
 		assertEquals(null, m.getOrientamento());
-		assertEquals(true, m.isSingola());
+		assertEquals(true, m.getIsSingola());
 		assertEquals(2, m.getNumMinRisp());
 		assertEquals(null, m.getSondaggioAssociato());
 	}

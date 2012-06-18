@@ -21,7 +21,7 @@ public class Utente {
 	private boolean attivo;
 
 	public Utente(){
-		this.idUtente=0;
+		this.idUtente=-1;
 		this.attivo= true;
 		this.datacreazione=new Date();
 	}
@@ -35,21 +35,23 @@ public class Utente {
 	 * @param password
 	 * @return Utente
 	 */
-	public static Utente CreaUtente(int matricola,Ruolo ruolo, String nome, String cognome,String password){
+	public static Utente CreaUtente(int matricola,Ruolo ruolo, String nome, String cognome,String nomeutente,String password){
 		Utente utente= new Utente();
 		utente.nome=nome;
 		utente.cognome=cognome;
 		utente.matricola=matricola;
+		utente.nomeutente=nomeutente;
 		utente.password=password;
 		utente.ruolo=ruolo;
 		return utente;
 	}	
 
-	 public Utente ModificaUtente(int matricola,Ruolo ruolo,String nome, String cognome,String password) {
+	 public Utente ModificaUtente(int matricola,Ruolo ruolo,String nome, String cognome,String nomeutente,String password) {
 		 this.nome=nome;
          this.cognome=cognome;
          this.matricola=matricola;
          this.ruolo=ruolo;
+         this.nomeutente=nomeutente;
          ModificaUtente(password);
          return this;
      }	 

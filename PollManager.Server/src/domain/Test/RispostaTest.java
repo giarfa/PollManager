@@ -14,7 +14,7 @@ public class RispostaTest extends TestCase {
 		assertEquals(0, r.getOrdine());
 		assertEquals(true, r.isHasTestoLibero());
 		assertEquals("ciao a tutti", r.getTesto());
-		assertEquals(false, r.isNonRisponde());
+		assertEquals(false, r.getIsNonRisponde());
 	}
 	
 	
@@ -29,7 +29,7 @@ public class RispostaTest extends TestCase {
 		assertEquals(1, r.getOrdine());
 		assertEquals(false, r.isHasTestoLibero());
 		assertEquals("minnie e harry potter", r.getTesto());
-		assertEquals(true, r.isNonRisponde());
+		assertEquals(true, r.getIsNonRisponde());
 	}
 
 }

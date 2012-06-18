@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+<class name="domain.Domanda" table="domande_tb">
+	<meta attribute="class-description">
+	This class contains the course details.
+	</meta>
+	<id name="idDomanda" column="idDomanda" unsaved-value="-1">
+		<generator class="native"/>
+	</id>
+	<discriminator formula="case when idDomandaTipo = 1 then 1 
+                                 when idDomandaTipo = 2 then 2 
+                                 when idDomandaTipo = 3 then 3
+                                 when idDomandaTipo = 4 then 4 
+                                 end "/>
+                                 
+	<property name="ordine" column="ordine" />
+	<property name="testo" column="testo" />
+	<property name="isObbligatorio" column="isObbligatorio" />
+	<property name="attivo" column="attivo" />
+	<property name="idDomandaTipo" column="idDomandaTipo" />
+	<many-to-one name="sondaggioAssociato" column="idSondaggio" />
+	<bag name="risposte" table="risposte_tb " fetch="select" lazy="true" inverse="true" cascade="all-delete-orphan">
+		<key column="idDomanda" />
+		<one-to-many class="domain.Risposta"/>
+	</bag>
+	<subclass name="domain.Multipla" discriminator-value="1" lazy="false">
+		<property name="isSingola" column="multiplaIsSingola" />
+		<property name="NumMinRisp" column="multiplaNumMinRisp" />
+		<property name="orientamento" column="multiplaOrientamento">
+			<type name="org.hibernate.type.EnumType">
+				<param name="enumClass">domain.Orientamento</param>
+			</type>
+		</property>
+	</subclass>
+	<subclass name="domain.Libera" discriminator-value="2" lazy="false">
+		<property name="MaxCaratteri" column="liberaMaxChars" />
+		<property name="MinCaratteri" column="liberaMinChars" />
+	</subclass>
+	<subclass name="domain.Range" discriminator-value="3" lazy="false">
+		<property name="ValMin" column="rangeMinValue" />
+		<property name="ValMax" column="rangeMaxValue" />
+		<property name="DescValMin" column="rangeDescMinValue" />
+		<property name="DescValMax" column="rangeDescMaxValue" />
+		<property name="isRispSingola" column="rangeIsSingolaRisposta" />
+	</subclass>
+	<subclass name="domain.Matrice" discriminator-value="4" lazy="false">
+		<bag name="valorimatrice" table="valoriMatrice_tb " fetch="select" lazy="true" inverse="true" cascade="all-delete-orphan">
+			<key column="idDomanda" />
+			<one-to-many class="domain.ValoriMatrice"/>
+		</bag>
+	</subclass>
+</class>
+
+</hibernate-mapping>

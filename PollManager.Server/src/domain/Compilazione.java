@@ -2,6 +2,7 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 
 
@@ -14,10 +15,11 @@ public class Compilazione {
 	private boolean attivo;
 	private Utente utenteAssociato;
 	private Sondaggio sondaggioAssociato;
-	private ArrayList <CompilazioneRisposta> compilazionirisposta;
+	@SuppressWarnings("rawtypes")
+	private List compilazionirisposta;
 	
 	public Compilazione() {
-		this.idCompilazione=0;
+		this.idCompilazione=-1;
 		this.datacompilazione=new Date();
 		this.isdefinitiva=false;
 		this.attivo=true;
@@ -40,6 +42,7 @@ public class Compilazione {
 		return this;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public void AggiungiCompilazioneRisposta(Risposta rispostaAssociata, ValoriMatrice valoreMatriceAssociato, String rispostalibera, String testolibero){
 		CompilazioneRisposta compilazione=CompilazioneRisposta.CreaCompilazioneRisposta(this, rispostaAssociata, valoreMatriceAssociato, rispostalibera, testolibero);
 		this.compilazionirisposta.add(compilazione);
@@ -154,15 +157,16 @@ public class Compilazione {
 	/**
 	 * @return the compilazionirisposta
 	 */
-	public ArrayList<CompilazioneRisposta> getCompilazionirisposta() {
+	@SuppressWarnings("unchecked")
+	public List<CompilazioneRisposta> getCompilazionirisposta() {
 		return compilazionirisposta;
 	}
 
 	/**
 	 * @param compilazionirisposta the compilazionirisposta to set
 	 */
-	void setCompilazionirisposta(
-			ArrayList<CompilazioneRisposta> compilazionirisposta) {
+	@SuppressWarnings("rawtypes")
+	void setCompilazionirisposta(List compilazionirisposta) {
 		this.compilazionirisposta = compilazionirisposta;
 	}
 }
