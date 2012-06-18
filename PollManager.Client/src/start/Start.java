@@ -1,15 +1,12 @@
 package start;
 
 import gui.AccessoGUI;
-import gui.SegretarioGUI;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.net.InetAddress;
 import java.util.Properties;
 
 import resolver.Resolver;
 
-import client.ClientRmi;
 import client.ClientRmiInterface;
 
 
@@ -42,6 +39,10 @@ public class Start {
 		AccessoGUI a=new AccessoGUI(idClient);
 		a.setVisible(true);
 		
+	
+	
 	}
+	
+	
 
 }
