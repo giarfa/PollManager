@@ -1,0 +1,11 @@
+CREATE TABLE utenti_tb (
+idUtente integer not null primary key identity,
+idRuolo integer not null,
+matricola integer,
+nome varchar(50),
+cognome varchar(50),
+nomeutente varchar(50),
+password varchar(50),
+dataCreazione date,
+attivo bit
+)

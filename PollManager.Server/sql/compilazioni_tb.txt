@@ -1,0 +1,9 @@
+CREATE TABLE compilazioni_tb (
+idCompilazione integer not null primary key identity,
+idSondaggio integer not null,
+idUtente_creatore integer not null,
+dataCompilazione date not null,
+note varchar(150),
+isDefinitiva bit not null,
+attivo bit not null
+)

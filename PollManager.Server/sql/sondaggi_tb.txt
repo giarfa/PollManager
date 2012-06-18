@@ -1,0 +1,6 @@
+CREATE TABLE sondaggi_tb (
+idSondaggio integer not null primary key identity,
+titolo varchar(50) not null,
+descrizione varchar(250),
+attivo bit
+)

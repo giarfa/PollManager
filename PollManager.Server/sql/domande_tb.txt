@@ -1,0 +1,19 @@
+CREATE TABLE domande_tb (
+idDomanda integer not null primary key identity,
+idSondaggio integer not null,
+idDomandaTipo integer not null,
+ordine integer not null,
+testo varchar(50) not null,
+isObbligatorio bit not null,
+attivo bit not null,
+multiplaOrientamento integer,
+multiplaIsSingolaRisposta bit,
+multiplaNumMinRisposte integer,
+liberaMaxChars integer,
+liberaMinChars integer,
+rangeMinValue integer,
+rangeDescMinValue varchar(50),
+rangeMaxValue integer,
+rangeDescMaxValue varchar(50),
+rangeIsSingolaRisposta bit
+)

@@ -1,0 +1,6 @@
+CREATE TABLE valoriMatrice_tb (
+idValoreMatrice integer not null primary key identity,
+idDomanda integer not null,
+ordine integer not null,
+testo varchar(50) not null
+)

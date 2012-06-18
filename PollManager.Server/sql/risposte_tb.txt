@@ -1,0 +1,9 @@
+CREATE TABLE risposte_tb (
+idRisposta integer not null primary key identity,
+idDomanda integer not null,
+ordine integer not null,
+testo varchar(50) not null,
+hasTestoLibero bit not null,
+isNonRisponde bit not null,
+attivo bit not null
+)

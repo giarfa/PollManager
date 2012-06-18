@@ -1,0 +1,8 @@
+CREATE TABLE compilazioneRisposte_tb (
+idCompilazioneRisposta integer not null primary key identity,
+idCompilazione integer not null,
+idRisposta integer,
+idValoreMatrice integer,
+compilazioneRispostaLibera varchar(250),
+compilazioneTestoLibero varchar(250)
+)
