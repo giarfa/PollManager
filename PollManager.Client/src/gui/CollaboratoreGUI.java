@@ -1,5 +1,7 @@
 package gui;
 
+import client.ClientInterface;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -13,11 +15,12 @@ public class CollaboratoreGUI extends javax.swing.JFrame {
 
     
     private String idClient;
-    
+    private ClientInterface client;
     /**
      * Creates new form NewJFrame2
      */
-    public CollaboratoreGUI(String idClient) {
+    public CollaboratoreGUI(String idClient, ClientInterface client) {
+        this.client=client;
         this.idClient=idClient;
         initComponents();
     }
@@ -238,7 +241,7 @@ public class CollaboratoreGUI extends javax.swing.JFrame {
 
     private void logoutActionPerformed(java.awt.event.ActionEvent evt) {                                       
         // TODO add your handling code here:
-        AccessoGUI b=new AccessoGUI(idClient);
+        AccessoGUI b=new AccessoGUI(idClient, client);
         this.setVisible(false);
         b.setVisible(true);
     }                                      

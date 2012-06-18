@@ -36,7 +36,7 @@ public class Start {
 		client.OpenChannel(idClient);
 		
 		
-		AccessoGUI a=new AccessoGUI(idClient);
+		AccessoGUI a=new AccessoGUI(idClient, client);
 		a.setVisible(true);
 		
 	

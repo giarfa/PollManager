@@ -1,5 +1,7 @@
 package gui;
 
+import client.ClientInterface;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -15,9 +17,10 @@ public class AccessoGUI extends javax.swing.JFrame {
      * Creates new form NewJFrame
      */
     private String nomeutente,password,tipoutente="SEGRETARIO",idClient;
+    private ClientInterface client;
     
-    public AccessoGUI(String idClient) {
-        
+    public AccessoGUI(String idClient, ClientInterface client) {
+        this.client=client;
         this.idClient=idClient;
         initComponents();
         
@@ -270,17 +273,17 @@ public class AccessoGUI extends javax.swing.JFrame {
             
         }
         else if (tipoutente=="SEGRETARIO"){
-            SegretarioGUI s=new SegretarioGUI(idClient);
+            SegretarioGUI s=new SegretarioGUI(idClient, client);
             s.setVisible(true);
             this.setVisible(false);
            }
         else if (tipoutente=="COLLABORATORE"){
-            CollaboratoreGUI s=new CollaboratoreGUI(idClient);
+            CollaboratoreGUI s=new CollaboratoreGUI(idClient, client);
             s.setVisible(true);
             this.setVisible(false);
            }
         else if (tipoutente=="AMMINISTRATORE"){
-            AmministratoreGUI s=new AmministratoreGUI(idClient);
+            AmministratoreGUI s=new AmministratoreGUI(idClient, client);
             s.setVisible(true);
             this.setVisible(false);
            }
@@ -299,7 +302,7 @@ public class AccessoGUI extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
         // TODO add your handling code here:
         
-        
+        client.CloseChannel(idClient);
         
         System.exit(0);
     }                                        

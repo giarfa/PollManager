@@ -1,5 +1,7 @@
 package gui;
 
+import client.ClientInterface;
+
 public class SegretarioGUI extends javax.swing.JFrame {
 
     /**
@@ -9,9 +11,10 @@ public class SegretarioGUI extends javax.swing.JFrame {
     private String sr1,sr2,sr3,sr4,sr5,sr6,idClient;
     private String valMaxRange, valMinRange,descValMinRange,descValMAxRange, opzione1,opzione2,opzione3,opzione4,opzione5,opzione6;
     private boolean obbligatorio;
+    private ClientInterface client;
     
-    
-    public SegretarioGUI(String idClient) {
+    public SegretarioGUI(String idClient, ClientInterface client) {
+        this.client=client;
         this.idClient=idClient;
         initComponents();
     }
@@ -1267,7 +1270,9 @@ public class SegretarioGUI extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {                                         
         // TODO add your handling code here:
-        System.exit((0));
+    	client.CloseChannel(idClient);
+    	
+    	System.exit((0));
     }                                        
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {                                         
@@ -1524,7 +1529,7 @@ public class SegretarioGUI extends javax.swing.JFrame {
     private void LogoutActionPerformed(java.awt.event.ActionEvent evt) {                                       
         // TODO add your handling code here:
         
-        AccessoGUI b=new AccessoGUI(idClient);
+        AccessoGUI b=new AccessoGUI(idClient, client);
         this.setVisible(false);
         b.setVisible(true);   
     }                                      

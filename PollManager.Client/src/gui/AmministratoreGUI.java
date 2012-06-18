@@ -1,5 +1,7 @@
 package gui;
 
+import client.ClientInterface;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -13,14 +15,15 @@ public class AmministratoreGUI extends javax.swing.JFrame {
 
     
     private String utenteNome, utenteCognome, utenteMatricola, utentePassword, utenteRuolo, utenteNomeUtente, idClient;
-    
+    private ClientInterface client;
     /**
      * Creates new form NewJFrame1
      */
     
     
     
-    public AmministratoreGUI(String idClient) {
+    public AmministratoreGUI(String idClient, ClientInterface client) {
+        this.client=client;
         this.idClient=idClient;
         initComponents();
     }
@@ -323,7 +326,7 @@ public class AmministratoreGUI extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
         // TODO add your handling code here:
         
-        // closeChannel
+    	client.CloseChannel(idClient);
         
         System.exit(0);
     }                                        
@@ -389,7 +392,7 @@ public class AmministratoreGUI extends javax.swing.JFrame {
     private void logoutActionPerformed(java.awt.event.ActionEvent evt) {                                       
         // TODO add your handling code here:
         
-        AccessoGUI b=new AccessoGUI(idClient);
+        AccessoGUI b=new AccessoGUI(idClient, client);
         this.setVisible(false);
         b.setVisible(true);
         
