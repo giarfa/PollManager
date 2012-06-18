@@ -1270,8 +1270,8 @@ public class SegretarioGUI extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {                                         
         // TODO add your handling code here:
-    	client.CloseChannel(idClient);
     	
+    	client.CloseChannel(idClient);
     	System.exit((0));
     }                                        
 
