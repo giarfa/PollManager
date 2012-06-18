@@ -63,11 +63,7 @@ public class AccessoGUI extends javax.swing.JFrame {
         jLabel4.setText("Sei sicuro di voler uscire?");
 
         jButton1.setText("Sì");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
-            }
-        });
+        
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -75,11 +71,7 @@ public class AccessoGUI extends javax.swing.JFrame {
         });
 
         jButton2.setText("No");
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton2MouseClicked(evt);
-            }
-        });
+       
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -117,11 +109,7 @@ public class AccessoGUI extends javax.swing.JFrame {
         Errore.setType(java.awt.Window.Type.POPUP);
 
         close.setText("OK");
-        close.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                closeMouseClicked(evt);
-            }
-        });
+        
         close.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 closeActionPerformed(evt);
@@ -180,11 +168,7 @@ public class AccessoGUI extends javax.swing.JFrame {
         });
 
         jMenu1.setText("File");
-        jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu1MouseClicked(evt);
-            }
-        });
+        
 
         jMenuItem1.setText("Esci");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
