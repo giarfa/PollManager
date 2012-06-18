@@ -1,3 +1,5 @@
+package start;
+
 import gui.AccessoGUI;
 import gui.SegretarioGUI;
 import java.io.FileInputStream;
@@ -5,7 +7,10 @@ import java.io.FileOutputStream;
 import java.net.InetAddress;
 import java.util.Properties;
 
+import resolver.Resolver;
+
 import client.ClientRmi;
+import client.ClientRmiInterface;
 
 
 
@@ -29,7 +34,7 @@ public class Start {
 		
 		String idClient=InetAddress.getLocalHost().getHostName();
 		
-		ClientRmi client=new ClientRmi(host);
+		ClientRmiInterface client=Resolver.getInstance().getClientRmi(host);
 		
 		client.OpenChannel(idClient);
 		

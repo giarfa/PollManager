@@ -239,12 +239,7 @@ public class SegretarioGUI extends javax.swing.JFrame {
         );
 
         SceltaDomanda.setTitle("Seleziona Domanda");
-        SceltaDomanda.setMinimumSize(new java.awt.Dimension(320, 180));
-        SceltaDomanda.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                SceltaDomandaMouseClicked(evt);
-            }
-        });
+       
 
         jButton7.setText("Avanti >");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
@@ -1143,10 +1138,7 @@ public class SegretarioGUI extends javax.swing.JFrame {
         
     }                                        
 
-    private void SceltaDomandaMouseClicked(java.awt.event.MouseEvent evt) {                                           
-        // TODO add your handling code here:
-       
-    }                                          
+                                         
 
     private void rivoltoComboItemStateChanged(java.awt.event.ItemEvent evt) {                                              
         // TODO add your handling code here:

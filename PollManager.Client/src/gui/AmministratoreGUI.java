@@ -217,11 +217,8 @@ public class AmministratoreGUI extends javax.swing.JFrame {
         });
 
         modificaUtente.setText("Modifica Utente");
-        modificaUtente.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                modificaUtenteMouseClicked(evt);
-            }
-        });
+        
+        
         modificaUtente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 modificaUtenteActionPerformed(evt);
@@ -315,10 +312,7 @@ public class AmministratoreGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>
 
-    private void modificaUtenteMouseClicked(java.awt.event.MouseEvent evt) {                                            
-        // TODO add your handling code here:
-        
-    }                                           
+                                            
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {                                           
         // TODO add your handling code here:
