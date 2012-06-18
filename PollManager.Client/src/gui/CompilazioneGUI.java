@@ -1,5 +1,7 @@
 package gui;
 
+import javax.swing.table.DefaultTableModel;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -11,9 +13,10 @@ package gui;
  */
 public class CompilazioneGUI extends javax.swing.JFrame {
 
-    private String tipodomanda="RANGE", testolibera, titoloDomanda;
+    private String tipodomanda="MATRICE", testolibera, titoloDomanda;
     private boolean multipla1, multipla2, multipla3, multipla4, multipla5, multipla6;
     private String range1, range2, range3, range4, range5, range6;
+    private String valorematrice1,valorematrice2,valorematrice3,valorematrice4,valorematrice5,valorematrice6;
     /**
      * Creates new form CompilazioneGUI
      */
@@ -69,8 +72,8 @@ public class CompilazioneGUI extends javax.swing.JFrame {
         titoloMatriceLabel = new javax.swing.JLabel();
         jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList();
         jButton1 = new javax.swing.JButton();
@@ -86,11 +89,6 @@ public class CompilazioneGUI extends javax.swing.JFrame {
         jScrollPane2.setViewportView(liberaTestoArea);
 
         chiudiLibera.setLabel("Salva");
-        chiudiLibera.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                chiudiLiberaMouseClicked(evt);
-            }
-        });
         chiudiLibera.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 chiudiLiberaActionPerformed(evt);
@@ -139,7 +137,6 @@ public class CompilazioneGUI extends javax.swing.JFrame {
                 .addContainerGap(62, Short.MAX_VALUE))
         );
 
-        MultiplaCompilazione.setMaximumSize(new java.awt.Dimension(378, 351));
         MultiplaCompilazione.setMinimumSize(new java.awt.Dimension(378, 351));
 
         titoloMultiplaLabel.setText("jLabel2");
@@ -225,7 +222,6 @@ public class CompilazioneGUI extends javax.swing.JFrame {
         jMenu2.setText("Edit");
         jMenuBar1.add(jMenu2);
 
-        RangeCompilazione.setMaximumSize(new java.awt.Dimension(680, 360));
         RangeCompilazione.setMinimumSize(new java.awt.Dimension(680, 360));
 
         jLabel3.setText("jLabel3");
@@ -343,27 +339,20 @@ public class CompilazioneGUI extends javax.swing.JFrame {
 
         jButton7.setText("Annulla");
 
-        jButton8.setText("Fine");
+        jButton8.setText("Salva");
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"Kathy", "Smith",
-                    "Snowboarding", new Integer(5), new Boolean(false)},
-                {"John", "Doe",
-                    "Rowing", new Integer(3), new Boolean(true)},
-                {"Sue", "Black",
-                    "Knitting", new Integer(2), new Boolean(false)},
-                {"Jane", "White",
-                    "Speed reading", new Integer(20), new Boolean(true)},
-                {"Joe", "Brown",
-                    "Pool", new Integer(10), new Boolean(false)}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
-
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5"
+                "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane4.setViewportView(jTable2);
+        jScrollPane3.setViewportView(jTable1);
 
         javax.swing.GroupLayout MatriceCompilazioneLayout = new javax.swing.GroupLayout(MatriceCompilazione.getContentPane());
         MatriceCompilazione.getContentPane().setLayout(MatriceCompilazioneLayout);
@@ -372,27 +361,26 @@ public class CompilazioneGUI extends javax.swing.JFrame {
             .addGroup(MatriceCompilazioneLayout.createSequentialGroup()
                 .addGroup(MatriceCompilazioneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(MatriceCompilazioneLayout.createSequentialGroup()
-                        .addGap(264, 264, 264)
-                        .addComponent(titoloMatriceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(MatriceCompilazioneLayout.createSequentialGroup()
                         .addGap(118, 118, 118)
-                        .addComponent(jButton7)
-                        .addGap(263, 263, 263)
-                        .addComponent(jButton8)))
-                .addContainerGap(124, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MatriceCompilazioneLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(80, 80, 80))
+                        .addGroup(MatriceCompilazioneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(MatriceCompilazioneLayout.createSequentialGroup()
+                                .addComponent(jButton7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton8))))
+                    .addGroup(MatriceCompilazioneLayout.createSequentialGroup()
+                        .addGap(302, 302, 302)
+                        .addComponent(titoloMatriceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(142, Short.MAX_VALUE))
         );
         MatriceCompilazioneLayout.setVerticalGroup(
             MatriceCompilazioneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(MatriceCompilazioneLayout.createSequentialGroup()
-                .addGap(27, 27, 27)
+                .addGap(54, 54, 54)
                 .addComponent(titoloMatriceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
+                .addGap(38, 38, 38)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
                 .addGroup(MatriceCompilazioneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton7)
                     .addComponent(jButton8))
@@ -409,11 +397,6 @@ public class CompilazioneGUI extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jList1);
 
         jButton1.setText("Compila Domanda selezionata");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
-            }
-        });
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -456,31 +439,50 @@ public class CompilazioneGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {                                      
+    private void annullaLiberaMouseClicked(java.awt.event.MouseEvent evt) {                                           
         // TODO add your handling code here:
         
-        
-    }                                     
+    }                                          
 
-    private void chiudiLiberaMouseClicked(java.awt.event.MouseEvent evt) {                                      
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
         // TODO add your handling code here:
-        
-        
-        
-        
-    }                                     
-
-    private void annullaLiberaMouseClicked(java.awt.event.MouseEvent evt) {                                      
-        // TODO add your handling code here:
-        
-    }                                     
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-        if (tipodomanda=="MATRICE"){
+        if (tipodomanda == "MATRICE") {
             MatriceCompilazione.setVisible(true);
             titoloMatriceLabel.setText(titoloDomanda);
+
+            Object[][] dati = {{new String("pluto"), new Boolean(false), new Boolean(false), new Boolean(false)}};
+
+            Object[] columnNames = {
+                "",
+                valorematrice1,
+                valorematrice2,
+                valorematrice3,
+                valorematrice4,
+                valorematrice5,
+                valorematrice6,
+                
+            };
+
+
+            DefaultTableModel myModel = new DefaultTableModel(dati, columnNames);
+            jTable1.setModel(myModel);
+
+
+            jTable1.getColumnModel().getColumn(1).setCellRenderer(jTable1.getDefaultRenderer(Boolean.class));
+            jTable1.getColumnModel().getColumn(1).setCellEditor(jTable1.getDefaultEditor(Boolean.class));
+            jTable1.getColumnModel().getColumn(2).setCellRenderer(jTable1.getDefaultRenderer(Boolean.class));
+            jTable1.getColumnModel().getColumn(2).setCellEditor(jTable1.getDefaultEditor(Boolean.class));
+            jTable1.getColumnModel().getColumn(3).setCellRenderer(jTable1.getDefaultRenderer(Boolean.class));
+            jTable1.getColumnModel().getColumn(3).setCellEditor(jTable1.getDefaultEditor(Boolean.class));
+            jTable1.getColumnModel().getColumn(4).setCellRenderer(jTable1.getDefaultRenderer(Boolean.class));
+            jTable1.getColumnModel().getColumn(4).setCellEditor(jTable1.getDefaultEditor(Boolean.class));
+            jTable1.getColumnModel().getColumn(5).setCellRenderer(jTable1.getDefaultRenderer(Boolean.class));
+            jTable1.getColumnModel().getColumn(5).setCellEditor(jTable1.getDefaultEditor(Boolean.class));
+            jTable1.getColumnModel().getColumn(6).setCellRenderer(jTable1.getDefaultRenderer(Boolean.class));
+            jTable1.getColumnModel().getColumn(6).setCellEditor(jTable1.getDefaultEditor(Boolean.class));
             
+            
+
         }
         if (tipodomanda=="LIBERA"){
             LiberaCompilazione.setVisible(true);
@@ -495,23 +497,23 @@ public class CompilazioneGUI extends javax.swing.JFrame {
             MultiplaCompilazione.setVisible(true);
             titoloMultiplaLabel.setText(titoloDomanda);
         }
-    }
+    }                                        
 
-    private void annullaLiberaActionPerformed(java.awt.event.ActionEvent evt) {
+    private void annullaLiberaActionPerformed(java.awt.event.ActionEvent evt) {                                              
         // TODO add your handling code here:
         liberaTestoArea.setText("");
         LiberaCompilazione.setVisible(false);
-    }
+    }                                             
 
-    private void chiudiLiberaActionPerformed(java.awt.event.ActionEvent evt) {
+    private void chiudiLiberaActionPerformed(java.awt.event.ActionEvent evt) {                                             
         // TODO add your handling code here:
         testolibera=liberaTestoArea.getText();
         liberaTestoArea.setText("");
         LiberaCompilazione.setVisible(false);
         
-    }
+    }                                            
 
-    private void annullaMultiplaActionPerformed(java.awt.event.ActionEvent evt) {
+    private void annullaMultiplaActionPerformed(java.awt.event.ActionEvent evt) {                                                
         // TODO add your handling code here:
         
         multipla1Check.setSelected(false);
@@ -522,9 +524,9 @@ public class CompilazioneGUI extends javax.swing.JFrame {
         multipla6Check.setSelected(false);
         
         MultiplaCompilazione.setVisible(false);
-    }
+    }                                               
 
-    private void salvaMultiplaActionPerformed(java.awt.event.ActionEvent evt) {
+    private void salvaMultiplaActionPerformed(java.awt.event.ActionEvent evt) {                                              
         // TODO add your handling code here:
         multipla1=multipla1Check.isSelected();
         multipla2=multipla2Check.isSelected();
@@ -543,9 +545,9 @@ public class CompilazioneGUI extends javax.swing.JFrame {
         MultiplaCompilazione.setVisible(false);
         
         
-    }
+    }                                             
 
-    private void salvaRangeActionPerformed(java.awt.event.ActionEvent evt) {
+    private void salvaRangeActionPerformed(java.awt.event.ActionEvent evt) {                                           
         // TODO add your handling code here:
         range1=(String) range1Combo.getSelectedItem();
         range2=(String) range2Combo.getSelectedItem();
@@ -562,9 +564,9 @@ public class CompilazioneGUI extends javax.swing.JFrame {
         range6Combo.setSelectedIndex(0);
         
         RangeCompilazione.setVisible(false);
-    }
+    }                                          
 
-    private void annullaRangeActionPerformed(java.awt.event.ActionEvent evt) {
+    private void annullaRangeActionPerformed(java.awt.event.ActionEvent evt) {                                             
         // TODO add your handling code here:
         range1Combo.setSelectedIndex(0);
         range2Combo.setSelectedIndex(0);
@@ -575,55 +577,15 @@ public class CompilazioneGUI extends javax.swing.JFrame {
         
         RangeCompilazione.setVisible(false);
         
-    }
+    }                                            
 
-    private void chiudiCompliazioneActionPerformed(java.awt.event.ActionEvent evt) {
+    private void chiudiCompliazioneActionPerformed(java.awt.event.ActionEvent evt) {                                                   
         // TODO add your handling code here:
         
         this.setVisible(false);
-    }
+    }                                                  
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /*
-         * Set the Nimbus look and feel
-         */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /*
-         * If Nimbus (introduced in Java SE 6) is not available, stay with the
-         * default look and feel. For details see
-         * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CompilazioneGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CompilazioneGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CompilazioneGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CompilazioneGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /*
-         * Create and display the form
-         */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-
-            public void run() {
-                new CompilazioneGUI().setVisible(true);
-            }
-        });
-    }
+   
     // Variables declaration - do not modify
     private javax.swing.JDialog LiberaCompilazione;
     private javax.swing.JDialog MatriceCompilazione;
@@ -649,8 +611,8 @@ public class CompilazioneGUI extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTable jTable1;
     private javax.swing.JTextArea liberaTestoArea;
     private javax.swing.JCheckBox multipla1Check;
     private javax.swing.JCheckBox multipla2Check;
@@ -672,4 +634,3 @@ public class CompilazioneGUI extends javax.swing.JFrame {
     private javax.swing.JLabel titoloRangeLabel;
     // End of variables declaration
 }
-

@@ -11,10 +11,14 @@ package gui;
  */
 public class CollaboratoreGUI extends javax.swing.JFrame {
 
+    
+    private String idClient;
+    
     /**
      * Creates new form NewJFrame2
      */
-    public CollaboratoreGUI() {
+    public CollaboratoreGUI(String idClient) {
+        this.idClient=idClient;
         initComponents();
     }
 
@@ -102,11 +106,6 @@ public class CollaboratoreGUI extends javax.swing.JFrame {
         jButton1.setText("Crea Report");
 
         jButton2.setText("Compila Sondaggio");
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton2MouseClicked(evt);
-            }
-        });
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -114,11 +113,6 @@ public class CollaboratoreGUI extends javax.swing.JFrame {
         });
 
         jButton3.setText("Visualizza Sondaggio Selezionato");
-        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton3MouseClicked(evt);
-            }
-        });
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -202,104 +196,55 @@ public class CollaboratoreGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>
 
-    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {                                      
-        // TODO add your handling code here:
-        
-    }                                     
-
-    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {                                      
-        // TODO add your handling code here:
-        
-    }                                     
-
     private void logoutMouseClicked(java.awt.event.MouseEvent evt) {                                    
         // TODO add your handling code here:
         
         
     }                                   
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {                                           
         // TODO add your handling code here:
         Uscita.setVisible(true);
-    }
+    }                                          
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {                                         
         // TODO add your handling code here:
         System.exit(0);
-    }
+    }                                        
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {                                         
         // TODO add your handling code here:
         Uscita.setVisible(false);
-    }
+    }                                        
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {                                           
         // TODO add your handling code here:
         AboutGUI a =new AboutGUI();
         a.setVisible(true);
                 
-    }
+    }                                          
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {                                         
         // TODO add your handling code here:
         VisualizzaSondaggioGUI v= new VisualizzaSondaggioGUI();
         v.setVisible(true);
-    }
+    }                                        
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
         // TODO add your handling code here:
         CompilazioneGUI a=new CompilazioneGUI();
         a.setVisible(true);
-    }
+    }                                        
 
-    private void logoutActionPerformed(java.awt.event.ActionEvent evt) {
+    private void logoutActionPerformed(java.awt.event.ActionEvent evt) {                                       
         // TODO add your handling code here:
-        AccessoGUI b=new AccessoGUI();
+        AccessoGUI b=new AccessoGUI(idClient);
         this.setVisible(false);
         b.setVisible(true);
-    }
+    }                                      
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /*
-         * Set the Nimbus look and feel
-         */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /*
-         * If Nimbus (introduced in Java SE 6) is not available, stay with the
-         * default look and feel. For details see
-         * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CollaboratoreGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CollaboratoreGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CollaboratoreGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CollaboratoreGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /*
-         * Create and display the form
-         */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-
-            public void run() {
-                new CollaboratoreGUI().setVisible(true);
-            }
-        });
-    }
+    
+    
     // Variables declaration - do not modify
     private javax.swing.JDialog Uscita;
     private javax.swing.JButton jButton1;
@@ -318,4 +263,5 @@ public class CollaboratoreGUI extends javax.swing.JFrame {
     private javax.swing.JButton logout;
     // End of variables declaration
 }
+
 

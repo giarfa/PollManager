@@ -12,7 +12,7 @@ package gui;
 public class AmministratoreGUI extends javax.swing.JFrame {
 
     
-    private String utenteNome, utenteCognome, utenteMatricola, utentePassword, utenteRuolo, utenteNomeUtente;
+    private String utenteNome, utenteCognome, utenteMatricola, utentePassword, utenteRuolo, utenteNomeUtente, idClient;
     
     /**
      * Creates new form NewJFrame1
@@ -20,7 +20,8 @@ public class AmministratoreGUI extends javax.swing.JFrame {
     
     
     
-    public AmministratoreGUI() {
+    public AmministratoreGUI(String idClient) {
+        this.idClient=idClient;
         initComponents();
     }
 
@@ -82,11 +83,6 @@ public class AmministratoreGUI extends javax.swing.JFrame {
         utenteRuoloComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Segretario", "Collaboratore", "Amministratore" }));
 
         jButton5.setText("Aggiungi Utente");
-        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton5MouseClicked(evt);
-            }
-        });
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
@@ -94,11 +90,6 @@ public class AmministratoreGUI extends javax.swing.JFrame {
         });
 
         jButton6.setText("Annulla");
-        jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton6MouseClicked(evt);
-            }
-        });
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
@@ -196,7 +187,7 @@ public class AmministratoreGUI extends javax.swing.JFrame {
             .addGroup(UscitaLayout.createSequentialGroup()
                 .addGap(42, 42, 42)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, UscitaLayout.createSequentialGroup()
@@ -213,17 +204,12 @@ public class AmministratoreGUI extends javax.swing.JFrame {
                 .addGroup(UscitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(78, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         aggiungiUtente.setLabel("Aggiungi utente");
-        aggiungiUtente.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                aggiungiUtenteMouseClicked(evt);
-            }
-        });
         aggiungiUtente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 aggiungiUtenteActionPerformed(evt);
@@ -254,11 +240,6 @@ public class AmministratoreGUI extends javax.swing.JFrame {
         jButton4.setText("Cancella Utente");
 
         logout.setText("Logout");
-        logout.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                logoutMouseClicked(evt);
-            }
-        });
         logout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 logoutActionPerformed(evt);
@@ -334,67 +315,49 @@ public class AmministratoreGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>
 
-    private void aggiungiUtenteMouseClicked(java.awt.event.MouseEvent evt) {                                            
-        // TODO add your handling code here:
-        
-        
-    }                                           
-
     private void modificaUtenteMouseClicked(java.awt.event.MouseEvent evt) {                                            
         // TODO add your handling code here:
         
     }                                           
 
-    private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {                                      
-        // TODO add your handling code here:
-        
-    }                                     
-
-    private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {                                      
-        // TODO add your handling code here:
-        
-    }                                     
-
-    private void logoutMouseClicked(java.awt.event.MouseEvent evt) {                                    
-        // TODO add your handling code here:
-        
-    }                                   
-
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {                                           
         // TODO add your handling code here:
         Uscita.setVisible(true);
        
-    }
+    }                                          
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
         // TODO add your handling code here:
+        
+        // closeChannel
+        
         System.exit(0);
-    }
+    }                                        
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
         // TODO add your handling code here:
         Uscita.setVisible(false);
-    }
+    }                                        
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {                                           
         // TODO add your handling code here:
         AboutGUI a=new AboutGUI();
         a.setVisible(true);
-    }
+    }                                          
 
-    private void aggiungiUtenteActionPerformed(java.awt.event.ActionEvent evt) {
+    private void aggiungiUtenteActionPerformed(java.awt.event.ActionEvent evt) {                                               
         // TODO add your handling code here:
         Utente.setVisible(true);
         jButton5.setText("Agguingi Utente");
-    }
+    }                                              
 
-    private void modificaUtenteActionPerformed(java.awt.event.ActionEvent evt) {
+    private void modificaUtenteActionPerformed(java.awt.event.ActionEvent evt) {                                               
         // TODO add your handling code here:
         Utente.setVisible(true);
         jButton5.setText("Modifica Utente");
-    }
+    }                                              
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {                                         
         // TODO add your handling code here:
         utenteNome=utenteNomeText.getText();
         utenteCognome=utenteCognomeText.getText();
@@ -415,9 +378,9 @@ public class AmministratoreGUI extends javax.swing.JFrame {
         
         Utente.setVisible(false);
         
-    }
+    }                                        
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {                                         
         // TODO add your handling code here:
         utenteNomeText.setText("");
         utenteCognomeText.setText("");
@@ -427,57 +390,18 @@ public class AmministratoreGUI extends javax.swing.JFrame {
         utenteNomeUtenteText.setText("");
         utenteRuoloComboBox.setSelectedIndex(0);
         Utente.setVisible(false);
-    }
+    }                                        
 
-    private void logoutActionPerformed(java.awt.event.ActionEvent evt) {
+    private void logoutActionPerformed(java.awt.event.ActionEvent evt) {                                       
         // TODO add your handling code here:
-        AccessoGUI b=new AccessoGUI();
+        
+        AccessoGUI b=new AccessoGUI(idClient);
         this.setVisible(false);
         b.setVisible(true);
         
-    }
+    }                                      
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /*
-         * Set the Nimbus look and feel
-         */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /*
-         * If Nimbus (introduced in Java SE 6) is not available, stay with the
-         * default look and feel. For details see
-         * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AmministratoreGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AmministratoreGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AmministratoreGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AmministratoreGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /*
-         * Create and display the form
-         */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-
-            public void run() {
-                new AmministratoreGUI().setVisible(true);
-            }
-        });
-    }
+    
     // Variables declaration - do not modify
     private javax.swing.JDialog Uscita;
     private javax.swing.JDialog Utente;

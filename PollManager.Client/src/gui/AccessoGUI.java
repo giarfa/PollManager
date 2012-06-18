@@ -14,11 +14,16 @@ public class AccessoGUI extends javax.swing.JFrame {
     /**
      * Creates new form NewJFrame
      */
-    private String nomeutente,password,tipoutente="SEGRETARIO";
+    private String nomeutente,password,tipoutente="SEGRETARIO",idClient;
     
-    public AccessoGUI() {
+    public AccessoGUI(String idClient) {
+        
+        this.idClient=idClient;
         initComponents();
+        
     }
+
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -35,7 +40,7 @@ public class AccessoGUI extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         Errore = new javax.swing.JDialog();
-        Exit = new javax.swing.JButton();
+        close = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         loginButton = new javax.swing.JButton();
@@ -53,7 +58,6 @@ public class AccessoGUI extends javax.swing.JFrame {
         jMenuItem2.setText("jMenuItem2");
 
         Uscita.setLocationByPlatform(true);
-        Uscita.setMaximumSize(new java.awt.Dimension(320, 180));
         Uscita.setMinimumSize(new java.awt.Dimension(320, 180));
 
         jLabel4.setText("Sei sicuro di voler uscire?");
@@ -64,11 +68,21 @@ public class AccessoGUI extends javax.swing.JFrame {
                 jButton1MouseClicked(evt);
             }
         });
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("No");
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton2MouseClicked(evt);
+            }
+        });
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
             }
         });
 
@@ -99,14 +113,18 @@ public class AccessoGUI extends javax.swing.JFrame {
                 .addContainerGap(37, Short.MAX_VALUE))
         );
 
-        Errore.setMaximumSize(new java.awt.Dimension(320, 180));
         Errore.setMinimumSize(new java.awt.Dimension(320, 180));
         Errore.setType(java.awt.Window.Type.POPUP);
 
-        Exit.setText("OK");
-        Exit.addMouseListener(new java.awt.event.MouseAdapter() {
+        close.setText("OK");
+        close.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                ExitMouseClicked(evt);
+                closeMouseClicked(evt);
+            }
+        });
+        close.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                closeActionPerformed(evt);
             }
         });
 
@@ -123,7 +141,7 @@ public class AccessoGUI extends javax.swing.JFrame {
                         .addComponent(jLabel5))
                     .addGroup(ErroreLayout.createSequentialGroup()
                         .addGap(118, 118, 118)
-                        .addComponent(Exit)))
+                        .addComponent(close)))
                 .addContainerGap(36, Short.MAX_VALUE))
         );
         ErroreLayout.setVerticalGroup(
@@ -132,7 +150,7 @@ public class AccessoGUI extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(Exit)
+                .addComponent(close)
                 .addGap(36, 36, 36))
         );
 
@@ -144,9 +162,9 @@ public class AccessoGUI extends javax.swing.JFrame {
         jLabel1.setText("Pool Manager");
 
         loginButton.setText("Login");
-        loginButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                loginButtonMouseClicked(evt);
+        loginButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginButtonActionPerformed(evt);
             }
         });
 
@@ -154,16 +172,10 @@ public class AccessoGUI extends javax.swing.JFrame {
 
         jLabel3.setText("Password");
 
-        jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPasswordField1ActionPerformed(evt);
-            }
-        });
-
         exitButton.setText("Esci");
-        exitButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                exitButtonMouseClicked(evt);
+        exitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitButtonActionPerformed(evt);
             }
         });
 
@@ -175,11 +187,6 @@ public class AccessoGUI extends javax.swing.JFrame {
         });
 
         jMenuItem1.setText("Esci");
-        jMenuItem1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenuItem1MouseClicked(evt);
-            }
-        });
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem1ActionPerformed(evt);
@@ -192,11 +199,6 @@ public class AccessoGUI extends javax.swing.JFrame {
         jMenu2.setText("?");
 
         jMenuItem3.setText("About...");
-        jMenuItem3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                jMenuItem3MousePressed(evt);
-            }
-        });
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem3ActionPerformed(evt);
@@ -258,36 +260,20 @@ public class AccessoGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>
 
-    private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {                                                
-        // TODO add your handling code here:
-    }                                               
+                                 
 
-    private void exitButtonMouseClicked(java.awt.event.MouseEvent evt) {                                        
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {                                           
         // TODO add your handling code here:
         Uscita.setVisible(true);
-    }                                       
+    }                                          
 
-    private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {                                    
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {                                           
         // TODO add your handling code here:
-        
-    }                                   
+        AboutGUI a=new AboutGUI();
+        a.setVisible(true);
+    }                                          
 
-    private void jMenuItem1MouseClicked(java.awt.event.MouseEvent evt) {                                        
-        // TODO add your handling code here:
-        Uscita.setVisible(true);
-    }                                       
-
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {                                      
-        // TODO add your handling code here:
-        System.exit(0);
-    }                                     
-
-    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {                                      
-        // TODO add your handling code here:
-        Uscita.setVisible(false);
-    }                                     
-
-    private void loginButtonMouseClicked(java.awt.event.MouseEvent evt) {                                         
+    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {                                            
         // TODO add your handling code here:
         nomeutente=jTextField1.getText();
         nomeutente=nomeutente.toUpperCase();
@@ -300,90 +286,50 @@ public class AccessoGUI extends javax.swing.JFrame {
             
         }
         else if (tipoutente=="SEGRETARIO"){
-            SegretarioGUI s=new SegretarioGUI();
+            SegretarioGUI s=new SegretarioGUI(idClient);
             s.setVisible(true);
             this.setVisible(false);
            }
         else if (tipoutente=="COLLABORATORE"){
-            CollaboratoreGUI s=new CollaboratoreGUI();
+            CollaboratoreGUI s=new CollaboratoreGUI(idClient);
             s.setVisible(true);
             this.setVisible(false);
            }
         else if (tipoutente=="AMMINISTRATORE"){
-            AmministratoreGUI s=new AmministratoreGUI();
+            AmministratoreGUI s=new AmministratoreGUI(idClient);
             s.setVisible(true);
             this.setVisible(false);
            }
-        
-        
-    }                                        
+    }                                           
 
-    private void ExitMouseClicked(java.awt.event.MouseEvent evt) {                                  
-
-        // TODO add your handling code here:
-        Errore.setVisible(false);
-    }                                 
-
-    private void jMenuItem3MousePressed(java.awt.event.MouseEvent evt) {                                        
-        // TODO add your handling code here:
-    }                                       
-
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {
+    private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {                                           
         // TODO add your handling code here:
         Uscita.setVisible(true);
-    }
+    }                                          
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {
+    private void closeActionPerformed(java.awt.event.ActionEvent evt) {                                      
         // TODO add your handling code here:
-        AboutGUI a=new AboutGUI();
-        a.setVisible(true);
-    }
+        Errore.setVisible(false);
+    }                                     
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /*
-         * Set the Nimbus look and feel
-         */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /*
-         * If Nimbus (introduced in Java SE 6) is not available, stay with the
-         * default look and feel. For details see
-         * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AccessoGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AccessoGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AccessoGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AccessoGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        // TODO add your handling code here:
+        
+        
+        
+        System.exit(0);
+    }                                        
 
-        /*
-         * Create and display the form
-         */
-        java.awt.EventQueue.invokeLater(new Runnable() {
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        // TODO add your handling code here:
+        Uscita.setVisible(false);
+    }                                        
 
-            public void run() {
-                new AccessoGUI().setVisible(true);
-            }
-        });
-    }
+   
     // Variables declaration - do not modify
     private javax.swing.JDialog Errore;
-    private javax.swing.JButton Exit;
     private javax.swing.JDialog Uscita;
+    private javax.swing.JButton close;
     private javax.swing.JButton exitButton;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
