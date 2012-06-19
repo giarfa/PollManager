@@ -31,9 +31,9 @@ public class Start {
 		
 		String idClient=InetAddress.getLocalHost().getHostName();
 		
-		ClientRmiInterface client=Resolver.getInstance().getClientRmi(host);
+		ClientRmiInterface client=null;// =Resolver.getInstance().getClientRmi(host);
 		
-		client.OpenChannel(idClient);
+		//client.OpenChannel(idClient);
 		
 		
 		AccessoGUI a=new AccessoGUI(idClient, client);

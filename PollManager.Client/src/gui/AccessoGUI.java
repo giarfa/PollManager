@@ -1,6 +1,7 @@
 package gui;
 
 import client.ClientInterface;
+import dto.UtenteDTO;
 
 /*
  * To change this template, choose Tools | Templates
@@ -16,12 +17,14 @@ public class AccessoGUI extends javax.swing.JFrame {
     /**
      * Creates new form NewJFrame
      */
-    private String nomeutente,password,tipoutente="SEGRETARIO",idClient;
+    private String nomeutente,password,tipoutente="AMMINISTRATORE",idClient;
     private ClientInterface client;
     
     public AccessoGUI(String idClient, ClientInterface client) {
-        this.client=client;
+        
+    	this.client=client;
         this.idClient=idClient;
+        
         initComponents();
         
     }
@@ -304,6 +307,8 @@ public class AccessoGUI extends javax.swing.JFrame {
         password=jPasswordField1.getText();
         jTextField1.setText(nomeutente);
         jPasswordField1.setText("");
+        
+        
         
         if (nomeutente.length()==0 || password.length()==0) {
             Errore.setVisible(true);
