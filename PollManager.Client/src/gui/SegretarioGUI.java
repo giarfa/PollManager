@@ -1560,6 +1560,52 @@ public class SegretarioGUI extends javax.swing.JFrame {
         risposta.setOrdine(0);
         risposta.setTesto(opzione1);
         
+        if (opzione2!=""){
+        	RispostaDTO risposta1= new RispostaDTO();
+            
+            risposta.setDomandaAssociataIdDomanda(idDomanda);
+            risposta.setHasTestoLibero(false);
+            risposta.setIdRisposta(0);
+            risposta.setOrdine(1);
+            risposta.setTesto(opzione2);
+            if (opzione3!=""){
+            	RispostaDTO risposta2= new RispostaDTO();
+                
+                risposta.setDomandaAssociataIdDomanda(idDomanda);
+                risposta.setHasTestoLibero(false);
+                risposta.setIdRisposta(0);
+                risposta.setOrdine(2);
+                risposta.setTesto(opzione3);
+                if (opzione4!=""){
+                	RispostaDTO risposta3= new RispostaDTO();
+                    
+                    risposta.setDomandaAssociataIdDomanda(idDomanda);
+                    risposta.setHasTestoLibero(false);
+                    risposta.setIdRisposta(0);
+                    risposta.setOrdine(3);
+                    risposta.setTesto(opzione4);
+                    if (opzione5!=""){
+                    	RispostaDTO risposta4= new RispostaDTO();
+                        
+                        risposta.setDomandaAssociataIdDomanda(idDomanda);
+                        risposta.setHasTestoLibero(false);
+                        risposta.setIdRisposta(0);
+                        risposta.setOrdine(3);
+                        risposta.setTesto(opzione5);
+                        if (opzione6!=""){
+                        	RispostaDTO risposta5= new RispostaDTO();
+                            
+                            risposta.setDomandaAssociataIdDomanda(idDomanda);
+                            risposta.setHasTestoLibero(false);
+                            risposta.setIdRisposta(0);
+                            risposta.setOrdine(3);
+                            risposta.setTesto(opzione6);
+                        }
+                    }
+                }
+            }
+        } 
+        
         titoloMultipla.setText("");
         multipla1.setText("");
         multipla2.setText("");
@@ -1707,6 +1753,8 @@ public class SegretarioGUI extends javax.swing.JFrame {
             libera.setMinCaratteri(MinCharLibera);
             libera.setIdDomanda(idDomanda);
             libera.setSondaggioAssociatoIdSondaggio(idSondaggio);
+            
+            // risposta dto?
             
             Libera.setVisible(false);
             
