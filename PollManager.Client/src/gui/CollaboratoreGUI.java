@@ -212,7 +212,7 @@ public class CollaboratoreGUI extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {                                         
         // TODO add your handling code here:
-        System.exit(0);
+        exit();
     }                                        
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {                                         
@@ -241,12 +241,17 @@ public class CollaboratoreGUI extends javax.swing.JFrame {
 
     private void logoutActionPerformed(java.awt.event.ActionEvent evt) {                                       
         // TODO add your handling code here:
-        AccessoGUI b=new AccessoGUI(idClient, client);
+        
+    	
+    	AccessoGUI b=new AccessoGUI(idClient, client);
         this.setVisible(false);
         b.setVisible(true);
     }                                      
 
-    
+    private void exit(){
+    	client.CloseChannel(idClient);
+    	System.exit(0);
+    }
     
     // Variables declaration - do not modify
     private javax.swing.JDialog Uscita;

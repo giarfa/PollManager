@@ -1,7 +1,10 @@
 package gui;
 
+import java.rmi.RemoteException;
+
 import client.ClientInterface;
 import dto.UtenteDTO;
+import exception.InvalidCredentialException;
 
 /*
  * To change this template, choose Tools | Templates
@@ -300,35 +303,52 @@ public class AccessoGUI extends javax.swing.JFrame {
         a.setVisible(true);
     }                                          
 
-    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {                                            
+    @SuppressWarnings("deprecation")
+	private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {                                            
         // TODO add your handling code here:
         nomeutente=jTextField1.getText();
-        nomeutente=nomeutente.toUpperCase();
         password=jPasswordField1.getText();
-        jTextField1.setText(nomeutente);
-        jPasswordField1.setText("");
+        
+        clearAccesso();
+        
+        try {
+			
+        	client.Login(nomeutente, password);
+			
+		
+			
+			
+			if (nomeutente.length()==0 || password.length()==0) {
+	            Errore.setVisible(true);
+	            
+	        }
+	        else if (tipoutente=="SEGRETARIO"){
+	            SegretarioGUI s=new SegretarioGUI(idClient, client);
+	            s.setVisible(true);
+	            this.setVisible(false);
+	           }
+	        else if (tipoutente=="COLLABORATORE"){
+	            CollaboratoreGUI s=new CollaboratoreGUI(idClient, client);
+	            s.setVisible(true);
+	            this.setVisible(false);
+	           }
+	        else if (tipoutente=="AMMINISTRATORE"){
+	            AmministratoreGUI s=new AmministratoreGUI(idClient, client);
+	            s.setVisible(true);
+	            this.setVisible(false);
+	           }
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvalidCredentialException e) {
+
+
+			Errore.setVisible(true);
+			
+			
+		}
         
         
-        
-        if (nomeutente.length()==0 || password.length()==0) {
-            Errore.setVisible(true);
-            
-        }
-        else if (tipoutente=="SEGRETARIO"){
-            SegretarioGUI s=new SegretarioGUI(idClient, client);
-            s.setVisible(true);
-            this.setVisible(false);
-           }
-        else if (tipoutente=="COLLABORATORE"){
-            CollaboratoreGUI s=new CollaboratoreGUI(idClient, client);
-            s.setVisible(true);
-            this.setVisible(false);
-           }
-        else if (tipoutente=="AMMINISTRATORE"){
-            AmministratoreGUI s=new AmministratoreGUI(idClient, client);
-            s.setVisible(true);
-            this.setVisible(false);
-           }
     }                                           
 
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {                                           
@@ -353,9 +373,19 @@ public class AccessoGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         Uscita.setVisible(false);
     }                                        
-
+    
+    
+    /**
+     * 
+     */
+    private void clearAccesso(){
+    	jTextField1.setText("");
+    	jPasswordField1.setText("");
+    }
    
     // Variables declaration - do not modify
+    
+    
     private javax.swing.JDialog Errore;
     private javax.swing.JDialog Uscita;
     private javax.swing.JButton close;

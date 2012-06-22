@@ -1,5 +1,7 @@
 package gui;
 
+import java.awt.List;
+import java.rmi.RemoteException;
 import java.util.Date;
 
 import client.ClientInterface;
@@ -325,7 +327,20 @@ public class AmministratoreGUI extends javax.swing.JFrame {
                 .addComponent(logout)
                 .addGap(22, 22, 22))
         );
-
+        
+        java.util.List<UtenteDTO> listaUtenti=(java.util.List<UtenteDTO>) new List();
+        try {
+			listaUtenti=client.UtenteGetList();
+		
+        } catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
+        
+        //jList1.setListData(listaUtenti);
+        
+        
         pack();
     }// </editor-fold>
                                             
@@ -367,63 +382,64 @@ public class AmministratoreGUI extends javax.swing.JFrame {
         jButton5.setText("Modifica Utente");
     }                                              
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt){                                         
         // TODO add your handling code here:
         
        
         
-        try {
+        try{
         	 utenteMatricola=Integer.parseInt(utenteMatricolaText.getText());
-        	} catch (Exception e) {
+        	 utenteNome=utenteNomeText.getText();
+             utenteCognome=utenteCognomeText.getText();	
+             utenteNomeUtente=utenteNomeUtenteText.getText();
+             utentePassword=utentePasswordText.getText();
+             utenteRuolo=(String) utenteRuoloComboBox.getSelectedItem();
+             utenteRuolo=utenteRuolo.toUpperCase();
+             
+             
+             UtenteDTO utente=new UtenteDTO();
+             
+         	 utente.setNome(utenteNome);
+         	 utente.setCognome(utenteCognome);
+         	 utente.setMatricola(utenteMatricola);
+         	//utente.setRuolo(utenteRuolo);
+         	 utente.setDatacreazione(dataCreazione=new Date());
+         	 utente.setPassword(utentePassword);
+         	 
+         	if (jButton5.getText()== "Aggiungi Utente"){
+            	try {
+    				client.UtenteCrea(utente);
+    			} catch (RemoteException e) {
+    				// TODO Auto-generated catch block
+    				e.printStackTrace();
+    			}
+            }
+            
+            if (jButton5.getText()== "Modifica Utente"){
+            	try {
+    				client.UtenteModifica(utente);
+    			} catch (RemoteException e) {
+    			
+    				// TODO Auto-generated catch block
+    				e.printStackTrace();
+    			}
+            }
+            clearUtente();
+            
+            // dialog corretto
+            
+            Utente.setVisible(false);
+        
+        
+        } catch (Exception e) {
         		e.printStackTrace();
         		//Errore.setVisible(true);
         	}
-        	
-        utenteNome=utenteNomeText.getText();
-        utenteCognome=utenteCognomeText.getText();	
-        utenteNomeUtente=utenteNomeUtenteText.getText();
-        utentePassword=utentePasswordText.getText();
-        utenteRuolo=(String) utenteRuoloComboBox.getSelectedItem();
-        utenteRuolo=utenteRuolo.toUpperCase();
-        
-        
-        if (jButton5.getText()== "Aggiungi Utente"){
-        	UtenteDTO utente=new UtenteDTO();
-        	utente.setNome(utenteNome);
-        	utente.setCognome(utenteCognome);
-        	utente.setMatricola(utenteMatricola);
-        	//utente.setRuolo(utenteRuolo);
-        	utente.setDatacreazione(dataCreazione=new Date());
-        	utente.setIdUtente(idUtente);
-        	utente.setPassword(utentePassword);
-        }
-        
-        
-        
-        
-        utenteNomeText.setText("");
-        utenteCognomeText.setText("");
-        utenteMatricolaText.setText("");
-        utenteNomeText.setText("");
-        utentePasswordText.setText("");
-        utenteNomeUtenteText.setText("");
-        utenteRuoloComboBox.setSelectedIndex(0);
-        
-        // dialog corretto
-        
-        Utente.setVisible(false);
-        
     }                                        
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {                                         
         // TODO add your handling code here:
-        utenteNomeText.setText("");
-        utenteCognomeText.setText("");
-        utenteMatricolaText.setText("");
-        utenteNomeText.setText("");
-        utentePasswordText.setText("");
-        utenteNomeUtenteText.setText("");
-        utenteRuoloComboBox.setSelectedIndex(0);
+        clearUtente();
         Utente.setVisible(false);
     }                                        
 
@@ -438,15 +454,41 @@ public class AmministratoreGUI extends javax.swing.JFrame {
     
     private void cambiaStatoUtenteActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
-    	UtenteDTO utente= new UtenteDTO();
-    	utente.setAttivo(false);
+    
+    	try {
+			client.UtenteSetEnable(idUtente);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
     	
     }
 
     private void cancellaUtenteActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
+    	
+    	
+    	try {
+			client.UtenteSetDisable(idUtente);
+		
+    	
+    	} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
     }
-
+    
+    public void clearUtente(){
+    	utenteNomeText.setText("");
+        utenteCognomeText.setText("");
+        utenteMatricolaText.setText("");
+        utenteNomeText.setText("");
+        utentePasswordText.setText("");
+        utenteNomeUtenteText.setText("");
+        utenteRuoloComboBox.setSelectedIndex(0);
+    }
     
     // Variables declaration - do not modify
     private javax.swing.JDialog Uscita;

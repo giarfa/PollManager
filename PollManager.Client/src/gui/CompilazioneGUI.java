@@ -1,6 +1,10 @@
 package gui;
 
+import java.util.Date;
+
 import javax.swing.table.DefaultTableModel;
+
+import dto.CompilazioneDTO;
 
 /*
  * To change this template, choose Tools | Templates
@@ -534,6 +538,10 @@ public class CompilazioneGUI extends javax.swing.JFrame {
         multipla4=multipla4Check.isSelected();
         multipla5=multipla5Check.isSelected();
         multipla6=multipla6Check.isSelected();
+        
+        CompilazioneDTO compilazione =new CompilazioneDTO();
+        compilazione.setDatacompilazione(new Date());
+       
         
         multipla1Check.setSelected(false);
         multipla2Check.setSelected(false);
