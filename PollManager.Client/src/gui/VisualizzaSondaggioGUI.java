@@ -1,5 +1,14 @@
 package gui;
 
+import java.awt.List;
+import java.rmi.RemoteException;
+
+import client.ClientInterface;
+
+import dto.DomandaDTO;
+import dto.SondaggioDTO;
+import dto.UtenteDTO;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -10,12 +19,16 @@ package gui;
  * @author Alberto
  */
 public class VisualizzaSondaggioGUI extends javax.swing.JFrame {
-
+	private int idSondaggio;
+	private ClientInterface client;
     /**
      * Creates new form VisualizzaSondaggio
      */
-    public VisualizzaSondaggioGUI() {
+    public VisualizzaSondaggioGUI(int idSondaggio, ClientInterface client) {
         initComponents();
+        this.client=client;
+        this.idSondaggio=idSondaggio;
+        this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
     }
 
     /**
@@ -25,9 +38,9 @@ public class VisualizzaSondaggioGUI extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">
+    
     private void initComponents() {
-
-        jLabel3 = new javax.swing.JLabel();
+    	jLabel3 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         jList4 = new javax.swing.JList();
@@ -105,9 +118,34 @@ public class VisualizzaSondaggioGUI extends javax.swing.JFrame {
     }// </editor-fold>
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        // TODO add your handling code here:
+        
         this.setVisible(false);
-    }                                        
+    }   
+    
+    
+    /**
+     * 
+     */
+    private void inizializza(){
+    	
+    	
+    	java.util.List<DomandaDTO> listaDomande=(java.util.List<DomandaDTO>) new List();
+        try {
+        	
+        	SondaggioDTO s=client.SondaggioGetByKey(idSondaggio);
+        	listaDomande=s.getDomande();
+        	
+		
+        } catch (RemoteException e) {
+			
+			
+        	
+        	e.printStackTrace();
+        	e.getMessage();
+		}
+        jList4.setListData(listaDomande.toArray());
+       
+    }
 
    
     

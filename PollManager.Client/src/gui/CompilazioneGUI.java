@@ -26,6 +26,7 @@ public class CompilazioneGUI extends javax.swing.JFrame {
      */
     public CompilazioneGUI() {
         initComponents();
+        this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
     }
 
     /**
@@ -444,12 +445,15 @@ public class CompilazioneGUI extends javax.swing.JFrame {
     }// </editor-fold>
 
     private void annullaLiberaMouseClicked(java.awt.event.MouseEvent evt) {                                           
-        // TODO add your handling code here:
+        
         
     }                                          
-
+    /**
+     * 
+     * @param evt
+     */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        // TODO add your handling code here:
+        
         if (tipodomanda == "MATRICE") {
             MatriceCompilazione.setVisible(true);
             titoloMatriceLabel.setText(titoloDomanda);
@@ -502,23 +506,32 @@ public class CompilazioneGUI extends javax.swing.JFrame {
             titoloMultiplaLabel.setText(titoloDomanda);
         }
     }                                        
-
+    /**
+     * 
+     * @param evt
+     */
     private void annullaLiberaActionPerformed(java.awt.event.ActionEvent evt) {                                              
-        // TODO add your handling code here:
+       
         liberaTestoArea.setText("");
         LiberaCompilazione.setVisible(false);
     }                                             
-
+    /**
+     * 
+     * @param evt
+     */
     private void chiudiLiberaActionPerformed(java.awt.event.ActionEvent evt) {                                             
-        // TODO add your handling code here:
+        
         testolibera=liberaTestoArea.getText();
         liberaTestoArea.setText("");
         LiberaCompilazione.setVisible(false);
         
     }                                            
-
+    /**
+     * 
+     * @param evt
+     */
     private void annullaMultiplaActionPerformed(java.awt.event.ActionEvent evt) {                                                
-        // TODO add your handling code here:
+       
         
         multipla1Check.setSelected(false);
         multipla2Check.setSelected(false);
@@ -529,9 +542,12 @@ public class CompilazioneGUI extends javax.swing.JFrame {
         
         MultiplaCompilazione.setVisible(false);
     }                                               
-
+    /**
+     * 
+     * @param evt
+     */
     private void salvaMultiplaActionPerformed(java.awt.event.ActionEvent evt) {                                              
-        // TODO add your handling code here:
+       
         multipla1=multipla1Check.isSelected();
         multipla2=multipla2Check.isSelected();
         multipla3=multipla3Check.isSelected();
@@ -554,9 +570,12 @@ public class CompilazioneGUI extends javax.swing.JFrame {
         
         
     }                                             
-
+    /**
+     * 
+     * @param evt
+     */
     private void salvaRangeActionPerformed(java.awt.event.ActionEvent evt) {                                           
-        // TODO add your handling code here:
+       
         range1=(String) range1Combo.getSelectedItem();
         range2=(String) range2Combo.getSelectedItem();
         range3=(String) range3Combo.getSelectedItem();
@@ -573,9 +592,12 @@ public class CompilazioneGUI extends javax.swing.JFrame {
         
         RangeCompilazione.setVisible(false);
     }                                          
-
+    /**
+     * 
+     * @param evt
+     */
     private void annullaRangeActionPerformed(java.awt.event.ActionEvent evt) {                                             
-        // TODO add your handling code here:
+        
         range1Combo.setSelectedIndex(0);
         range2Combo.setSelectedIndex(0);
         range3Combo.setSelectedIndex(0);
@@ -586,9 +608,12 @@ public class CompilazioneGUI extends javax.swing.JFrame {
         RangeCompilazione.setVisible(false);
         
     }                                            
-
+    /**
+     * 
+     * @param evt
+     */
     private void chiudiCompliazioneActionPerformed(java.awt.event.ActionEvent evt) {                                                   
-        // TODO add your handling code here:
+        
         
         this.setVisible(false);
     }                                                  

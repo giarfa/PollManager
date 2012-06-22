@@ -13,7 +13,7 @@ import client.ClientInterface;
  */
 public class CollaboratoreGUI extends javax.swing.JFrame {
 
-    
+    private int idSondaggio;
     private String idClient;
     private ClientInterface client;
     /**
@@ -23,6 +23,7 @@ public class CollaboratoreGUI extends javax.swing.JFrame {
         this.client=client;
         this.idClient=idClient;
         initComponents();
+        this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
     }
 
     /**
@@ -198,47 +199,70 @@ public class CollaboratoreGUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>
-
+    /**
+     * 
+     * @param evt
+     */
     private void logoutMouseClicked(java.awt.event.MouseEvent evt) {                                    
-        // TODO add your handling code here:
-        
         
     }                                   
-
+    /**
+     * 
+     * @param evt
+     */
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {                                           
-        // TODO add your handling code here:
+     
         Uscita.setVisible(true);
     }                                          
-
+    /**
+     * 
+     * @param evt
+     */
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        // TODO add your handling code here:
+      
         exit();
     }                                        
-
+    /**
+     * 
+     * @param evt
+     */
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        // TODO add your handling code here:
+        
         Uscita.setVisible(false);
     }                                        
-
+    /**
+     * 
+     * @param evt
+     */
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {                                           
-        // TODO add your handling code here:
+        
         AboutGUI a =new AboutGUI();
         a.setVisible(true);
                 
     }                                          
-
+    /**
+     * 
+     * @param evt
+     */
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        // TODO add your handling code here:
-        VisualizzaSondaggioGUI v= new VisualizzaSondaggioGUI();
+     
+	
+        VisualizzaSondaggioGUI v= new VisualizzaSondaggioGUI(idSondaggio, client);
         v.setVisible(true);
     }                                        
-
+    /**
+     * 
+     * @param evt
+     */
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
         // TODO add your handling code here:
         CompilazioneGUI a=new CompilazioneGUI();
         a.setVisible(true);
     }                                        
-
+    /**
+     * 
+     * @param evt
+     */
     private void logoutActionPerformed(java.awt.event.ActionEvent evt) {                                       
         // TODO add your handling code here:
         
@@ -247,7 +271,9 @@ public class CollaboratoreGUI extends javax.swing.JFrame {
         this.setVisible(false);
         b.setVisible(true);
     }                                      
-
+    /**
+     * 
+     */
     private void exit(){
     	client.CloseChannel(idClient);
     	System.exit(0);

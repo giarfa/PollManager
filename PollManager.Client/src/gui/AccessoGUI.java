@@ -29,6 +29,7 @@ public class AccessoGUI extends javax.swing.JFrame {
         this.idClient=idClient;
         
         initComponents();
+        this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         
     }
 

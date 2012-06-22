@@ -24,6 +24,7 @@ public class AmministratoreGUI extends javax.swing.JFrame {
     private ClientInterface client;
     private int utenteMatricola, idUtente;
     private RuoloDTO ruolo;
+    private UtenteDTO utente;
     private Date dataCreazione;
     /**
      * Creates new form NewJFrame1
@@ -35,6 +36,7 @@ public class AmministratoreGUI extends javax.swing.JFrame {
         this.client=client;
         this.idClient=idClient;
         initComponents();
+        inizializza();
     }
 
     /**
@@ -328,81 +330,112 @@ public class AmministratoreGUI extends javax.swing.JFrame {
                 .addGap(22, 22, 22))
         );
         
-        java.util.List<UtenteDTO> listaUtenti=(java.util.List<UtenteDTO>) new List();
-        try {
-			listaUtenti=client.UtenteGetList();
-		
-        } catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
         
-        
-        //jList1.setListData(listaUtenti);
         
         
         pack();
-    }// </editor-fold>
+    }
                                             
-
+    /**
+     * 
+     * @param evt
+     */
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {                                           
-        // TODO add your handling code here:
+        
         Uscita.setVisible(true);
        
     }                                          
-
+    /**
+     * 
+     * @param evt
+     */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        // TODO add your handling code here:
+        
         
     	client.CloseChannel(idClient);
-        
         System.exit(0);
     }                                        
-
+    /**
+     * 
+     * @param evt
+     */
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        // TODO add your handling code here:
+        
         Uscita.setVisible(false);
     }                                        
-
+    /**
+     * 
+     * @param evt
+     */
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {                                           
-        // TODO add your handling code here:
+        
         AboutGUI a=new AboutGUI();
         a.setVisible(true);
     }                                          
-
+    /**
+     * 
+     * @param evt
+     */
     private void aggiungiUtenteActionPerformed(java.awt.event.ActionEvent evt) {                                               
-        // TODO add your handling code here:
+        
         Utente.setVisible(true);
         jButton5.setText("Agguingi Utente");
     }                                              
-
+    /**
+     * 
+     * @param evt
+     */
     private void modificaUtenteActionPerformed(java.awt.event.ActionEvent evt) {                                               
-        // TODO add your handling code here:
+        
         Utente.setVisible(true);
         jButton5.setText("Modifica Utente");
+        utente= (UtenteDTO) jList1.getSelectedValue();
+        utenteMatricolaText.setText(utente.getMatricola()+"");
+        utenteNomeText.setText(utente.getNome());
+        utenteCognomeText.setText(utente.getCognome());
+        utenteNomeUtenteText.setText(utente.getNomeutente());
+        utentePasswordText.setText(utente.getPassword());
+        if (utente.getRuolo()==ruolo.AMMINISTRATORE){
+        	utenteRuoloComboBox.setSelectedItem((String) "Amministratore");
+        }
+        if (utente.getRuolo()==ruolo.COLLABORATORE){
+        	utenteRuoloComboBox.setSelectedItem((String) "Collaboratore");
+        }
+        if (utente.getRuolo()==ruolo.SEGRETARIO){
+        	utenteRuoloComboBox.setSelectedItem((String) "Segretario");
+        }
+    
+    
     }                                              
-
+    /**
+     * 
+     * @param evt
+     */
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt){                                         
-        // TODO add your handling code here:
         
-       
-        
-        try{
+    	try{
         	 utenteMatricola=Integer.parseInt(utenteMatricolaText.getText());
         	 utenteNome=utenteNomeText.getText();
              utenteCognome=utenteCognomeText.getText();	
              utenteNomeUtente=utenteNomeUtenteText.getText();
              utentePassword=utentePasswordText.getText();
-             utenteRuolo=(String) utenteRuoloComboBox.getSelectedItem();
-             utenteRuolo=utenteRuolo.toUpperCase();
-             
-             
+            
              UtenteDTO utente=new UtenteDTO();
              
          	 utente.setNome(utenteNome);
          	 utente.setCognome(utenteCognome);
          	 utente.setMatricola(utenteMatricola);
-         	//utente.setRuolo(utenteRuolo);
+         	 
+         	 if ((String)utenteRuoloComboBox.getSelectedItem()=="Amministratore"){
+         		utente.setRuolo(ruolo.AMMINISTRATORE);
+         	 }
+         	 if ((String)utenteRuoloComboBox.getSelectedItem()=="Segretario"){
+         		utente.setRuolo(ruolo.SEGRETARIO);
+         	 }
+         	 if ((String)utenteRuoloComboBox.getSelectedItem()=="Collaboratore"){
+         		utente.setRuolo(ruolo.COLLABORATORE);
+         	 }
+         	 
          	 utente.setDatacreazione(dataCreazione=new Date());
          	 utente.setPassword(utentePassword);
          	 
@@ -410,24 +443,24 @@ public class AmministratoreGUI extends javax.swing.JFrame {
             	try {
     				client.UtenteCrea(utente);
     			} catch (RemoteException e) {
-    				// TODO Auto-generated catch block
+    				
     				e.printStackTrace();
     			}
             }
             
             if (jButton5.getText()== "Modifica Utente"){
             	try {
-    				client.UtenteModifica(utente);
+            		
+            		utente.setIdUtente(((UtenteDTO) jList1.getSelectedValue()).getIdUtente());
+            		client.UtenteModifica(utente);
+            		
     			} catch (RemoteException e) {
     			
-    				// TODO Auto-generated catch block
+    				
     				e.printStackTrace();
     			}
             }
             clearUtente();
-            
-            // dialog corretto
-            
             Utente.setVisible(false);
         
         
@@ -436,50 +469,66 @@ public class AmministratoreGUI extends javax.swing.JFrame {
         		//Errore.setVisible(true);
         	}
     }                                        
-
+    /**
+     * 
+     * @param evt
+     */
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        // TODO add your handling code here:
+        
         clearUtente();
         Utente.setVisible(false);
     }                                        
-
+    /**
+     * 
+     * @param evt
+     */
     private void logoutActionPerformed(java.awt.event.ActionEvent evt) {                                       
-        // TODO add your handling code here:
+       
         
         AccessoGUI b=new AccessoGUI(idClient, client);
         this.setVisible(false);
         b.setVisible(true);
         
     } 
-    
+    /**
+     * 
+     * @param evt
+     */
     private void cambiaStatoUtenteActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+        
     
     	try {
+    		idUtente= ((UtenteDTO) jList1.getSelectedValue()).getIdUtente();
 			client.UtenteSetEnable(idUtente);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
     	
     	
     }
-
+    /**
+     * 
+     * @param evt
+     */
     private void cancellaUtenteActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+      
     	
     	
     	try {
+    		idUtente= ((UtenteDTO) jList1.getSelectedValue()).getIdUtente();
 			client.UtenteSetDisable(idUtente);
 		
     	
     	} catch (RemoteException e) {
-			// TODO Auto-generated catch block
+		
 			e.printStackTrace();
 		}
     	
     }
-    
+    /**
+     * 
+     */
     public void clearUtente(){
     	utenteNomeText.setText("");
         utenteCognomeText.setText("");
@@ -488,6 +537,27 @@ public class AmministratoreGUI extends javax.swing.JFrame {
         utentePasswordText.setText("");
         utenteNomeUtenteText.setText("");
         utenteRuoloComboBox.setSelectedIndex(0);
+    }
+    /**
+     * 
+     */
+    private void inizializza(){
+    	
+    	this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+    	java.util.List<UtenteDTO> listaUtenti=(java.util.List<UtenteDTO>) new List();
+        try {
+			
+        	listaUtenti=client.UtenteGetList();
+		
+        } catch (RemoteException e) {
+			
+			
+        	
+        	e.printStackTrace();
+        	e.getMessage();
+		}
+        
+       jList1.setListData(listaUtenti.toArray());
     }
     
     // Variables declaration - do not modify
