@@ -3,10 +3,12 @@ package gui;
 import java.awt.event.MouseEvent;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.swing.JOptionPane;
 
 import client.ClientInterface;
+import dto.CompilazioneDTO;
 import dto.DomandaDTO;
 import dto.LiberaDTO;
 import dto.MatriceDTO;
@@ -1687,6 +1689,10 @@ if (range3Text.getText().length() == 0) {
 
 		try {
 			client.SondaggioAggiungiDomandaMultipla(multipla);
+			RispostaDTO risp=new RispostaDTO();
+			risp.setDomandaAssociataIdDomanda(idDomanda);
+			risp.setNonRisponde(true);
+			client.DomandaAggiungiRisposta(risp);
 			creaRispostaMultipla(opzione1,0,specificare1);
 
 			if (!opzione2.isEmpty()) {
@@ -1819,9 +1825,15 @@ if (range3Text.getText().length() == 0) {
 				range3Text.setText(r.getRisposte().get(2).getTesto());
 				range4Text.setText(r.getRisposte().get(3).getTesto());
 				range5Text.setText(r.getRisposte().get(4).getTesto());
+				client.DomandaModifica(r);
 			}
+			
 			catch (IndexOutOfBoundsException e){
 				
+			} 
+			catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 			
 
@@ -1851,9 +1863,19 @@ if (range3Text.getText().length() == 0) {
 	 * @param evt
 	 */
 	private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {
+
+		try {
+    		CompilazioneDTO d=new CompilazioneDTO();
+        	d.setDatacompilazione(new Date());
+        	d.setSondaggioAssociatoIdSondaggio(sondaggio.getIdSondaggio());
+			CompilazioneDTO compilazione = client.SondaggioAggiungiCompilazione(d);
+			CompilazioneGUI c = new CompilazioneGUI(sondaggio, client,compilazione);
+			c.setVisible(true);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
-		CompilazioneGUI c = new CompilazioneGUI(sondaggio);
-		c.setVisible(true);
 	}
 	/**
 	 * 
@@ -1922,15 +1944,16 @@ if (range3Text.getText().length() == 0) {
 
 				client.SondaggioAggiungiDomandaLibera(libera);
 				Libera.setVisible(false);
+				idDomanda=libera.getIdDomanda();
+				RispostaDTO r= new RispostaDTO();
+				r.setDomandaAssociataIdDomanda(idDomanda);
+				client.DomandaAggiungiRisposta(r);
 
 			} catch (RemoteException e) {
 				
 				e.printStackTrace();
 			}
-			idDomanda=libera.getIdDomanda();
-			RispostaDTO r= new RispostaDTO();
-			r.setDomandaAssociataIdDomanda(idDomanda);
-
+			
 		}
 	}
 
@@ -2062,6 +2085,7 @@ if (range3Text.getText().length() == 0) {
 		risposta.setHasTestoLibero(specificare);
 		risposta.setOrdine(ordine);
 		risposta.setTesto(opzione);
+		risposta.setNonRisponde(false);
 		try {
 			client.DomandaAggiungiRisposta(risposta);
 		} catch (RemoteException e) {

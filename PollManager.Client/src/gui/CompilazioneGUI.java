@@ -1,8 +1,11 @@
 package gui;
 
+import java.rmi.RemoteException;
 import java.util.Date;
 
 import javax.swing.table.DefaultTableModel;
+
+import client.ClientInterface;
 
 import dto.CompilazioneDTO;
 import dto.DomandaDTO;
@@ -28,12 +31,17 @@ public class CompilazioneGUI extends javax.swing.JFrame {
     private String range1, range2, range3, range4, range5, range6;
     private String valorematrice1,valorematrice2,valorematrice3,valorematrice4,valorematrice5,valorematrice6;
     private SondaggioDTO sondaggio;
+    private ClientInterface client;
+    private CompilazioneDTO compilazione;
+    
     /**
      * Creates new form CompilazioneGUI
      */
-    public CompilazioneGUI(SondaggioDTO sondaggio) {
+    public CompilazioneGUI(SondaggioDTO sondaggio, ClientInterface client, CompilazioneDTO compilazione) {
         this.sondaggio=sondaggio;
+        this.client=client;
     	initComponents();
+    	this.compilazione=compilazione;
     	inizializza();
         this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
     }
@@ -514,7 +522,7 @@ public class CompilazioneGUI extends javax.swing.JFrame {
         }
     }                                        
     /**
-     * 
+     * Annulla compilazione domanda Libera
      * @param evt
      */
     private void annullaLiberaActionPerformed(java.awt.event.ActionEvent evt) {                                              
@@ -523,18 +531,19 @@ public class CompilazioneGUI extends javax.swing.JFrame {
         LiberaCompilazione.setVisible(false);
     }                                             
     /**
-     * 
+     * Salva compialazione domanda Libera
      * @param evt
      */
     private void chiudiLiberaActionPerformed(java.awt.event.ActionEvent evt) {                                             
         
         testolibera=liberaTestoArea.getText();
+        //client.CompilazioneAggiungiCompilazioneRisposta()
         liberaTestoArea.setText("");
         LiberaCompilazione.setVisible(false);
         
     }                                            
     /**
-     * 
+     * Annulla compilazione domanda Multipla
      * @param evt
      */
     private void annullaMultiplaActionPerformed(java.awt.event.ActionEvent evt) {                                                
@@ -550,7 +559,7 @@ public class CompilazioneGUI extends javax.swing.JFrame {
         MultiplaCompilazione.setVisible(false);
     }                                               
     /**
-     * 
+     * Salva compilazione Multipla
      * @param evt
      */
     private void salvaMultiplaActionPerformed(java.awt.event.ActionEvent evt) {                                              
@@ -578,7 +587,7 @@ public class CompilazioneGUI extends javax.swing.JFrame {
         
     }                                             
     /**
-     * 
+     * Salva Compilazione Range
      * @param evt
      */
     private void salvaRangeActionPerformed(java.awt.event.ActionEvent evt) {                                           
@@ -600,7 +609,7 @@ public class CompilazioneGUI extends javax.swing.JFrame {
         RangeCompilazione.setVisible(false);
     }                                          
     /**
-     * 
+     * Annulla compilazione domanda Range
      * @param evt
      */
     private void annullaRangeActionPerformed(java.awt.event.ActionEvent evt) {                                             
@@ -616,7 +625,7 @@ public class CompilazioneGUI extends javax.swing.JFrame {
         
     }                                            
     /**
-     * 
+     * Chiude CompilazioneGUI
      * @param evt
      */
     private void chiudiCompliazioneActionPerformed(java.awt.event.ActionEvent evt) {                                                   
@@ -627,6 +636,7 @@ public class CompilazioneGUI extends javax.swing.JFrame {
     
     /**
      * Inizializza CompilazioneGUI
+     * @throws RemoteException 
      */
     private void inizializza(){
     	jList1.setListData(sondaggio.getDomande().toArray());

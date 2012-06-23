@@ -1,10 +1,12 @@
 package gui;
 
 import java.rmi.RemoteException;
+import java.util.Date;
 
 import javax.swing.JOptionPane;
 
 import client.ClientInterface;
+import dto.CompilazioneDTO;
 import dto.SondaggioDTO;
 import dto.UtenteDTO;
 
@@ -259,8 +261,20 @@ public class CollaboratoreGUI extends javax.swing.JFrame {
      * @param evt
      */
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        CompilazioneGUI a=new CompilazioneGUI(sondaggio);
-        a.setVisible(true);
+    	
+		try {
+			CompilazioneDTO d=new CompilazioneDTO();
+	    	d.setDatacompilazione(new Date());
+	    	d.setSondaggioAssociatoIdSondaggio(sondaggio.getIdSondaggio());
+			CompilazioneDTO compilazione;
+			compilazione = client.SondaggioAggiungiCompilazione(d);
+			CompilazioneGUI a=new CompilazioneGUI(sondaggio,client,compilazione);
+	        a.setVisible(true);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
     }                                        
     
     
