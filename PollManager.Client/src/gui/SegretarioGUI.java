@@ -2,10 +2,12 @@ package gui;
 
 import java.awt.event.MouseEvent;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
 import client.ClientInterface;
+import dto.DomandaDTO;
 import dto.LiberaDTO;
 import dto.MatriceDTO;
 import dto.MultiplaDTO;
@@ -30,7 +32,7 @@ public class SegretarioGUI extends javax.swing.JFrame {
 	private boolean obbligatorio, isRispSingola;
 	private ClientInterface client;
 	private int MinCharLibera, MaxCharLibera, idSondaggio, idDomanda;
-			
+	private UtenteDTO utente;		
 	private SondaggioDTO sondaggio;
 	private MultiplaDTO multipla;
 	private LiberaDTO libera;
@@ -41,9 +43,10 @@ public class SegretarioGUI extends javax.swing.JFrame {
 	 * @param idClient
 	 * @param client
 	 */
-	public SegretarioGUI(String idClient, ClientInterface client) {
+	public SegretarioGUI(String idClient, ClientInterface client, UtenteDTO utente) {
 		this.client = client;
 		this.idClient = idClient;
+		this.utente=utente;
 		initComponents();
 		this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 	}
@@ -1210,7 +1213,8 @@ public class SegretarioGUI extends javax.swing.JFrame {
 	   * @param evt
 	   */
 	private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
-		
+		sondaggio=(SondaggioDTO) jList1.getSelectedValue();
+		jList2.setListData(sondaggio.getDomande().toArray());
 		ModificaDomanda.setVisible(true);
 	}
 	/**
@@ -1724,71 +1728,102 @@ if (range3Text.getText().length() == 0) {
 	 * @param evt
 	 */
 	private void modificaDomandaActionPerformed(java.awt.event.ActionEvent evt) {
-		// TODO da fare
-
-		if (tipoDomanda == "LIBERA") {
+		DomandaDTO d=(DomandaDTO) jList2.getSelectedValue();
+		if (d instanceof LiberaDTO) {
+			
+			LiberaDTO l=(LiberaDTO) d;
 			Libera.setVisible(true);
-
-			titoloLibera.setText(titoloDomanda);
-			nMaxCharLibera.setText(Integer.toString(MaxCharLibera));
-			nMinCharLibera.setText(Integer.toString(MinCharLibera));
-			obbligatoriaLiberaCheck.setSelected(obbligatorio);
+			
+			titoloLibera.setText(l.getTesto());
+			nMaxCharLibera.setText(Integer.toString(l.getMaxCaratteri()));
+			nMinCharLibera.setText(Integer.toString(l.getMinCaratteri()));
+			obbligatoriaLiberaCheck.setSelected(l.isObbligatorio());
 
 		}
 
-		if (tipoDomanda == "MATRICE") {
+		if (d instanceof MatriceDTO) {
+			
+			MatriceDTO m=(MatriceDTO) d;
 			Matrice.setVisible(true);
-
-			titoloMaticeText.setText(titoloDomanda);
-			vm1Text.setText(opzione1);
-			vm2Text.setText(opzione2);
-			vm3Text.setText(opzione3);
-			vm4Text.setText(opzione4);
-			vm5Text.setText(opzione5);
-			vm6Text.setText(opzione6);
-			String sr1 = null;
-			sr1Text.setText(sr1);
-			String sr2 = null;
-			sr2Text.setText(sr2);
-			String sr3 = null;
-			sr3Text.setText(sr3);
-			String sr4 = null;
-			sr4Text.setText(sr4);
-			String sr5 = null;
-			sr5Text.setText(sr5);
-			String sr6 = null;
-			sr6Text.setText(sr6);
-			obbligatoriaMatriceCheck.setSelected(obbligatorio);
+			titoloMaticeText.setText(m.getTesto());
+			ArrayList<RispostaDTO> r=m.getRisposte();
+			try{
+				vm1Text.setText(m.getValorimatrice().get(0).getTesto());
+				vm2Text.setText(m.getValorimatrice().get(1).getTesto());
+				vm3Text.setText(m.getValorimatrice().get(2).getTesto());
+				vm4Text.setText(m.getValorimatrice().get(3).getTesto());
+				vm5Text.setText(m.getValorimatrice().get(4).getTesto());
+				vm6Text.setText(m.getValorimatrice().get(5).getTesto());
+				}
+			catch (IndexOutOfBoundsException e){
+			
+			}
+			try{
+				sr1Text.setText(r.get(0).getTesto());
+				sr2Text.setText(r.get(1).getTesto());
+				sr3Text.setText(r.get(2).getTesto());
+				sr4Text.setText(r.get(3).getTesto());
+				sr5Text.setText(r.get(4).getTesto());
+				sr6Text.setText(r.get(5).getTesto());
+				
+			}
+			catch (IndexOutOfBoundsException e){
+			
+			}
+			
+			
+			obbligatoriaMatriceCheck.setSelected(d.isObbligatorio());
+			
 
 		}
-		if (tipoDomanda == "MULTIPLA") {
+		if (d instanceof MultiplaDTO) {
+			
 			Multipla.setVisible(true);
-
-			titoloMultipla.setText(titoloDomanda);
-			multipla1.setText(opzione1);
-			multipla2.setText(opzione2);
-			multipla3.setText(opzione3);
-			multipla4.setText(opzione4);
-			multipla5.setText(opzione5);
-			multipla6.setText(opzione6);
-			obbligatoriaMultiplaCheck.setSelected(obbligatorio);
+			MultiplaDTO mul=(MultiplaDTO) d;
+			titoloMultipla.setText(mul.getTesto());
+			obbligatoriaMultiplaCheck.setSelected(mul.isObbligatorio());
+			try{	
+				multipla1.setText(mul.getRisposte().get(0).getTesto());
+				multipla2.setText(mul.getRisposte().get(1).getTesto());
+				multipla3.setText(mul.getRisposte().get(2).getTesto());
+				multipla4.setText(mul.getRisposte().get(3).getTesto());
+				multipla5.setText(mul.getRisposte().get(4).getTesto());
+				multipla6.setText(mul.getRisposte().get(5).getTesto());
+			}
+			catch (IndexOutOfBoundsException e){
+			}
+			
+			specificare1Check.setSelected(mul.getRisposte().get(0).isHasTestoLibero());
+			specificare2Check.setSelected(mul.getRisposte().get(1).isHasTestoLibero());
+			specificare3Check.setSelected(mul.getRisposte().get(2).isHasTestoLibero());
+			specificare4Check.setSelected(mul.getRisposte().get(3).isHasTestoLibero());
+			specificare5Check.setSelected(mul.getRisposte().get(4).isHasTestoLibero());
+			specificare6Check.setSelected(mul.getRisposte().get(5).isHasTestoLibero());
+			
 
 		}
-		if (tipoDomanda == "RANGE") {
-
+		if (d instanceof RangeDTO) {
+			
 			Range.setVisible(true);
-
-			titoloRangeText.setText(titoloDomanda);
-			valMinRangeText.setText(valMinRange);
-			valMaxRangeText.setText(valMaxRange);
-			descValMinText.setText(descValMinRange);
-			descValMaxText.setText(descValMAxRange);
-			range1Text.setText(opzione1);
-			range2Text.setText(opzione2);
-			range3Text.setText(opzione3);
-			range4Text.setText(opzione4);
-			range5Text.setText(opzione5);
+			RangeDTO r=(RangeDTO)d;
+			titoloRangeText.setText(r.getTesto());
+			valMinRangeText.setText(Integer.toString(r.getValMin()));
+			valMaxRangeText.setText(Integer.toString(r.getValMax()));
+			descValMinText.setText(r.getDescValMin());
+			descValMaxText.setText(r.getDescValMax());
 			obbligatoriaRangeCheck.setSelected(obbligatorio);
+			
+			try{
+				range1Text.setText(r.getRisposte().get(0).getTesto());
+				range2Text.setText(r.getRisposte().get(1).getTesto());
+				range3Text.setText(r.getRisposte().get(2).getTesto());
+				range4Text.setText(r.getRisposte().get(3).getTesto());
+				range5Text.setText(r.getRisposte().get(4).getTesto());
+			}
+			catch (IndexOutOfBoundsException e){
+				
+			}
+			
 
 		}
 	}
@@ -1817,7 +1852,7 @@ if (range3Text.getText().length() == 0) {
 	 */
 	private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {
 		
-		CompilazioneGUI c = new CompilazioneGUI();
+		CompilazioneGUI c = new CompilazioneGUI(sondaggio);
 		c.setVisible(true);
 	}
 	/**
@@ -1833,7 +1868,12 @@ if (range3Text.getText().length() == 0) {
 	 * @param evt
 	 */
 	private void LogoutActionPerformed(java.awt.event.ActionEvent evt) {
-		
+		try {
+			client.Logout(utente);
+		} catch (RemoteException e) {
+			JOptionPane.showMessageDialog(this, e.getMessage(),"Errore:",JOptionPane.ERROR_MESSAGE);
+			e.printStackTrace();
+		}
 		AccessoGUI b = new AccessoGUI(idClient, client);
 		this.setVisible(false);
 		b.setVisible(true);

@@ -1,7 +1,12 @@
 package gui;
 
+import java.rmi.RemoteException;
+
+import javax.swing.JOptionPane;
+
 import client.ClientInterface;
 import dto.SondaggioDTO;
+import dto.UtenteDTO;
 
 /**
  *
@@ -12,15 +17,17 @@ public class CollaboratoreGUI extends javax.swing.JFrame {
     private int idSondaggio;
     private String idClient;
     private ClientInterface client;
-    
+    private UtenteDTO utente;
+    private SondaggioDTO sondaggio;
     /**
      * Costruttore di CollaboratoreGUI
      * @param idClient
      * @param client
      */
-    public CollaboratoreGUI(String idClient, ClientInterface client) {
+    public CollaboratoreGUI(String idClient, ClientInterface client, UtenteDTO utente) {
         this.client=client;
         this.idClient=idClient;
+        this.utente=utente;
         initComponents();
         this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
     }
@@ -252,20 +259,23 @@ public class CollaboratoreGUI extends javax.swing.JFrame {
      * @param evt
      */
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        // TODO add your handling code here:
-        CompilazioneGUI a=new CompilazioneGUI();
+        CompilazioneGUI a=new CompilazioneGUI(sondaggio);
         a.setVisible(true);
     }                                        
     
     
     /**
-     * Logout
+     *  Logout
      * @param evt
      */
     private void logoutActionPerformed(java.awt.event.ActionEvent evt) {                                       
-        // TODO add your handling code here:
-        
     	
+    	try {
+			client.Logout(utente);
+		} catch (RemoteException e) {
+			JOptionPane.showMessageDialog(this, e.getMessage(),"Errore:",JOptionPane.ERROR_MESSAGE);
+			e.printStackTrace();
+		}
     	AccessoGUI b=new AccessoGUI(idClient, client);
         this.setVisible(false);
         b.setVisible(true);

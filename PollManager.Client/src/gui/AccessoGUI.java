@@ -21,6 +21,7 @@ public class AccessoGUI extends javax.swing.JFrame {
 	private String nomeutente,password,idClient;
 	private RuoloDTO tipoUtente;
     private ClientInterface client;
+    private UtenteDTO utente;
     
     /**
      * Costruttore di AccessoGUI
@@ -151,11 +152,11 @@ public class AccessoGUI extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Pool Manager-Login");
+        setTitle("Poll Manager-Login");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setResizable(false);
 
-        jLabel1.setText("Pool Manager");
+        jLabel1.setText("Poll Manager");
 
         loginButton.setText("Login");
         loginButton.addActionListener(new java.awt.event.ActionListener() {
@@ -276,7 +277,8 @@ public class AccessoGUI extends javax.swing.JFrame {
      */
     @SuppressWarnings("deprecation")
 	private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {                                            
-        nomeutente=jTextField1.getText();
+        
+    	nomeutente=jTextField1.getText();
         password=jPasswordField1.getText();
         
         clearAccesso();
@@ -286,23 +288,23 @@ public class AccessoGUI extends javax.swing.JFrame {
 			if (nomeutente.length() == 0 || password.length() == 0) {
 				Errore.setVisible(true);
 			} else {
-				UtenteDTO u=client.Login(nomeutente, password);
-				tipoUtente=u.getRuolo();
+				utente=client.Login(nomeutente, password);
+				tipoUtente=utente.getRuolo();
 				
 				if (tipoUtente == RuoloDTO.SEGRETARIO) {
 
-					SegretarioGUI s = new SegretarioGUI(idClient, client);
+					SegretarioGUI s = new SegretarioGUI(idClient, client,utente);
 					s.setVisible(true);
 					this.setVisible(false);
 				}
 				if (tipoUtente == RuoloDTO.COLLABORATORE) {
-					CollaboratoreGUI s = new CollaboratoreGUI(idClient, client);
+					CollaboratoreGUI s = new CollaboratoreGUI(idClient, client,utente);
 					s.setVisible(true);
 					this.setVisible(false);
 				}
 				if (tipoUtente == RuoloDTO.AMMINISTRATORE) {
 					AmministratoreGUI s = new AmministratoreGUI(idClient,
-							client);
+							client,utente);
 					s.setVisible(true);
 					this.setVisible(false);
 				}

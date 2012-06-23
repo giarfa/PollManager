@@ -4,6 +4,8 @@ import java.awt.List;
 import java.rmi.RemoteException;
 import java.util.Date;
 
+import javax.swing.JOptionPane;
+
 import client.ClientInterface;
 import dto.RuoloDTO;
 import dto.UtenteDTO;
@@ -27,9 +29,10 @@ public class AmministratoreGUI extends javax.swing.JFrame {
      * @param idClient
      * @param client
      */
-    public AmministratoreGUI(String idClient, ClientInterface client) {
+    public AmministratoreGUI(String idClient, ClientInterface client,UtenteDTO utente) {
         this.client=client;
         this.idClient=idClient;
+        this.utente=utente;
         initComponents();
         inizializza();
     }
@@ -472,7 +475,13 @@ public class AmministratoreGUI extends javax.swing.JFrame {
      */
     private void logoutActionPerformed(java.awt.event.ActionEvent evt) {                                       
        
-        
+    	try {
+			client.Logout(utente);
+		} catch (RemoteException e) {
+			JOptionPane.showMessageDialog(this, e.getMessage(),"Errore:",JOptionPane.ERROR_MESSAGE);
+			e.printStackTrace();
+		}
+    	
         AccessoGUI b=new AccessoGUI(idClient, client);
         this.setVisible(false);
         b.setVisible(true);
@@ -489,7 +498,7 @@ public class AmministratoreGUI extends javax.swing.JFrame {
     		idUtente= ((UtenteDTO) jList1.getSelectedValue()).getIdUtente();
 			client.UtenteSetEnable(idUtente);
 		} catch (RemoteException e) {
-			
+			JOptionPane.showMessageDialog(this, e.getMessage(),"Errore:",JOptionPane.ERROR_MESSAGE);
 			e.printStackTrace();
 		}
     	
@@ -506,7 +515,7 @@ public class AmministratoreGUI extends javax.swing.JFrame {
 		
     	
     	} catch (RemoteException e) {
-		
+    		JOptionPane.showMessageDialog(this, e.getMessage(),"Errore:",JOptionPane.ERROR_MESSAGE);
 			e.printStackTrace();
 		}
     	
@@ -551,6 +560,12 @@ public class AmministratoreGUI extends javax.swing.JFrame {
      * Istruzioni per la chiusura del programma
      */
     private void exit(){
+    	try {
+			client.Logout(utente);
+		} catch (RemoteException e) {
+			JOptionPane.showMessageDialog(this, e.getMessage(),"Errore:",JOptionPane.ERROR_MESSAGE);
+			e.printStackTrace();
+		}
     	client.CloseChannel(idClient);
     	System.exit(0);
     }

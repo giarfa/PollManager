@@ -5,6 +5,12 @@ import java.util.Date;
 import javax.swing.table.DefaultTableModel;
 
 import dto.CompilazioneDTO;
+import dto.DomandaDTO;
+import dto.LiberaDTO;
+import dto.MatriceDTO;
+import dto.MultiplaDTO;
+import dto.RangeDTO;
+import dto.SondaggioDTO;
 
 /*
  * To change this template, choose Tools | Templates
@@ -21,11 +27,14 @@ public class CompilazioneGUI extends javax.swing.JFrame {
     private boolean multipla1, multipla2, multipla3, multipla4, multipla5, multipla6;
     private String range1, range2, range3, range4, range5, range6;
     private String valorematrice1,valorematrice2,valorematrice3,valorematrice4,valorematrice5,valorematrice6;
+    private SondaggioDTO sondaggio;
     /**
      * Creates new form CompilazioneGUI
      */
-    public CompilazioneGUI() {
-        initComponents();
+    public CompilazioneGUI(SondaggioDTO sondaggio) {
+        this.sondaggio=sondaggio;
+    	initComponents();
+    	inizializza();
         this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
     }
 
@@ -101,11 +110,7 @@ public class CompilazioneGUI extends javax.swing.JFrame {
         });
 
         annullaLibera.setText("Annulla");
-        annullaLibera.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                annullaLiberaMouseClicked(evt);
-            }
-        });
+       
         annullaLibera.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 annullaLiberaActionPerformed(evt);
@@ -442,19 +447,18 @@ public class CompilazioneGUI extends javax.swing.JFrame {
         );
 
         pack();
-    }// </editor-fold>
-
-    private void annullaLiberaMouseClicked(java.awt.event.MouseEvent evt) {                                           
-        
-        
-    }                                          
+    }                                        
+    
+    
     /**
-     * 
+     * Compila domanda Selezionata
      * @param evt
      */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
         
-        if (tipodomanda == "MATRICE") {
+        DomandaDTO d=(DomandaDTO) jList1.getSelectedValue();
+    
+    	if (d instanceof MatriceDTO) {
             MatriceCompilazione.setVisible(true);
             titoloMatriceLabel.setText(titoloDomanda);
 
@@ -492,18 +496,21 @@ public class CompilazioneGUI extends javax.swing.JFrame {
             
 
         }
-        if (tipodomanda=="LIBERA"){
+        if (d instanceof LiberaDTO){
+        	LiberaDTO l=(LiberaDTO) d;
             LiberaCompilazione.setVisible(true);
-            titoloLiberaLabel.setText(titoloDomanda);
-        }
+            titoloLiberaLabel.setText(d.getTesto());
+          }
             
-        if (tipodomanda=="RANGE"){
+        if (d instanceof RangeDTO){
+        	RangeDTO r=(RangeDTO) d;
             RangeCompilazione.setVisible(true);
-            titoloRangeLabel.setText(titoloDomanda);
+            titoloRangeLabel.setText(d.getTesto());
         }
-        if (tipodomanda=="MULTIPLA"){
+        if (d instanceof MultiplaDTO){
+        	MultiplaDTO m=(MultiplaDTO) d;
             MultiplaCompilazione.setVisible(true);
-            titoloMultiplaLabel.setText(titoloDomanda);
+            titoloMultiplaLabel.setText(d.getTesto());
         }
     }                                        
     /**
@@ -617,7 +624,13 @@ public class CompilazioneGUI extends javax.swing.JFrame {
         
         this.setVisible(false);
     }                                                  
-
+    
+    /**
+     * Inizializza CompilazioneGUI
+     */
+    private void inizializza(){
+    	jList1.setListData(sondaggio.getDomande().toArray());
+    }
    
     // Variables declaration - do not modify
     private javax.swing.JDialog LiberaCompilazione;
