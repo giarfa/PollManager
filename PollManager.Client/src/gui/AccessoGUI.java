@@ -41,6 +41,7 @@ public class AccessoGUI extends javax.swing.JFrame {
      * Inizializza AccessoGUI
      */
     @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">
     private void initComponents() {
 
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -48,9 +49,6 @@ public class AccessoGUI extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        Errore = new javax.swing.JDialog();
-        close = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         loginButton = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
@@ -114,49 +112,13 @@ public class AccessoGUI extends javax.swing.JFrame {
                 .addContainerGap(37, Short.MAX_VALUE))
         );
 
-        Errore.setMinimumSize(new java.awt.Dimension(320, 180));
-        Errore.setType(java.awt.Window.Type.POPUP);
-
-        close.setText("OK");
-        
-        close.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                closeActionPerformed(evt);
-            }
-        });
-
-        jLabel5.setText("Nome utente o password non corretti: riprova");
-
-        javax.swing.GroupLayout ErroreLayout = new javax.swing.GroupLayout(Errore.getContentPane());
-        Errore.getContentPane().setLayout(ErroreLayout);
-        ErroreLayout.setHorizontalGroup(
-            ErroreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ErroreLayout.createSequentialGroup()
-                .addGroup(ErroreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(ErroreLayout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addComponent(jLabel5))
-                    .addGroup(ErroreLayout.createSequentialGroup()
-                        .addGap(118, 118, 118)
-                        .addComponent(close)))
-                .addContainerGap(36, Short.MAX_VALUE))
-        );
-        ErroreLayout.setVerticalGroup(
-            ErroreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ErroreLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(close)
-                .addGap(36, 36, 36))
-        );
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Poll Manager-Login");
+        setTitle("Pool Manager-Login");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setResizable(false);
+        
 
-        jLabel1.setText("Poll Manager");
+        jLabel1.setText("Pool Manager");
 
         loginButton.setText("Login");
         loginButton.addActionListener(new java.awt.event.ActionListener() {
@@ -251,7 +213,8 @@ public class AccessoGUI extends javax.swing.JFrame {
         getAccessibleContext().setAccessibleDescription("");
 
         pack();
-    }                       
+    }// </editor-fold>
+                      
     
     /**
      * Annulla Uscita
@@ -286,7 +249,7 @@ public class AccessoGUI extends javax.swing.JFrame {
 		try {
 
 			if (nomeutente.length() == 0 || password.length() == 0) {
-				Errore.setVisible(true);
+				//Errore.setVisible(true);
 			} else {
 				utente=client.Login(nomeutente, password);
 				tipoUtente=utente.getRuolo();
@@ -312,12 +275,12 @@ public class AccessoGUI extends javax.swing.JFrame {
 		}
 			
 		 catch (RemoteException e) {
-			jLabel5.setText("Errore di connessione: riprovare");
-			Errore.setVisible(true);
+			//jLabel5.setText("Errore di connessione: riprovare");
+			//Errore.setVisible(true);
 			e.printStackTrace();
 		} catch (InvalidCredentialException e) {
-			jLabel5.setText("Nome utente o password non validi");
-			Errore.setVisible(true);
+			//jLabel5.setText("Nome utente o password non validi");
+			//Errore.setVisible(true);
 		}
         
         
@@ -335,7 +298,7 @@ public class AccessoGUI extends javax.swing.JFrame {
      */
     private void closeActionPerformed(java.awt.event.ActionEvent evt) {                                      
         
-        Errore.setVisible(false);
+        //errore
     }                                     
     /**
      * Chiude il programma
@@ -370,9 +333,7 @@ public class AccessoGUI extends javax.swing.JFrame {
     	System.exit(0);
     }
     
-    private javax.swing.JDialog Errore;
     private javax.swing.JDialog Uscita;
-    private javax.swing.JButton close;
     private javax.swing.JButton exitButton;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -380,7 +341,6 @@ public class AccessoGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
