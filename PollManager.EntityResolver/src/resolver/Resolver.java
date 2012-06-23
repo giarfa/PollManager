@@ -1,10 +1,9 @@
 package resolver;
-import client.ClientRmi;
-import client.ClientRmiInterface;
-import server.ServerRmi;
+import java.net.Socket;
 
-import communication.ServerRmiInterface;
-
+import client.*;
+import server.*;
+import communication.*;
 import domainManager.*;
 
 
@@ -47,5 +46,13 @@ public class Resolver {
 	
 	public ClientRmiInterface getClientRmi(String host){
 		return new ClientRmi(host);
+	}
+	
+	public ServerSocketInterface getServerSocket(Socket clientSocket){
+		return new ServerSocket(clientSocket);
+	}
+	
+	public ClientSocketInterface getClientSocket(String host){
+		return new ClientSocket(host);
 	}
 }

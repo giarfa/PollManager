@@ -1,0 +1,22 @@
+package enums;
+
+public enum OperationCode {
+	VALID_COMMAND("VALID_COMMAND"),
+	INVALID_COMMAND("INVALID_COMMAND"),
+	VALID_PARAMETER("VALID_PARAMETER"),
+	INVALID_PARAMETER("INVALID_PARAMETER"),
+	VALID_RETURN_VALUE("VALID_RETURN_VALUE"),
+	INVALID_RETURN_VALUE("INVALID_RETURN_VALUE"),
+	VALID_ERROR_MESSAGE("VALID_ERROR_MESSAGE"),
+	INVALID_ERROR_MESSAGE("INVALID_ERROR_MESSAGE");
+	
+	private String value;
+	
+	OperationCode(String Value){
+		this.value=Value;
+	}
+
+	public String getValue() {
+		return value;
+	}
+}

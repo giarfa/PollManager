@@ -20,7 +20,7 @@ public class ServerRmi extends BaseServer implements ServerRmiInterface, Seriali
 			}
 		} catch (InterruptedException e) {
 			//Se ricevo un interrup gestisco la chiusura
-			System.out.println("Interrup ricevuto. Chiudo il processo");
+			System.out.println("Interrupt ricevuto. Chiudo il processo");
 		}
 	}
 }
