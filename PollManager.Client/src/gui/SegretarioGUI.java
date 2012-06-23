@@ -3,6 +3,8 @@ package gui;
 import java.awt.event.MouseEvent;
 import java.rmi.RemoteException;
 
+import javax.swing.JOptionPane;
+
 import client.ClientInterface;
 import dto.LiberaDTO;
 import dto.MatriceDTO;
@@ -1395,10 +1397,10 @@ if (range3Text.getText().length() == 0) {
 				&& multipla3.getText().length() > 0
 				&& multipla4.getText().length() > 0
 				&& multipla5.getText().length() > 0) {
-			multipla6.enable(true);
+			multipla6.setEnabled(true);
 			specificare6Check.setEnabled(true);
 		} else {
-			multipla6.enable(false);
+			multipla6.setEnabled(false);
 			specificare6Check.setEnabled(false);
 			multipla6.setText("");
 		}
@@ -1685,22 +1687,22 @@ if (range3Text.getText().length() == 0) {
 
 			if (!opzione2.isEmpty()) {
 
-				creaRispostaMultipla(opzione2,1,specificare1);
+				creaRispostaMultipla(opzione2,1,specificare2);
 
 				if (!opzione3.isEmpty()) {
-					creaRispostaMultipla(opzione3,2,specificare1);
+					creaRispostaMultipla(opzione3,2,specificare3);
 
 					if (!opzione4.isEmpty()) {
 						
-						creaRispostaMultipla(opzione4,3,specificare1);
+						creaRispostaMultipla(opzione4,3,specificare4);
 						
 						if (!opzione5.isEmpty()) {
 							
-							creaRispostaMultipla(opzione5,5,specificare1);
+							creaRispostaMultipla(opzione5,5,specificare5);
 							
 							if (!opzione6.isEmpty()) {
 								
-								creaRispostaMultipla(opzione6,6,specificare1);
+								creaRispostaMultipla(opzione6,6,specificare6);
 							}
 						}
 					}
@@ -1804,10 +1806,9 @@ if (range3Text.getText().length() == 0) {
 	 */
 	private void visualizzaSondaggioActionPerformed(
 			java.awt.event.ActionEvent evt) {
-		//TODO da fare
 		
-		idSondaggio= ((SondaggioDTO) jList1.getSelectedValue()).getIdSondaggio();
-		VisualizzaSondaggioGUI a = new VisualizzaSondaggioGUI(idSondaggio, client);
+		SondaggioDTO s= (SondaggioDTO) jList1.getSelectedValue();
+		VisualizzaSondaggioGUI a = new VisualizzaSondaggioGUI(s, client);
 		a.setVisible(true);
 	}
 	/**
@@ -2014,14 +2015,19 @@ if (range3Text.getText().length() == 0) {
 	 * @param specificare
 	 * @throws RemoteException
 	 */
-	private void creaRispostaMultipla(String opzione,int ordine, boolean specificare) throws RemoteException {
+	private void creaRispostaMultipla(String opzione,int ordine, boolean specificare) {
 		RispostaDTO risposta = new RispostaDTO();
 
 		risposta.setDomandaAssociataIdDomanda(idDomanda);
 		risposta.setHasTestoLibero(specificare);
 		risposta.setOrdine(ordine);
 		risposta.setTesto(opzione);
-		client.DomandaAggiungiRisposta(risposta);
+		try {
+			client.DomandaAggiungiRisposta(risposta);
+		} catch (RemoteException e) {
+			Errore.setVisible(true);
+			e.printStackTrace();
+		}
 		}
 	
 	/**
@@ -2030,13 +2036,18 @@ if (range3Text.getText().length() == 0) {
 	 * @param ordine
 	 * @throws RemoteException
 	 */
-	private void creaRispostaRange(String opzione, int ordine) throws RemoteException{
+	private void creaRispostaRange(String opzione, int ordine){
 		RispostaDTO risposta = new RispostaDTO();
 
 		risposta.setDomandaAssociataIdDomanda(idDomanda);
 		risposta.setTesto(opzione);
 		risposta.setOrdine(ordine);
-		client.DomandaAggiungiRisposta(risposta);
+		try {
+			client.DomandaAggiungiRisposta(risposta);
+		} catch (RemoteException e) {
+			JOptionPane.showMessageDialog(Range, e.getMessage(),"Errore:",JOptionPane.ERROR_MESSAGE);
+			e.printStackTrace();
+		}
 	}
 	/**
 	 * Aggiungi Valore Matrice
@@ -2045,28 +2056,38 @@ if (range3Text.getText().length() == 0) {
 	 * @param matrice
 	 * @throws RemoteException
 	 */
-	private void agguingiValoreMatrice(String sr, int ordine, MatriceDTO matrice) throws RemoteException{
+	private void agguingiValoreMatrice(String sr, int ordine, MatriceDTO matrice){
 		ValoriMatriceDTO valorimatrice = new ValoriMatriceDTO();
 		
 		idDomanda=matrice.getIdDomanda();
 		valorimatrice.setMatriceIdDomanda(idDomanda);
 		valorimatrice.setOrdine(0);
 		valorimatrice.setTesto(sr);
-		client.DomandaAggiungiValoriMatrice(valorimatrice);
+		try {
+			client.DomandaAggiungiValoriMatrice(valorimatrice);
+		} catch (RemoteException e) {
+			JOptionPane.showMessageDialog(Matrice, e.getMessage(),"Errore:",JOptionPane.ERROR_MESSAGE);
+			e.printStackTrace();
+		}
 	}
 	
 	/**
 	 * Crea Risposta Matrice
-	 * @param opzione
-	 * @param ordine
+	 * @param opzione Testo della risposta
+	 * @param ordine Ordinamento risposta nella domanda
 	 * @throws RemoteException
 	 */
-	private void creaRispostaMatrice(String opzione, int ordine) throws RemoteException{
+	private void creaRispostaMatrice(String opzione, int ordine){
 		RispostaDTO risposta = new RispostaDTO();
 		risposta.setDomandaAssociataIdDomanda(idDomanda);
 		risposta.setTesto(opzione);
 		risposta.setOrdine(ordine);
-		client.DomandaAggiungiRisposta(risposta);
+		try {
+			client.DomandaAggiungiRisposta(risposta);
+		} catch (RemoteException e) {
+			JOptionPane.showMessageDialog(Matrice, e.getMessage(),"Errore:",JOptionPane.ERROR_MESSAGE);
+			e.printStackTrace();
+		}
 	}
 	
 	/**

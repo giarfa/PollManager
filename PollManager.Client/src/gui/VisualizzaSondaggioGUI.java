@@ -2,6 +2,7 @@ package gui;
 
 import java.awt.List;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 import client.ClientInterface;
 
@@ -20,16 +21,17 @@ import dto.UtenteDTO;
  * @author Alberto
  */
 public class VisualizzaSondaggioGUI extends javax.swing.JFrame {
-	private int idSondaggio;
+	private SondaggioDTO sondaggio;
 	private ClientInterface client;
 
 	/**
 	 * Creates new form VisualizzaSondaggio
 	 */
-	public VisualizzaSondaggioGUI(int idSondaggio, ClientInterface client) {
+	public VisualizzaSondaggioGUI(SondaggioDTO sondaggio, ClientInterface client) {
 		initComponents();
+		inizializza();
 		this.client = client;
-		this.idSondaggio = idSondaggio;
+		this.sondaggio = sondaggio;
 		this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 	}
 
@@ -139,30 +141,16 @@ public class VisualizzaSondaggioGUI extends javax.swing.JFrame {
 	private void visualizzaRisposteActionPerformed(java.awt.event.ActionEvent evt) {
 		
 		java.util.List<RispostaDTO> listarisposte= (java.util.List<RispostaDTO>)new List();
-		int idDomanda = ((DomandaDTO) jList4.getSelectedValue()).getIdDomanda();
-		
-		//TODO lista risposte
-	
+		DomandaDTO d = ((DomandaDTO) jList4.getSelectedValue());
+		listarisposte=d.getRisposte();
+		jList5.setListData(listarisposte.toArray());
 	}
 	
 	/**
      * inizializza VisualizzaSondaggioGUI
      */
 	private void inizializza() {
-
-		java.util.List<DomandaDTO> listaDomande = (java.util.List<DomandaDTO>) new List();
-		try {
-
-			SondaggioDTO s = client.SondaggioGetByKey(idSondaggio);
-			listaDomande = s.getDomande();
-
-		} catch (RemoteException e) {
-
-			e.printStackTrace();
-			e.getMessage();
-		}
-		jList4.setListData(listaDomande.toArray());
-
+		jList4.setListData(sondaggio.getDomande().toArray());
 	}
 
 	

@@ -1,6 +1,7 @@
 package gui;
 
 import client.ClientInterface;
+import dto.SondaggioDTO;
 
 /**
  *
@@ -242,8 +243,8 @@ public class CollaboratoreGUI extends javax.swing.JFrame {
      */
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {                                         
      
-	
-        VisualizzaSondaggioGUI v= new VisualizzaSondaggioGUI(idSondaggio, client);
+    	SondaggioDTO s= (SondaggioDTO) jList1.getSelectedValue();
+        VisualizzaSondaggioGUI v= new VisualizzaSondaggioGUI(s, client);
         v.setVisible(true);
     }                                        
     /**
