@@ -2,6 +2,8 @@ package gui;
 
 import java.rmi.RemoteException;
 
+import javax.swing.JOptionPane;
+
 import client.ClientInterface;
 import dto.RuoloDTO;
 import dto.UtenteDTO;
@@ -41,7 +43,6 @@ public class AccessoGUI extends javax.swing.JFrame {
      * Inizializza AccessoGUI
      */
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">
     private void initComponents() {
 
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -249,7 +250,7 @@ public class AccessoGUI extends javax.swing.JFrame {
 		try {
 
 			if (nomeutente.length() == 0 || password.length() == 0) {
-				//Errore.setVisible(true);
+				JOptionPane.showMessageDialog(this, "Nome utente o password non corretti","Errore:",JOptionPane.ERROR_MESSAGE);
 			} else {
 				utente=client.Login(nomeutente, password);
 				tipoUtente=utente.getRuolo();
@@ -275,12 +276,10 @@ public class AccessoGUI extends javax.swing.JFrame {
 		}
 			
 		 catch (RemoteException e) {
-			//jLabel5.setText("Errore di connessione: riprovare");
-			//Errore.setVisible(true);
+			 JOptionPane.showMessageDialog(this, e.getMessage(),"Errore:",JOptionPane.ERROR_MESSAGE);
 			e.printStackTrace();
 		} catch (InvalidCredentialException e) {
-			//jLabel5.setText("Nome utente o password non validi");
-			//Errore.setVisible(true);
+			JOptionPane.showMessageDialog(this, e.getMessage(),"Errore:",JOptionPane.ERROR_MESSAGE);
 		}
         
         
@@ -292,15 +291,7 @@ public class AccessoGUI extends javax.swing.JFrame {
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {                                           
         Uscita.setVisible(true);
     }                                          
-    /**
-     * Chiude Errore(jDialog)
-     * @param evt
-     */
-    private void closeActionPerformed(java.awt.event.ActionEvent evt) {                                      
-        
-        //errore
-    }                                     
-    /**
+     /**
      * Chiude il programma
      * @param evt
      */
@@ -350,7 +341,7 @@ public class AccessoGUI extends javax.swing.JFrame {
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JButton loginButton;
-    // End of variables declaration
+    
 }
 
 	

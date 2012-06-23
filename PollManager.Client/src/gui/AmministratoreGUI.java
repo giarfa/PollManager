@@ -434,7 +434,7 @@ public class AmministratoreGUI extends javax.swing.JFrame {
             	try {
     				client.UtenteCrea(utente);
     			} catch (RemoteException e) {
-    				
+    				JOptionPane.showMessageDialog(this, e.getMessage(),"Errore:",JOptionPane.ERROR_MESSAGE);
     				e.printStackTrace();
     			}
             }
@@ -447,7 +447,7 @@ public class AmministratoreGUI extends javax.swing.JFrame {
             		
     			} catch (RemoteException e) {
     			
-    				
+    				JOptionPane.showMessageDialog(this, e.getMessage(),"Errore:",JOptionPane.ERROR_MESSAGE);
     				e.printStackTrace();
     			}
             }
@@ -457,11 +457,11 @@ public class AmministratoreGUI extends javax.swing.JFrame {
         
         } catch (Exception e) {
         		e.printStackTrace();
-        		//Errore.setVisible(true);
+        		JOptionPane.showMessageDialog(this, e.getMessage(),"Errore:",JOptionPane.ERROR_MESSAGE);
         	}
     }                                        
     /**
-     * Annulla creazione\modifica utente
+     * Annulla creazione/modifica utente
      * @param evt
      */
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {                                         
@@ -477,14 +477,16 @@ public class AmministratoreGUI extends javax.swing.JFrame {
        
     	try {
 			client.Logout(utente);
-		} catch (RemoteException e) {
+			 AccessoGUI b=new AccessoGUI(idClient, client);
+		        this.setVisible(false);
+		        b.setVisible(true);
+		
+    	} catch (RemoteException e) {
 			JOptionPane.showMessageDialog(this, e.getMessage(),"Errore:",JOptionPane.ERROR_MESSAGE);
 			e.printStackTrace();
 		}
     	
-        AccessoGUI b=new AccessoGUI(idClient, client);
-        this.setVisible(false);
-        b.setVisible(true);
+       
         
     } 
     /**

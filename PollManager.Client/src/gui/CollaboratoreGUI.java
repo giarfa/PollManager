@@ -38,7 +38,7 @@ public class CollaboratoreGUI extends javax.swing.JFrame {
      * inizializza componenti GUI
      */
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
         Uscita = new javax.swing.JDialog();
@@ -47,9 +47,8 @@ public class CollaboratoreGUI extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        compilaSondaggio = new javax.swing.JButton();
+        visualizzaSondaggio = new javax.swing.JButton();
         logout = new javax.swing.JButton();
         jMenuBar3 = new javax.swing.JMenuBar();
         jMenu6 = new javax.swing.JMenu();
@@ -57,7 +56,6 @@ public class CollaboratoreGUI extends javax.swing.JFrame {
         jMenu7 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
 
-        Uscita.setMaximumSize(new java.awt.Dimension(320, 180));
         Uscita.setMinimumSize(new java.awt.Dimension(320, 180));
 
         jLabel1.setText("Sei sicuro di voler uscire?");
@@ -113,28 +111,21 @@ public class CollaboratoreGUI extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jList1);
 
-        jButton1.setText("Crea Report");
-
-        jButton2.setText("Compila Sondaggio");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        compilaSondaggio.setText("Compila Sondaggio");
+        compilaSondaggio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                compilaSondaggioActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Visualizza Sondaggio Selezionato");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        visualizzaSondaggio.setText("Visualizza Sondaggio Selezionato");
+        visualizzaSondaggio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                visualizzaSondaggioActionPerformed(evt);
             }
         });
 
         logout.setText("Logout");
-        logout.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                logoutMouseClicked(evt);
-            }
-        });
         logout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 logoutActionPerformed(evt);
@@ -174,13 +165,11 @@ public class CollaboratoreGUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(70, 70, 70)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(visualizzaSondaggio, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(compilaSondaggio, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 489, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(66, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -193,9 +182,8 @@ public class CollaboratoreGUI extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(visualizzaSondaggio)
+                    .addComponent(compilaSondaggio))
                 .addGap(70, 70, 70)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
@@ -204,14 +192,9 @@ public class CollaboratoreGUI extends javax.swing.JFrame {
         );
 
         pack();
-    }// </editor-fold>
-    /**
-     * 
-     * @param evt
-     */
-    private void logoutMouseClicked(java.awt.event.MouseEvent evt) {                                    
-        
-    }                                   
+    }// </editor-fold>                        
+
+                                  
     /**
      * 
      * @param evt
@@ -250,7 +233,7 @@ public class CollaboratoreGUI extends javax.swing.JFrame {
      * Apre VisualizzaSondaaggioGUI
      * @param evt
      */
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+    private void visualizzaSondaggioActionPerformed(java.awt.event.ActionEvent evt) {                                         
      
     	SondaggioDTO s= (SondaggioDTO) jList1.getSelectedValue();
         VisualizzaSondaggioGUI v= new VisualizzaSondaggioGUI(s, client);
@@ -260,7 +243,7 @@ public class CollaboratoreGUI extends javax.swing.JFrame {
      * Apre CompilazioneGUI
      * @param evt
      */
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+    private void compilaSondaggioActionPerformed(java.awt.event.ActionEvent evt) {                                         
     	
 		try {
 			CompilazioneDTO d=new CompilazioneDTO();
@@ -271,7 +254,7 @@ public class CollaboratoreGUI extends javax.swing.JFrame {
 			CompilazioneGUI a=new CompilazioneGUI(sondaggio,client,compilazione);
 	        a.setVisible(true);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
+			JOptionPane.showMessageDialog(this, e.getMessage(),"Errore:",JOptionPane.ERROR_MESSAGE);
 			e.printStackTrace();
 		}
     	
@@ -304,11 +287,8 @@ public class CollaboratoreGUI extends javax.swing.JFrame {
     	System.exit(0);
     }
     
-    // Variables declaration - do not modify
     private javax.swing.JDialog Uscita;
-    private javax.swing.JButton jButton1;
-    public javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    public javax.swing.JButton compilaSondaggio;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
@@ -320,7 +300,8 @@ public class CollaboratoreGUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton logout;
-    // End of variables declaration
+    private javax.swing.JButton visualizzaSondaggio;
+    
 }
 
 

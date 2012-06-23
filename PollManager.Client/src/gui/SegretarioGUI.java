@@ -27,7 +27,7 @@ import dto.ValoriMatriceDTO;
 public class SegretarioGUI extends javax.swing.JFrame {
 
 	
-	private String titoloDomanda, tipoDomanda;
+	private String titoloDomanda;
 	private String idClient;
 	private String valMaxRange, valMinRange, descValMinRange, descValMAxRange,
 			opzione1, opzione2, opzione3, opzione4, opzione5, opzione6;
@@ -36,9 +36,7 @@ public class SegretarioGUI extends javax.swing.JFrame {
 	private int MinCharLibera, MaxCharLibera, idSondaggio, idDomanda;
 	private UtenteDTO utente;		
 	private SondaggioDTO sondaggio;
-	private MultiplaDTO multipla;
-	private LiberaDTO libera;
-	private RangeDTO range;
+	
 	
 	/**
 	 * Costruttore di SegretarioGUI
@@ -57,7 +55,7 @@ public class SegretarioGUI extends javax.swing.JFrame {
      * inizializza componenti SegretarioGUI
      */
 
-	  @SuppressWarnings("unchecked")
+	 @SuppressWarnings("unchecked")
 	   
 	    private void initComponents() {
 
@@ -167,8 +165,8 @@ public class SegretarioGUI extends javax.swing.JFrame {
 	        specificare2Check = new javax.swing.JCheckBox();
 	        specificare3Check = new javax.swing.JCheckBox();
 	        specificare4Check = new javax.swing.JCheckBox();
-	        specificare5Check = new javax.swing.JCheckBox();
 	        specificare6Check = new javax.swing.JCheckBox();
+	        specificare5Check = new javax.swing.JCheckBox();
 	        ModificaDomanda = new javax.swing.JDialog();
 	        modificaDomanda = new javax.swing.JButton();
 	        jScrollPane2 = new javax.swing.JScrollPane();
@@ -179,9 +177,6 @@ public class SegretarioGUI extends javax.swing.JFrame {
 	        jLabel38 = new javax.swing.JLabel();
 	        jButton3 = new javax.swing.JButton();
 	        jButton5 = new javax.swing.JButton();
-	        Errore = new javax.swing.JDialog();
-	        jLabel39 = new javax.swing.JLabel();
-	        jButton6 = new javax.swing.JButton();
 	        jButton1 = new javax.swing.JButton();
 	        jButton2 = new javax.swing.JButton();
 	        visualizzaSondaggio = new javax.swing.JButton();
@@ -288,9 +283,6 @@ public class SegretarioGUI extends javax.swing.JFrame {
 
 	        SceltaDomanda.setTitle("Seleziona Domanda");
 	        SceltaDomanda.setMinimumSize(new java.awt.Dimension(320, 180));
-	        SceltaDomanda.addMouseListener(new java.awt.event.MouseAdapter() {
-	        });
-
 	        jButton7.setText("Avanti >");
 	        jButton7.addActionListener(new java.awt.event.ActionListener() {
 	            public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -576,6 +568,8 @@ public class SegretarioGUI extends javax.swing.JFrame {
 
 	        jLabel8.setText("Testo Domanda");
 
+	        
+
 	        jLabel9.setText("Min Valore Range");
 
 	        jLabel10.setText("Massimo Valore Range");
@@ -593,7 +587,7 @@ public class SegretarioGUI extends javax.swing.JFrame {
 
 	        jLabel13.setText("Risposta");
 
-	        
+	       
 	        range1Text.addKeyListener(new java.awt.event.KeyAdapter() {
 	            public void keyPressed(java.awt.event.KeyEvent evt) {
 	                range1TextKeyPressed(evt);
@@ -821,9 +815,9 @@ public class SegretarioGUI extends javax.swing.JFrame {
 
 	        specificare4Check.setText("Specificare");
 
-	        specificare5Check.setText("Specificare");
-
 	        specificare6Check.setText("Specificare");
+
+	        specificare5Check.setText("Specificare");
 
 	        javax.swing.GroupLayout MultiplaLayout = new javax.swing.GroupLayout(Multipla.getContentPane());
 	        Multipla.getContentPane().setLayout(MultiplaLayout);
@@ -854,25 +848,29 @@ public class SegretarioGUI extends javax.swing.JFrame {
 	                                .addComponent(multipla5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))
 	                        .addGap(36, 36, 36)
 	                        .addGroup(MultiplaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-	                            .addComponent(specificare5Check)
-	                            .addComponent(specificare1Check)
-	                            .addComponent(specificare2Check)
-	                            .addComponent(specificare3Check)
-	                            .addComponent(specificare4Check)
-	                            .addComponent(specificare6Check))
-	                        .addGroup(MultiplaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 	                            .addGroup(MultiplaLayout.createSequentialGroup()
-	                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 	                                .addGroup(MultiplaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-	                                    .addComponent(annullaMultipla)
-	                                    .addComponent(salvaMultipla, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
-	                                .addGap(51, 51, 51))
+	                                    .addComponent(specificare1Check)
+	                                    .addComponent(specificare2Check)
+	                                    .addComponent(specificare3Check)
+	                                    .addComponent(specificare4Check)
+	                                    .addComponent(specificare6Check))
+	                                .addGroup(MultiplaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+	                                    .addGroup(MultiplaLayout.createSequentialGroup()
+	                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+	                                        .addGroup(MultiplaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+	                                            .addComponent(annullaMultipla)
+	                                            .addComponent(salvaMultipla, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
+	                                        .addGap(51, 51, 51))
+	                                    .addGroup(MultiplaLayout.createSequentialGroup()
+	                                        .addGap(27, 27, 27)
+	                                        .addGroup(MultiplaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+	                                            .addComponent(obbligatoriaMultiplaCheck)
+	                                            .addComponent(singolaRispostaMultipla))
+	                                        .addContainerGap(30, Short.MAX_VALUE))))
 	                            .addGroup(MultiplaLayout.createSequentialGroup()
-	                                .addGap(27, 27, 27)
-	                                .addGroup(MultiplaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-	                                    .addComponent(obbligatoriaMultiplaCheck)
-	                                    .addComponent(singolaRispostaMultipla))
-	                                .addContainerGap(30, Short.MAX_VALUE))))
+	                                .addComponent(specificare5Check)
+	                                .addGap(0, 0, Short.MAX_VALUE))))
 	                    .addGroup(MultiplaLayout.createSequentialGroup()
 	                        .addGroup(MultiplaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 	                            .addComponent(orientamentoCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1046,40 +1044,6 @@ public class SegretarioGUI extends javax.swing.JFrame {
 	                .addContainerGap(33, Short.MAX_VALUE))
 	        );
 
-	        Errore.setMinimumSize(new java.awt.Dimension(320, 180));
-
-	        jLabel39.setText("Uno o più campi sono non validi o incompleti");
-
-	        jButton6.setText("OK");
-	        jButton6.addActionListener(new java.awt.event.ActionListener() {
-	            public void actionPerformed(java.awt.event.ActionEvent evt) {
-	                jButton6ActionPerformed(evt);
-	            }
-	        });
-
-	        javax.swing.GroupLayout ErroreLayout = new javax.swing.GroupLayout(Errore.getContentPane());
-	        Errore.getContentPane().setLayout(ErroreLayout);
-	        ErroreLayout.setHorizontalGroup(
-	            ErroreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-	            .addGroup(ErroreLayout.createSequentialGroup()
-	                .addGap(158, 158, 158)
-	                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-	                .addContainerGap())
-	            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ErroreLayout.createSequentialGroup()
-	                .addContainerGap(99, Short.MAX_VALUE)
-	                .addComponent(jLabel39)
-	                .addGap(93, 93, 93))
-	        );
-	        ErroreLayout.setVerticalGroup(
-	            ErroreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-	            .addGroup(ErroreLayout.createSequentialGroup()
-	                .addGap(34, 34, 34)
-	                .addComponent(jLabel39)
-	                .addGap(18, 18, 18)
-	                .addComponent(jButton6)
-	                .addContainerGap(40, Short.MAX_VALUE))
-	        );
-
 	        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 	        setTitle("Poll Manager- Segretario");
 	        setForeground(java.awt.Color.white);
@@ -1208,7 +1172,8 @@ public class SegretarioGUI extends javax.swing.JFrame {
 	        getAccessibleContext().setAccessibleName("Segretario");
 
 	        pack();
-	    }
+	    }// </editor-fold>
+
 
 	  /**
 	   * Apre ModificaDomanda(jDialog)
@@ -1252,7 +1217,7 @@ public class SegretarioGUI extends javax.swing.JFrame {
 
 		} catch (RemoteException e) {
 			
-			Errore.setVisible(true);
+			JOptionPane.showMessageDialog(this, e.getMessage(),"Errore:",JOptionPane.ERROR_MESSAGE);
 			e.printStackTrace();
 		}
 
@@ -1449,13 +1414,7 @@ if (range3Text.getText().length() == 0) {
 	private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {
 		Uscita.setVisible(false);
 	}
-	/**
-	 * Nascondi Errore(jDialog)
-	 * @param evt
-	 */
-	private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {
-		Errore.setVisible(false);
-	}
+	
 	/**
 	 * Annulla domanda Range
 	 * @param evt
@@ -1490,7 +1449,7 @@ if (range3Text.getText().length() == 0) {
 		try {
 
 			if (Integer.parseInt(valMaxRange) <= Integer.parseInt(valMinRange)) {
-				Errore.setVisible(true);
+				JOptionPane.showMessageDialog(this, "Valore massimo e minimo caratteri non coerenti","Errore:",JOptionPane.ERROR_MESSAGE);
 				valMaxRangeText.setText("");
 				valMinRangeText.setText("");
 			}
@@ -1541,12 +1500,12 @@ if (range3Text.getText().length() == 0) {
 			}
 		} catch (NumberFormatException e) {
 
-			Errore.setVisible(true);
+			JOptionPane.showMessageDialog(this, "Valore massimo e minimo caratteri non coerenti","Errore:",JOptionPane.ERROR_MESSAGE);
 			valMaxRangeText.setText("");
 			valMinRangeText.setText("");
 		} catch (RemoteException e) {
 			
-			
+			JOptionPane.showMessageDialog(this, e.getMessage(),"Errore:",JOptionPane.ERROR_MESSAGE);
 			e.printStackTrace();
 		}
 	}
@@ -1638,11 +1597,12 @@ if (range3Text.getText().length() == 0) {
 			Matrice.setVisible(false);
 			
 		} catch (RemoteException e) {
-			Errore.setVisible(true);
+			JOptionPane.showMessageDialog(this, e.getMessage(),"Errore:",JOptionPane.ERROR_MESSAGE);
 			e.printStackTrace();
 		}
 		
 	}
+	
 	/**
 	 * Annulla creazione domanda Matrice
 	 * @param evt
@@ -1651,6 +1611,7 @@ if (range3Text.getText().length() == 0) {
 		
 		Matrice.setVisible(false);
 	}
+	
 	/**
 	 * Anulla creazione domanda Multipla
 	 * @param evt
@@ -1660,6 +1621,7 @@ if (range3Text.getText().length() == 0) {
 		clearMultipla();
 		Multipla.setVisible(false);
 	}
+	
 	/**
 	 * Salva domanda Multipla
 	 * @param evt
@@ -1729,6 +1691,7 @@ if (range3Text.getText().length() == 0) {
 		}
 
 	}
+	
 	/**
 	 * Modifica Domanda 
 	 * @param evt
@@ -1753,6 +1716,7 @@ if (range3Text.getText().length() == 0) {
 			Matrice.setVisible(true);
 			titoloMaticeText.setText(m.getTesto());
 			ArrayList<RispostaDTO> r=m.getRisposte();
+			int idDomanda=m.getIdDomanda();
 			try{
 				vm1Text.setText(m.getValorimatrice().get(0).getTesto());
 				vm2Text.setText(m.getValorimatrice().get(1).getTesto());
@@ -1780,6 +1744,11 @@ if (range3Text.getText().length() == 0) {
 			
 			obbligatoriaMatriceCheck.setSelected(d.isObbligatorio());
 			
+			try {
+				client.DomandaSetDisable(idDomanda);
+			} catch (RemoteException e) {
+				e.printStackTrace();
+			}
 
 		}
 		if (d instanceof MultiplaDTO) {
@@ -1812,6 +1781,7 @@ if (range3Text.getText().length() == 0) {
 			
 			Range.setVisible(true);
 			RangeDTO r=(RangeDTO)d;
+			idDomanda=r.getIdDomanda();
 			titoloRangeText.setText(r.getTesto());
 			valMinRangeText.setText(Integer.toString(r.getValMin()));
 			valMaxRangeText.setText(Integer.toString(r.getValMax()));
@@ -1825,20 +1795,16 @@ if (range3Text.getText().length() == 0) {
 				range3Text.setText(r.getRisposte().get(2).getTesto());
 				range4Text.setText(r.getRisposte().get(3).getTesto());
 				range5Text.setText(r.getRisposte().get(4).getTesto());
-				client.DomandaModifica(r);
 			}
 			
 			catch (IndexOutOfBoundsException e){
-				
 			} 
-			catch (RemoteException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			
 			
 
 		}
 	}
+	
 	/**
 	 * Apre SceltaDomanda(jDialog)
 	 * @param evt
@@ -1847,6 +1813,7 @@ if (range3Text.getText().length() == 0) {
 		
 		SceltaDomanda.setVisible(true);
 	}
+	
 	/**
 	 * Apre VisualizzaSondaggioGUI
 	 * @param evt
@@ -1858,6 +1825,7 @@ if (range3Text.getText().length() == 0) {
 		VisualizzaSondaggioGUI a = new VisualizzaSondaggioGUI(s, client);
 		a.setVisible(true);
 	}
+	
 	/**
 	 * Apre CompilazioneGUI
 	 * @param evt
@@ -1865,14 +1833,15 @@ if (range3Text.getText().length() == 0) {
 	private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {
 
 		try {
+			SondaggioDTO s= (SondaggioDTO) jList1.getSelectedValue();
     		CompilazioneDTO d=new CompilazioneDTO();
         	d.setDatacompilazione(new Date());
-        	d.setSondaggioAssociatoIdSondaggio(sondaggio.getIdSondaggio());
+        	d.setSondaggioAssociatoIdSondaggio(s.getIdSondaggio());
 			CompilazioneDTO compilazione = client.SondaggioAggiungiCompilazione(d);
-			CompilazioneGUI c = new CompilazioneGUI(sondaggio, client,compilazione);
+			CompilazioneGUI c = new CompilazioneGUI(s,client,compilazione);
 			c.setVisible(true);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
+			JOptionPane.showMessageDialog(this, e.getMessage(),"Errore:",JOptionPane.ERROR_MESSAGE);
 			e.printStackTrace();
 		}
 		
@@ -1930,7 +1899,7 @@ if (range3Text.getText().length() == 0) {
 
 		if (titoloDomanda.length() == 0) {
 
-			Errore.setVisible(true);
+			JOptionPane.showMessageDialog(this, "Completare i campi","Errore:",JOptionPane.ERROR_MESSAGE);
 
 		} else {
 			LiberaDTO libera = new LiberaDTO();
@@ -1950,7 +1919,7 @@ if (range3Text.getText().length() == 0) {
 				client.DomandaAggiungiRisposta(r);
 
 			} catch (RemoteException e) {
-				
+				JOptionPane.showMessageDialog(this, e.getMessage(),"Errore:",JOptionPane.ERROR_MESSAGE);
 				e.printStackTrace();
 			}
 			
@@ -2089,7 +2058,7 @@ if (range3Text.getText().length() == 0) {
 		try {
 			client.DomandaAggiungiRisposta(risposta);
 		} catch (RemoteException e) {
-			Errore.setVisible(true);
+			JOptionPane.showMessageDialog(this, e.getMessage(),"Errore:",JOptionPane.ERROR_MESSAGE);
 			e.printStackTrace();
 		}
 		}
@@ -2100,18 +2069,15 @@ if (range3Text.getText().length() == 0) {
 	 * @param ordine
 	 * @throws RemoteException
 	 */
-	private void creaRispostaRange(String opzione, int ordine){
+	private void creaRispostaRange(String opzione, int ordine) throws RemoteException{
 		RispostaDTO risposta = new RispostaDTO();
 
 		risposta.setDomandaAssociataIdDomanda(idDomanda);
 		risposta.setTesto(opzione);
 		risposta.setOrdine(ordine);
-		try {
+		
 			client.DomandaAggiungiRisposta(risposta);
-		} catch (RemoteException e) {
-			JOptionPane.showMessageDialog(Range, e.getMessage(),"Errore:",JOptionPane.ERROR_MESSAGE);
-			e.printStackTrace();
-		}
+		
 	}
 	/**
 	 * Aggiungi Valore Matrice
@@ -2120,19 +2086,16 @@ if (range3Text.getText().length() == 0) {
 	 * @param matrice
 	 * @throws RemoteException
 	 */
-	private void agguingiValoreMatrice(String sr, int ordine, MatriceDTO matrice){
+	private void agguingiValoreMatrice(String sr, int ordine, MatriceDTO matrice) throws RemoteException{
 		ValoriMatriceDTO valorimatrice = new ValoriMatriceDTO();
 		
 		idDomanda=matrice.getIdDomanda();
 		valorimatrice.setMatriceIdDomanda(idDomanda);
 		valorimatrice.setOrdine(0);
 		valorimatrice.setTesto(sr);
-		try {
+		
 			client.DomandaAggiungiValoriMatrice(valorimatrice);
-		} catch (RemoteException e) {
-			JOptionPane.showMessageDialog(Matrice, e.getMessage(),"Errore:",JOptionPane.ERROR_MESSAGE);
-			e.printStackTrace();
-		}
+		
 	}
 	
 	/**
@@ -2141,30 +2104,28 @@ if (range3Text.getText().length() == 0) {
 	 * @param ordine Ordinamento risposta nella domanda
 	 * @throws RemoteException
 	 */
-	private void creaRispostaMatrice(String opzione, int ordine){
+	private void creaRispostaMatrice(String opzione, int ordine) throws RemoteException{
 		RispostaDTO risposta = new RispostaDTO();
 		risposta.setDomandaAssociataIdDomanda(idDomanda);
 		risposta.setTesto(opzione);
 		risposta.setOrdine(ordine);
-		try {
+		
 			client.DomandaAggiungiRisposta(risposta);
-		} catch (RemoteException e) {
-			JOptionPane.showMessageDialog(Matrice, e.getMessage(),"Errore:",JOptionPane.ERROR_MESSAGE);
-			e.printStackTrace();
-		}
+		
 	}
 	
 	/**
 	 * Istruzioni di uscita dal Programma
 	 */
 	private void exit(){
+		
 		client.CloseChannel(idClient);
 		System.exit((0));
 	}
+	
+	
 
-
-	private javax.swing.JDialog Errore;
-    private javax.swing.JDialog InsDatiSondaggio;
+	private javax.swing.JDialog InsDatiSondaggio;
     private javax.swing.JDialog Libera;
     private javax.swing.JButton Logout;
     private javax.swing.JDialog Matrice;
@@ -2189,7 +2150,6 @@ if (range3Text.getText().length() == 0) {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel1;
@@ -2224,7 +2184,6 @@ if (range3Text.getText().length() == 0) {
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
-    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
