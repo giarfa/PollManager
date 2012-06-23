@@ -14,10 +14,9 @@ import client.ClientRmiInterface;
 public class Start {
 
 	/**
+	 * Start Client
 	 * @param args
 	 */
-	
-	
 	
 	public static void main(String[] args) throws Exception{
 		
@@ -38,11 +37,5 @@ public class Start {
 		
 		AccessoGUI a=new AccessoGUI(idClient, client);
 		a.setVisible(true);
-		
-	
-	
-	}
-	
-	
-
+		}
 }
