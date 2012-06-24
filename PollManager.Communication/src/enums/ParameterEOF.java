@@ -1,5 +1,8 @@
 package enums;
-
+/**
+ *  @author 727826-729399
+ *
+ */
 public enum ParameterEOF {
 	UTENTE_DTO("</domain.UtenteDTO>"),
 	SONDAGGIO_DTO("</domain.SondaggioDTO>"),

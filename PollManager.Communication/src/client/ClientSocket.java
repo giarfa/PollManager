@@ -27,7 +27,11 @@ import enums.ErrorKind;
 import enums.OperationCode;
 import enums.ParameterEOF;
 import exception.InvalidCredentialException;
-
+/**
+*
+* Implementazione Socket-Client
+* @author 727826-729399
+*/
 public class ClientSocket implements ClientSocketInterface {
 
 	private String host;
@@ -36,12 +40,19 @@ public class ClientSocket implements ClientSocketInterface {
 	private PrintWriter writer;
     private BufferedReader reader;
     private XStream converter;
-	
+	/**
+	 * Costruttore di ClientSocket
+	 * @param host url dell'host
+	 */
 	public ClientSocket(String host){
 		this.host=host;
 		this.converter=new XStream();
 	}
 	
+	
+	/**
+	 * Apertura canale comunicazione
+	 */
 	@Override
 	public void OpenChannel(String clientName) {
 		try {
@@ -54,13 +65,19 @@ public class ClientSocket implements ClientSocketInterface {
 			e.printStackTrace();
 		}
 	}
-
+	
+	
+	/**
+	 * Chiusura canale comunicazione
+	 */
 	@Override
 	public void CloseChannel(String clientName) {
 		// TODO Auto-generated method stub
 
 	}
-
+	/**
+	 * Login Utente
+	 */
 	@Override
 	public UtenteDTO Login(String user, String password) throws RemoteException, InvalidCredentialException {
 		this.sendCommandToSocket(CommandCode.LOGIN.getValue());
@@ -69,7 +86,9 @@ public class ClientSocket implements ClientSocketInterface {
 		String xml=this.getReturnValueOrErrorFromSocket(ParameterEOF.UTENTE_DTO.getValue());
 		return (UtenteDTO)this.converter.fromXML(xml);
 	}
-
+	/**
+	 * Logout Utente
+	 */
 	@Override
 	public void Logout(UtenteDTO utente) throws RemoteException {
 		this.sendCommandToSocket(CommandCode.LOGOUT.getValue());
@@ -79,6 +98,9 @@ public class ClientSocket implements ClientSocketInterface {
 		} catch (InvalidCredentialException e) { throw new RemoteException(e.getMessage()); }
 	}
 
+	/**
+	 * Get Sondaggio dall'id
+	 */
 	@Override
 	public SondaggioDTO SondaggioGetByKey(int idSondaggio) throws RemoteException {
 		this.sendCommandToSocket(CommandCode.SONDAGGIO_GETBYKEY.getValue());
@@ -99,6 +121,9 @@ public class ClientSocket implements ClientSocketInterface {
 		} catch (InvalidCredentialException e) { throw new RemoteException(e.getMessage()); }
 	}
 
+	/**
+	 * Lista Sondaggi
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<SondaggioDTO> SondaggioGetList() throws RemoteException {
@@ -109,6 +134,9 @@ public class ClientSocket implements ClientSocketInterface {
 		} catch (InvalidCredentialException e) { throw new RemoteException(e.getMessage()); }
 	}
 
+	/**
+	 * Crea Sondaggio
+	 */
 	@Override
 	public SondaggioDTO SondaggioCrea(SondaggioDTO dto) throws RemoteException {
 		this.sendCommandToSocket(CommandCode.SONDAGGIO_CREA.getValue());
@@ -119,6 +147,9 @@ public class ClientSocket implements ClientSocketInterface {
 		} catch (InvalidCredentialException e) { throw new RemoteException(e.getMessage()); }
 	}
 
+	/**
+	 * Modifica sondaggio
+	 */
 	@Override
 	public SondaggioDTO SondaggioModifica(SondaggioDTO dto) throws RemoteException {
 		this.sendCommandToSocket(CommandCode.SONDAGGIO_MODIFICA.getValue());
@@ -129,6 +160,9 @@ public class ClientSocket implements ClientSocketInterface {
 		} catch (InvalidCredentialException e) { throw new RemoteException(e.getMessage()); }
 	}
 
+	/**
+	 * Aggiungi domanda Multipla al Sondaggio
+	 */
 	@Override
 	public int SondaggioAggiungiDomandaMultipla(MultiplaDTO dto) throws RemoteException {
 		this.sendCommandToSocket(CommandCode.SONDAGGIO_AGGIUNGIDOMANDA_MULTIPLA.getValue());
@@ -138,6 +172,9 @@ public class ClientSocket implements ClientSocketInterface {
 		} catch (InvalidCredentialException e) { throw new RemoteException(e.getMessage()); }
 	}
 
+	/**
+	 * Aggiungi domanda Libera al Sondaggio
+	 */
 	@Override
 	public int SondaggioAggiungiDomandaLibera(LiberaDTO dto) throws RemoteException {
 		this.sendCommandToSocket(CommandCode.SONDAGGIO_AGGIUNGIDOMANDA_LIBERA.getValue());
@@ -147,6 +184,9 @@ public class ClientSocket implements ClientSocketInterface {
 		} catch (InvalidCredentialException e) { throw new RemoteException(e.getMessage()); }
 	}
 
+	/**
+	 * Aggiungi domanda Range al Sondaggio
+	 */
 	@Override
 	public int SondaggioAggiungiDomandaRange(RangeDTO dto) throws RemoteException {
 		this.sendCommandToSocket(CommandCode.SONDAGGIO_AGGIUNGIDOMANDA_RANGE.getValue());
@@ -156,6 +196,9 @@ public class ClientSocket implements ClientSocketInterface {
 		} catch (InvalidCredentialException e) { throw new RemoteException(e.getMessage()); }
 	}
 
+	/**
+	 * Aggiungi domanda Matrice al Sondaggio
+	 */
 	@Override
 	public int SondaggioAggiungiDomandaMatrice(MatriceDTO dto) throws RemoteException {
 		this.sendCommandToSocket(CommandCode.SONDAGGIO_AGGIUNGIDOMANDA_MATRICE.getValue());
@@ -165,6 +208,9 @@ public class ClientSocket implements ClientSocketInterface {
 		} catch (InvalidCredentialException e) { throw new RemoteException(e.getMessage()); }
 	}
 
+	/**
+	 * Aggiungi Compilazione al Sondaggio
+	 */
 	@Override
 	public CompilazioneDTO SondaggioAggiungiCompilazione(CompilazioneDTO dto) throws RemoteException {
 		this.sendCommandToSocket(CommandCode.SONDAGGIO_AGGIUNGICOMPILAZIONE.getValue());
@@ -175,6 +221,9 @@ public class ClientSocket implements ClientSocketInterface {
 		} catch (InvalidCredentialException e) { throw new RemoteException(e.getMessage()); }
 	}
 
+	/**
+	 *  Attiva Sondaggio
+	 */
 	@Override
 	public void SondaggioSetEnable(int idSondaggio) throws RemoteException {
 		this.sendCommandToSocket(CommandCode.SONDAGGIO_SETENABLE.getValue());
@@ -184,6 +233,9 @@ public class ClientSocket implements ClientSocketInterface {
 		} catch (InvalidCredentialException e) { throw new RemoteException(e.getMessage()); }
 	}
 
+	/**
+	 * Disattiva Sondaggio
+	 */
 	@Override
 	public void SondaggioSetDisable(int idSondaggio) throws RemoteException {
 		this.sendCommandToSocket(CommandCode.SONDAGGIO_SETDISABLE.getValue());
@@ -193,6 +245,9 @@ public class ClientSocket implements ClientSocketInterface {
 		} catch (InvalidCredentialException e) { throw new RemoteException(e.getMessage()); }
 	}
 
+	/**
+	 * Modifica Domanda Multipla
+	 */
 	@Override
 	public void DomandaModifica(MultiplaDTO dto) throws RemoteException {
 		this.sendCommandToSocket(CommandCode.DOMANDA_MODIFICA_MULTIPLA.getValue());
@@ -202,6 +257,9 @@ public class ClientSocket implements ClientSocketInterface {
 		} catch (InvalidCredentialException e) { throw new RemoteException(e.getMessage()); }
 	}
 
+	/**
+	 * Modifica Domanda Libera
+	 */
 	@Override
 	public void DomandaModifica(LiberaDTO dto) throws RemoteException {
 		this.sendCommandToSocket(CommandCode.DOMANDA_MODIFICA_LIBERA.getValue());
@@ -211,6 +269,9 @@ public class ClientSocket implements ClientSocketInterface {
 		} catch (InvalidCredentialException e) { throw new RemoteException(e.getMessage()); }
 	}
 
+	/**
+	 * Modifica Domanda Range
+	 */
 	@Override
 	public void DomandaModifica(RangeDTO dto) throws RemoteException {
 		this.sendCommandToSocket(CommandCode.DOMANDA_MODIFICA_RANGE.getValue());
@@ -220,6 +281,9 @@ public class ClientSocket implements ClientSocketInterface {
 		} catch (InvalidCredentialException e) { throw new RemoteException(e.getMessage()); }
 	}
 
+	/**
+	 * Modifica Domanda Matrice
+	 */
 	@Override
 	public void DomandaModifica(MatriceDTO dto) throws RemoteException {
 		this.sendCommandToSocket(CommandCode.DOMANDA_MODIFICA_MATRICE.getValue());
@@ -229,6 +293,9 @@ public class ClientSocket implements ClientSocketInterface {
 		} catch (InvalidCredentialException e) { throw new RemoteException(e.getMessage()); }
 	}
 
+	/**
+	 * Modifica ValoriMatrice 
+	 */
 	@Override
 	public void DomandaModifica(ValoriMatriceDTO dto) throws RemoteException {
 		this.sendCommandToSocket(CommandCode.DOMANDA_MODIFICA_VALORIMATRICE.getValue());
@@ -238,6 +305,9 @@ public class ClientSocket implements ClientSocketInterface {
 		} catch (InvalidCredentialException e) { throw new RemoteException(e.getMessage()); }
 	}
 
+	/**
+	 * Aggiungi ValoriMatrice a Domanda
+	 */
 	@Override
 	public void DomandaAggiungiValoriMatrice(ValoriMatriceDTO dto) throws RemoteException {
 		this.sendCommandToSocket(CommandCode.DOMANDA_AGGIUNGI_VALORIMATRICE.getValue());
@@ -247,6 +317,9 @@ public class ClientSocket implements ClientSocketInterface {
 		} catch (InvalidCredentialException e) { throw new RemoteException(e.getMessage()); }
 	}
 
+	/**
+	 * Aggiungi Risposta a Domanda
+	 */
 	@Override
 	public void DomandaAggiungiRisposta(RispostaDTO dto) throws RemoteException {
 		this.sendCommandToSocket(CommandCode.DOMANDA_AGGIUNGI_RISPOSTA.getValue());
@@ -256,6 +329,9 @@ public class ClientSocket implements ClientSocketInterface {
 		} catch (InvalidCredentialException e) { throw new RemoteException(e.getMessage()); }
 	}
 
+	/**
+	 * Attiva Domanda
+	 */
 	@Override
 	public void DomandaSetEnable(int idDomanda) throws RemoteException {
 		this.sendCommandToSocket(CommandCode.DOMANDA_SETENABLE.getValue());
@@ -265,6 +341,9 @@ public class ClientSocket implements ClientSocketInterface {
 		} catch (InvalidCredentialException e) { throw new RemoteException(e.getMessage()); }
 	}
 
+	/**
+	 * Disattiva Domanda
+	 */
 	@Override
 	public void DomandaSetDisable(int idDomanda) throws RemoteException {
 		this.sendCommandToSocket(CommandCode.DOMANDA_SETDISABLE.getValue());
@@ -274,6 +353,9 @@ public class ClientSocket implements ClientSocketInterface {
 		} catch (InvalidCredentialException e) { throw new RemoteException(e.getMessage()); }
 	}
 
+	/**
+	 * Modifica Risposta
+	 */
 	@Override
 	public RispostaDTO RispostaModifica(RispostaDTO dto) throws RemoteException {
 		this.sendCommandToSocket(CommandCode.RISPOSTA_MODIFICA.getValue());
@@ -284,6 +366,9 @@ public class ClientSocket implements ClientSocketInterface {
 		} catch (InvalidCredentialException e) { throw new RemoteException(e.getMessage()); }
 	}
 
+	/**
+	 * Attiva Risposta
+	 */
 	@Override
 	public void RispostaSetEnable(int idRisposta) throws RemoteException {
 		this.sendCommandToSocket(CommandCode.RISPOSTA_SETENABLE.getValue());
@@ -293,6 +378,9 @@ public class ClientSocket implements ClientSocketInterface {
 		} catch (InvalidCredentialException e) { throw new RemoteException(e.getMessage()); }
 	}
 
+	/**
+	 * Disattiva Risposta
+	 */
 	@Override
 	public void RispostaSetDisable(int idRisposta) throws RemoteException {
 		this.sendCommandToSocket(CommandCode.RISPOSTA_SETDISABLE.getValue());
@@ -302,6 +390,9 @@ public class ClientSocket implements ClientSocketInterface {
 		} catch (InvalidCredentialException e) { throw new RemoteException(e.getMessage()); }
 	}
 
+	/**
+	 * Modifica Compilazione
+	 */
 	@Override
 	public CompilazioneDTO CompilazioneModifica(CompilazioneDTO dto) throws RemoteException {
 		this.sendCommandToSocket(CommandCode.COMPILAZIONE_MODIFICA.getValue());
@@ -312,6 +403,9 @@ public class ClientSocket implements ClientSocketInterface {
 		} catch (InvalidCredentialException e) { throw new RemoteException(e.getMessage()); }
 	}
 
+	/**
+	 * Agguingi CompilazioneRisposta a Compilazione
+	 */
 	@Override
 	public void CompilazioneAggiungiCompilazioneRisposta(CompilazioneRispostaDTO dto) throws RemoteException {
 		this.sendCommandToSocket(CommandCode.COMPILAZIONE_AGGIUNGI_COMPILAZIONERISPOSTA.getValue());
@@ -321,6 +415,9 @@ public class ClientSocket implements ClientSocketInterface {
 		} catch (InvalidCredentialException e) { throw new RemoteException(e.getMessage()); }
 	}
 
+	/**
+	 * Attiva Compilazione
+	 */
 	@Override
 	public void CompilazioneSetEnable(int idCompilazione) throws RemoteException {
 		this.sendCommandToSocket(CommandCode.COMPILAZIONE_SETENABLE.getValue());
@@ -330,6 +427,9 @@ public class ClientSocket implements ClientSocketInterface {
 		} catch (InvalidCredentialException e) { throw new RemoteException(e.getMessage()); }
 	}
 
+	/**
+	 * Disattiva Compilazione
+	 */
 	@Override
 	public void CompilazioneSetDisable(int idCompilazione) throws RemoteException {
 		this.sendCommandToSocket(CommandCode.COMPILAZIONE_SETDISABLE.getValue());
@@ -339,6 +439,9 @@ public class ClientSocket implements ClientSocketInterface {
 		} catch (InvalidCredentialException e) { throw new RemoteException(e.getMessage()); }
 	}
 
+	/**
+	 * Modifica CompilazioneRisposta
+	 */
 	@Override
 	public CompilazioneRispostaDTO CompilazioneRispostaModifica(CompilazioneRispostaDTO dto) throws RemoteException {
 		this.sendCommandToSocket(CommandCode.COMPILAZIONERISPOSTA_MODIFICA.getValue());
@@ -349,6 +452,10 @@ public class ClientSocket implements ClientSocketInterface {
 		} catch (InvalidCredentialException e) { throw new RemoteException(e.getMessage()); }
 	}
 
+	/**
+	 * Elimina CompilazioneRisposta
+	 * 
+	 */
 	@Override
 	public void CompilazioneRispostaElimina(int idCompilazioneRisposta) throws RemoteException {
 		this.sendCommandToSocket(CommandCode.COMPILAZIONERISPOSTA_ELIMINA.getValue());
@@ -358,6 +465,9 @@ public class ClientSocket implements ClientSocketInterface {
 		} catch (InvalidCredentialException e) { throw new RemoteException(e.getMessage()); }
 	}
 
+	/**
+	 * Get Utente dall'idUtente
+	 */
 	@Override
 	public UtenteDTO UtenteGetByKey(int idUtente) throws RemoteException {
 		this.sendCommandToSocket(CommandCode.UTENTE_GETBYKEY.getValue());
@@ -368,6 +478,9 @@ public class ClientSocket implements ClientSocketInterface {
 		} catch (InvalidCredentialException e) { throw new RemoteException(e.getMessage()); }
 	}
 
+	/**
+	 * Lista Utenti
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<UtenteDTO> UtenteGetList() throws RemoteException {
@@ -378,6 +491,9 @@ public class ClientSocket implements ClientSocketInterface {
 		} catch (InvalidCredentialException e) { throw new RemoteException(e.getMessage()); }
 	}
 
+	/**
+	 * Crea Utente
+	 */
 	@Override
 	public UtenteDTO UtenteCrea(UtenteDTO dto) throws RemoteException {
 		this.sendCommandToSocket(CommandCode.UTENTE_CREA.getValue());
@@ -388,6 +504,9 @@ public class ClientSocket implements ClientSocketInterface {
 		} catch (InvalidCredentialException e) { throw new RemoteException(e.getMessage()); }
 	}
 
+	/**
+	 * Modifica Utente
+	 */
 	@Override
 	public UtenteDTO UtenteModifica(UtenteDTO dto) throws RemoteException {
 		this.sendCommandToSocket(CommandCode.UTENTE_MODIFICA.getValue());
@@ -398,6 +517,9 @@ public class ClientSocket implements ClientSocketInterface {
 		} catch (InvalidCredentialException e) { throw new RemoteException(e.getMessage()); }
 	}
 
+	/**
+	 * Attiva Utente
+	 */
 	@Override
 	public void UtenteSetEnable(int idUtente) throws RemoteException {
 		this.sendCommandToSocket(CommandCode.UTENTE_SETENABLE.getValue());
@@ -406,7 +528,9 @@ public class ClientSocket implements ClientSocketInterface {
 			this.getReturnValueOrErrorFromSocket(OperationCode.VOID_RETURN_MESSAGE.getValue());
 		} catch (InvalidCredentialException e) { throw new RemoteException(e.getMessage()); }
 	}
-
+	/**
+	 * Disattiva Utente
+	 */
 	@Override
 	public void UtenteSetDisable(int idUtente) throws RemoteException {
 		this.sendCommandToSocket(CommandCode.UTENTE_SETDISABLE.getValue());
@@ -416,6 +540,10 @@ public class ClientSocket implements ClientSocketInterface {
 		} catch (InvalidCredentialException e) { throw new RemoteException(e.getMessage()); }
 	}
 	
+	/**
+	 * Invia comando dal Socket
+	 * @param command Comando da inviare
+	 */
 	private void sendCommandToSocket(String command){
 		String xml=command.replace("\n", "");
 		this.WriteOnSocket(xml);
@@ -426,7 +554,10 @@ public class ClientSocket implements ClientSocketInterface {
 			clientResponse=this.ReadFromSocket();
 		}
 	}
-	
+	/**
+	 * Invia parametro al Socket
+	 * @param parameter Parametro da inviare
+	 */
 	private void sendParameterToSocket(String parameter){
 		String xml=parameter.replace("\n", "");
 		this.WriteOnSocket(xml);
@@ -437,7 +568,13 @@ public class ClientSocket implements ClientSocketInterface {
 			clientResponse=this.ReadFromSocket();
 		}
 	}
-	
+	/**
+	 * Preleva un Valore o un errore da Socket
+	 * @param returnValueCheckCode
+	 * @return xml
+	 * @throws RemoteException Errore Connessione
+	 * @throws InvalidCredentialException Errore Credenziali
+	 */
 	private String getReturnValueOrErrorFromSocket(String returnValueCheckCode) throws RemoteException, InvalidCredentialException{
 		String xml=this.ReadFromSocket();
 		while (!xml.contains(returnValueCheckCode) || !xml.contains(ParameterEOF.ERRORE_DTO.getValue())){
@@ -459,7 +596,10 @@ public class ClientSocket implements ClientSocketInterface {
 		
 		return xml;
 	}
-
+	/**
+	 * Leggi dal Socket
+	 * @return Messaggio dal Socket
+	 */
 	private String ReadFromSocket(){
 		try {
 //			while(!reader.ready()){
@@ -473,7 +613,10 @@ public class ClientSocket implements ClientSocketInterface {
 		}
 		return "";
 	}
-	
+	/**
+	 * Scrivi sul Socket
+	 * @param message Messaggio
+	 */
 	private void WriteOnSocket(String message){
 		this.writer.write(message);
 		this.writer.flush();

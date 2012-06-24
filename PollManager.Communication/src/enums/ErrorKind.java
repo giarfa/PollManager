@@ -1,4 +1,9 @@
 package enums;
+/**
+ * Tipi di Errore
+* @author 727826-729399
+* 
+*/
 
 public enum ErrorKind {
 	REMOTE_EXCEPTION("REMOTE_EXCEPTION"),

@@ -27,7 +27,10 @@ import enums.ErrorKind;
 import enums.OperationCode;
 import enums.ParameterEOF;
 import exception.InvalidCredentialException;
-
+/**
+* Implementazione Socket-Server
+* @author 727826-729399
+*/
 public class ServerSocket extends BaseServer implements ServerSocketInterface {
 
 	private Socket clientSocket;
@@ -35,6 +38,10 @@ public class ServerSocket extends BaseServer implements ServerSocketInterface {
 	private PrintWriter writer;
 	private XStream converter;
 	
+	/**
+	 * Costruttore di ServerSocket
+	 * @param clientSocket
+	 */
 	public ServerSocket(Socket clientSocket){
 		this.converter=new XStream();
 		this.clientSocket=clientSocket;
@@ -45,7 +52,9 @@ public class ServerSocket extends BaseServer implements ServerSocketInterface {
 			e.printStackTrace();
 		}
 	}
-	
+	/**
+	 * Avvia Server Socket
+	 */
 	@Override
 	public void run() {
 		try {
@@ -185,6 +194,9 @@ public class ServerSocket extends BaseServer implements ServerSocketInterface {
 		}
 	}
 	
+	/**
+	 * Login Utente
+	 */
 	public void Login() {
 		try {
 			String user=this.getParameterFromSocket("");
@@ -198,6 +210,10 @@ public class ServerSocket extends BaseServer implements ServerSocketInterface {
 		}
 	}
 
+	
+	/**
+	 * Logout Utente
+	 */
 	private void Logout() {
 		try {
 			String xml=this.getParameterFromSocket(ParameterEOF.UTENTE_DTO.getValue());
@@ -208,7 +224,10 @@ public class ServerSocket extends BaseServer implements ServerSocketInterface {
 			this.sendErrorToSocket(new ErroreDTO(ErrorKind.REMOTE_EXCEPTION.getValue(), e.getMessage()));
 		}
 	}
-
+	
+	/**
+	 * Get Sondaggio dall'id
+	 */
 	private void SondaggioGetByKey() {
 		try {
 			int idSondaggio=Integer.parseInt(this.getParameterFromSocket(""));
@@ -224,7 +243,10 @@ public class ServerSocket extends BaseServer implements ServerSocketInterface {
 			this.sendErrorToSocket(new ErroreDTO(ErrorKind.REMOTE_EXCEPTION.getValue(), e.getMessage()));
 		}
 	}
-
+	
+	/**
+	 * Lista Sondaggi
+	 */
 	private void SondaggioGetList_internal() {
 		try {
 			List<SondaggioDTO> sondaggi= super.SondaggioGetList();
@@ -234,6 +256,9 @@ public class ServerSocket extends BaseServer implements ServerSocketInterface {
 		}
 	}
 
+	/**
+	 * Crea Sondaggio
+	 */
 	private void SondaggioCrea() {
 		
 		try {
@@ -245,7 +270,10 @@ public class ServerSocket extends BaseServer implements ServerSocketInterface {
 			this.sendErrorToSocket(new ErroreDTO(ErrorKind.REMOTE_EXCEPTION.getValue(), e.getMessage()));
 		}
 	}
-
+	
+	/**
+	 * Modifica sondaggio
+	 */
 	private void SondaggioModifica() {
 		try {
 			String xml=this.getParameterFromSocket(ParameterEOF.SONDAGGIO_DTO.getValue());
@@ -256,7 +284,9 @@ public class ServerSocket extends BaseServer implements ServerSocketInterface {
 			this.sendErrorToSocket(new ErroreDTO(ErrorKind.REMOTE_EXCEPTION.getValue(), e.getMessage()));
 		}
 	}
-
+	/**
+	 * Aggiungi domanda Multipla al Sondaggio
+	 */
 	private void SondaggioAggiungiDomandaMultipla() {
 		try {
 			String xml=this.getParameterFromSocket(ParameterEOF.MULTIPLA_DTO.getValue());
@@ -268,6 +298,9 @@ public class ServerSocket extends BaseServer implements ServerSocketInterface {
 		}
 	}
 
+	/**
+	 * Aggiungi domanda Libera al Sondaggio
+	 */
 	private void SondaggioAggiungiDomandaLibera() {
 		try {
 			String xml=this.getParameterFromSocket(ParameterEOF.LIBERA_DTO.getValue());
@@ -279,6 +312,9 @@ public class ServerSocket extends BaseServer implements ServerSocketInterface {
 		}
 	}
 
+	/**
+	 * Aggiungi domanda Range al Sondaggio
+	 */
 	private void SondaggioAggiungiDomandaRange() {
 		try {
 			String xml=this.getParameterFromSocket(ParameterEOF.RANGE_DTO.getValue());
@@ -289,7 +325,11 @@ public class ServerSocket extends BaseServer implements ServerSocketInterface {
 			this.sendErrorToSocket(new ErroreDTO(ErrorKind.REMOTE_EXCEPTION.getValue(), e.getMessage()));
 		}
 	}
+	
 
+	/**
+	 * Aggiungi domanda Matrice al Sondaggio
+	 */
 	private void SondaggioAggiungiDomandaMatrice() {
 		try {
 			String xml=this.getParameterFromSocket(ParameterEOF.MATRICE_DTO.getValue());
@@ -301,6 +341,9 @@ public class ServerSocket extends BaseServer implements ServerSocketInterface {
 		}
 	}
 
+	/**
+	 * Aggiungi Compilazione al Sondaggio
+	 */
 	private void SondaggioAggiungiCompilazione() {
 		try {
 			String xml=this.getParameterFromSocket(ParameterEOF.COMPILAZIONE_DTO.getValue());
@@ -312,6 +355,9 @@ public class ServerSocket extends BaseServer implements ServerSocketInterface {
 		}
 	}
 
+	/**
+	 *  Attiva Sondaggio
+	 */
 	private void SondaggioSetEnable() {
 		try {
 			int idSondaggio=Integer.parseInt(this.getParameterFromSocket(""));
@@ -322,6 +368,9 @@ public class ServerSocket extends BaseServer implements ServerSocketInterface {
 		}
 	}
 
+	/**
+	 * Disattiva Sondaggio
+	 */
 	private void SondaggioSetDisable() {
 		try {
 			int idSondaggio=Integer.parseInt(this.getParameterFromSocket(""));
@@ -332,6 +381,9 @@ public class ServerSocket extends BaseServer implements ServerSocketInterface {
 		}
 	}
 
+	/**
+	 * Modifica Domanda Multipla
+	 */
 	private void DomandaModifica_multipla() {
 		try {
 			String xml=this.getParameterFromSocket(ParameterEOF.MULTIPLA_DTO.getValue());
@@ -343,6 +395,9 @@ public class ServerSocket extends BaseServer implements ServerSocketInterface {
 		}
 	}
 
+	/**
+	 * Modifica Domanda Libera
+	 */
 	private void DomandaModifica_libera() {
 		try {
 			String xml=this.getParameterFromSocket(ParameterEOF.LIBERA_DTO.getValue());
@@ -354,6 +409,9 @@ public class ServerSocket extends BaseServer implements ServerSocketInterface {
 		}
 	}
 
+	/**
+	 * Modifica Domanda Range
+	 */
 	private void DomandaModifica_range() {
 		try {
 			String xml=this.getParameterFromSocket(ParameterEOF.RANGE_DTO.getValue());
@@ -365,6 +423,9 @@ public class ServerSocket extends BaseServer implements ServerSocketInterface {
 		}
 	}
 
+	/**
+	 * Modifica Domanda Matrice
+	 */
 	private void DomandaModifica_matrice() {
 		try {
 			String xml=this.getParameterFromSocket(ParameterEOF.MATRICE_DTO.getValue());
@@ -376,6 +437,9 @@ public class ServerSocket extends BaseServer implements ServerSocketInterface {
 		}
 	}
 
+	/**
+	 * Modifica ValoriMatrice 
+	 */
 	private void DomandaModifica_valoriMatrice() {
 		try {
 			String xml=this.getParameterFromSocket(ParameterEOF.VALORIMATRICE_DTO.getValue());
@@ -387,6 +451,9 @@ public class ServerSocket extends BaseServer implements ServerSocketInterface {
 		}
 	}
 
+	/**
+	 * Aggiungi ValoriMatrice a Domanda
+	 */
 	private void DomandaAggiungiValoriMatrice() {
 		try {
 			String xml=this.getParameterFromSocket(ParameterEOF.VALORIMATRICE_DTO.getValue());
@@ -397,7 +464,11 @@ public class ServerSocket extends BaseServer implements ServerSocketInterface {
 			this.sendErrorToSocket(new ErroreDTO(ErrorKind.REMOTE_EXCEPTION.getValue(), e.getMessage()));
 		}
 	}
+	
 
+	/**
+	 * Aggiungi Risposta a Domanda
+	 */
 	private void DomandaAggiungiRisposta() {
 		try {
 			String xml=this.getParameterFromSocket(ParameterEOF.RISPOSTA_DTO.getValue());
@@ -409,6 +480,9 @@ public class ServerSocket extends BaseServer implements ServerSocketInterface {
 		}
 	}
 
+	/**
+	 * Attiva Domanda
+	 */
 	private void DomandaSetEnable() {
 		try {
 			int idDomanda=Integer.parseInt(this.getParameterFromSocket(""));
@@ -419,6 +493,9 @@ public class ServerSocket extends BaseServer implements ServerSocketInterface {
 		}
 	}
 
+	/**
+	 * Disattiva Domanda
+	 */
 	private void DomandaSetDisable() {
 		try {
 			int idDomanda=Integer.parseInt(this.getParameterFromSocket(""));
@@ -429,6 +506,9 @@ public class ServerSocket extends BaseServer implements ServerSocketInterface {
 		}
 	}
 
+	/**
+	 * Modifica Risposta
+	 */
 	private void RispostaModifica() {
 		try {
 			String xml=this.getParameterFromSocket(ParameterEOF.RISPOSTA_DTO.getValue());
@@ -440,6 +520,9 @@ public class ServerSocket extends BaseServer implements ServerSocketInterface {
 		}
 	}
 
+	/**
+	 * Attiva Risposta
+	 */
 	private void RispostaSetEnable() {
 		try {
 			int idRisposta=Integer.parseInt(this.getParameterFromSocket(""));
@@ -450,6 +533,9 @@ public class ServerSocket extends BaseServer implements ServerSocketInterface {
 		}
 	}
 
+	/**
+	 * Disattiva Risposta
+	 */
 	private void RispostaSetDisable() {
 		try {
 			int idRisposta=Integer.parseInt(this.getParameterFromSocket(""));
@@ -460,6 +546,9 @@ public class ServerSocket extends BaseServer implements ServerSocketInterface {
 		}
 	}
 
+	/**
+	 * Modifica Compilazione
+	 */
 	private void CompilazioneModifica() {
 		try {
 			String xml=this.getParameterFromSocket(ParameterEOF.COMPILAZIONE_DTO.getValue());
@@ -471,6 +560,9 @@ public class ServerSocket extends BaseServer implements ServerSocketInterface {
 		}
 	}
 
+	/**
+	 * Agguingi CompilazioneRisposta a Compilazione
+	 */
 	private void CompilazioneAggiungiCompilazioneRisposta() {
 		try {
 			String xml=this.getParameterFromSocket(ParameterEOF.COMPILAZIONERISPOSTA_DTO.getValue());
@@ -483,6 +575,9 @@ public class ServerSocket extends BaseServer implements ServerSocketInterface {
 		
 	}
 
+	/**
+	 * Attiva Compilazione
+	 */
 	private void CompilazioneSetEnable() {
 		try {
 			int idCompilazione=Integer.parseInt(this.getParameterFromSocket(""));
@@ -493,6 +588,9 @@ public class ServerSocket extends BaseServer implements ServerSocketInterface {
 		}
 	}
 
+	/**
+	 * Disattiva Compilazione
+	 */
 	private void CompilazioneSetDisable() {
 		try {
 			int idCompilazione=Integer.parseInt(this.getParameterFromSocket(""));
@@ -503,6 +601,9 @@ public class ServerSocket extends BaseServer implements ServerSocketInterface {
 		}
 	}
 
+	/**
+	 * Modifica CompilazioneRisposta
+	 */
 	private void CompilazioneRispostaModifica() {
 		try {
 			String xml=this.getParameterFromSocket(ParameterEOF.COMPILAZIONERISPOSTA_DTO.getValue());
@@ -514,6 +615,10 @@ public class ServerSocket extends BaseServer implements ServerSocketInterface {
 		}
 	}
 
+	/**
+	 * Elimina CompilazioneRisposta
+	 * 
+	 */
 	private void CompilazioneRispostaElimina() {
 		try {
 			int idCompilazioneRisposta=Integer.parseInt(this.getParameterFromSocket(""));
@@ -524,6 +629,9 @@ public class ServerSocket extends BaseServer implements ServerSocketInterface {
 		}
 	}
 
+	/**
+	 * Get Utente dall'idUtente
+	 */
 	private void UtenteGetByKey() {
 		try {
 			int idUtente=Integer.parseInt(this.getParameterFromSocket(""));
@@ -534,6 +642,9 @@ public class ServerSocket extends BaseServer implements ServerSocketInterface {
 		}
 	}
 
+	/**
+	 * Lista Utenti
+	 */
 	private void UtenteGetList_internal() {
 		try {
 			List<UtenteDTO> utenti=super.UtenteGetList();
@@ -543,6 +654,9 @@ public class ServerSocket extends BaseServer implements ServerSocketInterface {
 		}
 	}
 
+	/**
+	 * Crea Utente
+	 */
 	private void UtenteCrea() {
 		try {
 			String xml=this.getParameterFromSocket(ParameterEOF.UTENTE_DTO.getValue());
@@ -554,6 +668,9 @@ public class ServerSocket extends BaseServer implements ServerSocketInterface {
 		}
 	}
 
+	/**
+	 * Modifica Utente
+	 */
 	private void UtenteModifica() {
 		try {
 			String xml=this.getParameterFromSocket(ParameterEOF.UTENTE_DTO.getValue());
@@ -565,6 +682,9 @@ public class ServerSocket extends BaseServer implements ServerSocketInterface {
 		}
 	}
 
+	/**
+	 * Attiva Utente
+	 */
 	private void UtenteSetEnable() {
 		try {
 			int idUtente=Integer.parseInt(this.getParameterFromSocket(""));
@@ -575,6 +695,9 @@ public class ServerSocket extends BaseServer implements ServerSocketInterface {
 		}
 	}
 
+	/**
+	 * Disattiva Utente
+	 */
 	private void UtenteSetDisable() {
 		try {
 			int idUtente=Integer.parseInt(this.getParameterFromSocket(""));
@@ -585,6 +708,11 @@ public class ServerSocket extends BaseServer implements ServerSocketInterface {
 		}
 	}
 	
+	/**
+	 * Preleva parametro dal Socket
+	 * @param paramCheckValue Parametro
+	 * @return xml
+	 */
 	private String getParameterFromSocket(String paramCheckValue){
 		String xml=this.ReadFromSocket();
 		while (!xml.contains(paramCheckValue)){
@@ -595,6 +723,10 @@ public class ServerSocket extends BaseServer implements ServerSocketInterface {
 		return xml;
 	}
 	
+	/**
+	 * Invia risposta sul Socket
+	 * @param returnValue risposta
+	 */
 	private void sendReturnValueToSocket(String returnValue){
 		String xml=returnValue.replace("\n", "");
 		this.WriteOnSocket(xml);
@@ -606,6 +738,10 @@ public class ServerSocket extends BaseServer implements ServerSocketInterface {
 		}
 	}
 	
+	/**
+	 * Invia Errori su Socket
+	 * @param error Tipo di errore
+	 */
 	private void sendErrorToSocket(ErroreDTO error){
 		String xml=this.converter.toXML(error).replace("\n", "");
 		this.WriteOnSocket(xml);
@@ -617,6 +753,10 @@ public class ServerSocket extends BaseServer implements ServerSocketInterface {
 		}
 	}
 
+	/**
+	 * Leggi dal Socket
+	 * @return ""
+	 */
 	private String ReadFromSocket(){
 		try {
 //			while(!reader.ready()){
@@ -629,7 +769,10 @@ public class ServerSocket extends BaseServer implements ServerSocketInterface {
 			return "";
 		}
 	}
-	
+	/**
+	 * Scrivi sul Socket
+	 * @param message Messaggio
+	 */
 	private void WriteOnSocket(String message){
 		this.writer.write(message);
 		this.writer.flush();

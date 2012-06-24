@@ -1,5 +1,8 @@
 package enums;
-
+/**
+ * 
+ * @author 727826-729399
+*/
 public enum OperationCode {
 	VALID_COMMAND("VALID_COMMAND"),
 	INVALID_COMMAND("INVALID_COMMAND"),

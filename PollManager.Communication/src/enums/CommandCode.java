@@ -1,5 +1,9 @@
 package enums;
-
+/**
+ * 
+* @author 727826-729399
+* 
+*/
 public enum CommandCode {
 	LOGIN("LOGIN"),
 	LOGOUT("LOGOUT"),

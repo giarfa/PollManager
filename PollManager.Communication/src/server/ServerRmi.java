@@ -3,14 +3,16 @@ package server;
 import java.io.Serializable;
 
 import communication.ServerRmiInterface;
-
+/**
+* RMI-Server
+* @author 727826-729399
+*/
 public class ServerRmi extends BaseServer implements ServerRmiInterface, Serializable {
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
-
+	
+	
 	@Override
 	public void run() {
 		try {
