@@ -544,7 +544,7 @@ public class AmministratoreGUI extends javax.swing.JFrame {
     private void inizializza() throws RemoteException{
     	
     	this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-    	java.util.List<UtenteDTO> listaUtenti=(java.util.List<UtenteDTO>) new List();
+    	java.util.List<UtenteDTO> listaUtenti=new java.util.ArrayList<UtenteDTO>();
     	listaUtenti=client.UtenteGetList();
 		jList1.setListData(listaUtenti.toArray());
     }

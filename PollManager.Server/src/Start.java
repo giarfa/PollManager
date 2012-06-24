@@ -12,15 +12,15 @@ public class Start {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-//		ServerAcceptRmi rmi = new ServerAcceptRmi("127.0.0.1");
-//		Thread RmiThread=new Thread(rmi);
+		ServerAcceptRmi rmi = new ServerAcceptRmi("127.0.0.1");
+		Thread RmiThread=new Thread(rmi);
+		
+		RmiThread.start();
+		
+//		ServerAcceptSocket socket = new ServerAcceptSocket();
+//		Thread SocketThread=new Thread(socket);
 //		
-//		RmiThread.start();
-		
-		ServerAcceptSocket socket = new ServerAcceptSocket();
-		Thread SocketThread=new Thread(socket);
-		
-		SocketThread.start();
+//		SocketThread.start();
 		
 		Boolean continua = true;
 		BufferedReader inputBuffer = new BufferedReader(new InputStreamReader(System.in));
@@ -37,8 +37,8 @@ public class Start {
 				System.err.println("Errore di lettura da tastiera");
 			}
         }
-		//rmi.Shutdown();
-		socket.Shutdown();
+		rmi.Shutdown();
+//		socket.Shutdown();
 	}
 
 }
