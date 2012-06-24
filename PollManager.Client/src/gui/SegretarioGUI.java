@@ -750,7 +750,7 @@ public class SegretarioGUI extends javax.swing.JFrame {
 	        );
 
 	        //Multipla.setAutoRequestFocus(false);
-	        Multipla.setMinimumSize(new java.awt.Dimension(540, 500));
+	        Multipla.setMinimumSize(new java.awt.Dimension(540, 600));
 
 	        jLabel14.setText("Titolo");
 
@@ -1488,27 +1488,27 @@ if (range3Text.getText().length() == 0) {
 					client.DomandaAggiungiRisposta(risp);
 				}
 				i++;
-				creaRispostaRange(opzione1, 0);
+				creaRispostaRange(opzione1, 0,id);
 
 				if (!opzione2.isEmpty()) {
 					i++;
-					creaRispostaRange(opzione2,1);
+					creaRispostaRange(opzione2,1,id);
 
 					if (!opzione3.isEmpty()) {
 						i++;
-						creaRispostaRange(opzione3,2);
+						creaRispostaRange(opzione3,2,id);
 						
 						if (!opzione4.isEmpty()) {
 							i++;
-							creaRispostaRange(opzione4,3);
+							creaRispostaRange(opzione4,3,id);
 							
 							if (!opzione5.isEmpty()) {
 								i++;
-								creaRispostaRange(opzione5,4);
+								creaRispostaRange(opzione5,4,id);
 								
 								if (!opzione6.isEmpty()) {
 									i++;
-									creaRispostaRange(opzione6,5);
+									creaRispostaRange(opzione6,5,id);
 								}
 							}
 						}
@@ -1574,51 +1574,51 @@ if (range3Text.getText().length() == 0) {
 				risp.setOrdine(99);
 				client.DomandaAggiungiRisposta(risp);
 			}
-			agguingiValoreMatrice(opzione1, 0, matrice);
-			if (!sr2.isEmpty()) {
+			agguingiValoreMatrice(opzione1, 0, matrice,id);
+			if (!opzione2.isEmpty()) {
 
-				agguingiValoreMatrice(opzione2, 1, matrice);
+				agguingiValoreMatrice(opzione2, 1, matrice,id);
 
-				if (!sr3.isEmpty()) {
-					agguingiValoreMatrice(opzione3, 2, matrice);
+				if (!opzione3.isEmpty()) {
+					agguingiValoreMatrice(opzione3, 2, matrice,id);
 
-					if (!sr4.isEmpty()) {
+					if (!opzione4.isEmpty()) {
 						
-						agguingiValoreMatrice(opzione4, 3, matrice);
+						agguingiValoreMatrice(opzione4, 3, matrice,id);
 						
-						if (!sr5.isEmpty()) {
+						if (!opzione5.isEmpty()) {
 							
-							agguingiValoreMatrice(opzione5, 4, matrice);
+							agguingiValoreMatrice(opzione5, 4, matrice,id);
 							
-							if (!sr6.isEmpty()) {
+							if (!opzione6.isEmpty()) {
 								
-								agguingiValoreMatrice(opzione6, 5, matrice);
+								agguingiValoreMatrice(opzione6, 5, matrice,id);
 							}
 						}
 					}
 				}
 			}
 			i++;
-			creaRispostaMatrice(sr1, 0);
+			creaRispostaMatrice(sr1, 0,id);
 			if (!sr2.isEmpty()) {
 				i++;
-				creaRispostaMatrice(sr2,1);
+				creaRispostaMatrice(sr2,1,id);
 
 				if (!sr3.isEmpty()) {
 					i++;
-					creaRispostaMatrice(sr3,2);
+					creaRispostaMatrice(sr3,2,id);
 
 					if (!sr4.isEmpty()) {
 						i++;
-						creaRispostaMatrice(sr4,3);
+						creaRispostaMatrice(sr4,3,id);
 						
 						if (!sr5.isEmpty()) {
 							i++;
-							creaRispostaMatrice(sr5,4);
+							creaRispostaMatrice(sr5,4,id);
 							
 							if (!sr6.isEmpty()) {
 								i++;
-								creaRispostaMatrice(sr6,5);
+								creaRispostaMatrice(sr6,5,id);
 							}
 						}
 					}
@@ -1698,27 +1698,27 @@ if (range3Text.getText().length() == 0) {
 			}
 			
 			i++;
-			creaRispostaMultipla(opzione1,0,specificare1);
+			creaRispostaMultipla(opzione1,0,specificare1,id);
 
 			if (!opzione2.isEmpty()) {
 				i++;
-				creaRispostaMultipla(opzione2,1,specificare2);
+				creaRispostaMultipla(opzione2,1,specificare2,id);
 
 				if (!opzione3.isEmpty()) {
 					i++;
-					creaRispostaMultipla(opzione3,2,specificare3);
+					creaRispostaMultipla(opzione3,2,specificare3,id);
 
 					if (!opzione4.isEmpty()) {
 						i++;
-						creaRispostaMultipla(opzione4,3,specificare4);
+						creaRispostaMultipla(opzione4,3,specificare4,id);
 						
 						if (!opzione5.isEmpty()) {
 							i++;
-							creaRispostaMultipla(opzione5,5,specificare5);
+							creaRispostaMultipla(opzione5,5,specificare5,id);
 							
 							if (!opzione6.isEmpty()) {
 								i++;
-								creaRispostaMultipla(opzione6,6,specificare6);
+								creaRispostaMultipla(opzione6,6,specificare6,id);
 							}
 						}
 					}
@@ -2109,7 +2109,7 @@ if (range3Text.getText().length() == 0) {
 	 * @param specificare
 	 * @throws RemoteException
 	 */
-	private void creaRispostaMultipla(String opzione,int ordine, boolean specificare) throws RemoteException {
+	private void creaRispostaMultipla(String opzione,int ordine, boolean specificare, int idDomanda) throws RemoteException {
 		RispostaDTO risposta = new RispostaDTO();
 
 		risposta.setDomandaAssociataIdDomanda(idDomanda);
@@ -2130,7 +2130,7 @@ if (range3Text.getText().length() == 0) {
 	 * @param ordine
 	 * @throws RemoteException
 	 */
-	private void creaRispostaRange(String opzione, int ordine) throws RemoteException{
+	private void creaRispostaRange(String opzione, int ordine, int idDomanda) throws RemoteException{
 		RispostaDTO risposta = new RispostaDTO();
 
 		risposta.setDomandaAssociataIdDomanda(idDomanda);
@@ -2149,10 +2149,9 @@ if (range3Text.getText().length() == 0) {
 	 * @param matrice
 	 * @throws RemoteException
 	 */
-	private void agguingiValoreMatrice(String sr, int ordine, MatriceDTO matrice) throws RemoteException{
+	private void agguingiValoreMatrice(String sr, int ordine, MatriceDTO matrice, int idDomanda) throws RemoteException{
 		ValoriMatriceDTO valorimatrice = new ValoriMatriceDTO();
 		
-		idDomanda=matrice.getIdDomanda();
 		valorimatrice.setMatriceIdDomanda(idDomanda);
 		valorimatrice.setOrdine(0);
 		valorimatrice.setTesto(sr);
@@ -2167,7 +2166,7 @@ if (range3Text.getText().length() == 0) {
 	 * @param ordine Ordinamento risposta nella domanda
 	 * @throws RemoteException
 	 */
-	private void creaRispostaMatrice(String opzione, int ordine) throws RemoteException{
+	private void creaRispostaMatrice(String opzione, int ordine, int idDomanda) throws RemoteException{
 		RispostaDTO risposta = new RispostaDTO();
 		risposta.setDomandaAssociataIdDomanda(idDomanda);
 		risposta.setTesto(opzione);
