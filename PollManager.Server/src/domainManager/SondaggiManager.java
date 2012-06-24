@@ -66,32 +66,36 @@ public class SondaggiManager implements SondaggiManagerInterface {
 	}
 
 	@Override
-	public void AggiungiDomanda(MultiplaDTO dto) {
+	public int AggiungiDomanda(MultiplaDTO dto) {
 		Sondaggio sondaggio=this.GetById(dto.getSondaggioAssociatoIdSondaggio());
 		Orientamento orientamento=DTOMapper.getInstance().<Orientamento>map(dto.getOrientamento(), Orientamento.class);
 		sondaggio.AggiungiDomandaMultipla(dto.getOrdine(), dto.getTesto(), dto.isObbligatorio(), orientamento, dto.isIs_singola(), dto.getNumMinRisp());
-		this.SaveOrUpdate(sondaggio);
+		Sondaggio sondaggioSalvato=this.SaveOrUpdate(sondaggio);
+		return sondaggioSalvato.getDomande().get(0).getIdDomanda();
 	}
 
 	@Override
-	public void AggiungiDomanda(LiberaDTO dto) {
+	public int AggiungiDomanda(LiberaDTO dto) {
 		Sondaggio sondaggio=this.GetById(dto.getSondaggioAssociatoIdSondaggio());
 		sondaggio.AggiungiDomandaLibera(dto.getOrdine(), dto.getTesto(), dto.isObbligatorio(), dto.getMaxCaratteri(), dto.getMinCaratteri());
-		this.SaveOrUpdate(sondaggio);
+		Sondaggio sondaggioSalvato=this.SaveOrUpdate(sondaggio);
+		return sondaggioSalvato.getDomande().get(0).getIdDomanda();
 	}
 
 	@Override
-	public void AggiungiDomanda(RangeDTO dto) {
+	public int AggiungiDomanda(RangeDTO dto) {
 		Sondaggio sondaggio=this.GetById(dto.getSondaggioAssociatoIdSondaggio());
 		sondaggio.AggiungiDomandaRange(dto.getOrdine(), dto.getTesto(), dto.isObbligatorio(), dto.getValMin(), dto.getValMax(), dto.getDescValMin(), dto.getDescValMax(), dto.isRispSingola());
-		this.SaveOrUpdate(sondaggio);
+		Sondaggio sondaggioSalvato=this.SaveOrUpdate(sondaggio);
+		return sondaggioSalvato.getDomande().get(0).getIdDomanda();
 	}
 
 	@Override
-	public void AggiungiDomanda(MatriceDTO dto) {
+	public int AggiungiDomanda(MatriceDTO dto) {
 		Sondaggio sondaggio=this.GetById(dto.getSondaggioAssociatoIdSondaggio());
 		sondaggio.AggiungiDomandaMatrice(dto.getOrdine(), dto.getTesto(), dto.isObbligatorio());
-		this.SaveOrUpdate(sondaggio);
+		Sondaggio sondaggioSalvato=this.SaveOrUpdate(sondaggio);
+		return sondaggioSalvato.getDomande().get(0).getIdDomanda();
 	}
 
 	@Override

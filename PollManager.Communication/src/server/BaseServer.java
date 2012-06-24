@@ -51,27 +51,27 @@ public class BaseServer implements ServerInterface {
 	}
 
 	@Override
-	public void SondaggioAggiungiDomandaMultipla(MultiplaDTO dto) throws RemoteException {
+	public int SondaggioAggiungiDomandaMultipla(MultiplaDTO dto) throws RemoteException {
 		SondaggiManagerInterface manager=Resolver.getInstance().getSondaggiManager();
-		manager.AggiungiDomanda(dto);
+		return manager.AggiungiDomanda(dto);
 	}
 
 	@Override
-	public void SondaggioAggiungiDomandaLibera(LiberaDTO dto) throws RemoteException {
+	public int SondaggioAggiungiDomandaLibera(LiberaDTO dto) throws RemoteException {
 		SondaggiManagerInterface manager=Resolver.getInstance().getSondaggiManager();
-		manager.AggiungiDomanda(dto);
+		return manager.AggiungiDomanda(dto);
 	}
 
 	@Override
-	public void SondaggioAggiungiDomandaRange(RangeDTO dto) throws RemoteException {
+	public int SondaggioAggiungiDomandaRange(RangeDTO dto) throws RemoteException {
 		SondaggiManagerInterface manager=Resolver.getInstance().getSondaggiManager();
-		manager.AggiungiDomanda(dto);
+		return manager.AggiungiDomanda(dto);
 	}
 
 	@Override
-	public void SondaggioAggiungiDomandaMatrice(MatriceDTO dto) throws RemoteException {
+	public int SondaggioAggiungiDomandaMatrice(MatriceDTO dto) throws RemoteException {
 		SondaggiManagerInterface manager=Resolver.getInstance().getSondaggiManager();
-		manager.AggiungiDomanda(dto);
+		return manager.AggiungiDomanda(dto);
 	}
 
 	@Override

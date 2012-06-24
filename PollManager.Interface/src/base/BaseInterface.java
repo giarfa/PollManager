@@ -16,10 +16,10 @@ public interface BaseInterface {
 	public List<SondaggioDTO> SondaggioGetList() throws RemoteException;
 	public SondaggioDTO SondaggioCrea(SondaggioDTO dto) throws RemoteException;
 	public SondaggioDTO SondaggioModifica(SondaggioDTO dto) throws RemoteException;
-	public void SondaggioAggiungiDomandaMultipla(MultiplaDTO dto) throws RemoteException;
-	public void SondaggioAggiungiDomandaLibera(LiberaDTO dto) throws RemoteException;
-	public void SondaggioAggiungiDomandaRange(RangeDTO dto) throws RemoteException;
-	public void SondaggioAggiungiDomandaMatrice(MatriceDTO dto) throws RemoteException;
+	public int SondaggioAggiungiDomandaMultipla(MultiplaDTO dto) throws RemoteException;
+	public int SondaggioAggiungiDomandaLibera(LiberaDTO dto) throws RemoteException;
+	public int SondaggioAggiungiDomandaRange(RangeDTO dto) throws RemoteException;
+	public int SondaggioAggiungiDomandaMatrice(MatriceDTO dto) throws RemoteException;
 	public CompilazioneDTO SondaggioAggiungiCompilazione(CompilazioneDTO dto) throws RemoteException;
 	public void SondaggioSetEnable(int idSondaggio) throws RemoteException;
 	public void SondaggioSetDisable(int idSondaggio) throws RemoteException;

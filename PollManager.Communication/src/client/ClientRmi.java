@@ -100,29 +100,29 @@ public class ClientRmi implements ClientRmiInterface {
 	 * 
 	 */
 	@Override
-	public void SondaggioAggiungiDomandaMultipla(MultiplaDTO dto) throws RemoteException {
-		this.server.SondaggioAggiungiDomandaMultipla(dto);
+	public int SondaggioAggiungiDomandaMultipla(MultiplaDTO dto) throws RemoteException {
+		return this.server.SondaggioAggiungiDomandaMultipla(dto);
 	}
 	/**
 	 * 
 	 */
 	@Override
-	public void SondaggioAggiungiDomandaLibera(LiberaDTO dto) throws RemoteException {
-		this.server.SondaggioAggiungiDomandaLibera(dto);
+	public int SondaggioAggiungiDomandaLibera(LiberaDTO dto) throws RemoteException {
+		return this.server.SondaggioAggiungiDomandaLibera(dto);
 	}
 	/**
 	 * 
 	 */
 	@Override
-	public void SondaggioAggiungiDomandaRange(RangeDTO dto) throws RemoteException {
-		this.server.SondaggioAggiungiDomandaRange(dto);
+	public int SondaggioAggiungiDomandaRange(RangeDTO dto) throws RemoteException {
+		return this.server.SondaggioAggiungiDomandaRange(dto);
 	}
 	/**
 	 * 
 	 */
 	@Override
-	public void SondaggioAggiungiDomandaMatrice(MatriceDTO dto) throws RemoteException {
-		this.server.SondaggioAggiungiDomandaMatrice(dto);
+	public int SondaggioAggiungiDomandaMatrice(MatriceDTO dto) throws RemoteException {
+		return this.server.SondaggioAggiungiDomandaMatrice(dto);
 	}
 	/**
 	 * 

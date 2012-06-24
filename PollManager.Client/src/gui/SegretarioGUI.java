@@ -14,6 +14,7 @@ import dto.DomandaDTO;
 import dto.LiberaDTO;
 import dto.MatriceDTO;
 import dto.MultiplaDTO;
+import dto.OrientamentoDTO;
 import dto.RangeDTO;
 import dto.RispostaDTO;
 import dto.SondaggioDTO;
@@ -1480,6 +1481,7 @@ if (range3Text.getText().length() == 0) {
 				if (!modificaFlag){
 					
 					RispostaDTO risp=new RispostaDTO();
+					risp.setTesto("");
 					risp.setDomandaAssociataIdDomanda(id);
 					risp.setNonRisponde(true);
 					risp.setOrdine(99);
@@ -1566,6 +1568,7 @@ if (range3Text.getText().length() == 0) {
 			if (!modificaFlag){
 				
 				RispostaDTO risp=new RispostaDTO();
+				risp.setTesto("");
 				risp.setDomandaAssociataIdDomanda(id);
 				risp.setNonRisponde(true);
 				risp.setOrdine(99);
@@ -1679,6 +1682,7 @@ if (range3Text.getText().length() == 0) {
 		multipla.setTesto(titoloDomanda);
 		multipla.setObbligatorio(obbligatorio);
 		multipla.setSondaggioAssociatoIdSondaggio(idSondaggio);
+		multipla.setOrientamento(OrientamentoDTO.ORIZZONTALE);
 		if (modificaFlag) multipla.setIdDomanda(idDomanda);
 		
 		try {
@@ -1686,6 +1690,7 @@ if (range3Text.getText().length() == 0) {
 			if (!modificaFlag){
 				
 				RispostaDTO risp=new RispostaDTO();
+				risp.setTesto("");
 				risp.setDomandaAssociataIdDomanda(id);
 				risp.setNonRisponde(true);
 				risp.setOrdine(99);
@@ -1966,6 +1971,7 @@ if (range3Text.getText().length() == 0) {
 				if (!modificaFlag){
 					int id=libera.getIdDomanda();
 					RispostaDTO risp=new RispostaDTO();
+					risp.setTesto("");
 					risp.setDomandaAssociataIdDomanda(id);
 					risp.setNonRisponde(true);
 					risp.setOrdine(99);

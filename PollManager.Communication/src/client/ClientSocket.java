@@ -130,38 +130,38 @@ public class ClientSocket implements ClientSocketInterface {
 	}
 
 	@Override
-	public void SondaggioAggiungiDomandaMultipla(MultiplaDTO dto) throws RemoteException {
+	public int SondaggioAggiungiDomandaMultipla(MultiplaDTO dto) throws RemoteException {
 		this.sendCommandToSocket(CommandCode.SONDAGGIO_AGGIUNGIDOMANDA_MULTIPLA.getValue());
 		this.sendParameterToSocket(this.converter.toXML(dto));
 		try {
-			this.getReturnValueOrErrorFromSocket(OperationCode.VOID_RETURN_MESSAGE.getValue());
+			return Integer.parseInt(this.getReturnValueOrErrorFromSocket(""));
 		} catch (InvalidCredentialException e) { throw new RemoteException(e.getMessage()); }
 	}
 
 	@Override
-	public void SondaggioAggiungiDomandaLibera(LiberaDTO dto) throws RemoteException {
+	public int SondaggioAggiungiDomandaLibera(LiberaDTO dto) throws RemoteException {
 		this.sendCommandToSocket(CommandCode.SONDAGGIO_AGGIUNGIDOMANDA_LIBERA.getValue());
 		this.sendParameterToSocket(this.converter.toXML(dto));
 		try {
-			this.getReturnValueOrErrorFromSocket(OperationCode.VOID_RETURN_MESSAGE.getValue());
+			return Integer.parseInt(this.getReturnValueOrErrorFromSocket(""));
 		} catch (InvalidCredentialException e) { throw new RemoteException(e.getMessage()); }
 	}
 
 	@Override
-	public void SondaggioAggiungiDomandaRange(RangeDTO dto) throws RemoteException {
+	public int SondaggioAggiungiDomandaRange(RangeDTO dto) throws RemoteException {
 		this.sendCommandToSocket(CommandCode.SONDAGGIO_AGGIUNGIDOMANDA_RANGE.getValue());
 		this.sendParameterToSocket(this.converter.toXML(dto));
 		try {
-			this.getReturnValueOrErrorFromSocket(OperationCode.VOID_RETURN_MESSAGE.getValue());
+			return Integer.parseInt(this.getReturnValueOrErrorFromSocket(""));
 		} catch (InvalidCredentialException e) { throw new RemoteException(e.getMessage()); }
 	}
 
 	@Override
-	public void SondaggioAggiungiDomandaMatrice(MatriceDTO dto) throws RemoteException {
+	public int SondaggioAggiungiDomandaMatrice(MatriceDTO dto) throws RemoteException {
 		this.sendCommandToSocket(CommandCode.SONDAGGIO_AGGIUNGIDOMANDA_MATRICE.getValue());
 		this.sendParameterToSocket(this.converter.toXML(dto));
 		try {
-			this.getReturnValueOrErrorFromSocket(OperationCode.VOID_RETURN_MESSAGE.getValue());
+			return Integer.parseInt(this.getReturnValueOrErrorFromSocket(""));
 		} catch (InvalidCredentialException e) { throw new RemoteException(e.getMessage()); }
 	}
 
