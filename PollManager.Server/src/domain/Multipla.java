@@ -2,10 +2,9 @@ package domain;
 
 import domain.Orientamento;
 /**
- * 
- * @author Alberto
- *
- */
+*
+* @author 727826-729399
+*/
 public class Multipla extends Domanda {
 	
 	private Orientamento orientamento;
@@ -13,13 +12,23 @@ public class Multipla extends Domanda {
 	private int NumMinRisp;
 	
 	/**
-	 * 
+	 * Costruttore di Multipla
 	 */
 	public Multipla(){
 		super();
 		this.idDomandaTipo=1;
 	}
-	
+	/**
+	 * Crea nuova domanda Multipla
+	 ** @param ordine Ordine della Domanda nel Sondaggio 
+	 * @param testo Testo della Domanda
+	 * @param isObbligatorio Se ha Risposta obbligatoria
+	 * @param orientamento Orientamento della domanda(Orrizontale o Verticale)
+	 * @param isSingola Se consentita singola Rispista
+	 * @param NumMinRisp Numero minimo Risposte
+	* @param sondaggioAssociato Sondaggio associato alla Domanda
+	 * @return this
+	 */
 	public static Multipla CreaMultipla(int ordine, String testo, boolean isObbligatorio, Orientamento orientamento, boolean isSingola,int NumMinRisp, Sondaggio sondaggioAssociato){
 		Multipla multipla=new Multipla();
 		multipla.ordine=ordine;
@@ -31,7 +40,16 @@ public class Multipla extends Domanda {
 		multipla.sondaggioAssociato=sondaggioAssociato;
 		return multipla;
 	}
-	
+	/**
+	 * Modifica domanda Multipla esistente
+	 ** @param ordine Ordine della Domanda nel Sondaggio 
+	 * @param testo Testo della Domanda
+	 * @param isObbligatorio Se ha Risposta obbligatoria
+	 * @param orientamento Orientamento della domanda(Orrizontale o Verticale)
+	 * @param isSingola Se consentita singola Rispista
+	 * @param NumMinRisp Numero minimo Risposte
+	 * @return
+	 */
 	public Multipla ModificaMultipla(int ordine, String testo, boolean isObbligatorio, Orientamento orientamento, boolean isSingola,int NumMinRisp){
 		this.ordine=ordine;
 		this.testo=testo;
