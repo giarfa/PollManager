@@ -75,6 +75,99 @@ public class ServerSocket extends BaseServer implements ServerSocketInterface {
 						case SONDAGGIO_MODIFICA:
 							this.SondaggioModifica();
 							break;
+						case SONDAGGIO_AGGIUNGIDOMANDA_MULTIPLA:
+							this.SondaggioAggiungiDomandaMultipla();
+							break;
+						case SONDAGGIO_AGGIUNGIDOMANDA_LIBERA:
+							this.SondaggioAggiungiDomandaLibera();
+							break;
+						case SONDAGGIO_AGGIUNGIDOMANDA_RANGE:
+							this.SondaggioAggiungiDomandaRange();
+							break;
+						case SONDAGGIO_AGGIUNGIDOMANDA_MATRICE:
+							this.SondaggioAggiungiDomandaMatrice();
+							break;
+						case SONDAGGIO_AGGIUNGICOMPILAZIONE:
+							this.SondaggioAggiungiCompilazione();
+							break;
+						case SONDAGGIO_SETENABLE:
+							this.SondaggioSetEnable();
+							break;
+						case SONDAGGIO_SETDISABLE:
+							this.SondaggioSetDisable();
+							break;
+						case DOMANDA_MODIFICA_MULTIPLA:
+							this.DomandaModifica_multipla();
+							break;
+						case DOMANDA_MODIFICA_LIBERA:
+							this.DomandaModifica_libera();
+							break;
+						case DOMANDA_MODIFICA_RANGE:
+							this.DomandaModifica_range();
+							break;
+						case DOMANDA_MODIFICA_MATRICE:
+							this.DomandaModifica_matrice();
+							break;
+						case DOMANDA_MODIFICA_VALORIMATRICE:
+							this.DomandaModifica_valoriMatrice();
+							break;
+						case DOMANDA_AGGIUNGI_VALORIMATRICE:
+							this.DomandaAggiungiValoriMatrice();
+							break;
+						case DOMANDA_AGGIUNGI_RISPOSTA:
+							this.DomandaAggiungiRisposta();
+							break;
+						case DOMANDA_SETENABLE:
+							this.DomandaSetEnable();
+							break;
+						case DOMANDA_SETDISABLE:
+							this.DomandaSetDisable();
+							break;
+						case RISPOSTA_MODIFICA:
+							this.RispostaModifica();
+							break;
+						case RISPOSTA_SETENABLE:
+							this.RispostaSetEnable();
+							break;
+						case RISPOSTA_SETDISABLE:
+							this.RispostaSetDisable();
+							break;
+						case COMPILAZIONE_MODIFICA:
+							this.CompilazioneModifica();
+							break;
+						case COMPILAZIONE_AGGIUNGI_COMPILAZIONERISPOSTA:
+							this.CompilazioneAggiungiCompilazioneRisposta();
+							break;
+						case COMPILAZIONE_SETENABLE:
+							this.CompilazioneSetEnable();
+							break;
+						case COMPILAZIONE_SETDISABLE:
+							this.CompilazioneSetDisable();
+							break;
+						case COMPILAZIONERISPOSTA_MODIFICA:
+							this.CompilazioneRispostaModifica();
+							break;
+						case COMPILAZIONERISPOSTA_ELIMINA:
+							this.CompilazioneRispostaElimina();
+							break;
+						case UTENTE_GETBYKEY:
+							this.UtenteGetByKey();
+							break;
+						case UTENTE_GETLIST:
+							this.UtenteGetList_internal();
+							break;
+						case UTENTE_CREA:
+							this.UtenteCrea();
+							break;
+						case UTENTE_MODIFICA:
+							this.UtenteModifica();
+							break;
+						case UTENTE_SETENABLE:
+							this.UtenteSetEnable();
+							break;
+						case UTENTE_SETDISABLE:
+							this.UtenteSetDisable();
+							break;
 					}
 				} catch (IllegalArgumentException e){
 					this.WriteOnSocket(OperationCode.INVALID_COMMAND.getValue());
@@ -87,13 +180,11 @@ public class ServerSocket extends BaseServer implements ServerSocketInterface {
 	}
 	
 	public void Login() {
-		String user=this.getParameterFromSocket("");
-		String password=this.getParameterFromSocket("");
-		
 		try {
+			String user=this.getParameterFromSocket("");
+			String password=this.getParameterFromSocket("");
 			UtenteDTO utente=super.Login(user, password);
 			this.sendReturnValueToSocket(this.converter.toXML(utente));
-			
 		} catch (RemoteException e) {
 			this.sendErrorToSocket(new ErroreDTO(ErrorKind.REMOTE_EXCEPTION.getValue(), e.getMessage()));
 		} catch (InvalidCredentialException e) {
@@ -102,10 +193,11 @@ public class ServerSocket extends BaseServer implements ServerSocketInterface {
 	}
 
 	private void Logout() {
-		String xml=this.getParameterFromSocket(ParameterEOF.UTENTE_DTO.getValue());
-		UtenteDTO utente=(UtenteDTO)this.converter.fromXML(xml);
 		try {
+			String xml=this.getParameterFromSocket(ParameterEOF.UTENTE_DTO.getValue());
+			UtenteDTO utente=(UtenteDTO)this.converter.fromXML(xml);
 			super.Logout(utente);
+			this.sendReturnValueToSocket(OperationCode.VOID_RETURN_MESSAGE.getValue());
 		} catch (RemoteException e) {
 			this.sendErrorToSocket(new ErroreDTO(ErrorKind.REMOTE_EXCEPTION.getValue(), e.getMessage()));
 		}
@@ -116,7 +208,6 @@ public class ServerSocket extends BaseServer implements ServerSocketInterface {
 			int idSondaggio=Integer.parseInt(this.getParameterFromSocket(""));
 			SondaggioDTO sondaggio=super.SondaggioGetByKey(idSondaggio);
 			this.sendReturnValueToSocket(this.converter.toXML(sondaggio));
-			
 		} catch (RemoteException e) {
 			this.sendErrorToSocket(new ErroreDTO(ErrorKind.REMOTE_EXCEPTION.getValue(), e.getMessage()));
 		}
@@ -159,6 +250,7 @@ public class ServerSocket extends BaseServer implements ServerSocketInterface {
 			String xml=this.getParameterFromSocket(ParameterEOF.MULTIPLA_DTO.getValue());
 			MultiplaDTO dto=(MultiplaDTO)this.converter.fromXML(xml);
 			super.SondaggioAggiungiDomandaMultipla(dto);
+			this.sendReturnValueToSocket(OperationCode.VOID_RETURN_MESSAGE.getValue());
 		} catch (RemoteException e) {
 			this.sendErrorToSocket(new ErroreDTO(ErrorKind.REMOTE_EXCEPTION.getValue(), e.getMessage()));
 		}
@@ -169,6 +261,7 @@ public class ServerSocket extends BaseServer implements ServerSocketInterface {
 			String xml=this.getParameterFromSocket(ParameterEOF.LIBERA_DTO.getValue());
 			LiberaDTO dto=(LiberaDTO)this.converter.fromXML(xml);
 			super.SondaggioAggiungiDomandaLibera(dto);
+			this.sendReturnValueToSocket(OperationCode.VOID_RETURN_MESSAGE.getValue());
 		} catch (RemoteException e) {
 			this.sendErrorToSocket(new ErroreDTO(ErrorKind.REMOTE_EXCEPTION.getValue(), e.getMessage()));
 		}
@@ -179,6 +272,7 @@ public class ServerSocket extends BaseServer implements ServerSocketInterface {
 			String xml=this.getParameterFromSocket(ParameterEOF.RANGE_DTO.getValue());
 			RangeDTO dto=(RangeDTO)this.converter.fromXML(xml);
 			super.SondaggioAggiungiDomandaRange(dto);
+			this.sendReturnValueToSocket(OperationCode.VOID_RETURN_MESSAGE.getValue());
 		} catch (RemoteException e) {
 			this.sendErrorToSocket(new ErroreDTO(ErrorKind.REMOTE_EXCEPTION.getValue(), e.getMessage()));
 		}
@@ -189,6 +283,7 @@ public class ServerSocket extends BaseServer implements ServerSocketInterface {
 			String xml=this.getParameterFromSocket(ParameterEOF.MATRICE_DTO.getValue());
 			MatriceDTO dto=(MatriceDTO)this.converter.fromXML(xml);
 			super.SondaggioAggiungiDomandaMatrice(dto);
+			this.sendReturnValueToSocket(OperationCode.VOID_RETURN_MESSAGE.getValue());
 		} catch (RemoteException e) {
 			this.sendErrorToSocket(new ErroreDTO(ErrorKind.REMOTE_EXCEPTION.getValue(), e.getMessage()));
 		}
@@ -209,6 +304,7 @@ public class ServerSocket extends BaseServer implements ServerSocketInterface {
 		try {
 			int idSondaggio=Integer.parseInt(this.getParameterFromSocket(""));
 			super.SondaggioSetEnable(idSondaggio);
+			this.sendReturnValueToSocket(OperationCode.VOID_RETURN_MESSAGE.getValue());
 		} catch (RemoteException e) {
 			this.sendErrorToSocket(new ErroreDTO(ErrorKind.REMOTE_EXCEPTION.getValue(), e.getMessage()));
 		}
@@ -218,164 +314,263 @@ public class ServerSocket extends BaseServer implements ServerSocketInterface {
 		try {
 			int idSondaggio=Integer.parseInt(this.getParameterFromSocket(""));
 			super.SondaggioSetDisable(idSondaggio);
+			this.sendReturnValueToSocket(OperationCode.VOID_RETURN_MESSAGE.getValue());
 		} catch (RemoteException e) {
 			this.sendErrorToSocket(new ErroreDTO(ErrorKind.REMOTE_EXCEPTION.getValue(), e.getMessage()));
 		}
 	}
 
-	public void DomandaModifica() {
+	private void DomandaModifica_multipla() {
 		try {
-			String xml=this.getParameterFromSocket(ParameterEOF.COMPILAZIONE_DTO.getValue());
+			String xml=this.getParameterFromSocket(ParameterEOF.MULTIPLA_DTO.getValue());
 			MultiplaDTO dto=(MultiplaDTO)this.converter.fromXML(xml);
 			super.DomandaModifica(dto);
+			this.sendReturnValueToSocket(OperationCode.VOID_RETURN_MESSAGE.getValue());
 		} catch (RemoteException e) {
 			this.sendErrorToSocket(new ErroreDTO(ErrorKind.REMOTE_EXCEPTION.getValue(), e.getMessage()));
 		}
 	}
 
-	@Override
-	public void DomandaModifica(LiberaDTO dto) throws RemoteException {
-		// TODO Auto-generated method stub
-		super.DomandaModifica(dto);
+	private void DomandaModifica_libera() {
+		try {
+			String xml=this.getParameterFromSocket(ParameterEOF.LIBERA_DTO.getValue());
+			LiberaDTO dto=(LiberaDTO)this.converter.fromXML(xml);
+			super.DomandaModifica(dto);
+			this.sendReturnValueToSocket(OperationCode.VOID_RETURN_MESSAGE.getValue());
+		} catch (RemoteException e) {
+			this.sendErrorToSocket(new ErroreDTO(ErrorKind.REMOTE_EXCEPTION.getValue(), e.getMessage()));
+		}
 	}
 
-	@Override
-	public void DomandaModifica(RangeDTO dto) throws RemoteException {
-		// TODO Auto-generated method stub
-		super.DomandaModifica(dto);
+	private void DomandaModifica_range() {
+		try {
+			String xml=this.getParameterFromSocket(ParameterEOF.RANGE_DTO.getValue());
+			RangeDTO dto=(RangeDTO)this.converter.fromXML(xml);
+			super.DomandaModifica(dto);
+			this.sendReturnValueToSocket(OperationCode.VOID_RETURN_MESSAGE.getValue());
+		} catch (RemoteException e) {
+			this.sendErrorToSocket(new ErroreDTO(ErrorKind.REMOTE_EXCEPTION.getValue(), e.getMessage()));
+		}
 	}
 
-	@Override
-	public void DomandaModifica(MatriceDTO dto) throws RemoteException {
-		// TODO Auto-generated method stub
-		super.DomandaModifica(dto);
+	private void DomandaModifica_matrice() {
+		try {
+			String xml=this.getParameterFromSocket(ParameterEOF.MATRICE_DTO.getValue());
+			MatriceDTO dto=(MatriceDTO)this.converter.fromXML(xml);
+			super.DomandaModifica(dto);
+			this.sendReturnValueToSocket(OperationCode.VOID_RETURN_MESSAGE.getValue());
+		} catch (RemoteException e) {
+			this.sendErrorToSocket(new ErroreDTO(ErrorKind.REMOTE_EXCEPTION.getValue(), e.getMessage()));
+		}
 	}
 
-	@Override
-	public void DomandaModifica(ValoriMatriceDTO dto) throws RemoteException {
-		// TODO Auto-generated method stub
-		super.DomandaModifica(dto);
+	private void DomandaModifica_valoriMatrice() {
+		try {
+			String xml=this.getParameterFromSocket(ParameterEOF.VALORIMATRICE_DTO.getValue());
+			ValoriMatriceDTO dto=(ValoriMatriceDTO)this.converter.fromXML(xml);
+			super.DomandaModifica(dto);
+			this.sendReturnValueToSocket(OperationCode.VOID_RETURN_MESSAGE.getValue());
+		} catch (RemoteException e) {
+			this.sendErrorToSocket(new ErroreDTO(ErrorKind.REMOTE_EXCEPTION.getValue(), e.getMessage()));
+		}
 	}
 
-	@Override
-	public void DomandaAggiungiValoriMatrice(ValoriMatriceDTO dto)
-			throws RemoteException {
-		// TODO Auto-generated method stub
-		super.DomandaAggiungiValoriMatrice(dto);
+	private void DomandaAggiungiValoriMatrice() {
+		try {
+			String xml=this.getParameterFromSocket(ParameterEOF.VALORIMATRICE_DTO.getValue());
+			ValoriMatriceDTO dto=(ValoriMatriceDTO)this.converter.fromXML(xml);
+			super.DomandaAggiungiValoriMatrice(dto);
+			this.sendReturnValueToSocket(OperationCode.VOID_RETURN_MESSAGE.getValue());
+		} catch (RemoteException e) {
+			this.sendErrorToSocket(new ErroreDTO(ErrorKind.REMOTE_EXCEPTION.getValue(), e.getMessage()));
+		}
 	}
 
-	@Override
-	public void DomandaAggiungiRisposta(RispostaDTO dto) throws RemoteException {
-		// TODO Auto-generated method stub
-		super.DomandaAggiungiRisposta(dto);
+	private void DomandaAggiungiRisposta() {
+		try {
+			String xml=this.getParameterFromSocket(ParameterEOF.RISPOSTA_DTO.getValue());
+			RispostaDTO dto=(RispostaDTO)this.converter.fromXML(xml);
+			super.DomandaAggiungiRisposta(dto);
+			this.sendReturnValueToSocket(OperationCode.VOID_RETURN_MESSAGE.getValue());
+		} catch (RemoteException e) {
+			this.sendErrorToSocket(new ErroreDTO(ErrorKind.REMOTE_EXCEPTION.getValue(), e.getMessage()));
+		}
 	}
 
-	@Override
-	public void DomandaSetEnable(int idDomanda) throws RemoteException {
-		// TODO Auto-generated method stub
-		super.DomandaSetEnable(idDomanda);
+	private void DomandaSetEnable() {
+		try {
+			int idDomanda=Integer.parseInt(this.getParameterFromSocket(""));
+			super.DomandaSetEnable(idDomanda);
+			this.sendReturnValueToSocket(OperationCode.VOID_RETURN_MESSAGE.getValue());
+		} catch (RemoteException e) {
+			this.sendErrorToSocket(new ErroreDTO(ErrorKind.REMOTE_EXCEPTION.getValue(), e.getMessage()));
+		}
 	}
 
-	@Override
-	public void DomandaSetDisable(int idDomanda) throws RemoteException {
-		// TODO Auto-generated method stub
-		super.DomandaSetDisable(idDomanda);
+	private void DomandaSetDisable() {
+		try {
+			int idDomanda=Integer.parseInt(this.getParameterFromSocket(""));
+			super.DomandaSetDisable(idDomanda);
+			this.sendReturnValueToSocket(OperationCode.VOID_RETURN_MESSAGE.getValue());
+		} catch (RemoteException e) {
+			this.sendErrorToSocket(new ErroreDTO(ErrorKind.REMOTE_EXCEPTION.getValue(), e.getMessage()));
+		}
 	}
 
-	@Override
-	public RispostaDTO RispostaModifica(RispostaDTO dto) throws RemoteException {
-		// TODO Auto-generated method stub
-		return super.RispostaModifica(dto);
+	private void RispostaModifica() {
+		try {
+			String xml=this.getParameterFromSocket(ParameterEOF.RISPOSTA_DTO.getValue());
+			RispostaDTO dto=(RispostaDTO)this.converter.fromXML(xml);
+			RispostaDTO returnDto=super.RispostaModifica(dto);
+			this.sendReturnValueToSocket(this.converter.toXML(returnDto));
+		} catch (RemoteException e) {
+			this.sendErrorToSocket(new ErroreDTO(ErrorKind.REMOTE_EXCEPTION.getValue(), e.getMessage()));
+		}
 	}
 
-	@Override
-	public void RispostaSetEnable(int idRisposta) throws RemoteException {
-		// TODO Auto-generated method stub
-		super.RispostaSetEnable(idRisposta);
+	private void RispostaSetEnable() {
+		try {
+			int idRisposta=Integer.parseInt(this.getParameterFromSocket(""));
+			super.RispostaSetEnable(idRisposta);
+			this.sendReturnValueToSocket(OperationCode.VOID_RETURN_MESSAGE.getValue());
+		} catch (RemoteException e) {
+			this.sendErrorToSocket(new ErroreDTO(ErrorKind.REMOTE_EXCEPTION.getValue(), e.getMessage()));
+		}
 	}
 
-	@Override
-	public void RispostaSetDisable(int idRisposta) throws RemoteException {
-		// TODO Auto-generated method stub
-		super.RispostaSetDisable(idRisposta);
+	private void RispostaSetDisable() {
+		try {
+			int idRisposta=Integer.parseInt(this.getParameterFromSocket(""));
+			super.RispostaSetDisable(idRisposta);
+			this.sendReturnValueToSocket(OperationCode.VOID_RETURN_MESSAGE.getValue());
+		} catch (RemoteException e) {
+			this.sendErrorToSocket(new ErroreDTO(ErrorKind.REMOTE_EXCEPTION.getValue(), e.getMessage()));
+		}
 	}
 
-	@Override
-	public CompilazioneDTO CompilazioneModifica(CompilazioneDTO dto)
-			throws RemoteException {
-		// TODO Auto-generated method stub
-		return super.CompilazioneModifica(dto);
+	private void CompilazioneModifica() {
+		try {
+			String xml=this.getParameterFromSocket(ParameterEOF.COMPILAZIONE_DTO.getValue());
+			CompilazioneDTO dto=(CompilazioneDTO)this.converter.fromXML(xml);
+			CompilazioneDTO returnDto=super.CompilazioneModifica(dto);
+			this.sendReturnValueToSocket(this.converter.toXML(returnDto));
+		} catch (RemoteException e) {
+			this.sendErrorToSocket(new ErroreDTO(ErrorKind.REMOTE_EXCEPTION.getValue(), e.getMessage()));
+		}
 	}
 
-	@Override
-	public void CompilazioneAggiungiCompilazioneRisposta(
-			CompilazioneRispostaDTO dto) throws RemoteException {
-		// TODO Auto-generated method stub
-		super.CompilazioneAggiungiCompilazioneRisposta(dto);
+	private void CompilazioneAggiungiCompilazioneRisposta() {
+		try {
+			String xml=this.getParameterFromSocket(ParameterEOF.COMPILAZIONERISPOSTA_DTO.getValue());
+			CompilazioneRispostaDTO dto=(CompilazioneRispostaDTO)this.converter.fromXML(xml);
+			super.CompilazioneAggiungiCompilazioneRisposta(dto);
+			this.sendReturnValueToSocket(OperationCode.VOID_RETURN_MESSAGE.getValue());
+		} catch (RemoteException e) {
+			this.sendErrorToSocket(new ErroreDTO(ErrorKind.REMOTE_EXCEPTION.getValue(), e.getMessage()));
+		}
+		
 	}
 
-	@Override
-	public void CompilazioneSetEnable(int idCompilazione)
-			throws RemoteException {
-		// TODO Auto-generated method stub
-		super.CompilazioneSetEnable(idCompilazione);
+	private void CompilazioneSetEnable() {
+		try {
+			int idCompilazione=Integer.parseInt(this.getParameterFromSocket(""));
+			super.CompilazioneSetEnable(idCompilazione);
+			this.sendReturnValueToSocket(OperationCode.VOID_RETURN_MESSAGE.getValue());
+		} catch (RemoteException e) {
+			this.sendErrorToSocket(new ErroreDTO(ErrorKind.REMOTE_EXCEPTION.getValue(), e.getMessage()));
+		}
 	}
 
-	@Override
-	public void CompilazioneSetDisable(int idCompilazione)
-			throws RemoteException {
-		// TODO Auto-generated method stub
-		super.CompilazioneSetDisable(idCompilazione);
+	private void CompilazioneSetDisable() {
+		try {
+			int idCompilazione=Integer.parseInt(this.getParameterFromSocket(""));
+			super.CompilazioneSetDisable(idCompilazione);
+			this.sendReturnValueToSocket(OperationCode.VOID_RETURN_MESSAGE.getValue());
+		} catch (RemoteException e) {
+			this.sendErrorToSocket(new ErroreDTO(ErrorKind.REMOTE_EXCEPTION.getValue(), e.getMessage()));
+		}
 	}
 
-	@Override
-	public CompilazioneRispostaDTO CompilazioneRispostaModifica(
-			CompilazioneRispostaDTO dto) throws RemoteException {
-		// TODO Auto-generated method stub
-		return super.CompilazioneRispostaModifica(dto);
+	private void CompilazioneRispostaModifica() {
+		try {
+			String xml=this.getParameterFromSocket(ParameterEOF.COMPILAZIONERISPOSTA_DTO.getValue());
+			CompilazioneRispostaDTO dto=(CompilazioneRispostaDTO)this.converter.fromXML(xml);
+			CompilazioneRispostaDTO returnDto=super.CompilazioneRispostaModifica(dto);
+			this.sendReturnValueToSocket(this.converter.toXML(returnDto));
+		} catch (RemoteException e) {
+			this.sendErrorToSocket(new ErroreDTO(ErrorKind.REMOTE_EXCEPTION.getValue(), e.getMessage()));
+		}
 	}
 
-	@Override
-	public void CompilazioneRispostaElimina(int idCompilazioneRisposta)
-			throws RemoteException {
-		// TODO Auto-generated method stub
-		super.CompilazioneRispostaElimina(idCompilazioneRisposta);
+	private void CompilazioneRispostaElimina() {
+		try {
+			int idCompilazioneRisposta=Integer.parseInt(this.getParameterFromSocket(""));
+			super.CompilazioneRispostaElimina(idCompilazioneRisposta);
+			this.sendReturnValueToSocket(OperationCode.VOID_RETURN_MESSAGE.getValue());
+		} catch (RemoteException e) {
+			this.sendErrorToSocket(new ErroreDTO(ErrorKind.REMOTE_EXCEPTION.getValue(), e.getMessage()));
+		}
 	}
 
-	@Override
-	public UtenteDTO UtenteGetByKey(int idUtente) throws RemoteException {
-		// TODO Auto-generated method stub
-		return super.UtenteGetByKey(idUtente);
+	private void UtenteGetByKey() {
+		try {
+			int idUtente=Integer.parseInt(this.getParameterFromSocket(""));
+			UtenteDTO returnDto=super.UtenteGetByKey(idUtente);
+			this.sendReturnValueToSocket(this.converter.toXML(returnDto));
+		} catch (RemoteException e) {
+			this.sendErrorToSocket(new ErroreDTO(ErrorKind.REMOTE_EXCEPTION.getValue(), e.getMessage()));
+		}
 	}
 
-	@Override
-	public List<UtenteDTO> UtenteGetList() throws RemoteException {
-		// TODO Auto-generated method stub
-		return super.UtenteGetList();
+	private void UtenteGetList_internal() {
+		try {
+			List<UtenteDTO> utenti=super.UtenteGetList();
+			this.sendReturnValueToSocket(this.converter.toXML(utenti));
+		} catch (RemoteException e) {
+			this.sendErrorToSocket(new ErroreDTO(ErrorKind.REMOTE_EXCEPTION.getValue(), e.getMessage()));
+		}
 	}
 
-	@Override
-	public UtenteDTO UtenteCrea(UtenteDTO dto) throws RemoteException {
-		// TODO Auto-generated method stub
-		return super.UtenteCrea(dto);
+	private void UtenteCrea() {
+		try {
+			String xml=this.getParameterFromSocket(ParameterEOF.UTENTE_DTO.getValue());
+			UtenteDTO dto=(UtenteDTO)this.converter.fromXML(xml);
+			UtenteDTO returnDto=super.UtenteCrea(dto);
+			this.sendReturnValueToSocket(this.converter.toXML(returnDto));
+		} catch (RemoteException e) {
+			this.sendErrorToSocket(new ErroreDTO(ErrorKind.REMOTE_EXCEPTION.getValue(), e.getMessage()));
+		}
 	}
 
-	@Override
-	public UtenteDTO UtenteModifica(UtenteDTO dto) throws RemoteException {
-		// TODO Auto-generated method stub
-		return super.UtenteModifica(dto);
+	private void UtenteModifica() {
+		try {
+			String xml=this.getParameterFromSocket(ParameterEOF.UTENTE_DTO.getValue());
+			UtenteDTO dto=(UtenteDTO)this.converter.fromXML(xml);
+			UtenteDTO returnDto=super.UtenteModifica(dto);
+			this.sendReturnValueToSocket(this.converter.toXML(returnDto));
+		} catch (RemoteException e) {
+			this.sendErrorToSocket(new ErroreDTO(ErrorKind.REMOTE_EXCEPTION.getValue(), e.getMessage()));
+		}
 	}
 
-	@Override
-	public void UtenteSetEnable(int idUtente) throws RemoteException {
-		// TODO Auto-generated method stub
-		super.UtenteSetEnable(idUtente);
+	private void UtenteSetEnable() {
+		try {
+			int idUtente=Integer.parseInt(this.getParameterFromSocket(""));
+			super.UtenteSetEnable(idUtente);
+			this.sendReturnValueToSocket(OperationCode.VOID_RETURN_MESSAGE.getValue());
+		} catch (RemoteException e) {
+			this.sendErrorToSocket(new ErroreDTO(ErrorKind.REMOTE_EXCEPTION.getValue(), e.getMessage()));
+		}
 	}
 
-	@Override
-	public void UtenteSetDisable(int idUtente) throws RemoteException {
-		// TODO Auto-generated method stub
-		super.UtenteSetDisable(idUtente);
+	private void UtenteSetDisable() {
+		try {
+			int idUtente=Integer.parseInt(this.getParameterFromSocket(""));
+			super.UtenteSetDisable(idUtente);
+			this.sendReturnValueToSocket(OperationCode.VOID_RETURN_MESSAGE.getValue());
+		} catch (RemoteException e) {
+			this.sendErrorToSocket(new ErroreDTO(ErrorKind.REMOTE_EXCEPTION.getValue(), e.getMessage()));
+		}
 	}
 	
 	private String getParameterFromSocket(String paramCheckValue){
@@ -389,22 +584,23 @@ public class ServerSocket extends BaseServer implements ServerSocketInterface {
 	}
 	
 	private void sendReturnValueToSocket(String returnValue){
-		this.WriteOnSocket(returnValue);
+		String xml=returnValue.replace("\n", "");
+		this.WriteOnSocket(xml);
 		String clientResponse=this.ReadFromSocket();
 		
-		while(!clientResponse.equalsIgnoreCase(OperationCode.VALID_RETURN_VALUE.getValue())){
-			this.WriteOnSocket(returnValue);
+		while(!clientResponse.contains(OperationCode.VALID_RETURN_VALUE.getValue())){
+			this.WriteOnSocket(xml);
 			clientResponse=this.ReadFromSocket();
 		}
 	}
 	
 	private void sendErrorToSocket(ErroreDTO error){
-		String errorMessage=this.converter.toXML(error);
-		this.WriteOnSocket(errorMessage);
+		String xml=this.converter.toXML(error).replace("\n", "");
+		this.WriteOnSocket(xml);
 		String clientResponse=this.ReadFromSocket();
 		
-		while(!clientResponse.equalsIgnoreCase(OperationCode.VALID_RETURN_VALUE.getValue())){
-			this.WriteOnSocket(errorMessage);
+		while(!clientResponse.contains(OperationCode.VALID_ERROR_MESSAGE.getValue())){
+			this.WriteOnSocket(xml);
 			clientResponse=this.ReadFromSocket();
 		}
 	}

@@ -76,14 +76,14 @@ public class Repository {
 	public Utente Login(String user, String password) throws Exception{
 		List users;
 		synchronized (this.lock) {
-			this.session.beginTransaction();
+			//this.session.beginTransaction();
 			String hsql = "from Utente user "
-							+"where user.name = :user and user.password = :pwd";
+							+"where user.nomeutente = :user and user.password = :pwd";
 			users = this.session.createQuery(hsql)
 											.setParameter("user", user)
 											.setParameter("pwd", password)
 											.list();
-			this.session.getTransaction().commit();
+			//this.session.getTransaction().commit();
 		}
 		
 		if (users.size() > 0)

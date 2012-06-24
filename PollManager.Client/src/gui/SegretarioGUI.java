@@ -745,7 +745,7 @@ public class SegretarioGUI extends javax.swing.JFrame {
 	                .addContainerGap(49, Short.MAX_VALUE))
 	        );
 
-	        Multipla.setAutoRequestFocus(false);
+	        //Multipla.setAutoRequestFocus(false);
 	        Multipla.setMinimumSize(new java.awt.Dimension(540, 500));
 
 	        jLabel14.setText("Titolo");

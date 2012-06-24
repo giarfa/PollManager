@@ -7,7 +7,11 @@ public enum ParameterEOF {
 	LIBERA_DTO("</domain.LiberaDTO"),
 	RANGE_DTO("</domain.RangeDTO"),
 	MATRICE_DTO("</domain.MatriceDTO"),
-	COMPILAZIONE_DTO("</domain.CompilazioneDTO");
+	VALORIMATRICE_DTO("</domain.ValoriMatriceDTO>"),
+	COMPILAZIONE_DTO("</domain.CompilazioneDTO"),
+	COMPILAZIONERISPOSTA_DTO("</domain.CompilazioneRispostaDTO"),
+	RISPOSTA_DTO("</RispostaDTO>"),
+	ERRORE_DTO("</ErroreDTO>");
 	
 	private String value;
 	
