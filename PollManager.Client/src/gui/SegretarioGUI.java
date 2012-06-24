@@ -1476,9 +1476,9 @@ if (range3Text.getText().length() == 0) {
 						range.setIdDomanda(idDomanda);
 					}
 				
-				client.SondaggioAggiungiDomandaRange(range);
+				int id=client.SondaggioAggiungiDomandaRange(range);
 				if (!modificaFlag){
-					int id=range.getIdDomanda();
+					
 					RispostaDTO risp=new RispostaDTO();
 					risp.setDomandaAssociataIdDomanda(id);
 					risp.setNonRisponde(true);
@@ -1562,60 +1562,60 @@ if (range3Text.getText().length() == 0) {
 		}
 		
 		try {
-			client.SondaggioAggiungiDomandaMatrice(matrice);
+			int id=client.SondaggioAggiungiDomandaMatrice(matrice);
 			if (!modificaFlag){
-				int id=matrice.getIdDomanda();
+				
 				RispostaDTO risp=new RispostaDTO();
 				risp.setDomandaAssociataIdDomanda(id);
 				risp.setNonRisponde(true);
 				risp.setOrdine(99);
 				client.DomandaAggiungiRisposta(risp);
 			}
-			agguingiValoreMatrice(sr1, 0, matrice);
+			agguingiValoreMatrice(opzione1, 0, matrice);
 			if (!sr2.isEmpty()) {
 
-				agguingiValoreMatrice(sr1, 1, matrice);
+				agguingiValoreMatrice(opzione2, 1, matrice);
 
 				if (!sr3.isEmpty()) {
-					agguingiValoreMatrice(sr1, 2, matrice);
+					agguingiValoreMatrice(opzione3, 2, matrice);
 
 					if (!sr4.isEmpty()) {
 						
-						agguingiValoreMatrice(sr1, 3, matrice);
+						agguingiValoreMatrice(opzione4, 3, matrice);
 						
 						if (!sr5.isEmpty()) {
 							
-							agguingiValoreMatrice(sr1, 4, matrice);
+							agguingiValoreMatrice(opzione5, 4, matrice);
 							
 							if (!sr6.isEmpty()) {
 								
-								agguingiValoreMatrice(sr1, 5, matrice);
+								agguingiValoreMatrice(opzione6, 5, matrice);
 							}
 						}
 					}
 				}
 			}
 			i++;
-			creaRispostaMatrice(opzione1, 0);
-			if (!opzione2.isEmpty()) {
+			creaRispostaMatrice(sr1, 0);
+			if (!sr2.isEmpty()) {
 				i++;
-				creaRispostaMatrice(opzione2,1);
+				creaRispostaMatrice(sr2,1);
 
-				if (!opzione3.isEmpty()) {
+				if (!sr3.isEmpty()) {
 					i++;
-					creaRispostaMatrice(opzione3,2);
+					creaRispostaMatrice(sr3,2);
 
-					if (!opzione4.isEmpty()) {
+					if (!sr4.isEmpty()) {
 						i++;
-						creaRispostaMatrice(opzione4,3);
+						creaRispostaMatrice(sr4,3);
 						
-						if (!opzione5.isEmpty()) {
+						if (!sr5.isEmpty()) {
 							i++;
-							creaRispostaMatrice(opzione5,4);
+							creaRispostaMatrice(sr5,4);
 							
-							if (!opzione6.isEmpty()) {
+							if (!sr6.isEmpty()) {
 								i++;
-								creaRispostaMatrice(opzione6,5);
+								creaRispostaMatrice(sr6,5);
 							}
 						}
 					}
@@ -1673,7 +1673,7 @@ if (range3Text.getText().length() == 0) {
 		boolean specificare4=specificare4Check.isSelected();
 		boolean specificare5=specificare5Check.isSelected();
 		boolean specificare6=specificare6Check.isSelected();
-		
+		idSondaggio=this.sondaggio.getIdSondaggio();
 		MultiplaDTO multipla = new MultiplaDTO();
 
 		multipla.setTesto(titoloDomanda);
@@ -1682,9 +1682,9 @@ if (range3Text.getText().length() == 0) {
 		if (modificaFlag) multipla.setIdDomanda(idDomanda);
 		
 		try {
-			client.SondaggioAggiungiDomandaMultipla(multipla);
+			int id=client.SondaggioAggiungiDomandaMultipla(multipla);
 			if (!modificaFlag){
-				int id=multipla.getIdDomanda();
+				
 				RispostaDTO risp=new RispostaDTO();
 				risp.setDomandaAssociataIdDomanda(id);
 				risp.setNonRisponde(true);
@@ -1881,10 +1881,21 @@ if (range3Text.getText().length() == 0) {
 		
 	}
 	/**
-	 * 
+	 * Attiva\Disattiva Sondaggio
 	 * @param evt
 	 */
 	private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {
+		SondaggioDTO s=(SondaggioDTO) jList1.getSelectedValue();
+		
+		if (s.isAttivo()) s.setAttivo(false);
+		if (!s.isAttivo())s.setAttivo(true);
+		try {
+			inizializza();
+		} catch (RemoteException e) {
+			JOptionPane.showMessageDialog(this, e.getMessage(),"Errore:",JOptionPane.ERROR_MESSAGE);
+			e.printStackTrace();
+		}
+		
 	}
 	
 	
@@ -1928,7 +1939,7 @@ if (range3Text.getText().length() == 0) {
 		MaxCharLibera = Integer.parseInt(nMaxCharLibera.getText());
 		obbligatorio = obbligatoriaLiberaCheck.isSelected();
 		MinCharLibera = Integer.parseInt(nMinCharLibera.getText());
-
+		idSondaggio=this.sondaggio.getIdSondaggio();
 		
 
 		if (titoloDomanda.length() == 0) {
