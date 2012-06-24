@@ -1965,16 +1965,24 @@ if (range3Text.getText().length() == 0) {
 
 			try {
 
-				client.SondaggioAggiungiDomandaLibera(libera);
+				int id=client.SondaggioAggiungiDomandaLibera(libera);
 				
 				
 				if (!modificaFlag){
-					int id=libera.getIdDomanda();
+					
 					RispostaDTO risp=new RispostaDTO();
 					risp.setTesto("");
 					risp.setDomandaAssociataIdDomanda(id);
 					risp.setNonRisponde(true);
 					risp.setOrdine(99);
+					
+					client.DomandaAggiungiRisposta(risp);
+					risp=new RispostaDTO();
+					risp.setTesto("");
+					risp.setDomandaAssociataIdDomanda(id);
+					risp.setNonRisponde(false);
+					risp.setOrdine(0);
+					
 					client.DomandaAggiungiRisposta(risp);
 				}
 
