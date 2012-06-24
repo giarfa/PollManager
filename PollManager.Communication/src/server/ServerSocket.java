@@ -55,7 +55,13 @@ public class ServerSocket extends BaseServer implements ServerSocketInterface {
 				
 				try{
 					CommandCode command=CommandCode.valueOf(this.ReadFromSocket());
+					System.out.println(command.toString());
+					
+					
 					this.WriteOnSocket(OperationCode.VALID_COMMAND.getValue());
+					System.out.println(OperationCode.VALID_COMMAND.getValue());
+					
+					
 					switch (command){
 						case LOGIN:
 							this.Login();
@@ -206,7 +212,13 @@ public class ServerSocket extends BaseServer implements ServerSocketInterface {
 	private void SondaggioGetByKey() {
 		try {
 			int idSondaggio=Integer.parseInt(this.getParameterFromSocket(""));
+			System.out.println("getParameterFromSocket");
+			
+			
 			SondaggioDTO sondaggio=super.SondaggioGetByKey(idSondaggio);
+			System.out.println("SondaggioGetByKey");
+			
+			
 			this.sendReturnValueToSocket(this.converter.toXML(sondaggio));
 		} catch (RemoteException e) {
 			this.sendErrorToSocket(new ErroreDTO(ErrorKind.REMOTE_EXCEPTION.getValue(), e.getMessage()));
@@ -607,16 +619,15 @@ public class ServerSocket extends BaseServer implements ServerSocketInterface {
 
 	private String ReadFromSocket(){
 		try {
-			while(!reader.ready()){
-				Thread.sleep(500);
-			}
+//			while(!reader.ready()){
+//				Thread.sleep(500);
+//			}
 			return reader.readLine();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
+//		} catch (InterruptedException e) {
+//			e.printStackTrace();
 		} catch (IOException e) {
-			e.printStackTrace();
+			return "";
 		}
-		return null;
 	}
 	
 	private void WriteOnSocket(String message){

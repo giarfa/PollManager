@@ -82,9 +82,19 @@ public class ClientSocket implements ClientSocketInterface {
 	@Override
 	public SondaggioDTO SondaggioGetByKey(int idSondaggio) throws RemoteException {
 		this.sendCommandToSocket(CommandCode.SONDAGGIO_GETBYKEY.getValue());
+		System.out.println(CommandCode.SONDAGGIO_GETBYKEY.getValue());
+		
+		
+		
 		this.sendParameterToSocket(Integer.toString(idSondaggio));
+		System.out.println(Integer.toString(idSondaggio));
+		
+		
 		try {
 			String xml=this.getReturnValueOrErrorFromSocket(ParameterEOF.SONDAGGIO_DTO.getValue());
+			System.out.println(ParameterEOF.SONDAGGIO_DTO.getValue());
+			
+			
 			return (SondaggioDTO)this.converter.fromXML(xml);
 		} catch (InvalidCredentialException e) { throw new RemoteException(e.getMessage()); }
 	}
@@ -452,16 +462,16 @@ public class ClientSocket implements ClientSocketInterface {
 
 	private String ReadFromSocket(){
 		try {
-			while(!reader.ready()){
-				Thread.sleep(500);
-			}
+//			while(!reader.ready()){
+//				Thread.sleep(5000);
+//			}
 			return reader.readLine();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
+//		} catch (InterruptedException e) {
+//			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return null;
+		return "";
 	}
 	
 	private void WriteOnSocket(String message){
