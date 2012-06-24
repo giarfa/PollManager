@@ -35,7 +35,7 @@ public class UtentiManager implements UtentiManagerInterface {
 			Utente utente = Repository.getInstance().Login(user, password);
 			return this.GetDTO(utente);
 		} catch (Exception e) {
-			throw new InvalidCredentialException();
+			throw new InvalidCredentialException("Invalid Credential");
 		}
 	}
 

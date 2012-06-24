@@ -11,7 +11,8 @@ public enum ParameterEOF {
 	COMPILAZIONE_DTO("</domain.CompilazioneDTO"),
 	COMPILAZIONERISPOSTA_DTO("</domain.CompilazioneRispostaDTO"),
 	RISPOSTA_DTO("</RispostaDTO>"),
-	ERRORE_DTO("</ErroreDTO>");
+	ERRORE_DTO("</ErroreDTO>"),
+	LIST_DTO("</list>");
 	
 	private String value;
 	

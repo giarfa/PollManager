@@ -23,7 +23,7 @@
 	<property name="attivo" column="attivo" />
 	<property name="idDomandaTipo" column="idDomandaTipo" />
 	<many-to-one name="sondaggioAssociato" column="idSondaggio" />
-	<bag name="risposte" table="risposte_tb " fetch="select" lazy="true" inverse="true" cascade="all-delete-orphan">
+	<bag name="risposte" table="risposte_tb " fetch="select" lazy="true" inverse="true" order-by="ordine ASC" cascade="all-delete-orphan">
 		<key column="idDomanda" />
 		<one-to-many class="domain.Risposta"/>
 	</bag>

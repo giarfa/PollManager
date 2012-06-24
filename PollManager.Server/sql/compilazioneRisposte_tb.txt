@@ -4,5 +4,6 @@ idCompilazione integer not null,
 idRisposta integer,
 idValoreMatrice integer,
 compilazioneRispostaLibera varchar(250),
-compilazioneTestoLibero varchar(250)
+compilazioneTestoLibero varchar(250),
+compilazioneRange varchar(10)
 )

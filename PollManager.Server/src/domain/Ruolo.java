@@ -1,9 +1,9 @@
 package domain;
 
 public enum Ruolo {
-	AMMINISTRATORE(1),
-	SEGRETARIO(2),
-	COLLABORATORE(3);
+	AMMINISTRATORE(0),
+	SEGRETARIO(1),
+	COLLABORATORE(2);
 	
 	private int idRuolo;
 	
@@ -17,9 +17,9 @@ public enum Ruolo {
 	
 	public static Ruolo getRuolo(int idRuolo){
 		switch (idRuolo){
-		case 1:
+		case 0:
 			return AMMINISTRATORE;
-		case 2:
+		case 1:
 			return SEGRETARIO;
 		default:
 			return COLLABORATORE;

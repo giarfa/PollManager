@@ -10,6 +10,7 @@ public class CompilazioneRispostaDTO {
 	private int idCompilazioneRisposta;
 	private String rispostalibera;
 	private String testolibero;
+	private String range;
 	private int compilazioneAssociataIdCompilazione;
 	private RispostaDTO rispostaAssociata;
 	private ValoriMatriceDTO valoreMatriceAssociato;
@@ -50,5 +51,11 @@ public class CompilazioneRispostaDTO {
 	}
 	public int getCompilazioneAssociataIdCompilazione() {
 		return compilazioneAssociataIdCompilazione;
+	}
+	public void setRange(String range) {
+		this.range = range;
+	}
+	public String getRange() {
+		return range;
 	}
 }

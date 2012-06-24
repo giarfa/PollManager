@@ -8,9 +8,11 @@ public class CompilazioneRisposta {
 	private int idCompilazioneRisposta;
 	private String rispostalibera;
 	private String testolibero;
+	private String range;
 	private Compilazione compilazioneAssociata;
 	private Risposta rispostaAssociata;
 	private ValoriMatrice valoreMatriceAssociato;
+	
 	/**
 	 * Costruttore di Compilazione Risposta
 	 */
@@ -24,9 +26,10 @@ public class CompilazioneRisposta {
 	 * @param valoreMatriceAssociato ValoreMatrice associate se domanda è una Matrice
 	 * @param rispostalibera Se domanda Libera
 	 * @param testolibero Se la risposta ha testo libero
+	 * @param range Il valore della risposta alla domanda di tipo Range
 	 * @return this
 	 */
-	public static CompilazioneRisposta CreaCompilazioneRisposta(Compilazione compilazioneAssociata, Risposta rispostaAssociata, ValoriMatrice valoreMatriceAssociato, String rispostalibera, String testolibero){
+	public static CompilazioneRisposta CreaCompilazioneRisposta(Compilazione compilazioneAssociata, Risposta rispostaAssociata, ValoriMatrice valoreMatriceAssociato, String rispostalibera, String testolibero, String range){
 		CompilazioneRisposta compilazioneRisposta=new CompilazioneRisposta();
 		
 		compilazioneRisposta.compilazioneAssociata=compilazioneAssociata;
@@ -34,6 +37,7 @@ public class CompilazioneRisposta {
 		compilazioneRisposta.valoreMatriceAssociato=valoreMatriceAssociato;
 		compilazioneRisposta.rispostalibera=rispostalibera;
 		compilazioneRisposta.testolibero=testolibero;
+		compilazioneRisposta.range=range;
 		
 		return compilazioneRisposta;
 	}
@@ -44,13 +48,15 @@ public class CompilazioneRisposta {
 	 * @param valoreMatriceAssociato ValoreMatrice associate se domanda è una Matrice
 	 * @param rispostalibera Se domanda Libera
 	 * @param testolibero Se la risposta ha testo libero
+	 * @param range Il valore della risposta alla domanda di tipo Range
 	 * @return this
 	 */
-	public CompilazioneRisposta ModificaCompilazioneRisposta(Risposta rispostaAssociata, ValoriMatrice valoreMatriceAssociato, String rispostalibera, String testolibero){
+	public CompilazioneRisposta ModificaCompilazioneRisposta(Risposta rispostaAssociata, ValoriMatrice valoreMatriceAssociato, String rispostalibera, String testolibero, String range){
 		this.rispostaAssociata=rispostaAssociata;
 		this.valoreMatriceAssociato=valoreMatriceAssociato;
 		this.rispostalibera=rispostalibera;
 		this.testolibero=testolibero;
+		this.range=range;
 		
 		return this;
 	}
@@ -137,5 +143,12 @@ public class CompilazioneRisposta {
 	 */
 	void setValoreMatriceAssociato(ValoriMatrice valoreMatriceAssociato) {
 		this.valoreMatriceAssociato = valoreMatriceAssociato;
+	}
+	
+	public void setRange(String range) {
+		this.range = range;
+	}
+	public String getRange() {
+		return range;
 	}
 }

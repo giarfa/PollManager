@@ -13,6 +13,7 @@
 	</id>
 	<property name="rispostalibera" column="compilazioneRispostaLibera" />
 	<property name="testolibero" column="compilazioneTestoLibero" />
+	<property name="range" column="compilazioneRange" />
 	<many-to-one name="compilazioneAssociata" column="idCompilazione" />
 	<many-to-one name="rispostaAssociata" column="idRisposta" />
 	<many-to-one name="valoreMatriceAssociato" column="idValoreMatrice" />

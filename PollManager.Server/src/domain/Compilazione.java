@@ -62,10 +62,11 @@ public class Compilazione {
 	 * @param valoreMatriceAssociato 
 	 * @param rispostalibera
 	 * @param testolibero
+	 * @param range Il valore della risposta alla domanda di tipo Range
 	 */
 	@SuppressWarnings("unchecked")
-	public void AggiungiCompilazioneRisposta(Risposta rispostaAssociata, ValoriMatrice valoreMatriceAssociato, String rispostalibera, String testolibero){
-		CompilazioneRisposta compilazione=CompilazioneRisposta.CreaCompilazioneRisposta(this, rispostaAssociata, valoreMatriceAssociato, rispostalibera, testolibero);
+	public void AggiungiCompilazioneRisposta(Risposta rispostaAssociata, ValoriMatrice valoreMatriceAssociato, String rispostalibera, String testolibero, String range){
+		CompilazioneRisposta compilazione=CompilazioneRisposta.CreaCompilazioneRisposta(this, rispostaAssociata, valoreMatriceAssociato, rispostalibera, testolibero, range);
 		this.compilazionirisposta.add(compilazione);
 	}
 	/**

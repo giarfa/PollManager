@@ -92,10 +92,9 @@ public class ClientSocket implements ClientSocketInterface {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<SondaggioDTO> SondaggioGetList() throws RemoteException {
-		// TODO mettere ParameterEOF x List<SondaggioDTO>
 		this.sendCommandToSocket(CommandCode.SONDAGGIO_GETLIST.getValue());
 		try {
-			String xml=this.getReturnValueOrErrorFromSocket(ParameterEOF.SONDAGGIO_DTO.getValue());
+			String xml=this.getReturnValueOrErrorFromSocket(ParameterEOF.LIST_DTO.getValue());
 			return (List<SondaggioDTO>)this.converter.fromXML(xml);
 		} catch (InvalidCredentialException e) { throw new RemoteException(e.getMessage()); }
 	}
@@ -168,165 +167,243 @@ public class ClientSocket implements ClientSocketInterface {
 
 	@Override
 	public void SondaggioSetEnable(int idSondaggio) throws RemoteException {
-		// TODO Auto-generated method stub
-
+		this.sendCommandToSocket(CommandCode.SONDAGGIO_SETENABLE.getValue());
+		this.sendParameterToSocket(Integer.toString(idSondaggio));
+		try {
+			this.getReturnValueOrErrorFromSocket(OperationCode.VOID_RETURN_MESSAGE.getValue());
+		} catch (InvalidCredentialException e) { throw new RemoteException(e.getMessage()); }
 	}
 
 	@Override
 	public void SondaggioSetDisable(int idSondaggio) throws RemoteException {
-		// TODO Auto-generated method stub
-
+		this.sendCommandToSocket(CommandCode.SONDAGGIO_SETDISABLE.getValue());
+		this.sendParameterToSocket(Integer.toString(idSondaggio));
+		try {
+			this.getReturnValueOrErrorFromSocket(OperationCode.VOID_RETURN_MESSAGE.getValue());
+		} catch (InvalidCredentialException e) { throw new RemoteException(e.getMessage()); }
 	}
 
 	@Override
 	public void DomandaModifica(MultiplaDTO dto) throws RemoteException {
-		// TODO Auto-generated method stub
-
+		this.sendCommandToSocket(CommandCode.DOMANDA_MODIFICA_MULTIPLA.getValue());
+		this.sendParameterToSocket(this.converter.toXML(dto));
+		try {
+			this.getReturnValueOrErrorFromSocket(OperationCode.VOID_RETURN_MESSAGE.getValue());
+		} catch (InvalidCredentialException e) { throw new RemoteException(e.getMessage()); }
 	}
 
 	@Override
 	public void DomandaModifica(LiberaDTO dto) throws RemoteException {
-		// TODO Auto-generated method stub
-
+		this.sendCommandToSocket(CommandCode.DOMANDA_MODIFICA_LIBERA.getValue());
+		this.sendParameterToSocket(this.converter.toXML(dto));
+		try {
+			this.getReturnValueOrErrorFromSocket(OperationCode.VOID_RETURN_MESSAGE.getValue());
+		} catch (InvalidCredentialException e) { throw new RemoteException(e.getMessage()); }
 	}
 
 	@Override
 	public void DomandaModifica(RangeDTO dto) throws RemoteException {
-		// TODO Auto-generated method stub
-
+		this.sendCommandToSocket(CommandCode.DOMANDA_MODIFICA_RANGE.getValue());
+		this.sendParameterToSocket(this.converter.toXML(dto));
+		try {
+			this.getReturnValueOrErrorFromSocket(OperationCode.VOID_RETURN_MESSAGE.getValue());
+		} catch (InvalidCredentialException e) { throw new RemoteException(e.getMessage()); }
 	}
 
 	@Override
 	public void DomandaModifica(MatriceDTO dto) throws RemoteException {
-		// TODO Auto-generated method stub
-
+		this.sendCommandToSocket(CommandCode.DOMANDA_MODIFICA_MATRICE.getValue());
+		this.sendParameterToSocket(this.converter.toXML(dto));
+		try {
+			this.getReturnValueOrErrorFromSocket(OperationCode.VOID_RETURN_MESSAGE.getValue());
+		} catch (InvalidCredentialException e) { throw new RemoteException(e.getMessage()); }
 	}
 
 	@Override
 	public void DomandaModifica(ValoriMatriceDTO dto) throws RemoteException {
-		// TODO Auto-generated method stub
-
+		this.sendCommandToSocket(CommandCode.DOMANDA_MODIFICA_VALORIMATRICE.getValue());
+		this.sendParameterToSocket(this.converter.toXML(dto));
+		try {
+			this.getReturnValueOrErrorFromSocket(OperationCode.VOID_RETURN_MESSAGE.getValue());
+		} catch (InvalidCredentialException e) { throw new RemoteException(e.getMessage()); }
 	}
 
 	@Override
-	public void DomandaAggiungiValoriMatrice(ValoriMatriceDTO dto)
-			throws RemoteException {
-		// TODO Auto-generated method stub
-
+	public void DomandaAggiungiValoriMatrice(ValoriMatriceDTO dto) throws RemoteException {
+		this.sendCommandToSocket(CommandCode.DOMANDA_AGGIUNGI_VALORIMATRICE.getValue());
+		this.sendParameterToSocket(this.converter.toXML(dto));
+		try {
+			this.getReturnValueOrErrorFromSocket(OperationCode.VOID_RETURN_MESSAGE.getValue());
+		} catch (InvalidCredentialException e) { throw new RemoteException(e.getMessage()); }
 	}
 
 	@Override
 	public void DomandaAggiungiRisposta(RispostaDTO dto) throws RemoteException {
-		// TODO Auto-generated method stub
-
+		this.sendCommandToSocket(CommandCode.DOMANDA_AGGIUNGI_RISPOSTA.getValue());
+		this.sendParameterToSocket(this.converter.toXML(dto));
+		try {
+			this.getReturnValueOrErrorFromSocket(OperationCode.VOID_RETURN_MESSAGE.getValue());
+		} catch (InvalidCredentialException e) { throw new RemoteException(e.getMessage()); }
 	}
 
 	@Override
 	public void DomandaSetEnable(int idDomanda) throws RemoteException {
-		// TODO Auto-generated method stub
-
+		this.sendCommandToSocket(CommandCode.DOMANDA_SETENABLE.getValue());
+		this.sendParameterToSocket(Integer.toString(idDomanda));
+		try {
+			this.getReturnValueOrErrorFromSocket(OperationCode.VOID_RETURN_MESSAGE.getValue());
+		} catch (InvalidCredentialException e) { throw new RemoteException(e.getMessage()); }
 	}
 
 	@Override
 	public void DomandaSetDisable(int idDomanda) throws RemoteException {
-		// TODO Auto-generated method stub
-
+		this.sendCommandToSocket(CommandCode.DOMANDA_SETDISABLE.getValue());
+		this.sendParameterToSocket(Integer.toString(idDomanda));
+		try {
+			this.getReturnValueOrErrorFromSocket(OperationCode.VOID_RETURN_MESSAGE.getValue());
+		} catch (InvalidCredentialException e) { throw new RemoteException(e.getMessage()); }
 	}
 
 	@Override
 	public RispostaDTO RispostaModifica(RispostaDTO dto) throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		this.sendCommandToSocket(CommandCode.RISPOSTA_MODIFICA.getValue());
+		this.sendParameterToSocket(this.converter.toXML(dto));
+		try {
+			String xml=this.getReturnValueOrErrorFromSocket(ParameterEOF.RISPOSTA_DTO.getValue());
+			return (RispostaDTO)this.converter.fromXML(xml);
+		} catch (InvalidCredentialException e) { throw new RemoteException(e.getMessage()); }
 	}
 
 	@Override
 	public void RispostaSetEnable(int idRisposta) throws RemoteException {
-		// TODO Auto-generated method stub
-
+		this.sendCommandToSocket(CommandCode.RISPOSTA_SETENABLE.getValue());
+		this.sendParameterToSocket(Integer.toString(idRisposta));
+		try {
+			this.getReturnValueOrErrorFromSocket(OperationCode.VOID_RETURN_MESSAGE.getValue());
+		} catch (InvalidCredentialException e) { throw new RemoteException(e.getMessage()); }
 	}
 
 	@Override
 	public void RispostaSetDisable(int idRisposta) throws RemoteException {
-		// TODO Auto-generated method stub
-
+		this.sendCommandToSocket(CommandCode.RISPOSTA_SETDISABLE.getValue());
+		this.sendParameterToSocket(Integer.toString(idRisposta));
+		try {
+			this.getReturnValueOrErrorFromSocket(OperationCode.VOID_RETURN_MESSAGE.getValue());
+		} catch (InvalidCredentialException e) { throw new RemoteException(e.getMessage()); }
 	}
 
 	@Override
-	public CompilazioneDTO CompilazioneModifica(CompilazioneDTO dto)
-			throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+	public CompilazioneDTO CompilazioneModifica(CompilazioneDTO dto) throws RemoteException {
+		this.sendCommandToSocket(CommandCode.COMPILAZIONE_MODIFICA.getValue());
+		this.sendParameterToSocket(this.converter.toXML(dto));
+		try {
+			String xml=this.getReturnValueOrErrorFromSocket(ParameterEOF.COMPILAZIONE_DTO.getValue());
+			return (CompilazioneDTO)this.converter.fromXML(xml);
+		} catch (InvalidCredentialException e) { throw new RemoteException(e.getMessage()); }
 	}
 
 	@Override
-	public void CompilazioneAggiungiCompilazioneRisposta(
-			CompilazioneRispostaDTO dto) throws RemoteException {
-		// TODO Auto-generated method stub
-
+	public void CompilazioneAggiungiCompilazioneRisposta(CompilazioneRispostaDTO dto) throws RemoteException {
+		this.sendCommandToSocket(CommandCode.COMPILAZIONE_AGGIUNGI_COMPILAZIONERISPOSTA.getValue());
+		this.sendParameterToSocket(this.converter.toXML(dto));
+		try {
+			this.getReturnValueOrErrorFromSocket(OperationCode.VOID_RETURN_MESSAGE.getValue());
+		} catch (InvalidCredentialException e) { throw new RemoteException(e.getMessage()); }
 	}
 
 	@Override
-	public void CompilazioneSetEnable(int idCompilazione)
-			throws RemoteException {
-		// TODO Auto-generated method stub
-
+	public void CompilazioneSetEnable(int idCompilazione) throws RemoteException {
+		this.sendCommandToSocket(CommandCode.COMPILAZIONE_SETENABLE.getValue());
+		this.sendParameterToSocket(Integer.toString(idCompilazione));
+		try {
+			this.getReturnValueOrErrorFromSocket(OperationCode.VOID_RETURN_MESSAGE.getValue());
+		} catch (InvalidCredentialException e) { throw new RemoteException(e.getMessage()); }
 	}
 
 	@Override
-	public void CompilazioneSetDisable(int idCompilazione)
-			throws RemoteException {
-		// TODO Auto-generated method stub
-
+	public void CompilazioneSetDisable(int idCompilazione) throws RemoteException {
+		this.sendCommandToSocket(CommandCode.COMPILAZIONE_SETDISABLE.getValue());
+		this.sendParameterToSocket(Integer.toString(idCompilazione));
+		try {
+			this.getReturnValueOrErrorFromSocket(OperationCode.VOID_RETURN_MESSAGE.getValue());
+		} catch (InvalidCredentialException e) { throw new RemoteException(e.getMessage()); }
 	}
 
 	@Override
-	public CompilazioneRispostaDTO CompilazioneRispostaModifica(
-			CompilazioneRispostaDTO dto) throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+	public CompilazioneRispostaDTO CompilazioneRispostaModifica(CompilazioneRispostaDTO dto) throws RemoteException {
+		this.sendCommandToSocket(CommandCode.COMPILAZIONERISPOSTA_MODIFICA.getValue());
+		this.sendParameterToSocket(this.converter.toXML(dto));
+		try {
+			String xml=this.getReturnValueOrErrorFromSocket(ParameterEOF.COMPILAZIONERISPOSTA_DTO.getValue());
+			return (CompilazioneRispostaDTO)this.converter.fromXML(xml);
+		} catch (InvalidCredentialException e) { throw new RemoteException(e.getMessage()); }
 	}
 
 	@Override
-	public void CompilazioneRispostaElimina(int idCompilazioneRisposta)
-			throws RemoteException {
-		// TODO Auto-generated method stub
-
+	public void CompilazioneRispostaElimina(int idCompilazioneRisposta) throws RemoteException {
+		this.sendCommandToSocket(CommandCode.COMPILAZIONERISPOSTA_ELIMINA.getValue());
+		this.sendParameterToSocket(Integer.toString(idCompilazioneRisposta));
+		try {
+			this.getReturnValueOrErrorFromSocket(OperationCode.VOID_RETURN_MESSAGE.getValue());
+		} catch (InvalidCredentialException e) { throw new RemoteException(e.getMessage()); }
 	}
 
 	@Override
 	public UtenteDTO UtenteGetByKey(int idUtente) throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		this.sendCommandToSocket(CommandCode.UTENTE_GETBYKEY.getValue());
+		this.sendParameterToSocket(Integer.toString(idUtente));
+		try {
+			String xml=this.getReturnValueOrErrorFromSocket(ParameterEOF.UTENTE_DTO.getValue());
+			return (UtenteDTO)this.converter.fromXML(xml);
+		} catch (InvalidCredentialException e) { throw new RemoteException(e.getMessage()); }
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<UtenteDTO> UtenteGetList() throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		this.sendCommandToSocket(CommandCode.UTENTE_GETLIST.getValue());
+		try {
+			String xml=this.getReturnValueOrErrorFromSocket(ParameterEOF.LIST_DTO.getValue());
+			return (List<UtenteDTO>)this.converter.fromXML(xml);
+		} catch (InvalidCredentialException e) { throw new RemoteException(e.getMessage()); }
 	}
 
 	@Override
 	public UtenteDTO UtenteCrea(UtenteDTO dto) throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		this.sendCommandToSocket(CommandCode.UTENTE_CREA.getValue());
+		this.sendParameterToSocket(this.converter.toXML(dto));
+		try {
+			String xml=this.getReturnValueOrErrorFromSocket(ParameterEOF.UTENTE_DTO.getValue());
+			return (UtenteDTO)this.converter.fromXML(xml);
+		} catch (InvalidCredentialException e) { throw new RemoteException(e.getMessage()); }
 	}
 
 	@Override
 	public UtenteDTO UtenteModifica(UtenteDTO dto) throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		this.sendCommandToSocket(CommandCode.UTENTE_MODIFICA.getValue());
+		this.sendParameterToSocket(this.converter.toXML(dto));
+		try {
+			String xml=this.getReturnValueOrErrorFromSocket(ParameterEOF.UTENTE_DTO.getValue());
+			return (UtenteDTO)this.converter.fromXML(xml);
+		} catch (InvalidCredentialException e) { throw new RemoteException(e.getMessage()); }
 	}
 
 	@Override
 	public void UtenteSetEnable(int idUtente) throws RemoteException {
-		// TODO Auto-generated method stub
-
+		this.sendCommandToSocket(CommandCode.UTENTE_SETENABLE.getValue());
+		this.sendParameterToSocket(Integer.toString(idUtente));
+		try {
+			this.getReturnValueOrErrorFromSocket(OperationCode.VOID_RETURN_MESSAGE.getValue());
+		} catch (InvalidCredentialException e) { throw new RemoteException(e.getMessage()); }
 	}
 
 	@Override
 	public void UtenteSetDisable(int idUtente) throws RemoteException {
-		// TODO Auto-generated method stub
-
+		this.sendCommandToSocket(CommandCode.UTENTE_SETDISABLE.getValue());
+		this.sendParameterToSocket(Integer.toString(idUtente));
+		try {
+			this.getReturnValueOrErrorFromSocket(OperationCode.VOID_RETURN_MESSAGE.getValue());
+		} catch (InvalidCredentialException e) { throw new RemoteException(e.getMessage()); }
 	}
 	
 	private void sendCommandToSocket(String command){

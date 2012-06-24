@@ -66,7 +66,7 @@ public class CompilazioniManager implements CompilazioniManagerInterface {
 		ValoriMatrice valoreMatriceAssociato=null;
 		if (dto.getValoreMatriceAssociato()!=null)
 			DomainManagerFactory.getInstance().getDomandeManager().GetValoriMatriceById(dto.getValoreMatriceAssociato().getIdValoriMatrice());
-		compilazione.AggiungiCompilazioneRisposta(rispostaAssociata, valoreMatriceAssociato, dto.getRispostalibera(), dto.getTestolibero());
+		compilazione.AggiungiCompilazioneRisposta(rispostaAssociata, valoreMatriceAssociato, dto.getRispostalibera(), dto.getTestolibero(), dto.getRange());
 		this.SaveOrUpdate(compilazione);
 	}
 
@@ -89,7 +89,7 @@ public class CompilazioniManager implements CompilazioniManagerInterface {
 		CompilazioneRisposta risposta=this.GetCompilazioneRispostaById(dto.getIdCompilazioneRisposta());
 		Risposta rispostaAssociata=DomainManagerFactory.getInstance().getRisposteManager().GetById(dto.getRispostaAssociata().getIdRisposta());
 		ValoriMatrice valoreMatriceAssociato=DomainManagerFactory.getInstance().getDomandeManager().GetValoriMatriceById(dto.getValoreMatriceAssociato().getIdValoriMatrice());
-		risposta.ModificaCompilazioneRisposta(rispostaAssociata, valoreMatriceAssociato, dto.getRispostalibera(), dto.getTestolibero());
+		risposta.ModificaCompilazioneRisposta(rispostaAssociata, valoreMatriceAssociato, dto.getRispostalibera(), dto.getTestolibero(), dto.getRange());
 		CompilazioneRisposta rispostaSalvata=this.SaveOrUpdate(risposta);
 		return this.GetDTO(rispostaSalvata);
 	}

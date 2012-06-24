@@ -2,8 +2,8 @@ package domain;
 
 public enum Orientamento {
 
-	ORIZZONTALE(1),
-	VERTICALE(2);
+	ORIZZONTALE(0),
+	VERTICALE(1);
 	
 	private int idOrientamento;
 	
@@ -17,7 +17,7 @@ public enum Orientamento {
 	
 	public static Orientamento getOrientamento(int idOrientamento){
 		switch (idOrientamento){
-		case 1:
+		case 0:
 			return ORIZZONTALE;
 		default:
 			return VERTICALE;
