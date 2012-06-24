@@ -413,7 +413,7 @@ public class AmministratoreGUI extends javax.swing.JFrame {
              utentePassword=utentePasswordText.getText();
             
              UtenteDTO utente=new UtenteDTO();
-             
+             utente.setNomeutente(utenteNomeUtente);
          	 utente.setNome(utenteNome);
          	 utente.setCognome(utenteCognome);
          	 utente.setMatricola(utenteMatricola);
