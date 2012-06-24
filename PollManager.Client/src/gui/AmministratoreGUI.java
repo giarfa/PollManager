@@ -372,7 +372,7 @@ public class AmministratoreGUI extends javax.swing.JFrame {
     private void aggiungiUtenteActionPerformed(java.awt.event.ActionEvent evt) {                                               
         
         Utente.setVisible(true);
-        jButton5.setText("Agguingi Utente");
+        jButton5.setText("Aggiungi Utente");
     }                                              
     /**
      * Inizializza Modifica Utente

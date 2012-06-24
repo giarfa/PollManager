@@ -25,10 +25,11 @@ public class VisualizzaSondaggioGUI extends javax.swing.JFrame {
 	 */
 	public VisualizzaSondaggioGUI(SondaggioDTO sondaggio, ClientInterface client) {
 		initComponents();
-		inizializza();
+		
 		this.client = client;
 		this.sondaggio = sondaggio;
 		this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+		inizializza();
 	}
 
 	/**
@@ -153,10 +154,10 @@ public class VisualizzaSondaggioGUI extends javax.swing.JFrame {
 	 */
 	private void visualizzaRisposteActionPerformed(java.awt.event.ActionEvent evt) {
 		
-		java.util.List<RispostaDTO> listarisposte= (java.util.List<RispostaDTO>)new List();
-		DomandaDTO d = ((DomandaDTO) jList4.getSelectedValue());
+		java.util.List<RispostaDTO> listarisposte= new java.util.ArrayList<RispostaDTO>();
+		DomandaDTO d = ((DomandaDTO) jList5.getSelectedValue());
 		listarisposte=d.getRisposte();
-		jList5.setListData(listarisposte.toArray());
+		jList4.setListData(listarisposte.toArray());
 	}
 	
 	/**
@@ -170,7 +171,7 @@ public class VisualizzaSondaggioGUI extends javax.swing.JFrame {
      * inizializza VisualizzaSondaggioGUI
      */
 	private void inizializza() {
-		jList4.setListData(sondaggio.getDomande().toArray());
+		jList5.setListData(sondaggio.getDomande().toArray());
 	}
 
 	
