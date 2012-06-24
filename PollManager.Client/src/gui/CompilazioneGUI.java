@@ -3,6 +3,7 @@ package gui;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -18,6 +19,7 @@ import dto.MultiplaDTO;
 import dto.RangeDTO;
 import dto.RispostaDTO;
 import dto.SondaggioDTO;
+import dto.ValoriMatriceDTO;
 
 /*
  * To change this template, choose Tools | Templates
@@ -36,6 +38,7 @@ public class CompilazioneGUI extends javax.swing.JFrame {
     private ClientInterface client;
     private CompilazioneDTO compilazione;
     private DomandaDTO d;
+    
     
     /**
      * Creates new form CompilazioneGUI
@@ -102,8 +105,8 @@ public class CompilazioneGUI extends javax.swing.JFrame {
         nonRispondeRange = new javax.swing.JCheckBox();
         MatriceCompilazione = new javax.swing.JDialog();
         titoloMatriceLabel = new javax.swing.JLabel();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
+        annullaMatrice = new javax.swing.JButton();
+        salvaMatrice = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         nonRispondeMatrice = new javax.swing.JCheckBox();
@@ -121,11 +124,7 @@ public class CompilazioneGUI extends javax.swing.JFrame {
         jScrollPane2.setViewportView(liberaTestoArea);
 
         salvaLibera.setLabel("Salva");
-        salvaLibera.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                salvaLiberaActionPerformed(evt);
-            }
-        });
+        
 
         annullaLibera.setText("Annulla");
         
@@ -169,7 +168,6 @@ public class CompilazioneGUI extends javax.swing.JFrame {
                 .addContainerGap(62, Short.MAX_VALUE))
         );
 
-        MultiplaCompilazione.setMaximumSize(new java.awt.Dimension(531, 351));
         MultiplaCompilazione.setMinimumSize(new java.awt.Dimension(531, 351));
 
         titoloMultiplaLabel.setText("jLabel2");
@@ -400,11 +398,23 @@ public class CompilazioneGUI extends javax.swing.JFrame {
                 .addContainerGap(57, Short.MAX_VALUE))
         );
 
+        MatriceCompilazione.setMinimumSize(new java.awt.Dimension(712, 517));
+
         titoloMatriceLabel.setText("jLabel9");
 
-        jButton7.setText("Annulla");
+        annullaMatrice.setText("Annulla");
+        annullaMatrice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                annullaMatriceActionPerformed(evt);
+            }
+        });
 
-        jButton8.setText("Salva");
+        salvaMatrice.setText("Salva");
+        salvaMatrice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                salvaMatriceActionPerformed(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -426,33 +436,29 @@ public class CompilazioneGUI extends javax.swing.JFrame {
         MatriceCompilazioneLayout.setHorizontalGroup(
             MatriceCompilazioneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(MatriceCompilazioneLayout.createSequentialGroup()
-                .addGroup(MatriceCompilazioneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(118, 118, 118)
+                .addGroup(MatriceCompilazioneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane3)
                     .addGroup(MatriceCompilazioneLayout.createSequentialGroup()
-                        .addGap(118, 118, 118)
-                        .addGroup(MatriceCompilazioneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(MatriceCompilazioneLayout.createSequentialGroup()
-                                .addComponent(jButton7)
-                                .addGap(111, 111, 111)
-                                .addComponent(nonRispondeMatrice)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton8))))
-                    .addGroup(MatriceCompilazioneLayout.createSequentialGroup()
-                        .addGap(302, 302, 302)
-                        .addComponent(titoloMatriceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(annullaMatrice)
+                        .addGap(111, 111, 111)
+                        .addComponent(nonRispondeMatrice)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(salvaMatrice))
+                    .addComponent(titoloMatriceLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(142, Short.MAX_VALUE))
         );
         MatriceCompilazioneLayout.setVerticalGroup(
             MatriceCompilazioneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(MatriceCompilazioneLayout.createSequentialGroup()
-                .addGap(54, 54, 54)
+                .addGap(47, 47, 47)
                 .addComponent(titoloMatriceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
+                .addGap(45, 45, 45)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
                 .addGroup(MatriceCompilazioneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton7)
-                    .addComponent(jButton8)
+                    .addComponent(annullaMatrice)
+                    .addComponent(salvaMatrice)
                     .addComponent(nonRispondeMatrice))
                 .addGap(72, 72, 72))
         );
@@ -507,12 +513,8 @@ public class CompilazioneGUI extends javax.swing.JFrame {
         );
 
         pack();
-    }// </editor-fold>
+    }
 
-
-
-                                        
-    
     
     /**
      * Compila domanda Selezionata
@@ -564,7 +566,7 @@ public class CompilazioneGUI extends javax.swing.JFrame {
             jTable1.getColumnModel().getColumn(6).setCellRenderer(jTable1.getDefaultRenderer(Boolean.class));
             jTable1.getColumnModel().getColumn(6).setCellEditor(jTable1.getDefaultEditor(Boolean.class));
             
-            ///TODO boolean pop=(Boolean) jTable1.getValueAt(1, 1);
+            
 
         }
         if (d instanceof LiberaDTO){
@@ -784,38 +786,59 @@ public class CompilazioneGUI extends javax.swing.JFrame {
         }
         
         else{
-      	  /*
+      	  try{
       		  c.setRispostaAssociata(d.getRisposte().get(0));
-      		  
+      		  c.setRange(range1);
       		  compRisp.add(c);
       	  
       	  
       	 
-         	   	c.setRispostaAssociata(d.getRisposte().get(1));
-         	   	compRisp.add(c);
+         	   c.setRispostaAssociata(d.getRisposte().get(1));
+         	  c.setRange(range2);
+         	   compRisp.add(c);
       	 
       	  
       		  c.setRispostaAssociata(d.getRisposte().get(2));
+      		c.setRange(range3);
       		  compRisp.add(c);
       	 
          	  
       	  
          	   c.setRispostaAssociata(d.getRisposte().get(3));
+         	  c.setRange(range4);
          	   compRisp.add(c);
       	 
          	   c.setRispostaAssociata(d.getRisposte().get(4));
+         	  c.setRange(range5);
          	   compRisp.add(c);
       	 
-            	   c.setRispostaAssociata(d.getRisposte().get(5));
+            	 c.setRispostaAssociata(d.getRisposte().get(5));
+            	 c.setRange(range6);
             	 compRisp.add(c);
-      	  
-         */}
+      	  }
+      	  catch (IndexOutOfBoundsException e){
+  			
+			}
+        }
+        try {
+    		for (CompilazioneRispostaDTO dto:compRisp){
+			client.CompilazioneAggiungiCompilazioneRisposta(dto);
+
+	       	
+	    }
+        } catch (RemoteException e) {
+			JOptionPane.showMessageDialog(this, e.getMessage(),"Errore:",JOptionPane.ERROR_MESSAGE);
+			e.printStackTrace();
+		}  
+       
         clearRange();
         
         RangeCompilazione.setVisible(false);
         
     
     }                                          
+    
+    
     /**
      * Annulla compilazione domanda Range
      * @param evt
@@ -826,14 +849,145 @@ public class CompilazioneGUI extends javax.swing.JFrame {
         
         RangeCompilazione.setVisible(false);
         
-    }                                            
+    }   
+    
+    
+    /**
+     * Salva Compilazione Matrice
+     * @param evt
+     */
+    private void salvaMatriceActionPerformed(java.awt.event.ActionEvent evt) {
+    	
+    	
+    	MatriceDTO m=(MatriceDTO) d;
+    	boolean[] riga1 = null;
+    	boolean[] riga2=null;
+    	boolean[] riga3=null;
+    	boolean[] riga4=null;
+    	boolean[] riga5=null;
+    	boolean[] riga6=null;
+    	
+    	boolean notRisponde=nonRispondeMatrice.isSelected();
+    	ArrayList<CompilazioneRispostaDTO> compRisp= new ArrayList<CompilazioneRispostaDTO>();
+    	
+    	for(int i=0; i<m.getValorimatrice().size();i++){
+    		riga1[i]= (Boolean) jTable1.getValueAt(1, i+1);
+    	}
+    	for(int i=0; i<m.getValorimatrice().size();i++){
+    		riga2[i]= (Boolean) jTable1.getValueAt(2, i+1);
+    	}
+    	for(int i=0; i<m.getValorimatrice().size();i++){
+    		riga3[i]= (Boolean) jTable1.getValueAt(3, i+1);
+    	}
+    	for(int i=0; i<m.getValorimatrice().size();i++){
+    		riga4[i]= (Boolean) jTable1.getValueAt(4, i+1);
+    	}
+    	for(int i=0; i<m.getValorimatrice().size();i++){
+    		riga5[i]= (Boolean) jTable1.getValueAt(5, i+1);
+    	}
+    	for(int i=0; i<m.getValorimatrice().size();i++){
+    		riga6[i]= (Boolean) jTable1.getValueAt(6, i+1);
+    	}
+    	m.getValorimatrice();
+    	
+    	CompilazioneRispostaDTO c=new CompilazioneRispostaDTO();
+    	
+    	c.setCompilazioneAssociataIdCompilazione(compilazione.getIdCompilazione());
+    	
+    	
+    	if (notRisponde){
+      	   for (RispostaDTO r:d.getRisposte()){
+      	       	if (r.isNonRisponde()==notRisponde){
+      	       		c.setRispostaAssociata(r);
+      	       		compRisp.add(c);
+      	       		break;
+      	       	}
+      	       }  
+         }
+    	else{
+    		try{
+    		for(int i=0; i<m.getValorimatrice().size();i++){
+    			riga1[i]= (Boolean) jTable1.getValueAt(1, i+1);
+    			if (riga1[i]){
+    				c.setRispostaAssociata(d.getRisposte().get(0));
+    				c.setValoreMatriceAssociato(m.getValorimatrice().get(i));
+    				compRisp.add(c);
+    			}
+    		}
+    		for(int i=0; i<m.getValorimatrice().size();i++){
+    			riga2[i]= (Boolean) jTable1.getValueAt(1, i+1);
+    			if (riga2[i]){
+    				c.setRispostaAssociata(d.getRisposte().get(1));
+    				c.setValoreMatriceAssociato(m.getValorimatrice().get(i));
+    				compRisp.add(c);
+    			}
+    		}
+    		for(int i=0; i<m.getValorimatrice().size();i++){
+    			riga3[i]= (Boolean) jTable1.getValueAt(1, i+1);
+    			if (riga3[i]){
+    				c.setRispostaAssociata(d.getRisposte().get(2));
+    				c.setValoreMatriceAssociato(m.getValorimatrice().get(i));
+    				compRisp.add(c);
+    			}
+    		}
+    		for(int i=0; i<m.getValorimatrice().size();i++){
+    			riga4[i]= (Boolean) jTable1.getValueAt(1, i+1);
+    			if (riga4[i]){
+    				c.setRispostaAssociata(d.getRisposte().get(3));
+    				c.setValoreMatriceAssociato(m.getValorimatrice().get(i));
+    				compRisp.add(c);
+    			}
+    		}
+    		for(int i=0; i<m.getValorimatrice().size();i++){
+    			riga5[i]= (Boolean) jTable1.getValueAt(1, i+1);
+    			if (riga4[i]){
+    				c.setRispostaAssociata(d.getRisposte().get(4));
+    				c.setValoreMatriceAssociato(m.getValorimatrice().get(i));
+    				compRisp.add(c);
+    			}
+    		}
+    		for(int i=0; i<m.getValorimatrice().size();i++){
+    			riga6[i]= (Boolean) jTable1.getValueAt(1, i+1);
+    			if (riga4[i]){
+    				c.setRispostaAssociata(d.getRisposte().get(5));
+    				c.setValoreMatriceAssociato(m.getValorimatrice().get(i));
+    				compRisp.add(c);
+    			}
+    		}
+    		}
+        	catch (IndexOutOfBoundsException e){}	
+    		
+    	}
+    	try {
+    		for (CompilazioneRispostaDTO dto:compRisp){
+			client.CompilazioneAggiungiCompilazioneRisposta(dto);
+
+	       	
+	    }
+        } catch (RemoteException e) {
+			JOptionPane.showMessageDialog(this, e.getMessage(),"Errore:",JOptionPane.ERROR_MESSAGE);
+			e.printStackTrace();
+		}  
+    	clearMatrice();
+    }
+    
+    
+    /**
+     * Annulla Compilazione Matrice
+     * @param evt
+     */
+    private void annullaMatriceActionPerformed(java.awt.event.ActionEvent evt) {
+    	
+    	
+    	clearMatrice();
+    	MatriceCompilazione.setVisible(false);
+    }
+    
     /**
      * Chiude CompilazioneGUI
      * @param evt
      */
     private void chiudiCompliazioneActionPerformed(java.awt.event.ActionEvent evt) {                                                   
-        
-        
         this.setVisible(false);
     }                                                  
     
@@ -909,19 +1063,24 @@ public class CompilazioneGUI extends javax.swing.JFrame {
         specificare6Text.setText("");
         nonRispondeMultipla.setSelected(false);
     }
+    /**
+     * Pulisce campi MatriceCompilazione
+     */
+    private void clearMatrice(){
+    	
+    }
     
     private javax.swing.JDialog LiberaCompilazione;
     private javax.swing.JDialog MatriceCompilazione;
     private javax.swing.JDialog MultiplaCompilazione;
     private javax.swing.JDialog RangeCompilazione;
     private javax.swing.JButton annullaLibera;
+    private javax.swing.JButton annullaMatrice;
     private javax.swing.JButton annullaMultipla;
     private javax.swing.JButton annullaRange;
     private javax.swing.JButton chiudiCompliazione;
     private javax.swing.JButton salvaLibera;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -953,6 +1112,7 @@ public class CompilazioneGUI extends javax.swing.JFrame {
     private javax.swing.JComboBox range4Combo;
     private javax.swing.JComboBox range5Combo;
     private javax.swing.JComboBox range6Combo;
+    private javax.swing.JButton salvaMatrice;
     private javax.swing.JButton salvaMultipla;
     private javax.swing.JButton salvaRange;
     private javax.swing.JLabel specificare1Label;
