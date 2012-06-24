@@ -59,4 +59,9 @@ public class DomandaDTO {
 	public int getSondaggioAssociatoIdSondaggio() {
 		return sondaggioAssociatoIdSondaggio;
 	}
+	@Override
+	public String toString() {
+		return testo + ", ordine=" + ordine
+				+ ", attivo=" + attivo;
+	}
 }

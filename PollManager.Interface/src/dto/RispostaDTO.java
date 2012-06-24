@@ -88,4 +88,9 @@ public class RispostaDTO {
 	public int getDomandaAssociataIdDomanda() {
 		return domandaAssociataIdDomanda;
 	}
+	@Override
+	public String toString() {
+		return testo + ", ordine=" + ordine
+				+ ", attivo=" + attivo;
+	}
 }

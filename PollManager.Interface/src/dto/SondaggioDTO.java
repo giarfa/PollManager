@@ -52,4 +52,9 @@ public class SondaggioDTO {
 	public void setCompilazioni(ArrayList<CompilazioneDTO> compilazioni) {
 		this.compilazioni = compilazioni;
 	}
+	@Override
+	public String toString() {
+		return "titolo=" + titolo + ", descrizione="
+				+ descrizione + ", attivo=" + attivo;
+	}
 }

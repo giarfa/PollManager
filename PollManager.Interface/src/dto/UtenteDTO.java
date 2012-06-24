@@ -1,3 +1,4 @@
+
 package dto;
 
 import java.util.Date;
@@ -8,6 +9,7 @@ import java.util.Date;
  *
  */
 public class UtenteDTO {
+	
 	private int idUtente;
 	private int matricola;
 	private String nome;
@@ -125,5 +127,12 @@ public class UtenteDTO {
 	 */
 	public void setAttivo(boolean attivo) {
 		this.attivo = attivo;
+	}
+	
+	@Override
+	public String toString() {
+		return nome + " " + cognome
+				+ ", nomeutente=" + nomeutente + ", ruolo=" + ruolo
+				+ ", attivo=" + attivo;
 	}
 }
