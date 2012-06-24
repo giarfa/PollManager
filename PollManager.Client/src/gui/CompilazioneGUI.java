@@ -26,9 +26,7 @@ import dto.SondaggioDTO;
  */
 public class CompilazioneGUI extends javax.swing.JFrame {
 
-    private String tipodomanda="MATRICE", testolibera, titoloDomanda;
-    private boolean multipla1, multipla2, multipla3, multipla4, multipla5, multipla6;
-    private String range1, range2, range3, range4, range5, range6;
+    private String  titoloDomanda;
     private String valorematrice1,valorematrice2,valorematrice3,valorematrice4,valorematrice5,valorematrice6;
     private SondaggioDTO sondaggio;
     private ClientInterface client;
@@ -536,7 +534,7 @@ public class CompilazioneGUI extends javax.swing.JFrame {
      */
     private void chiudiLiberaActionPerformed(java.awt.event.ActionEvent evt) {                                             
         
-        testolibera=liberaTestoArea.getText();
+        String testolibera = liberaTestoArea.getText();
         //client.CompilazioneAggiungiCompilazioneRisposta()
         liberaTestoArea.setText("");
         LiberaCompilazione.setVisible(false);
@@ -564,12 +562,12 @@ public class CompilazioneGUI extends javax.swing.JFrame {
      */
     private void salvaMultiplaActionPerformed(java.awt.event.ActionEvent evt) {                                              
        
-        multipla1=multipla1Check.isSelected();
-        multipla2=multipla2Check.isSelected();
-        multipla3=multipla3Check.isSelected();
-        multipla4=multipla4Check.isSelected();
-        multipla5=multipla5Check.isSelected();
-        multipla6=multipla6Check.isSelected();
+        boolean multipla1 = multipla1Check.isSelected();
+        boolean multipla2 = multipla2Check.isSelected();
+        boolean multipla3 = multipla3Check.isSelected();
+        boolean multipla4 = multipla4Check.isSelected();
+        boolean multipla5 = multipla5Check.isSelected();
+        boolean multipla6 = multipla6Check.isSelected();
         
         CompilazioneDTO compilazione =new CompilazioneDTO();
         compilazione.setDatacompilazione(new Date());
@@ -592,12 +590,12 @@ public class CompilazioneGUI extends javax.swing.JFrame {
      */
     private void salvaRangeActionPerformed(java.awt.event.ActionEvent evt) {                                           
        
-        range1=(String) range1Combo.getSelectedItem();
-        range2=(String) range2Combo.getSelectedItem();
-        range3=(String) range3Combo.getSelectedItem();
-        range4=(String) range4Combo.getSelectedItem();
-        range5=(String) range5Combo.getSelectedItem();
-        range6=(String) range6Combo.getSelectedItem();
+        String range1 = (String) range1Combo.getSelectedItem();
+        String range2 = (String) range2Combo.getSelectedItem();
+        String range3 = (String) range3Combo.getSelectedItem();
+        String range4 = (String) range4Combo.getSelectedItem();
+        String range5 = (String) range5Combo.getSelectedItem();
+        String range6 = (String) range6Combo.getSelectedItem();
         
         range1Combo.setSelectedIndex(0);
         range2Combo.setSelectedIndex(0);

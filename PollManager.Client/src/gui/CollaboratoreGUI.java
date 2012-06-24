@@ -23,8 +23,8 @@ public class CollaboratoreGUI extends javax.swing.JFrame {
     private SondaggioDTO sondaggio;
     /**
      * Costruttore di CollaboratoreGUI
-     * @param idClient
-     * @param client
+     * @param idClient Nome del terminale
+     * @param client Client Interface
      */
     public CollaboratoreGUI(String idClient, ClientInterface client, UtenteDTO utente) {
         this.client=client;

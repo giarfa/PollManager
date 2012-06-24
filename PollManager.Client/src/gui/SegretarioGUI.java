@@ -31,11 +31,12 @@ public class SegretarioGUI extends javax.swing.JFrame {
 	private String idClient;
 	private String valMaxRange, valMinRange, descValMinRange, descValMAxRange,
 			opzione1, opzione2, opzione3, opzione4, opzione5, opzione6;
-	private boolean obbligatorio, isRispSingola;
+	private boolean obbligatorio, isRispSingola , modificaFlag=false;
 	private ClientInterface client;
-	private int MinCharLibera, MaxCharLibera, idSondaggio, idDomanda;
+	private int MinCharLibera, MaxCharLibera, idSondaggio, idDomanda,i=0, idRisposta1, idRisposta2, idRisposta3, idRisposta4,idRisposta5,  idRisposta6;
 	private UtenteDTO utente;		
 	private SondaggioDTO sondaggio;
+	private DomandaDTO domandaModifica;
 	
 	
 	/**
@@ -1467,27 +1468,40 @@ if (range3Text.getText().length() == 0) {
 				range.setSondaggioAssociatoIdSondaggio(idSondaggio);
 				range.setValMax(MaxCharLibera);
 				range.setValMin(MinCharLibera);
+				if (modificaFlag) 
+					{
+						range.setIdDomanda(idDomanda);
+					}
+				
 				client.SondaggioAggiungiDomandaRange(range);
-
+				if (!modificaFlag){
+					int id=range.getIdDomanda();
+					RispostaDTO risp=new RispostaDTO();
+					risp.setDomandaAssociataIdDomanda(id);
+					risp.setNonRisponde(true);
+					client.DomandaAggiungiRisposta(risp);
+				}
+				i++;
 				creaRispostaRange(opzione1, 0);
 
 				if (!opzione2.isEmpty()) {
-
+					i++;
 					creaRispostaRange(opzione2,1);
 
 					if (!opzione3.isEmpty()) {
+						i++;
 						creaRispostaRange(opzione3,2);
-
+						
 						if (!opzione4.isEmpty()) {
-							
+							i++;
 							creaRispostaRange(opzione4,3);
 							
 							if (!opzione5.isEmpty()) {
-								
+								i++;
 								creaRispostaRange(opzione5,5);
 								
 								if (!opzione6.isEmpty()) {
-									
+									i++;
 									creaRispostaRange(opzione6,6);
 								}
 							}
@@ -1538,10 +1552,19 @@ if (range3Text.getText().length() == 0) {
 		matrice.setTesto(titoloDomanda);
 		matrice.setObbligatorio(obbligatorio);
 		matrice.setSondaggioAssociatoIdSondaggio(idSondaggio);
-		
+		if (modificaFlag) {
+			matrice.setIdDomanda(idDomanda);
+		}
 		
 		try {
 			client.SondaggioAggiungiDomandaMatrice(matrice);
+			if (!modificaFlag){
+				int id=matrice.getIdDomanda();
+				RispostaDTO risp=new RispostaDTO();
+				risp.setDomandaAssociataIdDomanda(id);
+				risp.setNonRisponde(true);
+				client.DomandaAggiungiRisposta(risp);
+			}
 			agguingiValoreMatrice(sr1, 0, matrice);
 			if (!sr2.isEmpty()) {
 
@@ -1566,24 +1589,26 @@ if (range3Text.getText().length() == 0) {
 					}
 				}
 			}
+			i++;
 			creaRispostaMatrice(opzione1, 0);
 			if (!opzione2.isEmpty()) {
-
+				i++;
 				creaRispostaMatrice(opzione2,1);
 
 				if (!opzione3.isEmpty()) {
+					i++;
 					creaRispostaMatrice(opzione3,2);
 
 					if (!opzione4.isEmpty()) {
-						
+						i++;
 						creaRispostaMatrice(opzione4,3);
 						
 						if (!opzione5.isEmpty()) {
-							
+							i++;
 							creaRispostaMatrice(opzione5,5);
 							
 							if (!opzione6.isEmpty()) {
-								
+								i++;
 								creaRispostaMatrice(opzione6,6);
 							}
 						}
@@ -1592,7 +1617,7 @@ if (range3Text.getText().length() == 0) {
 			}
 			
 			
-			
+			i=0;
 			clearMatrice();
 			Matrice.setVisible(false);
 			
@@ -1648,39 +1673,46 @@ if (range3Text.getText().length() == 0) {
 		multipla.setTesto(titoloDomanda);
 		multipla.setObbligatorio(obbligatorio);
 		multipla.setSondaggioAssociatoIdSondaggio(idSondaggio);
-
+		if (modificaFlag) multipla.setIdDomanda(idDomanda);
+		
 		try {
 			client.SondaggioAggiungiDomandaMultipla(multipla);
-			RispostaDTO risp=new RispostaDTO();
-			risp.setDomandaAssociataIdDomanda(idDomanda);
-			risp.setNonRisponde(true);
-			client.DomandaAggiungiRisposta(risp);
+			if (!modificaFlag){
+				int id=multipla.getIdDomanda();
+				RispostaDTO risp=new RispostaDTO();
+				risp.setDomandaAssociataIdDomanda(id);
+				risp.setNonRisponde(true);
+				client.DomandaAggiungiRisposta(risp);
+			}
+			
+			i++;
 			creaRispostaMultipla(opzione1,0,specificare1);
 
 			if (!opzione2.isEmpty()) {
-
+				i++;
 				creaRispostaMultipla(opzione2,1,specificare2);
 
 				if (!opzione3.isEmpty()) {
+					i++;
 					creaRispostaMultipla(opzione3,2,specificare3);
 
 					if (!opzione4.isEmpty()) {
-						
+						i++;
 						creaRispostaMultipla(opzione4,3,specificare4);
 						
 						if (!opzione5.isEmpty()) {
-							
+							i++;
 							creaRispostaMultipla(opzione5,5,specificare5);
 							
 							if (!opzione6.isEmpty()) {
-								
+								i++;
 								creaRispostaMultipla(opzione6,6,specificare6);
 							}
 						}
 					}
 				}
 			}
-
+			i=0;
 			clearMultipla();
 			Multipla.setVisible(false);
 
@@ -1697,26 +1729,26 @@ if (range3Text.getText().length() == 0) {
 	 * @param evt
 	 */
 	private void modificaDomandaActionPerformed(java.awt.event.ActionEvent evt) {
-		DomandaDTO d=(DomandaDTO) jList2.getSelectedValue();
-		if (d instanceof LiberaDTO) {
+		domandaModifica=(DomandaDTO) jList2.getSelectedValue();
+		if (domandaModifica instanceof LiberaDTO) {
 			
-			LiberaDTO l=(LiberaDTO) d;
+			LiberaDTO l=(LiberaDTO) domandaModifica;
 			Libera.setVisible(true);
 			
 			titoloLibera.setText(l.getTesto());
 			nMaxCharLibera.setText(Integer.toString(l.getMaxCaratteri()));
 			nMinCharLibera.setText(Integer.toString(l.getMinCaratteri()));
 			obbligatoriaLiberaCheck.setSelected(l.isObbligatorio());
-
+			idDomanda=l.getIdDomanda();
+			modificaFlag=true;
 		}
 
-		if (d instanceof MatriceDTO) {
+		if (domandaModifica instanceof MatriceDTO) {
 			
-			MatriceDTO m=(MatriceDTO) d;
+			MatriceDTO m=(MatriceDTO) domandaModifica;
 			Matrice.setVisible(true);
 			titoloMaticeText.setText(m.getTesto());
 			ArrayList<RispostaDTO> r=m.getRisposte();
-			int idDomanda=m.getIdDomanda();
 			try{
 				vm1Text.setText(m.getValorimatrice().get(0).getTesto());
 				vm2Text.setText(m.getValorimatrice().get(1).getTesto());
@@ -1740,21 +1772,14 @@ if (range3Text.getText().length() == 0) {
 			catch (IndexOutOfBoundsException e){
 			
 			}
-			
-			
-			obbligatoriaMatriceCheck.setSelected(d.isObbligatorio());
-			
-			try {
-				client.DomandaSetDisable(idDomanda);
-			} catch (RemoteException e) {
-				e.printStackTrace();
-			}
-
+			obbligatoriaMatriceCheck.setSelected(m.isObbligatorio());
+			idDomanda=m.getIdDomanda();
+			modificaFlag=true;
 		}
-		if (d instanceof MultiplaDTO) {
+		if (domandaModifica instanceof MultiplaDTO) {
 			
 			Multipla.setVisible(true);
-			MultiplaDTO mul=(MultiplaDTO) d;
+			MultiplaDTO mul=(MultiplaDTO) domandaModifica;
 			titoloMultipla.setText(mul.getTesto());
 			obbligatoriaMultiplaCheck.setSelected(mul.isObbligatorio());
 			try{	
@@ -1774,13 +1799,14 @@ if (range3Text.getText().length() == 0) {
 			specificare4Check.setSelected(mul.getRisposte().get(3).isHasTestoLibero());
 			specificare5Check.setSelected(mul.getRisposte().get(4).isHasTestoLibero());
 			specificare6Check.setSelected(mul.getRisposte().get(5).isHasTestoLibero());
-			
+			idDomanda=mul.getIdDomanda();
+			modificaFlag=true;
 
 		}
-		if (d instanceof RangeDTO) {
+		if (domandaModifica instanceof RangeDTO) {
 			
 			Range.setVisible(true);
-			RangeDTO r=(RangeDTO)d;
+			RangeDTO r=(RangeDTO)domandaModifica;
 			idDomanda=r.getIdDomanda();
 			titoloRangeText.setText(r.getTesto());
 			valMinRangeText.setText(Integer.toString(r.getValMin()));
@@ -1799,7 +1825,8 @@ if (range3Text.getText().length() == 0) {
 			
 			catch (IndexOutOfBoundsException e){
 			} 
-			
+			idDomanda=r.getIdDomanda();
+			modificaFlag=true;
 			
 
 		}
@@ -1810,7 +1837,7 @@ if (range3Text.getText().length() == 0) {
 	 * @param evt
 	 */
 	private void nuovaDomandaActionPerformed(java.awt.event.ActionEvent evt) {
-		
+		modificaFlag=false;
 		SceltaDomanda.setVisible(true);
 	}
 	
@@ -1895,7 +1922,7 @@ if (range3Text.getText().length() == 0) {
 		obbligatorio = obbligatoriaLiberaCheck.isSelected();
 		MinCharLibera = Integer.parseInt(nMinCharLibera.getText());
 
-		clearLibera();
+		
 
 		if (titoloDomanda.length() == 0) {
 
@@ -1908,21 +1935,30 @@ if (range3Text.getText().length() == 0) {
 			libera.setMaxCaratteri(MaxCharLibera);
 			libera.setMinCaratteri(MinCharLibera);
 			libera.setSondaggioAssociatoIdSondaggio(idSondaggio);
+			if (modificaFlag) {
+				libera.setIdDomanda(idDomanda);
+				modificaFlag=false;
+			}
 
 			try {
 
 				client.SondaggioAggiungiDomandaLibera(libera);
-				Libera.setVisible(false);
-				idDomanda=libera.getIdDomanda();
-				RispostaDTO r= new RispostaDTO();
-				r.setDomandaAssociataIdDomanda(idDomanda);
-				client.DomandaAggiungiRisposta(r);
+				
+				
+				if (!modificaFlag){
+					int id=libera.getIdDomanda();
+					RispostaDTO risp=new RispostaDTO();
+					risp.setDomandaAssociataIdDomanda(id);
+					risp.setNonRisponde(true);
+					client.DomandaAggiungiRisposta(risp);
+				}
 
 			} catch (RemoteException e) {
 				JOptionPane.showMessageDialog(this, e.getMessage(),"Errore:",JOptionPane.ERROR_MESSAGE);
 				e.printStackTrace();
 			}
-			
+			clearLibera();
+			Libera.setVisible(false);
 		}
 	}
 
@@ -1932,7 +1968,7 @@ if (range3Text.getText().length() == 0) {
 	 * @param evt
 	 */
 	private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {
-		
+		modificaFlag=false;
 		ModificaDomanda.setVisible(false);
 	}
 	/**
@@ -2047,7 +2083,7 @@ if (range3Text.getText().length() == 0) {
 	 * @param specificare
 	 * @throws RemoteException
 	 */
-	private void creaRispostaMultipla(String opzione,int ordine, boolean specificare) {
+	private void creaRispostaMultipla(String opzione,int ordine, boolean specificare) throws RemoteException {
 		RispostaDTO risposta = new RispostaDTO();
 
 		risposta.setDomandaAssociataIdDomanda(idDomanda);
@@ -2055,12 +2091,11 @@ if (range3Text.getText().length() == 0) {
 		risposta.setOrdine(ordine);
 		risposta.setTesto(opzione);
 		risposta.setNonRisponde(false);
-		try {
-			client.DomandaAggiungiRisposta(risposta);
-		} catch (RemoteException e) {
-			JOptionPane.showMessageDialog(this, e.getMessage(),"Errore:",JOptionPane.ERROR_MESSAGE);
-			e.printStackTrace();
-		}
+		if (modificaFlag)
+			getIdRisposta(domandaModifica, risposta);
+		
+		client.DomandaAggiungiRisposta(risposta);
+		
 		}
 	
 	/**
@@ -2075,8 +2110,10 @@ if (range3Text.getText().length() == 0) {
 		risposta.setDomandaAssociataIdDomanda(idDomanda);
 		risposta.setTesto(opzione);
 		risposta.setOrdine(ordine);
+		if (modificaFlag)
+			getIdRisposta(domandaModifica, risposta);
 		
-			client.DomandaAggiungiRisposta(risposta);
+		client.DomandaAggiungiRisposta(risposta);
 		
 	}
 	/**
@@ -2109,10 +2146,36 @@ if (range3Text.getText().length() == 0) {
 		risposta.setDomandaAssociataIdDomanda(idDomanda);
 		risposta.setTesto(opzione);
 		risposta.setOrdine(ordine);
+		if (modificaFlag)
+			getIdRisposta(domandaModifica, risposta);
+			
+	
 		
-			client.DomandaAggiungiRisposta(risposta);
+		client.DomandaAggiungiRisposta(risposta);
 		
 	}
+	/**
+	 * Preleva gli id di tutte le risposte di d
+	 * @param d DomandaDTO
+	 */
+	private void getIdRisposta(DomandaDTO d, RispostaDTO risposta){
+		idRisposta1=d.getRisposte().get(0).getIdRisposta();
+		idRisposta2=d.getRisposte().get(1).getIdRisposta();
+		idRisposta3=d.getRisposte().get(2).getIdRisposta();
+		idRisposta4=d.getRisposte().get(3).getIdRisposta();
+		idRisposta5=d.getRisposte().get(4).getIdRisposta();
+		idRisposta6=d.getRisposte().get(5).getIdRisposta();
+		if (modificaFlag){
+			
+			if (i==1)risposta.setIdRisposta(idRisposta1);
+			if (i==2)risposta.setIdRisposta(idRisposta2);
+			if (i==3)risposta.setIdRisposta(idRisposta3);
+			if (i==4)risposta.setIdRisposta(idRisposta4);
+			if (i==5)risposta.setIdRisposta(idRisposta5);
+			if (i==6)risposta.setIdRisposta(idRisposta6);
+		}
+	}
+	
 	
 	/**
 	 * Istruzioni di uscita dal Programma
