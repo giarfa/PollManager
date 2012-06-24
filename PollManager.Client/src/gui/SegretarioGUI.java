@@ -1892,6 +1892,7 @@ else range4Text.setEnabled(true);
     		CompilazioneDTO d=new CompilazioneDTO();
         	d.setDatacompilazione(new Date());
         	d.setSondaggioAssociatoIdSondaggio(s.getIdSondaggio());
+        	d.setUtenteAssociato(utente);
 			CompilazioneDTO compilazione = client.SondaggioAggiungiCompilazione(d);
 			CompilazioneGUI c = new CompilazioneGUI(s,client,compilazione);
 			c.setVisible(true);
@@ -1908,10 +1909,13 @@ else range4Text.setEnabled(true);
 	private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {
 		SondaggioDTO s=(SondaggioDTO) jList1.getSelectedValue();
 		
-		if (s.isAttivo()) s.setAttivo(false);
-		if (!s.isAttivo())s.setAttivo(true);
 		try {
-			inizializza();
+		if (s.isAttivo())
+			client.SondaggioSetDisable(s.getIdSondaggio());
+		else
+			client.SondaggioSetEnable(s.getIdSondaggio());
+		
+		inizializza();
 		} catch (RemoteException e) {
 			JOptionPane.showMessageDialog(this, e.getMessage(),"Errore:",JOptionPane.ERROR_MESSAGE);
 			e.printStackTrace();

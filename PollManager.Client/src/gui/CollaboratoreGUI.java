@@ -248,9 +248,11 @@ public class CollaboratoreGUI extends javax.swing.JFrame {
     private void compilaSondaggioActionPerformed(java.awt.event.ActionEvent evt) {                                         
     	
 		try {
+			sondaggio= (SondaggioDTO) jList1.getSelectedValue();
 			CompilazioneDTO d=new CompilazioneDTO();
 	    	d.setDatacompilazione(new Date());
 	    	d.setSondaggioAssociatoIdSondaggio(sondaggio.getIdSondaggio());
+	    	d.setUtenteAssociato(utente);
 			CompilazioneDTO compilazione;
 			compilazione = client.SondaggioAggiungiCompilazione(d);
 			CompilazioneGUI a=new CompilazioneGUI(sondaggio,client,compilazione);
