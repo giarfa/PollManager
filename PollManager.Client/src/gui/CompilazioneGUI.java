@@ -8,6 +8,7 @@ import javax.swing.table.DefaultTableModel;
 import client.ClientInterface;
 
 import dto.CompilazioneDTO;
+import dto.CompilazioneRispostaDTO;
 import dto.DomandaDTO;
 import dto.LiberaDTO;
 import dto.MatriceDTO;
@@ -31,6 +32,7 @@ public class CompilazioneGUI extends javax.swing.JFrame {
     private SondaggioDTO sondaggio;
     private ClientInterface client;
     private CompilazioneDTO compilazione;
+    private DomandaDTO d;
     
     /**
      * Creates new form CompilazioneGUI
@@ -57,7 +59,7 @@ public class CompilazioneGUI extends javax.swing.JFrame {
         titoloLiberaLabel = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         liberaTestoArea = new javax.swing.JTextArea();
-        chiudiLibera = new javax.swing.JButton();
+        salvaLibera = new javax.swing.JButton();
         annullaLibera = new javax.swing.JButton();
         MultiplaCompilazione = new javax.swing.JDialog();
         titoloMultiplaLabel = new javax.swing.JLabel();
@@ -69,6 +71,14 @@ public class CompilazioneGUI extends javax.swing.JFrame {
         multipla6Check = new javax.swing.JCheckBox();
         annullaMultipla = new javax.swing.JButton();
         salvaMultipla = new javax.swing.JButton();
+        specificare1Text = new javax.swing.JTextField();
+        specificare2Text = new javax.swing.JTextField();
+        specificare3Text = new javax.swing.JTextField();
+        specificare4Text = new javax.swing.JTextField();
+        specificare5Text = new javax.swing.JTextField();
+        specificare6Text = new javax.swing.JTextField();
+        specificare1Label = new javax.swing.JLabel();
+        specificare2Label = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -99,7 +109,6 @@ public class CompilazioneGUI extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         chiudiCompliazione = new javax.swing.JButton();
 
-        LiberaCompilazione.setMaximumSize(new java.awt.Dimension(540, 320));
         LiberaCompilazione.setMinimumSize(new java.awt.Dimension(540, 320));
 
         titoloLiberaLabel.setText("jLabel1");
@@ -108,15 +117,15 @@ public class CompilazioneGUI extends javax.swing.JFrame {
         liberaTestoArea.setRows(5);
         jScrollPane2.setViewportView(liberaTestoArea);
 
-        chiudiLibera.setLabel("Salva");
-        chiudiLibera.addActionListener(new java.awt.event.ActionListener() {
+        salvaLibera.setLabel("Salva");
+        salvaLibera.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                chiudiLiberaActionPerformed(evt);
+                salvaLiberaActionPerformed(evt);
             }
         });
 
         annullaLibera.setText("Annulla");
-       
+        
         annullaLibera.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 annullaLiberaActionPerformed(evt);
@@ -133,7 +142,7 @@ public class CompilazioneGUI extends javax.swing.JFrame {
                     .addGroup(LiberaCompilazioneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(LiberaCompilazioneLayout.createSequentialGroup()
-                            .addComponent(chiudiLibera, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(salvaLibera, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(annullaLibera, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(titoloLiberaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -149,11 +158,12 @@ public class CompilazioneGUI extends javax.swing.JFrame {
                 .addGap(43, 43, 43)
                 .addGroup(LiberaCompilazioneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(annullaLibera)
-                    .addComponent(chiudiLibera))
+                    .addComponent(salvaLibera))
                 .addContainerGap(62, Short.MAX_VALUE))
         );
 
-        MultiplaCompilazione.setMinimumSize(new java.awt.Dimension(378, 351));
+        MultiplaCompilazione.setMaximumSize(new java.awt.Dimension(531, 351));
+        MultiplaCompilazione.setMinimumSize(new java.awt.Dimension(531, 351));
 
         titoloMultiplaLabel.setText("jLabel2");
 
@@ -183,6 +193,22 @@ public class CompilazioneGUI extends javax.swing.JFrame {
             }
         });
 
+        specificare1Text.setText("jTextField1");
+
+        specificare2Text.setText("jTextField2");
+
+        specificare3Text.setText("jTextField3");
+
+        specificare4Text.setText("jTextField4");
+
+        specificare5Text.setText("jTextField5");
+
+        specificare6Text.setText("jTextField6");
+
+        specificare1Label.setText("Specificare");
+
+        specificare2Label.setText("Specificare");
+
         javax.swing.GroupLayout MultiplaCompilazioneLayout = new javax.swing.GroupLayout(MultiplaCompilazione.getContentPane());
         MultiplaCompilazione.getContentPane().setLayout(MultiplaCompilazioneLayout);
         MultiplaCompilazioneLayout.setHorizontalGroup(
@@ -190,41 +216,66 @@ public class CompilazioneGUI extends javax.swing.JFrame {
             .addGroup(MultiplaCompilazioneLayout.createSequentialGroup()
                 .addGap(58, 58, 58)
                 .addGroup(MultiplaCompilazioneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(MultiplaCompilazioneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(MultiplaCompilazioneLayout.createSequentialGroup()
-                            .addComponent(salvaMultipla, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(annullaMultipla))
-                        .addGroup(MultiplaCompilazioneLayout.createSequentialGroup()
-                            .addGroup(MultiplaCompilazioneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(multipla1Check)
-                                .addComponent(multipla2Check)
-                                .addComponent(multipla3Check))
-                            .addGap(99, 99, 99)
-                            .addGroup(MultiplaCompilazioneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(multipla4Check)
-                                .addComponent(multipla5Check)
-                                .addComponent(multipla6Check))))
-                    .addComponent(titoloMultiplaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(59, Short.MAX_VALUE))
+                    .addGroup(MultiplaCompilazioneLayout.createSequentialGroup()
+                        .addComponent(titoloMultiplaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(258, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MultiplaCompilazioneLayout.createSequentialGroup()
+                        .addGroup(MultiplaCompilazioneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(MultiplaCompilazioneLayout.createSequentialGroup()
+                                .addComponent(salvaMultipla, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(annullaMultipla))
+                            .addGroup(MultiplaCompilazioneLayout.createSequentialGroup()
+                                .addGroup(MultiplaCompilazioneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(multipla1Check)
+                                    .addComponent(multipla2Check)
+                                    .addComponent(multipla3Check))
+                                .addGap(45, 45, 45)
+                                .addGroup(MultiplaCompilazioneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(specificare3Text)
+                                    .addComponent(specificare2Text)
+                                    .addComponent(specificare1Text)
+                                    .addComponent(specificare1Label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(MultiplaCompilazioneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(multipla4Check)
+                                    .addComponent(multipla5Check)
+                                    .addComponent(multipla6Check))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(MultiplaCompilazioneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(specificare4Text)
+                                    .addComponent(specificare5Text)
+                                    .addComponent(specificare6Text)
+                                    .addComponent(specificare2Label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(18, 18, 18))))
         );
         MultiplaCompilazioneLayout.setVerticalGroup(
             MultiplaCompilazioneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(MultiplaCompilazioneLayout.createSequentialGroup()
-                .addGap(25, 25, 25)
+                .addGap(19, 19, 19)
                 .addComponent(titoloMultiplaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(57, 57, 57)
+                .addGap(31, 31, 31)
+                .addGroup(MultiplaCompilazioneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(specificare1Label)
+                    .addComponent(specificare2Label))
+                .addGap(18, 18, 18)
                 .addGroup(MultiplaCompilazioneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(multipla1Check)
-                    .addComponent(multipla4Check))
+                    .addComponent(multipla4Check)
+                    .addComponent(specificare1Text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(specificare4Text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(MultiplaCompilazioneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(multipla2Check)
-                    .addComponent(multipla5Check))
+                    .addComponent(multipla5Check)
+                    .addComponent(specificare5Text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(specificare2Text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(MultiplaCompilazioneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(multipla3Check)
-                    .addComponent(multipla6Check))
+                    .addComponent(multipla6Check)
+                    .addComponent(specificare3Text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(specificare6Text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(43, 43, 43)
                 .addGroup(MultiplaCompilazioneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(salvaMultipla)
@@ -453,7 +504,9 @@ public class CompilazioneGUI extends javax.swing.JFrame {
         );
 
         pack();
-    }                                        
+    }
+
+                                        
     
     
     /**
@@ -462,22 +515,29 @@ public class CompilazioneGUI extends javax.swing.JFrame {
      */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
         
-        DomandaDTO d=(DomandaDTO) jList1.getSelectedValue();
+        d=(DomandaDTO) jList1.getSelectedValue();
     
-    	if (d instanceof MatriceDTO) {
+    	
+        if (d instanceof MatriceDTO) {
             MatriceCompilazione.setVisible(true);
-            titoloMatriceLabel.setText(titoloDomanda);
+            titoloMatriceLabel.setText(d.getTesto());
+            
 
-            Object[][] dati = {{new String("pluto"), new Boolean(false), new Boolean(false), new Boolean(false)}};
+            Object[][] dati = {{new String(d.getRisposte().get(1).getTesto()), new Boolean(false), new Boolean(false), new Boolean(false)},
+				            	{new String(d.getRisposte().get(2).getTesto()), new Boolean(false), new Boolean(false), new Boolean(false)},
+				            	{new String(d.getRisposte().get(3).getTesto()), new Boolean(false), new Boolean(false), new Boolean(false)},
+				            	{new String(d.getRisposte().get(4).getTesto()), new Boolean(false), new Boolean(false), new Boolean(false)},
+				            	{new String(d.getRisposte().get(5).getTesto()), new Boolean(false), new Boolean(false), new Boolean(false)},
+				            	{new String(d.getRisposte().get(6).getTesto()), new Boolean(false), new Boolean(false), new Boolean(false)}};
 
             Object[] columnNames = {
                 "",
-                valorematrice1,
-                valorematrice2,
-                valorematrice3,
-                valorematrice4,
-                valorematrice5,
-                valorematrice6,
+                ((MatriceDTO) d).getValorimatrice().get(0).getTesto(),
+                ((MatriceDTO) d).getValorimatrice().get(1).getTesto(),
+                ((MatriceDTO) d).getValorimatrice().get(2).getTesto(),
+                ((MatriceDTO) d).getValorimatrice().get(3).getTesto(),
+                ((MatriceDTO) d).getValorimatrice().get(4).getTesto(),
+                ((MatriceDTO) d).getValorimatrice().get(5).getTesto(),
                 
             };
 
@@ -499,24 +559,43 @@ public class CompilazioneGUI extends javax.swing.JFrame {
             jTable1.getColumnModel().getColumn(6).setCellRenderer(jTable1.getDefaultRenderer(Boolean.class));
             jTable1.getColumnModel().getColumn(6).setCellEditor(jTable1.getDefaultEditor(Boolean.class));
             
-            
+            ///TODO boolean pop=(Boolean) jTable1.getValueAt(1, 1);
 
         }
         if (d instanceof LiberaDTO){
         	LiberaDTO l=(LiberaDTO) d;
             LiberaCompilazione.setVisible(true);
-            titoloLiberaLabel.setText(d.getTesto());
+            titoloLiberaLabel.setText(l.getTesto());
           }
             
         if (d instanceof RangeDTO){
         	RangeDTO r=(RangeDTO) d;
             RangeCompilazione.setVisible(true);
-            titoloRangeLabel.setText(d.getTesto());
+            titoloRangeLabel.setText(r.getTesto());
+            jLabel3.setText(r.getRisposte().get(1).getTesto());
+            jLabel4.setText(r.getRisposte().get(2).getTesto());
+            jLabel5.setText(r.getRisposte().get(3).getTesto());
+            jLabel6.setText(r.getRisposte().get(4).getTesto());
+            jLabel7.setText(r.getRisposte().get(5).getTesto());
+            jLabel8.setText(r.getRisposte().get(6).getTesto());
+            comboEnable(jLabel3.getText(), jLabel4.getText(), jLabel5.getText(), jLabel6.getText(), jLabel7.getText(), jLabel8.getText());
         }
         if (d instanceof MultiplaDTO){
         	MultiplaDTO m=(MultiplaDTO) d;
             MultiplaCompilazione.setVisible(true);
-            titoloMultiplaLabel.setText(d.getTesto());
+            titoloMultiplaLabel.setText(m.getTesto());
+            multipla1Check.setText(m.getRisposte().get(1).getTesto());
+            multipla2Check.setText(m.getRisposte().get(2).getTesto());
+            multipla3Check.setText(m.getRisposte().get(3).getTesto());
+            multipla4Check.setText(m.getRisposte().get(4).getTesto());
+            multipla5Check.setText(m.getRisposte().get(5).getTesto());
+            multipla6Check.setText(m.getRisposte().get(6).getTesto());
+            specificare1Text.setEnabled(m.getRisposte().get(1).isHasTestoLibero());
+            specificare2Text.setEnabled(m.getRisposte().get(2).isHasTestoLibero());
+            specificare3Text.setEnabled(m.getRisposte().get(3).isHasTestoLibero());
+            specificare4Text.setEnabled(m.getRisposte().get(4).isHasTestoLibero());
+            specificare5Text.setEnabled(m.getRisposte().get(5).isHasTestoLibero());
+            specificare6Text.setEnabled(m.getRisposte().get(6).isHasTestoLibero());
         }
     }                                        
     /**
@@ -532,10 +611,21 @@ public class CompilazioneGUI extends javax.swing.JFrame {
      * Salva compialazione domanda Libera
      * @param evt
      */
-    private void chiudiLiberaActionPerformed(java.awt.event.ActionEvent evt) {                                             
+    private void salvaLiberaActionPerformed(java.awt.event.ActionEvent evt) {                                             
         
         String testolibera = liberaTestoArea.getText();
-        //client.CompilazioneAggiungiCompilazioneRisposta()
+        CompilazioneRispostaDTO c=new CompilazioneRispostaDTO();
+        
+        //TODO
+        c.setCompilazioneAssociataIdCompilazione(compilazione.getIdCompilazione());
+        c.setRispostaAssociata(d.getRisposte().get(0));
+        try {
+			client.CompilazioneAggiungiCompilazioneRisposta(c);
+			
+		} catch (RemoteException e) {
+			
+			e.printStackTrace();
+		}
         liberaTestoArea.setText("");
         LiberaCompilazione.setVisible(false);
         
@@ -553,7 +643,12 @@ public class CompilazioneGUI extends javax.swing.JFrame {
         multipla4Check.setSelected(false);
         multipla5Check.setSelected(false);
         multipla6Check.setSelected(false);
-        
+        specificare1Text.setText("");
+        specificare2Text.setText("");
+        specificare3Text.setText("");
+        specificare4Text.setText("");
+        specificare5Text.setText("");
+        specificare6Text.setText("");
         MultiplaCompilazione.setVisible(false);
     }                                               
     /**
@@ -569,8 +664,7 @@ public class CompilazioneGUI extends javax.swing.JFrame {
         boolean multipla5 = multipla5Check.isSelected();
         boolean multipla6 = multipla6Check.isSelected();
         
-        CompilazioneDTO compilazione =new CompilazioneDTO();
-        compilazione.setDatacompilazione(new Date());
+        
        
         
         multipla1Check.setSelected(false);
@@ -590,12 +684,17 @@ public class CompilazioneGUI extends javax.swing.JFrame {
      */
     private void salvaRangeActionPerformed(java.awt.event.ActionEvent evt) {                                           
        
-        String range1 = (String) range1Combo.getSelectedItem();
+        
+    	String range1 = (String) range1Combo.getSelectedItem();
         String range2 = (String) range2Combo.getSelectedItem();
         String range3 = (String) range3Combo.getSelectedItem();
         String range4 = (String) range4Combo.getSelectedItem();
         String range5 = (String) range5Combo.getSelectedItem();
         String range6 = (String) range6Combo.getSelectedItem();
+        
+        CompilazioneRispostaDTO c=new CompilazioneRispostaDTO();
+        
+        c.setCompilazioneAssociataIdCompilazione(compilazione.getIdCompilazione());
         
         range1Combo.setSelectedIndex(0);
         range2Combo.setSelectedIndex(0);
@@ -639,7 +738,32 @@ public class CompilazioneGUI extends javax.swing.JFrame {
     private void inizializza(){
     	jList1.setListData(sondaggio.getDomande().toArray());
     }
-   
+    
+    
+    /**
+     * Abilita\Disabilita comboBox compilazione Range
+     * @param campo1 Text primo label
+     * @param campo2 Text secondo label
+     * @param campo3 Text terzo label
+     * @param campo4 Text quarto label
+     * @param campo5 Text quinto label
+     * @param campo6 Text sesto label
+     */
+    private void comboEnable(String campo1,String campo2,String campo3,String campo4,String campo5,String campo6){
+    	if (campo1=="") range1Combo.setEnabled(false);
+    	else range1Combo.setEnabled(true);
+    	if (campo2=="") range2Combo.setEnabled(false);
+    	else range1Combo.setEnabled(true);
+    	if (campo3=="") range3Combo.setEnabled(false);
+    	else range1Combo.setEnabled(true);
+    	if (campo4=="") range4Combo.setEnabled(false);
+    	else range1Combo.setEnabled(true);
+    	if (campo5=="") range5Combo.setEnabled(false);
+    	else range1Combo.setEnabled(true);
+    	if (campo6=="") range6Combo.setEnabled(false);
+    	else range1Combo.setEnabled(true);
+    }
+    
     // Variables declaration - do not modify
     private javax.swing.JDialog LiberaCompilazione;
     private javax.swing.JDialog MatriceCompilazione;
@@ -649,7 +773,7 @@ public class CompilazioneGUI extends javax.swing.JFrame {
     private javax.swing.JButton annullaMultipla;
     private javax.swing.JButton annullaRange;
     private javax.swing.JButton chiudiCompliazione;
-    private javax.swing.JButton chiudiLibera;
+    private javax.swing.JButton salvaLibera;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
@@ -682,6 +806,14 @@ public class CompilazioneGUI extends javax.swing.JFrame {
     private javax.swing.JComboBox range6Combo;
     private javax.swing.JButton salvaMultipla;
     private javax.swing.JButton salvaRange;
+    private javax.swing.JLabel specificare1Label;
+    private javax.swing.JTextField specificare1Text;
+    private javax.swing.JLabel specificare2Label;
+    private javax.swing.JTextField specificare2Text;
+    private javax.swing.JTextField specificare3Text;
+    private javax.swing.JTextField specificare4Text;
+    private javax.swing.JTextField specificare5Text;
+    private javax.swing.JTextField specificare6Text;
     private javax.swing.JLabel titoloLiberaLabel;
     private javax.swing.JLabel titoloMatriceLabel;
     private javax.swing.JLabel titoloMultiplaLabel;
