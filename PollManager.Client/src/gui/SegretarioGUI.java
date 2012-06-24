@@ -750,7 +750,7 @@ public class SegretarioGUI extends javax.swing.JFrame {
 	        );
 
 	        //Multipla.setAutoRequestFocus(false);
-	        Multipla.setMinimumSize(new java.awt.Dimension(540, 600));
+	        Multipla.setMinimumSize(new java.awt.Dimension(640, 500));
 
 	        jLabel14.setText("Titolo");
 
@@ -1282,7 +1282,14 @@ public class SegretarioGUI extends javax.swing.JFrame {
 			range4Text.setText("");
 
 			range5Text.setText("");
+			
+			range2Text.setEnabled(false);
+			range3Text.setEnabled(false);
+			range4Text.setEnabled(false);
+			range5Text.setEnabled(false);
 		}
+		else range2Text.setEnabled(true);
+		
 
 	}
 	/**
@@ -1297,7 +1304,11 @@ public class SegretarioGUI extends javax.swing.JFrame {
 			range4Text.setText("");
 
 			range5Text.setText("");
+			range3Text.setEnabled(false);
+			range4Text.setEnabled(false);
+			range5Text.setEnabled(false);
 		}
+		else range3Text.setEnabled(true);
 	}
 	/**
 	 * Pulisci rangeText superiori se rangeText vouto
@@ -1309,7 +1320,10 @@ if (range3Text.getText().length() == 0) {
 			range4Text.setText("");
 
 			range5Text.setText("");
+			range4Text.setEnabled(false);
+			range5Text.setEnabled(false);
 		}
+else range4Text.setEnabled(true);
 	}
 	/**
 	 * Pulisci rangeText superiori se rangeText vouto
@@ -1321,7 +1335,9 @@ if (range3Text.getText().length() == 0) {
 		if (range4Text.getText().length() == 0) {
 
 			range5Text.setText("");
+			range5Text.setEnabled(false);
 		}
+		else range5Text.setEnabled(true);
 	}
 	
 	/**
