@@ -2186,7 +2186,9 @@ if (range3Text.getText().length() == 0) {
 		System.exit((0));
 	}
 	
-	
+	private void inizializza(){
+		
+	}
 
 	private javax.swing.JDialog InsDatiSondaggio;
     private javax.swing.JDialog Libera;
