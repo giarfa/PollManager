@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import util.DTOMapper;
 import dataAccess.Repository;
+import domain.Domanda;
 import domain.Orientamento;
 import domain.Sondaggio;
 import domain.Utente;
@@ -32,6 +33,15 @@ public class SondaggiManager implements SondaggiManagerInterface {
 	
 	private SondaggioDTO GetDTO(Sondaggio sondaggio){
 		return DTOMapper.getInstance().<SondaggioDTO>map(sondaggio, SondaggioDTO.class);
+	}
+	
+	private int getMaxIdDomanda(List<Domanda> domande){
+		int idDomanda=-1;
+		for (Domanda item : domande){
+			if (item.getIdDomanda()>idDomanda)
+				idDomanda=item.getIdDomanda();
+		}
+		return idDomanda;
 	}
 	
 	@Override
@@ -71,7 +81,7 @@ public class SondaggiManager implements SondaggiManagerInterface {
 		Orientamento orientamento=DTOMapper.getInstance().<Orientamento>map(dto.getOrientamento(), Orientamento.class);
 		sondaggio.AggiungiDomandaMultipla(dto.getOrdine(), dto.getTesto(), dto.isObbligatorio(), orientamento, dto.isIs_singola(), dto.getNumMinRisp());
 		Sondaggio sondaggioSalvato=this.SaveOrUpdate(sondaggio);
-		return sondaggioSalvato.getDomande().get(0).getIdDomanda();
+		return getMaxIdDomanda(sondaggioSalvato.getDomande());
 	}
 
 	@Override
@@ -79,7 +89,7 @@ public class SondaggiManager implements SondaggiManagerInterface {
 		Sondaggio sondaggio=this.GetById(dto.getSondaggioAssociatoIdSondaggio());
 		sondaggio.AggiungiDomandaLibera(dto.getOrdine(), dto.getTesto(), dto.isObbligatorio(), dto.getMaxCaratteri(), dto.getMinCaratteri());
 		Sondaggio sondaggioSalvato=this.SaveOrUpdate(sondaggio);
-		return sondaggioSalvato.getDomande().get(0).getIdDomanda();
+		return getMaxIdDomanda(sondaggioSalvato.getDomande());
 	}
 
 	@Override
@@ -87,7 +97,7 @@ public class SondaggiManager implements SondaggiManagerInterface {
 		Sondaggio sondaggio=this.GetById(dto.getSondaggioAssociatoIdSondaggio());
 		sondaggio.AggiungiDomandaRange(dto.getOrdine(), dto.getTesto(), dto.isObbligatorio(), dto.getValMin(), dto.getValMax(), dto.getDescValMin(), dto.getDescValMax(), dto.isRispSingola());
 		Sondaggio sondaggioSalvato=this.SaveOrUpdate(sondaggio);
-		return sondaggioSalvato.getDomande().get(0).getIdDomanda();
+		return getMaxIdDomanda(sondaggioSalvato.getDomande());
 	}
 
 	@Override
@@ -95,7 +105,7 @@ public class SondaggiManager implements SondaggiManagerInterface {
 		Sondaggio sondaggio=this.GetById(dto.getSondaggioAssociatoIdSondaggio());
 		sondaggio.AggiungiDomandaMatrice(dto.getOrdine(), dto.getTesto(), dto.isObbligatorio());
 		Sondaggio sondaggioSalvato=this.SaveOrUpdate(sondaggio);
-		return sondaggioSalvato.getDomande().get(0).getIdDomanda();
+		return getMaxIdDomanda(sondaggioSalvato.getDomande());
 	}
 
 	@Override
