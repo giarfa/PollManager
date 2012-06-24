@@ -25,12 +25,14 @@ public class CollaboratoreGUI extends javax.swing.JFrame {
      * Costruttore di CollaboratoreGUI
      * @param idClient Nome del terminale
      * @param client Client Interface
+     * @throws RemoteException 
      */
-    public CollaboratoreGUI(String idClient, ClientInterface client, UtenteDTO utente) {
+    public CollaboratoreGUI(String idClient, ClientInterface client, UtenteDTO utente) throws RemoteException {
         this.client=client;
         this.idClient=idClient;
         this.utente=utente;
         initComponents();
+        inizializza();
         this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
     }
 
@@ -192,7 +194,7 @@ public class CollaboratoreGUI extends javax.swing.JFrame {
         );
 
         pack();
-    }// </editor-fold>                        
+    }                        
 
                                   
     /**
@@ -277,8 +279,14 @@ public class CollaboratoreGUI extends javax.swing.JFrame {
         this.setVisible(false);
         b.setVisible(true);
     }
-    
-    
+    /**
+     * Inizializza Lista sondaggi
+     * @throws RemoteException
+     */
+    private void inizializza() throws RemoteException{
+    	java.util.List<SondaggioDTO> listaSondaggio=client.SondaggioGetList();
+		jList1.setListData(listaSondaggio.toArray());
+    }
     /**
      * Istruzioni per la chiusura del programma
      */

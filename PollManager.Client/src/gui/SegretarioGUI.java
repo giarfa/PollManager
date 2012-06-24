@@ -1,5 +1,6 @@
 package gui;
 
+import java.awt.List;
 import java.awt.event.MouseEvent;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
@@ -43,12 +44,14 @@ public class SegretarioGUI extends javax.swing.JFrame {
 	 * Costruttore di SegretarioGUI
 	 * @param idClient
 	 * @param client
+	 * @throws RemoteException 
 	 */
-	public SegretarioGUI(String idClient, ClientInterface client, UtenteDTO utente) {
+	public SegretarioGUI(String idClient, ClientInterface client, UtenteDTO utente) throws RemoteException {
 		this.client = client;
 		this.idClient = idClient;
 		this.utente=utente;
 		initComponents();
+		inizializza();
 		this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 	}
 
@@ -1479,6 +1482,7 @@ if (range3Text.getText().length() == 0) {
 					RispostaDTO risp=new RispostaDTO();
 					risp.setDomandaAssociataIdDomanda(id);
 					risp.setNonRisponde(true);
+					risp.setOrdine(99);
 					client.DomandaAggiungiRisposta(risp);
 				}
 				i++;
@@ -1498,11 +1502,11 @@ if (range3Text.getText().length() == 0) {
 							
 							if (!opzione5.isEmpty()) {
 								i++;
-								creaRispostaRange(opzione5,5);
+								creaRispostaRange(opzione5,4);
 								
 								if (!opzione6.isEmpty()) {
 									i++;
-									creaRispostaRange(opzione6,6);
+									creaRispostaRange(opzione6,5);
 								}
 							}
 						}
@@ -1563,6 +1567,7 @@ if (range3Text.getText().length() == 0) {
 				RispostaDTO risp=new RispostaDTO();
 				risp.setDomandaAssociataIdDomanda(id);
 				risp.setNonRisponde(true);
+				risp.setOrdine(99);
 				client.DomandaAggiungiRisposta(risp);
 			}
 			agguingiValoreMatrice(sr1, 0, matrice);
@@ -1605,11 +1610,11 @@ if (range3Text.getText().length() == 0) {
 						
 						if (!opzione5.isEmpty()) {
 							i++;
-							creaRispostaMatrice(opzione5,5);
+							creaRispostaMatrice(opzione5,4);
 							
 							if (!opzione6.isEmpty()) {
 								i++;
-								creaRispostaMatrice(opzione6,6);
+								creaRispostaMatrice(opzione6,5);
 							}
 						}
 					}
@@ -1682,6 +1687,7 @@ if (range3Text.getText().length() == 0) {
 				RispostaDTO risp=new RispostaDTO();
 				risp.setDomandaAssociataIdDomanda(id);
 				risp.setNonRisponde(true);
+				risp.setOrdine(99);
 				client.DomandaAggiungiRisposta(risp);
 			}
 			
@@ -1950,6 +1956,7 @@ if (range3Text.getText().length() == 0) {
 					RispostaDTO risp=new RispostaDTO();
 					risp.setDomandaAssociataIdDomanda(id);
 					risp.setNonRisponde(true);
+					risp.setOrdine(99);
 					client.DomandaAggiungiRisposta(risp);
 				}
 
@@ -2186,8 +2193,16 @@ if (range3Text.getText().length() == 0) {
 		System.exit((0));
 	}
 	
-	private void inizializza(){
+	/**
+	 * Inizializza Lista sondaggi
+	 * @throws RemoteException
+	 */
+	private void inizializza() throws RemoteException{
+	
+			java.util.List<SondaggioDTO> listaSondaggio=client.SondaggioGetList();
+			jList1.setListData(listaSondaggio.toArray());
 		
+	
 	}
 
 	private javax.swing.JDialog InsDatiSondaggio;

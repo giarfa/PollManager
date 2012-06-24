@@ -28,8 +28,9 @@ public class AmministratoreGUI extends javax.swing.JFrame {
      * 
      * @param idClient
      * @param client
+     * @throws RemoteException 
      */
-    public AmministratoreGUI(String idClient, ClientInterface client,UtenteDTO utente) {
+    public AmministratoreGUI(String idClient, ClientInterface client,UtenteDTO utente) throws RemoteException {
         this.client=client;
         this.idClient=idClient;
         this.utente=utente;
@@ -538,24 +539,14 @@ public class AmministratoreGUI extends javax.swing.JFrame {
     }
     /**
      * Inizializza AmministratoreGUI
+     * @throws RemoteException 
      */
-    private void inizializza(){
+    private void inizializza() throws RemoteException{
     	
     	this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
     	java.util.List<UtenteDTO> listaUtenti=(java.util.List<UtenteDTO>) new List();
-        try {
-			
-        	listaUtenti=client.UtenteGetList();
-		
-        } catch (RemoteException e) {
-			
-			
-        	
-        	e.printStackTrace();
-        	e.getMessage();
-		}
-        
-       jList1.setListData(listaUtenti.toArray());
+    	listaUtenti=client.UtenteGetList();
+		jList1.setListData(listaUtenti.toArray());
     }
     
     /**

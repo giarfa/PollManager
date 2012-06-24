@@ -1,8 +1,10 @@
 package gui;
 
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.Date;
 
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 import client.ClientInterface;
@@ -14,6 +16,7 @@ import dto.LiberaDTO;
 import dto.MatriceDTO;
 import dto.MultiplaDTO;
 import dto.RangeDTO;
+import dto.RispostaDTO;
 import dto.SondaggioDTO;
 
 /*
@@ -46,6 +49,7 @@ public class CompilazioneGUI extends javax.swing.JFrame {
         this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
     }
 
+  
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">
     private void initComponents() {
@@ -298,18 +302,6 @@ public class CompilazioneGUI extends javax.swing.JFrame {
 
         jLabel8.setText("jLabel8");
 
-        range1Combo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        range2Combo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        range3Combo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        range4Combo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        range5Combo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        range6Combo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         annullaRange.setText("Annulla");
         annullaRange.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -518,6 +510,7 @@ public class CompilazioneGUI extends javax.swing.JFrame {
     }// </editor-fold>
 
 
+
                                         
     
     
@@ -535,12 +528,12 @@ public class CompilazioneGUI extends javax.swing.JFrame {
             titoloMatriceLabel.setText(d.getTesto());
             
 
-            Object[][] dati = {{new String(d.getRisposte().get(1).getTesto()), new Boolean(false), new Boolean(false), new Boolean(false)},
+            Object[][] dati = {{new String(d.getRisposte().get(0).getTesto()), new Boolean(false), new Boolean(false), new Boolean(false)},
+				            	{new String(d.getRisposte().get(1).getTesto()), new Boolean(false), new Boolean(false), new Boolean(false)},
 				            	{new String(d.getRisposte().get(2).getTesto()), new Boolean(false), new Boolean(false), new Boolean(false)},
 				            	{new String(d.getRisposte().get(3).getTesto()), new Boolean(false), new Boolean(false), new Boolean(false)},
 				            	{new String(d.getRisposte().get(4).getTesto()), new Boolean(false), new Boolean(false), new Boolean(false)},
-				            	{new String(d.getRisposte().get(5).getTesto()), new Boolean(false), new Boolean(false), new Boolean(false)},
-				            	{new String(d.getRisposte().get(6).getTesto()), new Boolean(false), new Boolean(false), new Boolean(false)}};
+				            	{new String(d.getRisposte().get(5).getTesto()), new Boolean(false), new Boolean(false), new Boolean(false)}};
 
             Object[] columnNames = {
                 "",
@@ -583,33 +576,46 @@ public class CompilazioneGUI extends javax.swing.JFrame {
         if (d instanceof RangeDTO){
         	RangeDTO r=(RangeDTO) d;
             RangeCompilazione.setVisible(true);
+            int valMaxRange=r.getValMax();
+            int valMinRange=r.getValMin();
+            
+            for(int i=valMinRange; i<=valMaxRange; i++){
+            	range1Combo.addItem(i);
+            	range2Combo.addItem(i);
+            	range3Combo.addItem(i);
+            	range4Combo.addItem(i);
+            	range5Combo.addItem(i);
+            	range6Combo.addItem(i);
+            }
             titoloRangeLabel.setText(r.getTesto());
-            jLabel3.setText(r.getRisposte().get(1).getTesto());
-            jLabel4.setText(r.getRisposte().get(2).getTesto());
-            jLabel5.setText(r.getRisposte().get(3).getTesto());
-            jLabel6.setText(r.getRisposte().get(4).getTesto());
-            jLabel7.setText(r.getRisposte().get(5).getTesto());
-            jLabel8.setText(r.getRisposte().get(6).getTesto());
+            jLabel3.setText(r.getRisposte().get(0).getTesto());
+            jLabel4.setText(r.getRisposte().get(1).getTesto());
+            jLabel5.setText(r.getRisposte().get(2).getTesto());
+            jLabel6.setText(r.getRisposte().get(3).getTesto());
+            jLabel7.setText(r.getRisposte().get(4).getTesto());
+            jLabel8.setText(r.getRisposte().get(5).getTesto());
             comboEnable(jLabel3.getText(), jLabel4.getText(), jLabel5.getText(), jLabel6.getText(), jLabel7.getText(), jLabel8.getText());
         }
         if (d instanceof MultiplaDTO){
         	MultiplaDTO m=(MultiplaDTO) d;
             MultiplaCompilazione.setVisible(true);
             titoloMultiplaLabel.setText(m.getTesto());
-            multipla1Check.setText(m.getRisposte().get(1).getTesto());
-            multipla2Check.setText(m.getRisposte().get(2).getTesto());
-            multipla3Check.setText(m.getRisposte().get(3).getTesto());
-            multipla4Check.setText(m.getRisposte().get(4).getTesto());
-            multipla5Check.setText(m.getRisposte().get(5).getTesto());
-            multipla6Check.setText(m.getRisposte().get(6).getTesto());
-            specificare1Text.setEnabled(m.getRisposte().get(1).isHasTestoLibero());
-            specificare2Text.setEnabled(m.getRisposte().get(2).isHasTestoLibero());
-            specificare3Text.setEnabled(m.getRisposte().get(3).isHasTestoLibero());
-            specificare4Text.setEnabled(m.getRisposte().get(4).isHasTestoLibero());
-            specificare5Text.setEnabled(m.getRisposte().get(5).isHasTestoLibero());
-            specificare6Text.setEnabled(m.getRisposte().get(6).isHasTestoLibero());
+            multipla1Check.setText(m.getRisposte().get(0).getTesto());
+            multipla2Check.setText(m.getRisposte().get(1).getTesto());
+            multipla3Check.setText(m.getRisposte().get(2).getTesto());
+            multipla4Check.setText(m.getRisposte().get(3).getTesto());
+            multipla5Check.setText(m.getRisposte().get(4).getTesto());
+            multipla6Check.setText(m.getRisposte().get(5).getTesto());
+            specificare1Text.setEnabled(m.getRisposte().get(0).isHasTestoLibero());
+            specificare2Text.setEnabled(m.getRisposte().get(1).isHasTestoLibero());
+            specificare3Text.setEnabled(m.getRisposte().get(2).isHasTestoLibero());
+            specificare4Text.setEnabled(m.getRisposte().get(3).isHasTestoLibero());
+            specificare5Text.setEnabled(m.getRisposte().get(4).isHasTestoLibero());
+            specificare6Text.setEnabled(m.getRisposte().get(5).isHasTestoLibero());
         }
     }                                        
+    
+    
     /**
      * Annulla compilazione domanda Libera
      * @param evt
@@ -619,6 +625,8 @@ public class CompilazioneGUI extends javax.swing.JFrame {
         liberaTestoArea.setText("");
         LiberaCompilazione.setVisible(false);
     }                                             
+    
+    
     /**
      * Salva compialazione domanda Libera
      * @param evt
@@ -630,7 +638,13 @@ public class CompilazioneGUI extends javax.swing.JFrame {
         boolean notRisponde=nonRispondeLibera.isSelected();
         c.setCompilazioneAssociataIdCompilazione(compilazione.getIdCompilazione());
         c.setRispostalibera(testolibera);
-        c.setRispostaAssociata(d.getRisposte().get(0));
+        for (RispostaDTO r:d.getRisposte()){
+        	if (r.isNonRisponde()==notRisponde){
+        		c.setRispostaAssociata(r);
+        		break;
+        	}
+        	}
+        
         
         try {
 			client.CompilazioneAggiungiCompilazioneRisposta(c);
@@ -650,18 +664,7 @@ public class CompilazioneGUI extends javax.swing.JFrame {
     private void annullaMultiplaActionPerformed(java.awt.event.ActionEvent evt) {                                                
        
         
-        multipla1Check.setSelected(false);
-        multipla2Check.setSelected(false);
-        multipla3Check.setSelected(false);
-        multipla4Check.setSelected(false);
-        multipla5Check.setSelected(false);
-        multipla6Check.setSelected(false);
-        specificare1Text.setText("");
-        specificare2Text.setText("");
-        specificare3Text.setText("");
-        specificare4Text.setText("");
-        specificare5Text.setText("");
-        specificare6Text.setText("");
+    	clearMultipla();
         MultiplaCompilazione.setVisible(false);
     }                                               
     /**
@@ -677,16 +680,75 @@ public class CompilazioneGUI extends javax.swing.JFrame {
         boolean multipla5 = multipla5Check.isSelected();
         boolean multipla6 = multipla6Check.isSelected();
         
+        String specificare1=specificare1Text.getText();
+        String specificare2=specificare2Text.getText();
+        String specificare3=specificare3Text.getText();
+        String specificare4=specificare4Text.getText();
+        String specificare5=specificare5Text.getText();
+        String specificare6=specificare6Text.getText();
         
+        boolean notRisponde= nonRispondeMultipla.isSelected();
+        ArrayList<CompilazioneRispostaDTO> compRisp= new ArrayList<CompilazioneRispostaDTO>();
        
+        CompilazioneRispostaDTO c=new CompilazioneRispostaDTO();
+        c.setCompilazioneAssociataIdCompilazione(compilazione.getIdCompilazione());
+        if (notRisponde){
+    	   for (RispostaDTO r:d.getRisposte()){
+    	       	if (r.isNonRisponde()==notRisponde){
+    	       		c.setRispostaAssociata(r);
+    	       		compRisp.add(c);
+    	       		break;
+    	       	}
+    	       }  
+       }
+       else{
+    	  if (multipla1){
+    		  c.setRispostaAssociata(d.getRisposte().get(0));
+    		  c.setTestolibero(specificare1);
+    		  compRisp.add(c);
+    	   }
+    	  
+    	  if (multipla2){
+       	   	c.setRispostaAssociata(d.getRisposte().get(1));
+       	   	c.setTestolibero(specificare2);
+       	   	compRisp.add(c);
+    	  }
+    	  if (multipla3){
+    		  c.setRispostaAssociata(d.getRisposte().get(2));
+    		  c.setTestolibero(specificare3);
+    		  compRisp.add(c);
+    	  }
+       	  
+    	  if (multipla4){
+       	   c.setRispostaAssociata(d.getRisposte().get(3));
+       	c.setTestolibero(specificare4);
+       	   compRisp.add(c);
+    	  }
+    	  if (multipla5){
+       	   c.setRispostaAssociata(d.getRisposte().get(4));
+       	c.setTestolibero(specificare5);
+       	   compRisp.add(c);
+    	  }
+    	  if (multipla6){
+          	   c.setRispostaAssociata(d.getRisposte().get(5));
+          	 c.setTestolibero(specificare6);
+          	 compRisp.add(c);
+    	  }
+       }
         
-        multipla1Check.setSelected(false);
-        multipla2Check.setSelected(false);
-        multipla3Check.setSelected(false);
-        multipla4Check.setSelected(false);
-        multipla5Check.setSelected(false);
-        multipla6Check.setSelected(false);
+        	try {
+        		for (CompilazioneRispostaDTO dto:compRisp){
+				client.CompilazioneAggiungiCompilazioneRisposta(dto);
+
+		       	
+    	    }
+			} catch (RemoteException e) {
+				JOptionPane.showMessageDialog(this, e.getMessage(),"Errore:",JOptionPane.ERROR_MESSAGE);
+				e.printStackTrace();
+			}  
         
+        
+        clearMultipla();
         MultiplaCompilazione.setVisible(false);
         
         
@@ -704,19 +766,55 @@ public class CompilazioneGUI extends javax.swing.JFrame {
         String range4 = (String) range4Combo.getSelectedItem();
         String range5 = (String) range5Combo.getSelectedItem();
         String range6 = (String) range6Combo.getSelectedItem();
+        boolean notRisponde= nonRispondeRange.isSelected();
+        
+        ArrayList<CompilazioneRispostaDTO> compRisp= new ArrayList<CompilazioneRispostaDTO>();
         
         CompilazioneRispostaDTO c=new CompilazioneRispostaDTO();
         
         c.setCompilazioneAssociataIdCompilazione(compilazione.getIdCompilazione());
+        if (notRisponde){
+     	   for (RispostaDTO r:d.getRisposte()){
+     	       	if (r.isNonRisponde()==notRisponde){
+     	       		c.setRispostaAssociata(r);
+     	       		compRisp.add(c);
+     	       		break;
+     	       	}
+     	       }  
+        }
         
-        range1Combo.setSelectedIndex(0);
-        range2Combo.setSelectedIndex(0);
-        range3Combo.setSelectedIndex(0);
-        range4Combo.setSelectedIndex(0);
-        range5Combo.setSelectedIndex(0);
-        range6Combo.setSelectedIndex(0);
+        else{
+      	  /*
+      		  c.setRispostaAssociata(d.getRisposte().get(0));
+      		  
+      		  compRisp.add(c);
+      	  
+      	  
+      	 
+         	   	c.setRispostaAssociata(d.getRisposte().get(1));
+         	   	compRisp.add(c);
+      	 
+      	  
+      		  c.setRispostaAssociata(d.getRisposte().get(2));
+      		  compRisp.add(c);
+      	 
+         	  
+      	  
+         	   c.setRispostaAssociata(d.getRisposte().get(3));
+         	   compRisp.add(c);
+      	 
+         	   c.setRispostaAssociata(d.getRisposte().get(4));
+         	   compRisp.add(c);
+      	 
+            	   c.setRispostaAssociata(d.getRisposte().get(5));
+            	 compRisp.add(c);
+      	  
+         */}
+        clearRange();
         
         RangeCompilazione.setVisible(false);
+        
+    
     }                                          
     /**
      * Annulla compilazione domanda Range
@@ -724,12 +822,7 @@ public class CompilazioneGUI extends javax.swing.JFrame {
      */
     private void annullaRangeActionPerformed(java.awt.event.ActionEvent evt) {                                             
         
-        range1Combo.setSelectedIndex(0);
-        range2Combo.setSelectedIndex(0);
-        range3Combo.setSelectedIndex(0);
-        range4Combo.setSelectedIndex(0);
-        range5Combo.setSelectedIndex(0);
-        range6Combo.setSelectedIndex(0);
+        clearRange();
         
         RangeCompilazione.setVisible(false);
         
@@ -775,6 +868,46 @@ public class CompilazioneGUI extends javax.swing.JFrame {
     	else range1Combo.setEnabled(true);
     	if (campo6=="") range6Combo.setEnabled(false);
     	else range1Combo.setEnabled(true);
+    }
+    /**
+     * Pulisce campi RangeCompilazione
+     */
+    private void clearRange(){
+    	
+    	range1Combo.setSelectedItem(null);
+        range2Combo.setSelectedItem(null);
+        range3Combo.setSelectedItem(null);
+        range4Combo.setSelectedItem(null);
+        range5Combo.setSelectedItem(null);
+        range6Combo.setSelectedItem(null);
+        
+        range1Combo.removeAllItems();
+        range2Combo.removeAllItems();
+        range3Combo.removeAllItems();
+        range4Combo.removeAllItems();
+        range5Combo.removeAllItems();
+        range6Combo.removeAllItems();
+    	nonRispondeRange.setSelected(false);
+    }
+    
+    
+    /**
+     * Pulisce campi MultiplaCompilazione
+     */
+    private void clearMultipla(){
+    	multipla1Check.setSelected(false);
+        multipla2Check.setSelected(false);
+        multipla3Check.setSelected(false);
+        multipla4Check.setSelected(false);
+        multipla5Check.setSelected(false);
+        multipla6Check.setSelected(false);
+        specificare1Text.setText("");
+        specificare2Text.setText("");
+        specificare3Text.setText("");
+        specificare4Text.setText("");
+        specificare5Text.setText("");
+        specificare6Text.setText("");
+        nonRispondeMultipla.setSelected(false);
     }
     
     private javax.swing.JDialog LiberaCompilazione;
