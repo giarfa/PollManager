@@ -1515,6 +1515,7 @@ if (range3Text.getText().length() == 0) {
 
 				clearRange();
 				Range.setVisible(false);
+				inizializza();
 			}
 		} catch (NumberFormatException e) {
 
@@ -1625,7 +1626,7 @@ if (range3Text.getText().length() == 0) {
 			i=0;
 			clearMatrice();
 			Matrice.setVisible(false);
-			
+			inizializza();
 		} catch (RemoteException e) {
 			JOptionPane.showMessageDialog(this, e.getMessage(),"Errore:",JOptionPane.ERROR_MESSAGE);
 			e.printStackTrace();
@@ -1721,7 +1722,7 @@ if (range3Text.getText().length() == 0) {
 			i=0;
 			clearMultipla();
 			Multipla.setVisible(false);
-
+			inizializza();
 		} catch (RemoteException e) {
 			
 			e.printStackTrace();
@@ -1960,6 +1961,7 @@ if (range3Text.getText().length() == 0) {
 					client.DomandaAggiungiRisposta(risp);
 				}
 
+				inizializza();
 			} catch (RemoteException e) {
 				JOptionPane.showMessageDialog(this, e.getMessage(),"Errore:",JOptionPane.ERROR_MESSAGE);
 				e.printStackTrace();
