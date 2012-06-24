@@ -1,7 +1,10 @@
 package exception;
 
 import java.io.Serializable;
-
+/** 
+ * InvalidCredentialException
+ * @author 727826-729399
+ */
 public class InvalidCredentialException extends Exception implements Serializable {
 
 	/**

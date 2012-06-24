@@ -1,9 +1,9 @@
 package dto;
 
 /**
- * 
- * @author Alberto
- *
+ * ValoriMatriceDTO
+ * @author 727826-729399
+ * DTO per la classe di dominio {@link} ValoriMatrice usato solo per la trasmissione dei dati con rmi e socket
  */
 public class ValoriMatriceDTO {
 	

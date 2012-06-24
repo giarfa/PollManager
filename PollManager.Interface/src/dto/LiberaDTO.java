@@ -1,8 +1,8 @@
 package dto;
 /**
- * 
- * @author Alberto
- *
+ * LiberaDTO
+ * @author 727826-729399
+ * DTO per la classe di dominio {@link} Libera usato solo per la trasmissione dei dati con rmi e socket
  */
 public class LiberaDTO extends DomandaDTO {
 

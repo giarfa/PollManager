@@ -4,9 +4,9 @@ package dto;
 import java.util.Date;
 
 /**
- * 
- * @author Alberto
- *
+ * UtenteDTO
+ * @author 727826-729399
+ * DTO per la classe di dominio {@link} Utente usato solo per la trasmissione dei dati con rmi e socket
  */
 public class UtenteDTO {
 	

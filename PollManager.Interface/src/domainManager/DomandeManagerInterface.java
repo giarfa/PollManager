@@ -6,10 +6,17 @@ import dto.MultiplaDTO;
 import dto.RangeDTO;
 import dto.RispostaDTO;
 import dto.ValoriMatriceDTO;
-
+/**
+ * Domande Manager
+ * @author 727826-729399
+ * Per i metodi vedere @see @link BaseInterface
+ */
 public interface DomandeManagerInterface {
+	
 	public MultiplaDTO GetMultiplaByKey(int idDomanda);
+	
 	public LiberaDTO GetLiberaByKey(int idDomanda);
+	
 	public RangeDTO GetRangeByKey(int idDomanda);
 	public MatriceDTO GetMatriceByKey(int idDomanda);
 	public ValoriMatriceDTO GetValoriMatriceByKey(int idDomanda);

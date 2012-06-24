@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.Date;
 
 /**
- * 
- * @author Alberto
- *
+ * CompilazioneDTO
+ * @author 727826-729399
+ * DTO per la classe di dominio {@link} Compilazione usato solo per la trasmissione dei dati con rmi e socket
  */
 public class CompilazioneDTO {
 	

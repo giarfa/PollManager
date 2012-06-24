@@ -3,9 +3,9 @@ package dto;
 import java.util.ArrayList;
 
 /**
- * 
- * @author Alberto
- *
+ * DomandaDTO
+ * @author 727826-729399
+ * DTO per la classe di dominio {@link} Domanda usato solo per la trasmissione dei dati con rmi e socket
  */
 public class DomandaDTO {
 	private int idDomanda;

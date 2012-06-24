@@ -1,5 +1,10 @@
 package dto;
 
+/**
+ * MatriceDTO
+ * @author 727826-729399
+ * DTO per la classe di dominio {@link} Matrice usato solo per la trasmissione dei dati con rmi e socket
+ */
 import java.util.ArrayList;
 
 /**

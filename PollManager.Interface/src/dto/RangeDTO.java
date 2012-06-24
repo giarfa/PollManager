@@ -1,8 +1,8 @@
 package dto;
 /**
- * 
- * @author Alberto
- *
+ * RangeDTO
+ * @author 727826-729399
+ * DTO per la classe di dominio {@link} Range usato solo per la trasmissione dei dati con rmi e socket
  */
 public class RangeDTO extends DomandaDTO {
 

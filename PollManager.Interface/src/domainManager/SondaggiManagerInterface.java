@@ -8,7 +8,11 @@ import dto.MatriceDTO;
 import dto.MultiplaDTO;
 import dto.RangeDTO;
 import dto.SondaggioDTO;
-
+/**
+ * Sondaggio Manager
+ * @author 727826-729399
+ * Per i metodi vedere @see @link BaseInterface
+ */
 public interface SondaggiManagerInterface {
 	public SondaggioDTO GetByKey(int idSondaggio);
 	public List<SondaggioDTO> GetList();
