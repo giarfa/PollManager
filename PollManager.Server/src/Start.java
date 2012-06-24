@@ -5,7 +5,11 @@ import java.io.InputStreamReader;
 import thread.ServerAcceptRmi;
 import thread.ServerAcceptSocket;
 
-
+/**
+ * Start Server
+ * @author 727826-729399
+ * 
+ */
 public class Start {
 
 	/**Start del server

@@ -4,10 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 
- * @author Alberto
- *
- */
+* Sondaggio
+* @author 727826-729399
+*/
 public class Sondaggio {
 	
 	private int idSondaggio;
@@ -20,7 +19,7 @@ public class Sondaggio {
 	private List compilazioni;
 	
 	/**
-	 * 
+	 * Costruttore
 	 */
 	public Sondaggio(){
 		this.idSondaggio=-1;
@@ -30,10 +29,10 @@ public class Sondaggio {
 	}
 	
 	/**
-	 * 
-	 * @param titolo
-	 * @param descrizione
-	 * @return
+	 * Crea Sondaggio
+	 * @param titolo Titolo Sondaggio
+	 * @param descrizione Descrizione Sondaggio
+	 * @return this
 	 */
 	public static Sondaggio CreaSondaggio(String titolo, String descrizione){
 		Sondaggio sondaggio= new Sondaggio();
@@ -43,51 +42,70 @@ public class Sondaggio {
 	}
 	
 	/**
-	 * 
-	 * @param titolo = oakoaa
-	 * @param descrizione
-	 * @return
+	 * Modifica Sondaggio
+	 * @param titolo Titolo Sondaggio
+	 * @param descrizione Descrizione Sondaggio
+	 * @return this
 	 */
 	public Sondaggio ModificaSondaggio(String titolo, String descrizione){
 		this.titolo=titolo;
 		this.descrizione=descrizione;
 		return this;
 	}
-	
+	/**
+	 * @see {@link} Multipla.CreaMultipla 
+	 */
 	@SuppressWarnings("unchecked")
 	public void AggiungiDomandaMultipla(int ordine, String testo, boolean isObbligatorio, Orientamento orientamento, boolean isSingola,int NumMinRisp){
 		Multipla multipla=Multipla.CreaMultipla(ordine, testo, isObbligatorio, orientamento, isSingola, NumMinRisp, this);
 		this.domande.add(multipla);
 	}
 	
+	/**
+	 * @see {@link} Libera.CreaLibera 
+	 */
 	@SuppressWarnings("unchecked")
 	public void AggiungiDomandaLibera(int ordine, String testo, boolean isObbligatorio, int MaxCaratteri, int MinCaratteri){
 		Libera libera=Libera.CreaLibera(ordine, testo, isObbligatorio, MaxCaratteri, MinCaratteri, this);
 		this.domande.add(libera);
 	}
 	
+	/**
+	 * @see {@link} Range.CreaRange 
+	 */
 	@SuppressWarnings("unchecked")
 	public void AggiungiDomandaRange(int ordine, String testo, boolean isObbligatorio, int ValMin, int ValMax, String DescValMin, String DescValMax, boolean isRispSingola){
 		Range range=Range.CreaRange(ordine, testo, isObbligatorio, ValMin, ValMax, DescValMin, DescValMax, isRispSingola, this);
 		this.domande.add(range);
 	}
 	
+	/**
+	 * @see {@link} Matrice.CreaMatrice 
+	 */
 	@SuppressWarnings("unchecked")
 	public void AggiungiDomandaMatrice(int ordine, String testo, boolean isObbligatorio){
 		Matrice matrice=Matrice.CreaMatrice(ordine, testo, isObbligatorio, this);
 		this.domande.add(matrice);
 	}
-	
+	/**
+	 * @see {@link} Compilazione.CreaCompilazione 
+	 */
 	@SuppressWarnings("unchecked")
 	public void AggiungiCompilazione(Sondaggio sondaggioAssociato, Utente utenteAssociato, String note){
 		Compilazione compilazione=Compilazione.CreaCompilazione(this, utenteAssociato, note);
 		this.compilazioni.add(compilazione);
 	}
 	
+	/**
+	 * Disattiva Sondaggio
+	 */
 	public void setDisable(){
 		this.attivo= false;
 	}
 	
+	/**
+	 * Attiva Sondaggio
+	 */
 	public void setEnable(){
 		this.attivo= true;
 		

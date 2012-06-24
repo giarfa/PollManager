@@ -5,6 +5,11 @@ import dataAccess.Repository;
 import domain.*;
 import dto.*;
 
+/**
+ * Domande Manager
+ * @author 727826-729399
+ * per i metodi vedere @see {@link} DomandeManagerInterface
+ */
 public class DomandeManager implements DomandeManagerInterface {
 	
 	DomandeManager() {

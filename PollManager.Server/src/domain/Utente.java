@@ -4,10 +4,9 @@ import java.util.Date;
 
 
 /**
- * 
- * @author Alberto
- *
- */
+* Utente
+* @author 727826-729399
+*/
 public class Utente {
 	
 	private int idUtente;
@@ -27,13 +26,14 @@ public class Utente {
 	}
 	
 	/**
-	 * 
-	 * @param matricola
-	 * @param ruolo
-	 * @param nome
-	 * @param cognome
-	 * @param password
-	 * @return Utente
+	 * Crea Utente
+	 * @param matricola Matricola Utente
+	 * @param ruolo Ruolo Utente
+	 * @param nome Nome Utente
+	 * @param cognome Cognome Utente
+	 * @param nomeutente NomeUtente Utente
+	 * @param password Password Utente
+	 * @return this
 	 */
 	public static Utente CreaUtente(int matricola,Ruolo ruolo, String nome, String cognome,String nomeutente,String password){
 		Utente utente= new Utente();
@@ -45,7 +45,16 @@ public class Utente {
 		utente.ruolo=ruolo;
 		return utente;
 	}	
-
+	/**
+	 * Modifica Utente
+	 * @param matricola Matricola Utente
+	 * @param ruolo Ruolo Utente
+	 * @param nome Nome Utente
+	 * @param cognome Cognome Utente
+	 * @param nomeutente NomeUtente Utente
+	 * @param password Password Utente
+	 * @return this
+	 */
 	 public Utente ModificaUtente(int matricola,Ruolo ruolo,String nome, String cognome,String nomeutente,String password) {
 		 this.nome=nome;
          this.cognome=cognome;
@@ -55,27 +64,32 @@ public class Utente {
          ModificaUtente(password);
          return this;
      }	 
-	 
+	 /**
+	  * Modifica Utente Password
+	  * @param password Passwor Utente
+	  * @return
+	  */
 	 public Utente ModificaUtente(String password){
      	this.password=password;
      	return this;
      }
 
 	/**
-	 * 
-	 * @param utente
+	 * Disabilita Utente
 	 */
 	public void setDisable(){
 		this.attivo= false;
 	}
 	/**
-	 * 
-	 * @param utente
+	 * Abilita Utente
 	 */
 	public void setEnable(){
 		this.attivo= true;
 	}
-	
+	/**
+	 * Password Corretta
+	 * @return true corretta false non corretta
+	 */
 	public boolean correctPassword(){
 		if (this.password.length()>5) 
 			return true;

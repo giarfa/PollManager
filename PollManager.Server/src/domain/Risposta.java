@@ -1,5 +1,8 @@
 package domain;
-
+/**
+* Risposta
+* @author 727826-729399
+*/
 public class Risposta {
 	
 	private int idRisposta;
@@ -10,11 +13,22 @@ public class Risposta {
 	private boolean attivo;
 	private Domanda domandaAssociata;
 	
+	/**
+	 * Costruttore
+	 */
 	public Risposta() {
 		this.idRisposta=-1;
 		this.attivo=true;
 	}
-	
+	/**
+	 * Crea Risposta
+	 * @param ordine Ordine risposta
+	 * @param testo testo risposta
+	 * @param hasTestoLibero se ha "specificare"
+	 * @param isNonRisponde se l'utente non risponde	
+	 * @param domandaAssociata domanda associata alla risposta
+	 * @return this
+	 */
 	public static Risposta CreaRisposta(int ordine, String testo, boolean hasTestoLibero, boolean isNonRisponde, Domanda domandaAssociata){
 		Risposta risposta= new Risposta();
 		risposta.ordine=ordine;
@@ -24,7 +38,16 @@ public class Risposta {
 		risposta.domandaAssociata=domandaAssociata;
 		return risposta;
 	}
-
+	/**
+	 * Crea Risposta
+	 * @param ordine Ordine risposta
+	 * @param testo testo risposta
+	 * @param hasTestoLibero se ha "specificare"
+	 * @param isNonRisponde se l'utente non risponde	
+	 * @param domandaAssociata domanda associata alla risposta
+	 * @return this
+	 * */
+	
 	public Risposta ModificaRisposta(int ordine, String testo, boolean hasTestoLibero, boolean isNonRisponde, Domanda domandaAssociata)
 	{
 		this.ordine=ordine;
@@ -34,11 +57,15 @@ public class Risposta {
 		this.domandaAssociata=domandaAssociata;
 		return this;
 	}
-	
+	/**
+	 * Abilita Risposta
+	 */
 	public void setEnable(){
 		this.attivo=true;
 	}
-	
+	/**
+	 * Disabilita Risposta
+	 */
 	public void setDisable(){
 		this.attivo=false;
 	}

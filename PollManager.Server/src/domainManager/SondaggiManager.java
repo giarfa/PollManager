@@ -14,7 +14,11 @@ import dto.MatriceDTO;
 import dto.MultiplaDTO;
 import dto.RangeDTO;
 import dto.SondaggioDTO;
-
+/**
+ * Sondaggio Manager
+ * @author 727826-729399
+ * per i metodi vedere @see {@link} SondaggioManagerinterface
+ */
 public class SondaggiManager implements SondaggiManagerInterface {
 	
 	SondaggiManager(){

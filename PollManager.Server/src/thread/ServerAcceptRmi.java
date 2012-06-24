@@ -11,6 +11,11 @@ import server.ServerRunnableInterface;
 import communication.ServerAcceptRmiInterface;
 import communication.ServerRmiInterface;
 
+/**
+ * ServerAcceptRmi
+ * @author 727826-729399
+ *
+ */
 public class ServerAcceptRmi implements ServerAcceptRmiInterface, Runnable {
 
 	private String url;
@@ -23,6 +28,10 @@ public class ServerAcceptRmi implements ServerAcceptRmiInterface, Runnable {
 	private Object lock = null;
 	private boolean shutdown;
 	
+	/**
+	 * Costruttore
+	 * @param host url
+	 */
 	public ServerAcceptRmi(String host) {
 		this.host=host;
 		this.clients=new Hashtable<String, Thread>();
@@ -32,10 +41,16 @@ public class ServerAcceptRmi implements ServerAcceptRmiInterface, Runnable {
 		this.url = "rmi://" + this.host + "/PollManager";
 	}
 	
+	/**
+	 * Spegni
+	 */
 	public void Shutdown(){
 		this.shutdown=true;
 	}
 	
+	/**
+	 * @see {@link} ServerRmiInterface.OpenChannel
+	 */
 	@Override
 	public ServerRunnableInterface OpenChannel(String clientName) throws RemoteException {
 		ServerRmiInterface server = Resolver.getInstance().getServerRmi();
@@ -50,6 +65,9 @@ public class ServerAcceptRmi implements ServerAcceptRmiInterface, Runnable {
 		return server;
 	}
 
+	/**
+	 * @see {@link} ServerRmiInterface.CloseChannel
+	 */
 	@Override
 	public void CloseChannel(String clientName) throws RemoteException {
 		synchronized (this.lock) {
@@ -59,7 +77,9 @@ public class ServerAcceptRmi implements ServerAcceptRmiInterface, Runnable {
 			thread.interrupt();
 		}
 	}
-
+	/**
+	 * Main ServerAcceptRmi
+	 */
 	@Override
 	public void run() {
 		try {
@@ -88,6 +108,9 @@ public class ServerAcceptRmi implements ServerAcceptRmiInterface, Runnable {
 		}
 	}
 	
+	/**
+	 * Termina utenti attivi
+	 */
 	private void QuitActiveClients(){
 		Thread thread;
 		for(String item : this.clientsName){

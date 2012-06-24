@@ -8,7 +8,11 @@ import domain.Risposta;
 import domain.ValoriMatrice;
 import dto.CompilazioneDTO;
 import dto.CompilazioneRispostaDTO;
-
+/**
+ * Compilazioni Manager
+ * @author 727826-729399
+ * per i metodi vedere @see {@link} CompilazioniManagerinterface
+ */
 public class CompilazioniManager implements CompilazioniManagerInterface {
 	
 	CompilazioniManager(){

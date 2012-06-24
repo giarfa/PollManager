@@ -8,7 +8,11 @@ import resolver.Resolver;
 import server.ServerRunnableInterface;
 import communication.ServerAcceptSocketInterface;
 import communication.ServerSocketInterface;
-
+/**
+*
+* ServerAcceptSocket
+* @author 727826-729399
+*/
 public class ServerAcceptSocket implements ServerAcceptSocketInterface, Runnable {
 
 	private int port = 4445;
@@ -20,6 +24,9 @@ public class ServerAcceptSocket implements ServerAcceptSocketInterface, Runnable
 	private Object lock = null;
 	private boolean shutdown;
 	
+	/**
+	 * Costruttore
+	 */
 	public ServerAcceptSocket(){
 		this.clients=new Hashtable<String, Thread>();
 		this.clientsName=new ArrayList<String>();
@@ -34,11 +41,17 @@ public class ServerAcceptSocket implements ServerAcceptSocketInterface, Runnable
 		this.shutdown=true;
 	}
 	
+	/**
+	 * @see {@link} ServerAcceptSocketInterface
+	 */
 	@Override
 	public ServerRunnableInterface OpenChannel(String clientName) throws RemoteException {
 		return null;
 	}
 	
+	/**
+	 * @see {@link} ServerAcceptSocketInterface
+	 */
 	public ServerRunnableInterface OpenChannel(String clientName, Socket clientSocket) throws RemoteException {
 		ServerSocketInterface server = Resolver.getInstance().getServerSocket(clientSocket);
 		Thread thread = new Thread(server);
@@ -52,6 +65,9 @@ public class ServerAcceptSocket implements ServerAcceptSocketInterface, Runnable
 		return server;
 	}
 
+	/**
+	 * @see {@link} ServerAcceptSocketInterface
+	 */
 	@Override
 	public void CloseChannel(String clientName) throws RemoteException {
 		synchronized (this.lock) {
@@ -62,6 +78,9 @@ public class ServerAcceptSocket implements ServerAcceptSocketInterface, Runnable
 		}
 	}
 
+	/**
+	 * Main Server Socket
+	 */
 	@Override
 	public void run() {
 		try {

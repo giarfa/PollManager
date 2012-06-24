@@ -1,9 +1,8 @@
 package domain;
 /**
- * 
- * @author Alberto
- *
- */
+* Range
+* @author 727826-729399
+*/
 public class Range extends Domanda {
 	
 	private int ValMin;
@@ -13,7 +12,7 @@ public class Range extends Domanda {
 	private boolean isRispSingola;
 	
 	/**
-	 * 
+	 * Costruttore
 	 */
 	public Range(){
 		super();
@@ -21,16 +20,17 @@ public class Range extends Domanda {
 	}
 	
 	/**
-	 * 
-	 * @param ordine
-	 * @param testo
+	 * Crea Range
+	 * @param ordine ordine domanda
+	 * @param testo Testo domanda
 	 * @param isObbligatorio
-	 * @param ValMin
-	 * @param ValMax
-	 * @param DescValMin
-	 * @param DescValMax
-	 * @param isRispSingola
-	 * @return
+	 * @param ValMin Valore minimo Range
+	 * @param ValMax Valore massimo Range
+	 * @param DescValMin Descrizione valore minimo range
+	 * @param DescValMax Descrizione valore massimo range
+	 * @param isRispSingola se risposta singola
+	 * @param sondaggioassociato Sondaggio associato alla domanda
+	 * @return this
 	 */
 	public static Range CreaRange(int ordine, String testo, boolean isObbligatorio, int ValMin, int ValMax, String DescValMin, String DescValMax, boolean isRispSingola, Sondaggio sondaggioAssociato){
 		Range range=new Range();
@@ -46,6 +46,18 @@ public class Range extends Domanda {
 		return range;
 	}
 	
+	/**
+	 * Modifica range
+	 * @param ordine ordine domanda
+	 * @param testo Testo domanda
+	 * @param isObbligatorio
+	 * @param ValMin Valore minimo Range
+	 * @param ValMax Valore massimo Range
+	 * @param DescValMin Descrizione valore minimo range
+	 * @param DescValMax Descrizione valore massimo range
+	 * @param isRispSingola se risposta singola
+	 * @return
+	 */
 	public Range ModificaRange(int ordine, String testo, boolean isObbligatorio, int ValMin, int ValMax, String DescValMin, String DescValMax, boolean isRispSingola){
 		this.ordine=ordine;
 		this.testo=testo;

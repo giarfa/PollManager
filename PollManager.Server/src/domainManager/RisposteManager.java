@@ -5,7 +5,11 @@ import dataAccess.Repository;
 import domain.Risposta;
 import domain.Domanda;
 import dto.RispostaDTO;
-
+/**
+ * Risposte Manager
+ * @author 727826-729399
+ * per i metodi vedere @see {@link} RisposteManagerinterface
+ */
 public class RisposteManager implements RisposteManagerInterface {
 	
 	RisposteManager() {

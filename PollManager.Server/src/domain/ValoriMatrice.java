@@ -1,9 +1,8 @@
 package domain;
 /**
- * 
- * @author Alberto
- *
- */
+* ValoriMatrice
+* @author 727826-729399
+*/
 public class ValoriMatrice {
 
 	private int idValoriMatrice;
@@ -11,10 +10,20 @@ public class ValoriMatrice {
 	private int ordine;
 	private String testo;
 	
+	/**
+	 * Costruttore
+	 */
 	public ValoriMatrice() {
 		this.idValoriMatrice=-1;
 	}
 	
+	/**
+	 * Crea ValoriMatrice
+	 * @param matrice Matrice Associata
+	 * @param ordine Ordine valore matrice
+	 * @param testo Testo ValoreMatrice
+	 * @return this
+	 */
 	public static ValoriMatrice CreaValoriMatrice(Matrice matrice, int ordine, String testo){
 		ValoriMatrice valoriMatrice=new ValoriMatrice();
 		valoriMatrice.matrice=matrice;
@@ -24,6 +33,13 @@ public class ValoriMatrice {
 		return valoriMatrice;
 	}
 	
+	/**
+	 * Modifica ValoriMatrice
+	 * @param matrice Matrice Associata
+	 * @param ordine Ordine valore matrice
+	 * @param testo Testo ValoreMatrice
+	 * @return this
+	 */
 	public ValoriMatrice ModificaValoriMatrice(int ordine, String testo){
 		this.ordine=ordine;
 		this.testo=testo;

@@ -8,7 +8,11 @@ import domain.Ruolo;
 import domain.Utente;
 import dto.UtenteDTO;
 import exception.InvalidCredentialException;
-
+/**
+ * Utenti Manager
+ * @author 727826-729399
+ * per i metodi vedere @see {@link} UtentiManagerinterface
+ */
 public class UtentiManager implements UtentiManagerInterface {
 	
 	UtentiManager(){
