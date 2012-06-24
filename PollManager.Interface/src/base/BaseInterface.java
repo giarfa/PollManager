@@ -7,7 +7,7 @@ import exception.*;
 
 public interface BaseInterface {
 
-	//Login - Logout
+	
 	public UtenteDTO Login(String user, String password) throws RemoteException, InvalidCredentialException;
 	public void Logout(UtenteDTO utente) throws RemoteException;
 	
