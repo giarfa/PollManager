@@ -35,6 +35,7 @@ public class AmministratoreGUI extends javax.swing.JFrame {
         this.idClient=idClient;
         this.utente=utente;
         initComponents();
+        this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         inizializza();
     }
 
@@ -231,7 +232,7 @@ public class AmministratoreGUI extends javax.swing.JFrame {
             }
         });
 
-        attivaUtente.setText("Disabilita/Abilita");
+        attivaUtente.setText("Abilita Utente");
         attivaUtente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 attivaUtenteUtenteActionPerformed(evt);
@@ -245,7 +246,7 @@ public class AmministratoreGUI extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jList1);
 
-        cancellaUtente.setText("Cancella Utente");
+        cancellaUtente.setText("Disabilita Utente");
         cancellaUtente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancellaUtenteActionPerformed(evt);
@@ -454,12 +455,13 @@ public class AmministratoreGUI extends javax.swing.JFrame {
             }
             clearUtente();
             Utente.setVisible(false);
-        
+            inizializza();
         
         } catch (Exception e) {
         		e.printStackTrace();
         		JOptionPane.showMessageDialog(this, e.getMessage(),"Errore:",JOptionPane.ERROR_MESSAGE);
         	}
+        
     }                                        
     /**
      * Annulla creazione/modifica utente
@@ -481,7 +483,7 @@ public class AmministratoreGUI extends javax.swing.JFrame {
 			 AccessoGUI b=new AccessoGUI(idClient, client);
 		        this.setVisible(false);
 		        b.setVisible(true);
-		
+		       
     	} catch (RemoteException e) {
 			JOptionPane.showMessageDialog(this, e.getMessage(),"Errore:",JOptionPane.ERROR_MESSAGE);
 			e.printStackTrace();
@@ -500,6 +502,7 @@ public class AmministratoreGUI extends javax.swing.JFrame {
     	try {
     		idUtente= ((UtenteDTO) jList1.getSelectedValue()).getIdUtente();
 			client.UtenteSetEnable(idUtente);
+			inizializza();
 		} catch (RemoteException e) {
 			JOptionPane.showMessageDialog(this, e.getMessage(),"Errore:",JOptionPane.ERROR_MESSAGE);
 			e.printStackTrace();
@@ -515,7 +518,7 @@ public class AmministratoreGUI extends javax.swing.JFrame {
       try {
     		idUtente= ((UtenteDTO) jList1.getSelectedValue()).getIdUtente();
 			client.UtenteSetDisable(idUtente);
-		
+			inizializza();
     	
     	} catch (RemoteException e) {
     		JOptionPane.showMessageDialog(this, e.getMessage(),"Errore:",JOptionPane.ERROR_MESSAGE);
@@ -543,9 +546,10 @@ public class AmministratoreGUI extends javax.swing.JFrame {
      */
     private void inizializza() throws RemoteException{
     	
-    	this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+    	
     	java.util.List<UtenteDTO> listaUtenti=new java.util.ArrayList<UtenteDTO>();
     	listaUtenti=client.UtenteGetList();
+    	
 		jList1.setListData(listaUtenti.toArray());
     }
     
