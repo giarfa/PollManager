@@ -4,15 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 
- * @author Alberto
- *
- */
+*
+* @author 727826-729399
+*/
 public class Matrice extends Domanda {
 	
 	@SuppressWarnings("rawtypes")
 	private List valorimatrice;
 
+	/**
+	 * Costruttore di Matrice
+	 */
 	public Matrice(){
 		super();
 		this.idDomandaTipo=4;
@@ -21,13 +23,12 @@ public class Matrice extends Domanda {
 	
 	
 	/**
-	 * 
-	 * @param ordine
-	 * @param testo
-	 * @param isObbligatorio
-	 * @param MaxCaratteri
-	 * @param MinCaratteri
-	 * @return
+	 * Crea nuova domanda Matrice
+	 * @param ordine Ordine della Domanda nel Sondaggio 
+	 * @param testo Testo della Domanda
+	 * @param isObbligatorio Se ha Risposta obbligatoria
+	 * @param sondaggioAssociato Sondaggio associato alla Domanda
+	 * @return this
 	 */
 	public static Matrice CreaMatrice(int ordine, String testo, boolean isObbligatorio, Sondaggio sondaggioAssociato){
 		Matrice matrice=new Matrice();
@@ -38,10 +39,10 @@ public class Matrice extends Domanda {
 		return matrice;
 	}
 	/**
-	 * 
-	 * @param ordine
-	 * @param testo
-	 * @param isObbligatorio
+	 * Modifica domanda Matrice esistente
+	  * @param ordine Ordine della Domanda nel Sondaggio 
+	 * @param testo Testo della Domanda
+	 * @param isObbligatorio Se ha Risposta obbligatoria
 	 * @return
 	 */
 	public Matrice ModificaMatrice(int ordine, String testo, boolean isObbligatorio){
@@ -51,7 +52,11 @@ public class Matrice extends Domanda {
 		
 		return this;
 	}
-	
+	/**
+	 * Aggiunge ValoriMatrice alla Matrice
+	 * @param ordine Ordine dei ValoriMatrice
+	 * @param testo	Testo del ValoreMatrice
+	 */
 	@SuppressWarnings("unchecked")
 	public void AggiungiValoriMatrice(int ordine, String testo){
 		ValoriMatrice valoriMatrice=ValoriMatrice.CreaValoriMatrice(this, ordine, testo);

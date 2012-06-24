@@ -4,10 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 
- * @author Alberto
- *
- */
+*
+* @author 727826-729399
+*/
 public abstract class Domanda {
 
 	protected int idDomanda;
@@ -20,22 +19,36 @@ public abstract class Domanda {
 	@SuppressWarnings("rawtypes")
 	protected List risposte;
 	
+	/**
+	 * Costruttore di Domanda
+	 */
 	public Domanda() {
 		this.idDomanda=-1;
 		this.attivo=true;
 		this.risposte=new ArrayList<Risposta>();
 	}
-	
+	/**
+	 * Aggiungi Risposta alla Domanda
+	 * @param ordine Ordine della Risposta
+	 * @param testo Testo della Risposta
+	 * @param hasTestoLibero se la risposta ha testo libero
+	 * @param isNonRisponde Se la Risposta è vuota;
+	 */
 	@SuppressWarnings("unchecked")
 	public void AggiungiRisposta(int ordine, String testo, boolean hasTestoLibero, boolean isNonRisponde){
 		Risposta risposta=Risposta.CreaRisposta(ordine, testo, hasTestoLibero, isNonRisponde, this);
 		this.risposte.add(risposta);
 	}
 	
+	/**
+	 * Abilita Risposta
+	 */
 	public void setEnable(){
 		this.attivo=true;
 	}
-	
+	/**
+	 * Disabilita Risposta
+	 */
 	public void setDisable(){
 		this.attivo=false;
 	}
@@ -125,6 +138,7 @@ public abstract class Domanda {
 	}
 
 	/**
+	 * Lista delle Risposte
 	 * @return the risposte
 	 */
 	@SuppressWarnings("unchecked")
@@ -139,11 +153,17 @@ public abstract class Domanda {
 	void setRisposte(List risposte) {
 		this.risposte = risposte;
 	}
-
+	/**
+	*
+	*
+	 */
 	public int getIdDomandaTipo() {
 		return idDomandaTipo;
 	}
-
+	/**
+	 * 
+	 * @param idDomandaTipo
+	 */
 	void setIdDomandaTipo(int idDomandaTipo) {
 		this.idDomandaTipo = idDomandaTipo;
 	}

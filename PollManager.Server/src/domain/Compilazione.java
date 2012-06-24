@@ -5,7 +5,10 @@ import java.util.Date;
 import java.util.List;
 
 
-
+/**
+*
+* @author 727826-729399
+*/
 public class Compilazione {
 	
 	private int idCompilazione;
@@ -17,7 +20,9 @@ public class Compilazione {
 	private Sondaggio sondaggioAssociato;
 	@SuppressWarnings("rawtypes")
 	private List compilazionirisposta;
-	
+	/**
+	 * Costruttore di Compilazione
+	 */
 	public Compilazione() {
 		this.idCompilazione=-1;
 		this.datacompilazione=new Date();
@@ -25,7 +30,13 @@ public class Compilazione {
 		this.attivo=true;
 		this.compilazionirisposta=new ArrayList<CompilazioneRisposta>();
 	}
-	
+	/**
+	 * Crea nuova Compilazione
+	 * @param sondaggioAssociato Sondaggio Associato alla compilazione
+	 * @param utenteAssociato	Utente Associato alla compilazione
+	 * @param note Note aggiuntive alla Compilazione
+	 * @return
+	 */
 	public static Compilazione CreaCompilazione(Sondaggio sondaggioAssociato, Utente utenteAssociato, String note){
 		Compilazione compilazione=new Compilazione();
 		
@@ -35,23 +46,37 @@ public class Compilazione {
 		
 		return compilazione;
 	}
-	
+	/**
+	 * Modifica Compilazione
+	 * @param note Note aggiuntive alla Compilazione
+	 * @return
+	 */
 	public Compilazione ModificaCompilazione(String note){
 		this.note=note;
 		
 		return this;
 	}
-	
+	/**
+	 * Aggiungi Risposta Alla Compilazione
+	 * @param rispostaAssociata 
+	 * @param valoreMatriceAssociato 
+	 * @param rispostalibera
+	 * @param testolibero
+	 */
 	@SuppressWarnings("unchecked")
 	public void AggiungiCompilazioneRisposta(Risposta rispostaAssociata, ValoriMatrice valoreMatriceAssociato, String rispostalibera, String testolibero){
 		CompilazioneRisposta compilazione=CompilazioneRisposta.CreaCompilazioneRisposta(this, rispostaAssociata, valoreMatriceAssociato, rispostalibera, testolibero);
 		this.compilazionirisposta.add(compilazione);
 	}
-	
+	/**
+	 * Attiva Compilazione
+	 */
 	public void setEnable(){
 		this.attivo=true;
 	}
-	
+	/**
+	 * Disattiva Compilazione
+	 */
 	public void setDisable(){
 		this.attivo=false;
 	}

@@ -1,27 +1,29 @@
 package domain;
 /**
- * 
- * @author Alberto
- *
- */
+*
+* @author 727826-729399
+*/
 public class Libera extends Domanda {
 	
 	private int MaxCaratteri;
 	private int MinCaratteri;
-
+	/**
+	 * Costruttore di Libera
+	 */
 	public Libera(){
 		super();
 		this.idDomandaTipo=2;
 	}
 	
 	/**
-	 * 
-	 * @param ordine
-	 * @param testo
-	 * @param isObbligatorio
-	 * @param MaxCaratteri
-	 * @param MinCaratteri
-	 * @return
+	 * Crea nuova domanda Libera
+	 * @param ordine Ordine della Domanda nel Sondaggio 
+	 * @param testo Testo della Domanda
+	 * @param isObbligatorio Se ha Risposta obbligatoria
+	 * @param MaxCaratteri Massimo numero caratteri Risposta
+	 * @param MinCaratteri Minimo numero caratteri Risposta
+	 * @param sondaggioAssociato Sondaggio associato alla Domanda
+	 * @return this
 	 */
 	public static Libera CreaLibera(int ordine, String testo, boolean isObbligatorio, int MaxCaratteri, int MinCaratteri, Sondaggio sondaggioAssociato){
 		Libera libera=new Libera();
@@ -34,6 +36,15 @@ public class Libera extends Domanda {
 		return libera;
 	}
 
+	/**
+	 * Modifica domanda Libera esistente
+	 * @param ordine Ordine della Domanda nel Sondaggio 
+	 * @param testo Testo della Domanda
+	 * @param isObbligatorio Se ha Risposta obbligatoria
+	 * @param MaxCaratteri Massimo numero caratteri Risposta
+	 * @param MinCaratteri Minimo numero caratteri Risposta
+	 * @return this
+	 */
 	public Libera ModificaLibera(int ordine, String testo, boolean isObbligatorio, int MaxCaratteri, int MinCaratteri){
 		this.ordine=ordine;
 		this.testo=testo;
@@ -71,6 +82,10 @@ public class Libera extends Domanda {
 		MinCaratteri = minCaratteri;
 	}
 	
+	/**
+	 * Valore massimo coerente con il minimo
+	 * @return	true ok false ko
+	 */
 	public boolean correctValMinMaxChar(){
 		if (this.MaxCaratteri>=this.MinCaratteri) return true;
 		else return false;

@@ -1,9 +1,8 @@
 package domain;
 /**
- * 
- * @author Alberto
- *
- */
+*
+* @author 727826-729399
+*/
 public class CompilazioneRisposta {
 	
 	private int idCompilazioneRisposta;
@@ -12,11 +11,21 @@ public class CompilazioneRisposta {
 	private Compilazione compilazioneAssociata;
 	private Risposta rispostaAssociata;
 	private ValoriMatrice valoreMatriceAssociato;
-	
+	/**
+	 * Costruttore di Compilazione Risposta
+	 */
 	public CompilazioneRisposta() {
 		this.idCompilazioneRisposta=-1;
 	}
-	
+	/**
+	 * Crea una nuova ComplizaioneRisposta
+	 * @param compilazioneAssociata	Compilazione associata alla CompilazioneRisposta
+	 * @param rispostaAssociata Risposta Associata
+	 * @param valoreMatriceAssociato ValoreMatrice associate se domanda è una Matrice
+	 * @param rispostalibera Se domanda Libera
+	 * @param testolibero Se la risposta ha testo libero
+	 * @return this
+	 */
 	public static CompilazioneRisposta CreaCompilazioneRisposta(Compilazione compilazioneAssociata, Risposta rispostaAssociata, ValoriMatrice valoreMatriceAssociato, String rispostalibera, String testolibero){
 		CompilazioneRisposta compilazioneRisposta=new CompilazioneRisposta();
 		
@@ -28,7 +37,15 @@ public class CompilazioneRisposta {
 		
 		return compilazioneRisposta;
 	}
-	
+	/**
+	 * Modifaca CompilazioneRisposta esistente
+	 * @param compilazioneAssociata	Compilazione associata alla CompilazioneRisposta
+	 * @param rispostaAssociata Risposta Associata
+	 * @param valoreMatriceAssociato ValoreMatrice associate se domanda è una Matrice
+	 * @param rispostalibera Se domanda Libera
+	 * @param testolibero Se la risposta ha testo libero
+	 * @return this
+	 */
 	public CompilazioneRisposta ModificaCompilazioneRisposta(Risposta rispostaAssociata, ValoriMatrice valoreMatriceAssociato, String rispostalibera, String testolibero){
 		this.rispostaAssociata=rispostaAssociata;
 		this.valoreMatriceAssociato=valoreMatriceAssociato;

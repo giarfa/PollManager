@@ -3,7 +3,7 @@ import thread.ServerAcceptRmi;
 
 public class Start {
 
-	/**
+	/**Start del server
 	 * @param args
 	 */
 	public static void main(String[] args) {

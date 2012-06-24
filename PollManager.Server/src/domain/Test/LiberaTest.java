@@ -17,7 +17,7 @@ public class LiberaTest extends TestCase {
 		assertEquals(null, l.getSondaggioAssociato());
 	}
 	
-	public void testMidificaLibera(){
+	public void testModificaLibera(){
 		Libera l;
 		l=Libera.CreaLibera(0, "pippo", true, 25, 5, null);
 		l.ModificaLibera(1, "pluto", false, 22, 13);
