@@ -12,7 +12,7 @@ import exception.*;
  * @author 727826-729399
  *
  */
-public class BaseServer implements ServerInterface {
+public abstract class BaseServer implements ServerInterface {
 	/**
 	 * Login Utente
 	 */
