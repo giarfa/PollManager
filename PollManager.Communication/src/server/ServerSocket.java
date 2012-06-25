@@ -8,8 +8,7 @@ import java.net.Socket;
 import java.rmi.RemoteException;
 import java.util.List;
 
-import com.thoughtworks.xstream.XStream;
-
+import serializer.Serializer;
 import communication.ServerSocketInterface;
 import dto.CompilazioneDTO;
 import dto.CompilazioneRispostaDTO;
@@ -36,14 +35,14 @@ public class ServerSocket extends BaseServer implements ServerSocketInterface {
 	private Socket clientSocket;
 	private BufferedReader reader;
 	private PrintWriter writer;
-	private XStream converter;
+	private Serializer converter;
 	
 	/**
 	 * Costruttore di ServerSocket
 	 * @param clientSocket
 	 */
 	public ServerSocket(Socket clientSocket){
-		this.converter=new XStream();
+		this.converter=Serializer.getInstance();
 		this.clientSocket=clientSocket;
 		try {
 			this.reader = new BufferedReader(new InputStreamReader(this.clientSocket.getInputStream()));

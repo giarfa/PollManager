@@ -8,9 +8,7 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.rmi.RemoteException;
 import java.util.List;
-
-import com.thoughtworks.xstream.XStream;
-
+import serializer.Serializer;
 import dto.CompilazioneDTO;
 import dto.CompilazioneRispostaDTO;
 import dto.ErroreDTO;
@@ -39,14 +37,14 @@ public class ClientSocket implements ClientSocketInterface {
 	private Socket socket;
 	private PrintWriter writer;
     private BufferedReader reader;
-    private XStream converter;
+    private Serializer converter;
 	/**
 	 * Costruttore di ClientSocket
 	 * @param host url dell'host
 	 */
 	public ClientSocket(String host){
 		this.host=host;
-		this.converter=new XStream();
+		this.converter=Serializer.getInstance();
 	}
 	
 	
