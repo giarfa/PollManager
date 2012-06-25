@@ -114,12 +114,12 @@ public class AccessoGUI extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Pool Manager-Login");
+        setTitle("Poll Manager-Login");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setResizable(false);
         
 
-        jLabel1.setText("Pool Manager");
+        jLabel1.setText("Poll Manager");
 
         loginButton.setText("Login");
         loginButton.addActionListener(new java.awt.event.ActionListener() {
