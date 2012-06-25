@@ -590,6 +590,7 @@ public class CompilazioneGUI extends javax.swing.JFrame {
             	range6Combo.addItem(i);
             }
             titoloRangeLabel.setText(r.getTesto());
+            try{
             jLabel3.setText(r.getRisposte().get(0).getTesto());
             jLabel4.setText(r.getRisposte().get(1).getTesto());
             jLabel5.setText(r.getRisposte().get(2).getTesto());
@@ -597,6 +598,8 @@ public class CompilazioneGUI extends javax.swing.JFrame {
             jLabel7.setText(r.getRisposte().get(4).getTesto());
             jLabel8.setText(r.getRisposte().get(5).getTesto());
             comboEnable(jLabel3.getText(), jLabel4.getText(), jLabel5.getText(), jLabel6.getText(), jLabel7.getText(), jLabel8.getText());
+            }
+            catch (IndexOutOfBoundsException e){}
         }
         if (d instanceof MultiplaDTO){
         	MultiplaDTO m=(MultiplaDTO) d;
@@ -608,12 +611,15 @@ public class CompilazioneGUI extends javax.swing.JFrame {
             multipla4Check.setText(m.getRisposte().get(3).getTesto());
             multipla5Check.setText(m.getRisposte().get(4).getTesto());
             multipla6Check.setText(m.getRisposte().get(5).getTesto());
+            try{
             specificare1Text.setEnabled(m.getRisposte().get(0).isHasTestoLibero());
             specificare2Text.setEnabled(m.getRisposte().get(1).isHasTestoLibero());
             specificare3Text.setEnabled(m.getRisposte().get(2).isHasTestoLibero());
             specificare4Text.setEnabled(m.getRisposte().get(3).isHasTestoLibero());
             specificare5Text.setEnabled(m.getRisposte().get(4).isHasTestoLibero());
             specificare6Text.setEnabled(m.getRisposte().get(5).isHasTestoLibero());
+            }
+            catch (IndexOutOfBoundsException e){}
         }
     }                                        
     
@@ -704,6 +710,7 @@ public class CompilazioneGUI extends javax.swing.JFrame {
     	       }  
        }
        else{
+    	   try{
     	  if (multipla1){
     		  c.setRispostaAssociata(d.getRisposte().get(0));
     		  c.setTestolibero(specificare1);
@@ -736,6 +743,8 @@ public class CompilazioneGUI extends javax.swing.JFrame {
           	 c.setTestolibero(specificare6);
           	 compRisp.add(c);
     	  }
+    	   }
+    	   catch (IndexOutOfBoundsException e){}
        }
         
         	try {

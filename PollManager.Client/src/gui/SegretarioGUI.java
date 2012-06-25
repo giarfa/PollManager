@@ -1758,11 +1758,11 @@ else range4Text.setEnabled(true);
 	 */
 	private void modificaDomandaActionPerformed(java.awt.event.ActionEvent evt) {
 		domandaModifica=(DomandaDTO) jList2.getSelectedValue();
+		
 		if (domandaModifica instanceof LiberaDTO) {
 			
 			LiberaDTO l=(LiberaDTO) domandaModifica;
 			Libera.setVisible(true);
-			
 			titoloLibera.setText(l.getTesto());
 			nMaxCharLibera.setText(Integer.toString(l.getMaxCaratteri()));
 			nMinCharLibera.setText(Integer.toString(l.getMinCaratteri()));
